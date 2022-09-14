@@ -333,24 +333,24 @@ const NeumorphismBox = () => {
     //return pSBC(0, `rgb(${r},${g},${b})`, "c");
   };
   const handleChangeSize = (newValue) => {
-    setValueSize(newValue);
-    setValueRadMax(newValue / 2);
-    setValueDistance(Math.floor(newValue / 10));
-    setValueBlur(Math.floor((newValue / 10) * 1.75));
+    setValueSize(newValue.target.value);
+    setValueRadMax(newValue.target.value / 2);
+    setValueDistance(Math.floor(newValue.target.value / 10));
+    setValueBlur(Math.floor((newValue.target.value / 10) * 1.75));
   };
   const handleChangeRad = (newValue) => {
-    setValueRad(newValue);
+    setValueRad(newValue.target.value);
   };
   const handleChangeDistance = (newValue) => {
-    setValueDistance(newValue);
+    setValueDistance(newValue.target.value);
   };
   const handleChangeIntensity = (newValue) => {
-    setValueIntensity(newValue);
+    setValueIntensity(newValue.target.value);
     setLightShadow(changeControlFlow(backgroundColor));
     setDarkShadow(changeControlFlowDark(backgroundColor));
   };
   const handleChangeBlur = (newValue) => {
-    setValueBlur(newValue);
+    setValueBlur(newValue.target.value);
   };
   const handleColorChange = (e) => {
     setBackgroundColor(e.target.value);

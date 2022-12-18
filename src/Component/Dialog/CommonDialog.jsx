@@ -8,13 +8,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Fade from "@mui/material/Fade";
+import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  //return <Slide direction="up" ref={ref} {...props} />;
-  return <Fade ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} />;
+  //return <Fade ref={ref} {...props} />;
 });
 
 export default function CommonDialog(props) {
@@ -95,39 +96,44 @@ export default function CommonDialog(props) {
                 //margin: "7px"
               }}
             >
-              <Button
-                onClick={props?.secondaryAction ?? props.onClose}
-                variant="contained"
-                disableElevation
-                sx={{
-                  textTransform: "none",
-                  width: "50%",
-                  backgroundColor: theme.button.secondary.main,
-                  "&:hover": {
-                    backgroundColor: theme.button.secondary.hover,
-                    color: theme.button.secondary.hoverText,
-                  },
-                  color: theme.button.secondary.mainText,
-                }}
-              >
-                {props?.secondaryActionText ?? "Disagree"}
-              </Button>
-              <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                onClick={props?.primaryAction ?? props.onClose}
-                sx={{
-                  backgroundColor: theme.button.primary.main,
-                  "&:hover": {
-                    backgroundColor: theme.button.primary.hover,
-                  },
-                  textTransform: "none",
-                  width: "50%",
-                }}
-              >
-                {props?.primaryActionText ?? "Agree"}
-              </Button>
+              {props?.secondaryActionText ? (
+                <Button
+                  onClick={props?.secondaryAction ?? props.onClose}
+                  variant="contained"
+                  disableElevation
+                  sx={{
+                    textTransform: "none",
+                    width: "50%",
+                    backgroundColor: theme.button.secondary.main,
+                    "&:hover": {
+                      backgroundColor: theme.button.secondary.hover,
+                      color: theme.button.secondary.hoverText,
+                    },
+                    color: theme.button.secondary.mainText,
+                  }}
+                >
+                  {props?.secondaryActionText ?? "Disagree"}
+                </Button>
+              ) : null}
+
+              {props?.primaryActionText ? (
+                <Button
+                  size="medium"
+                  disableElevation
+                  variant="contained"
+                  onClick={props?.primaryAction ?? props.onClose}
+                  sx={{
+                    backgroundColor: theme.button.primary.main,
+                    "&:hover": {
+                      backgroundColor: theme.button.primary.hover,
+                    },
+                    textTransform: "none",
+                    width: "50%",
+                  }}
+                >
+                  {props?.primaryActionText ?? "Agree"}
+                </Button>
+              ) : null}
             </Stack>
           </DialogActions>
         </DialogContent>

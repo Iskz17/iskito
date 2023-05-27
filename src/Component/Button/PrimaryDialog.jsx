@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,6 +14,7 @@ import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { useTheme } from "@mui/material/styles";
+import { AppContext } from "../../Context/AppContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   //return <Slide direction="up" ref={ref} {...props} />;
@@ -21,6 +23,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function CommonDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [state, setState] = useContext(AppContext);
+  const [theme, setTheme] = useState(useTheme());
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,7 +33,10 @@ export default function CommonDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const theme = useTheme();
+
+  useEffect(() => {
+
+  }, [state]);
 
   return (
     <div>
@@ -130,7 +137,7 @@ export default function CommonDialog(props) {
                 variant="contained"
                 onClick={props?.primaryAction ?? props.onClose}
                 sx={{
-                  backgroundColor: theme.status.primary,
+                  backgroundColor: theme.button.primary,
                   textTransform: "none",
                   width: "50%",
                 }}

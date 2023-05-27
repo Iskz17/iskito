@@ -12,6 +12,8 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
+import { useState, useContext, useEffect } from "react";
+import { AppContext } from "../../Context/AppContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -19,6 +21,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CommonDialog(props) {
+  const [state, setState] = useContext(AppContext)
+  const [themeld, setThemeld] = useState("light");
+
+  useEffect(()=> {
+    setThemeld(state.isDarkMode? 'dark' : 'light');
+  }, [state])
+
   const theme = useTheme();
   return (
     <div>
@@ -31,14 +40,14 @@ export default function CommonDialog(props) {
         aria-describedby="alert-dialog-slide-description"
         BackdropProps={{
           style: {
-            backgroundColor: theme.dialog.backgroundColor,
+            backgroundColor: theme[themeld].dialog.backgroundColor,
           },
         }}
         sx={{
-          backdropFilter: theme.dialog.blur,
+          backdropFilter: theme[themeld].dialog.blur,
           "& .MuiDialog-container .MuiPaper-root": {
-            boxShadow: theme.dialog.boxShadow,
-            borderRadius: theme.dialog.borderRadius,
+            boxShadow: theme[themeld].dialog.boxShadow,
+            borderRadius: theme[themeld].dialog.borderRadius,
           },
         }}
       >
@@ -104,12 +113,12 @@ export default function CommonDialog(props) {
                   sx={{
                     textTransform: "none",
                     width: "50%",
-                    backgroundColor: theme.button.secondary.main,
+                    backgroundColor: theme[themeld].button.secondary.main,
                     "&:hover": {
-                      backgroundColor: theme.button.secondary.hover,
-                      color: theme.button.secondary.hoverText,
+                      backgroundColor: theme[themeld].button.secondary.hover,
+                      color: theme[themeld].button.secondary.hoverText,
                     },
-                    color: theme.button.secondary.mainText,
+                    color: theme[themeld].button.secondary.mainText,
                   }}
                 >
                   {props?.secondaryActionText ?? "Disagree"}
@@ -123,9 +132,9 @@ export default function CommonDialog(props) {
                   variant="contained"
                   onClick={props?.primaryAction ?? props.onClose}
                   sx={{
-                    backgroundColor: theme.button.primary.main,
+                    backgroundColor: theme[themeld].button.primary.main,
                     "&:hover": {
-                      backgroundColor: theme.button.primary.hover,
+                      backgroundColor: theme[themeld].button.primary.hover,
                     },
                     textTransform: "none",
                     width: "50%",

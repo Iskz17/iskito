@@ -2,7 +2,7 @@ import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { orange } from "@mui/material/colors";
 
-const theme = createTheme({
+const lightTheme = {
   status: {
     danger: orange[500],
   },
@@ -25,8 +25,37 @@ const theme = createTheme({
     borderRadius: "11px",
     blur: "blur(6px)",
   },
-});
+};
+
+const darkTheme = {
+  status: {
+    danger: orange[500],
+  },
+  button: {
+    primary: {
+      main: "#278B85",
+      mainText: "white",
+      hover: "#216E69",
+    },
+    secondary: {
+      main: "rgb(226,231,238)",
+      mainText: "rgb(93,93,93)",
+      hover: "rgb(194,197,208)",
+      hoverText: "black",
+    },
+  },
+  dialog: {
+    boxShadow: "0px 45px 25px -25px rgba(0 , 0 ,0, 0.2)",
+    backgroundColor: "rgba(168,168,168,0.5)",
+    borderRadius: "11px",
+    blur: "blur(6px)",
+  },
+};
 
 export default function AppTheme(props) {
+  const theme = createTheme({
+    light: { ...lightTheme },
+    dark: { ...darkTheme },
+  });
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 }

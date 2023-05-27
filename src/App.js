@@ -6,10 +6,12 @@ import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import CommonDialog from "./Component/Dialog/CommonDialog";
 import Stack from "@mui/material/Stack";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import "./Particle.css";
+import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
+import Switch from '@mui/material/Switch';
 
 const App = () => {
   const headerItem = {
@@ -22,6 +24,16 @@ const App = () => {
     textAlign: "center",
   };
 
+  const [checked, setChecked] = useState(true);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    toggleDarkMode();
+  };
+
+  const [state, setState] = useContext(AppContext);
+  const toggleDarkMode = () => {
+    setState({isDarkMode: checked});
+  }
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -47,9 +59,9 @@ const App = () => {
   };
 
   return (
-    <AppTheme>
-      <div className="App">
-        {/* <div
+      <AppTheme>
+        <div className="App">
+          {/* <div
           id="parents div"
           style={{
             width: "100%",
@@ -222,77 +234,85 @@ const App = () => {
             ></div>
           </div>
         </div> */}
-        <div
-          id="parents div"
-          style={{
-            width: "100%",
-            height: "100vh",
-            background: "white",
-          }}
-        >
-          <NewmorphismBox />
+          <div
+            id="parents div"
+            style={{
+              width: "100%",
+              height: "100vh",
+              background: "white",
+            }}
+          >
+            <NewmorphismBox />
+          </div>
+          <div
+            id="parents div"
+            style={{
+              width: "100%",
+              height: "100vh",
+              background: "white",
+            }}
+          >
+            <Stack direction="column" spacing={2}>
+              <div>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  Show common dialog
+                </Button>
+                <CommonDialog
+                  onClose={handleClose}
+                  // src={
+                  //   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+                  // }
+                  open={open}
+                  title={"Where is bby"}
+                  content={"I want my bbyyy"}
+                  primaryActionText="Confirm"
+                  secondaryActionText="Cancel"
+                  //primaryAction = {//can pass action here}
+                />
+              </div>
+              <div>
+                <Button
+                  variant="outlined"
+                  onClick={handleClickOpenDialogPicture}
+                >
+                  Show common dialog with pictures
+                </Button>
+                <CommonDialog
+                  onClose={handleCloseDialogPicture}
+                  src={
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+                  }
+                  open={openDialogPicture}
+                  title={"Where picture is this"}
+                  content={"will need to use my use memo"}
+                  primaryActionText="Confirm"
+                  secondaryActionText="Cancel"
+                />
+              </div>
+              <div>
+                <Button variant="outlined" onClick={handleClickOpenDialogOne}>
+                  Show common dialog 1 action
+                </Button>
+                <CommonDialog
+                  onClose={handleCloseDialogOne}
+                  src={
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+                  }
+                  open={openDialogOne}
+                  title={"Where picture is this"}
+                  content={"will need to use my use memo"}
+                  secondaryActionText="Close"
+                />
+              </div>
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Stack>
+          </div>
         </div>
-        <div
-          id="parents div"
-          style={{
-            width: "100%",
-            height: "100vh",
-            background: "white",
-          }}
-        >
-          <Stack direction="column" spacing={2}>
-            <div>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                Show common dialog
-              </Button>
-              <CommonDialog
-                onClose={handleClose}
-                // src={
-                //   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                // }
-                open={open}
-                title={"Where is bby"}
-                content={"I want my bbyyy"}
-                primaryActionText="Confirm"
-                secondaryActionText="Cancel"
-                //primaryAction = {//can pass action here}
-              />
-            </div>
-            <div>
-              <Button variant="outlined" onClick={handleClickOpenDialogPicture}>
-                Show common dialog with pictures
-              </Button>
-              <CommonDialog
-                onClose={handleCloseDialogPicture}
-                src={
-                  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                }
-                open={openDialogPicture}
-                title={"Where picture is this"}
-                content={"will need to use my use memo"}
-                primaryActionText="Confirm"
-                secondaryActionText="Cancel"
-              />
-            </div>
-            <div>
-              <Button variant="outlined" onClick={handleClickOpenDialogOne}>
-                Show common dialog 1 action
-              </Button>
-              <CommonDialog
-                onClose={handleCloseDialogOne}
-                src={
-                  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                }
-                open={openDialogOne}
-                title={"Where picture is this"}
-                content={"will need to use my use memo"}
-                secondaryActionText="Close"
-              />
-            </div>
-          </Stack>
-        </div>
-      </div>
-    </AppTheme>
+      </AppTheme>
   );
 };
 

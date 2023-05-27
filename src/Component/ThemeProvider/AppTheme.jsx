@@ -25,6 +25,10 @@ const lightTheme = {
     borderRadius: "11px",
     blur: "blur(6px)",
   },
+  dialogPaper: {
+    backgroundColor: "rgb(255,255,255)",
+    color:"rgb(20,21,21)"
+  }
 };
 
 const darkTheme = {
@@ -46,10 +50,14 @@ const darkTheme = {
   },
   dialog: {
     boxShadow: "0px 45px 25px -25px rgba(0 , 0 ,0, 0.2)",
-    backgroundColor: "rgba(168,168,168,0.5)",
+    backgroundColor: "rgba(20,21,21,0.5)",
     borderRadius: "11px",
     blur: "blur(6px)",
   },
+  dialogPaper: {
+    backgroundColor: "rgb(20,21,21)",
+    color: "rgb(255,255,255)"
+  }
 };
 
 export default function AppTheme(props) {

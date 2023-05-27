@@ -1,5 +1,5 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
+import { PrimaryButton, SecondaryButton } from "../Button/CustomButton";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -7,7 +7,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -21,12 +20,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CommonDialog(props) {
-  const [state, setState] = useContext(AppContext)
+  const [state] = useContext(AppContext);
   const [themeld, setThemeld] = useState("light");
 
-  useEffect(()=> {
-    setThemeld(state.isDarkMode? 'dark' : 'light');
-  }, [state])
+  useEffect(() => {
+    setThemeld(state.isDarkMode ? "dark" : "light");
+  }, [state]);
 
   const theme = useTheme();
   return (
@@ -48,6 +47,7 @@ export default function CommonDialog(props) {
           "& .MuiDialog-container .MuiPaper-root": {
             boxShadow: theme[themeld].dialog.boxShadow,
             borderRadius: theme[themeld].dialog.borderRadius,
+            backgroundColor: theme[themeld].dialogPaper.backgroundColor,
           },
         }}
       >
@@ -80,6 +80,7 @@ export default function CommonDialog(props) {
             fontWeight: "760",
             letterSpacing: "-1px",
             fontSize: { xs: "18px", md: "20px" },
+            color: theme[themeld].dialogPaper.color
           }}
         >
           {props?.title ?? "Use Google's location service?"}
@@ -87,7 +88,7 @@ export default function CommonDialog(props) {
         <DialogContent>
           <DialogContentText
             id="alert-dialog-slide-description"
-            sx={{ fontSize: { xs: "13px", md: "14px" } }}
+            sx={{ fontSize: { xs: "13px", md: "14px" }, color: theme[themeld].dialogPaper.color }}
           >
             {props?.content ??
               `Let Google help apps determine location. This means sending
@@ -106,42 +107,24 @@ export default function CommonDialog(props) {
               }}
             >
               {props?.secondaryActionText ? (
-                <Button
+                <SecondaryButton
                   onClick={props?.secondaryAction ?? props.onClose}
                   variant="contained"
                   disableElevation
-                  sx={{
-                    textTransform: "none",
-                    width: "50%",
-                    backgroundColor: theme[themeld].button.secondary.main,
-                    "&:hover": {
-                      backgroundColor: theme[themeld].button.secondary.hover,
-                      color: theme[themeld].button.secondary.hoverText,
-                    },
-                    color: theme[themeld].button.secondary.mainText,
-                  }}
                 >
                   {props?.secondaryActionText ?? "Disagree"}
-                </Button>
+                </SecondaryButton>
               ) : null}
 
               {props?.primaryActionText ? (
-                <Button
+                <PrimaryButton
                   size="medium"
                   disableElevation
                   variant="contained"
                   onClick={props?.primaryAction ?? props.onClose}
-                  sx={{
-                    backgroundColor: theme[themeld].button.primary.main,
-                    "&:hover": {
-                      backgroundColor: theme[themeld].button.primary.hover,
-                    },
-                    textTransform: "none",
-                    width: "50%",
-                  }}
                 >
                   {props?.primaryActionText ?? "Agree"}
-                </Button>
+                </PrimaryButton>
               ) : null}
             </Stack>
           </DialogActions>

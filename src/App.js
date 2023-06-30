@@ -3,15 +3,16 @@ import Typewriter from "typewriter-effect";
 import Kito from "./kito-nobg.png";
 import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
-import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
-import CommonDialog from "./Component/Dialog/CommonDialog";
+import { DialogCollection } from "./DialogCollection/DialogCollection";
 import Stack from "@mui/material/Stack";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import "./Particle.css";
 import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
-import Switch from '@mui/material/Switch';
+import Switch from "@mui/material/Switch";
+import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
+import Section from "./Component/Section/Section"
 
 const App = () => {
   const headerItem = {
@@ -24,44 +25,63 @@ const App = () => {
     textAlign: "center",
   };
 
+  //#region dark mode handle
   const [checked, setChecked] = useState(true);
   const handleChange = (event) => {
     setChecked(event.target.checked);
     toggleDarkMode();
   };
-
   const [state, setState] = useContext(AppContext);
   const toggleDarkMode = () => {
-    setState({isDarkMode: checked});
-  }
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
+    setState({ isDarkMode: checked });
   };
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  //#endregion
 
-  const [openDialogPicture, setOpenDialogPicture] = useState(false);
-  const handleCloseDialogPicture = () => {
-    setOpenDialogPicture(false);
+  //#region for tab demo
+  const [tabValue, setTabValue] = useState(0);
+  const handleChangeTab = (event, newValue) => {
+    setTabValue(newValue);
   };
-  const handleClickOpenDialogPicture = () => {
-    setOpenDialogPicture(true);
-  };
+  const prepareTabs = () => {
+    return [
+      {
+        label: "1 tab",
+        key: 0,
+        content: (
+          <Section>
+            <NewmorphismBox />
+          </Section>
+        ),
+      },
+      {
+        label: "2 tab",
+        key: 1,
+        content: (
+          <Section>
+            <NewmorphismBox />
+          </Section>
+        ),
+      },
+      {
+        label: "3 tab",
+        key: 2,
+        content: (
+          <Section>
+            <NewmorphismBox />
+          </Section>
+        ),
+      },
+    ];
 
-  const [openDialogOne, setOpenDialogOne] = useState(false);
-  const handleCloseDialogOne = () => {
-    setOpenDialogOne(false);
   };
-  const handleClickOpenDialogOne = () => {
-    setOpenDialogOne(true);
-  };
+  //#endregion
 
   return (
-      <AppTheme>
-        <div className="App">
-          {/* <div
+    <AppTheme>
+      <div className="App">
+        {/* 
+        //#region not used
+        <div
           id="parents div"
           style={{
             width: "100%",
@@ -233,86 +253,29 @@ const App = () => {
               }}
             ></div>
           </div>
-        </div> */}
-          <div
-            id="parents div"
-            style={{
-              width: "100%",
-              height: "100vh",
-              background: "white",
-            }}
-          >
-            <NewmorphismBox />
-          </div>
-          <div
-            id="parents div"
-            style={{
-              width: "100%",
-              height: "100vh",
-              background: "white",
-            }}
-          >
-            <Stack direction="column" spacing={2}>
-              <div>
-                <Button variant="outlined" onClick={handleClickOpen}>
-                  Show common dialog
-                </Button>
-                <CommonDialog
-                  onClose={handleClose}
-                  // src={
-                  //   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                  // }
-                  open={open}
-                  title={"Where is bby"}
-                  content={"I want my bbyyy"}
-                  primaryActionText="Confirm"
-                  secondaryActionText="Cancel"
-                  //primaryAction = {//can pass action here}
-                />
-              </div>
-              <div>
-                <Button
-                  variant="outlined"
-                  onClick={handleClickOpenDialogPicture}
-                >
-                  Show common dialog with pictures
-                </Button>
-                <CommonDialog
-                  onClose={handleCloseDialogPicture}
-                  src={
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                  }
-                  open={openDialogPicture}
-                  title={"Where picture is this"}
-                  content={"will need to use my use memo"}
-                  primaryActionText="Confirm"
-                  secondaryActionText="Cancel"
-                />
-              </div>
-              <div>
-                <Button variant="outlined" onClick={handleClickOpenDialogOne}>
-                  Show common dialog 1 action
-                </Button>
-                <CommonDialog
-                  onClose={handleCloseDialogOne}
-                  src={
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                  }
-                  open={openDialogOne}
-                  title={"Where picture is this"}
-                  content={"will need to use my use memo"}
-                  secondaryActionText="Close"
-                />
-              </div>
-              <Switch
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ "aria-label": "controlled" }}
-              />
-            </Stack>
-          </div>
-        </div>
-      </AppTheme>
+        </div> 
+        //#endregion
+        */}
+        <Section>
+          <NewmorphismBox />
+        </Section>
+        <Section>
+          <DialogCollection />
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        </Section>
+        <Section>
+          <ScrollableTabs
+            value={tabValue}
+            onChange={handleChangeTab}
+            tabs={prepareTabs()}
+          />
+        </Section>
+      </div>
+    </AppTheme>
   );
 };
 

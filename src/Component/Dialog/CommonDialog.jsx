@@ -52,7 +52,7 @@ export default function CommonDialog(props) {
         }}
       >
         <Stack direction="row-reverse" spacing={1}>
-          <IconButton sx={{ cursor: "pointer" }} onClick={props.onClose}>
+          <IconButton sx={{ cursor: "pointer",  color: theme[themeld].dialogPaper.color }} onClick={props.onClose}>
             <CloseOutlinedIcon />
           </IconButton>
         </Stack>

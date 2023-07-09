@@ -2,9 +2,15 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import React, { useState } from "react";
-import { ElementFlat, ElementConcave, ElementConvex, ElementPressed } from "./Element";
+import {
+  ElementFlat,
+  ElementConcave,
+  ElementConvex,
+  ElementPressed,
+} from "./Element";
 import "./NeumorphismBox.css";
 import { pSBC } from "./PBSC";
+import { ClipboardCopy } from "../CopyToClipboard/Clipboard";
 
 const NeumorphismBox = () => {
   let flex = {
@@ -306,7 +312,7 @@ const NeumorphismBox = () => {
             <span>{`Pick a color: `}</span>
             <input
               type="color"
-              style={{ border: "none" }}
+              style={{ border: "none", borderRadius:"5px", padding:"none" }}
               value={backgroundColor}
               onChange={(e) => handleColorChange(e)}
             />
@@ -320,6 +326,7 @@ const NeumorphismBox = () => {
                 border: "3px solid black",
                 textAlign: "center",
                 fontSize: "15px",
+                borderRadius:"5px"
               }}
               onChange={(e) => handleColorChange(e)}
             />
@@ -790,7 +797,7 @@ const NeumorphismBox = () => {
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >{`  ${valueRad}px`}</span>
+              >{`  ${valueRad}px;`}</span>
             </div>
             <div>
               {`background:`}
@@ -803,8 +810,8 @@ const NeumorphismBox = () => {
                 }}
               >{`${
                 shadowType === "flat" || shadowType === "pressed"
-                  ? `${backgroundColor}`
-                  : `linear-gradient(${shapeColorAngle}, ${shapeColor})`
+                  ? `${backgroundColor};`
+                  : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
               }`}</span>
             </div>
             <div>
@@ -832,8 +839,40 @@ const NeumorphismBox = () => {
               >{`${shadowType === "pressed" ? "inset" : ""} 
               ${lightAngleValue[0]}${valueDistance}px ${
                 lightAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()}`}</span>
+              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}</span>
             </div>
+          </Stack>
+        </Box>
+        <Box style={{ width: "80%", ...settingMargin, marginTop: "5px" }}>
+          <Stack
+            spacing={0}
+            direction="column"
+            alignItems="flex-start"
+            style={{
+              width: "100%",
+              flexWrap: "wrap",
+              minWidth: "0px",
+              borderRadius: "5px",
+              color: backgroundColor,
+              fontSize: "0.97rem",
+              wordSpacing: "5px",
+            }}
+          >
+        <ClipboardCopy copyText={`
+              border-radius: ${valueRad}px;
+              background: ${shadowType === "flat" || shadowType === "pressed"
+                  ? `${backgroundColor};`
+                  : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
+              }
+              box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${
+                darkAngleValue[0]
+              }${valueDistance}px ${
+                darkAngleValue[1]
+              }${valueDistance}px ${valueBlur}px ${darkShadow.toLowerCase()},`}
+              ${shadowType === "pressed" ? "inset" : ""} 
+              ${lightAngleValue[0]}${valueDistance}px ${
+                lightAngleValue[1]
+              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}/>
           </Stack>
         </Box>
       </>
@@ -956,49 +995,72 @@ const NeumorphismBox = () => {
         id="arrangeParent"
         style={{
           background: `${backgroundColor}`,
-          fontFamily: 'Gilroy'
+          fontFamily: "Gilroy",
         }}
       >
-        <div id="mainBox">
-          <div
-            style={{
-              ...flex,
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            {topLightBoxes}
-            <div
-              style={{
-                height: `${valueSize}px`,
-                width: `${valueSize}px`,
-                transition:
-                  "width 0.3s cubic-bezier(.47,1.64,.41,.8), border-radius 0.3s cubic-bezier(.47,1.64,.41,.8)",
-                borderRadius: `${valueRad}px`,
-                ...backgroundAndShadow,
-              }}
-            ></div>
-            {bottomLightBoxes}
-          </div>
-        </div>
         <div
-          id="configBox"
+          id="title"
           style={{
             ...flex,
-            color: needToUseDark ? "#001f3f" : "white",
+            flexDirection: "column",
+            color:`${ needToUseDark ? "#001f3f" : "white"}`,
+            width: "100%",
+            paddingTop:"20px"
           }}
         >
+          <span style={{fontSize:"2em", fontWeight:900}}>Neumorphism.io clone</span>
+          <span>from scratch project</span>
+        </div>
+        <div
+          id="content"
+          style={{
+            ...flex,
+            width: "100%",
+            height: "100%",
+            marginTop:"-20px"
+          }}
+        >
+          <div id="mainBox">
+            <div
+              style={{
+                ...flex,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {topLightBoxes}
+              <div
+                style={{
+                  height: `${valueSize}px`,
+                  width: `${valueSize}px`,
+                  transition:
+                    "width 0.3s cubic-bezier(.47,1.64,.41,.8), border-radius 0.3s cubic-bezier(.47,1.64,.41,.8)",
+                  borderRadius: `${valueRad}px`,
+                  ...backgroundAndShadow,
+                }}
+              ></div>
+              {bottomLightBoxes}
+            </div>
+          </div>
           <div
+            id="configBox"
             style={{
               ...flex,
-              flexDirection: "column",
-              width: "99%",
-              height: "98%",
-              borderRadius: "30px",
-              ...backgroundAndShadow,
+              color: needToUseDark ? "#001f3f" : "white",
             }}
           >
-            {configElementBox()}
+            <div
+              style={{
+                ...flex,
+                flexDirection: "column",
+                width: "99%",
+                height: "98%",
+                borderRadius: "30px",
+                ...backgroundAndShadow,
+              }}
+            >
+              {configElementBox()}
+            </div>
           </div>
         </div>
       </div>

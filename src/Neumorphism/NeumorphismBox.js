@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import React, { useState } from "react";
+import { ElementFlat, ElementConcave, ElementConvex, ElementPressed } from "./Element";
 import "./NeumorphismBox.css";
 import { pSBC } from "./PBSC";
 
@@ -21,89 +22,6 @@ const NeumorphismBox = () => {
     marginBottom: "0px",
     marginTop: "0px",
     padding: 0,
-  };
-
-  const RGBtoHSV = function (color) {
-    var r, g, b, h, s, v;
-    r = Number(color[0]);
-    g = Number(color[1]);
-    b = Number(color[2]);
-
-    let min = Math.min(r, g, b);
-    let max = Math.max(r, g, b);
-
-    v = max;
-    let delta = max - min;
-    if (max != 0) s = delta / max;
-    // s
-    else {
-      // r = g = b = 0        // s = 0, v is undefined
-      s = 0;
-      h = -1;
-      return [h, s, undefined];
-    }
-    if (r === max) h = (g - b) / delta;
-    // between yellow & magenta
-    else if (g === max) h = 2 + (b - r) / delta;
-    // between cyan & yellow
-    else h = 4 + (r - g) / delta; // between magenta & cyan
-    h *= 60; // degrees
-    if (h < 0) h += 360;
-    if (isNaN(h)) h = 0;
-    return [h, s, v];
-  };
-
-  const HSVtoRGB = function (color) {
-    var i;
-    var h, s, v, r, g, b;
-    h = color[0];
-    s = color[1];
-    v = color[2];
-    if (s === 0) {
-      // achromatic (grey)
-      r = g = b = v;
-      return [r, g, b];
-    }
-    h /= 60; // sector 0 to 5
-    i = Math.floor(h);
-    let f = h - i; // factorial part of h
-    let p = v * (1 - s);
-    let q = v * (1 - s * f);
-    let t = v * (1 - s * (1 - f));
-    switch (i) {
-      case 0:
-        r = v;
-        g = t;
-        b = p;
-        break;
-      case 1:
-        r = q;
-        g = v;
-        b = p;
-        break;
-      case 2:
-        r = p;
-        g = v;
-        b = t;
-        break;
-      case 3:
-        r = p;
-        g = q;
-        b = v;
-        break;
-      case 4:
-        r = t;
-        g = p;
-        b = v;
-        break;
-      default:
-        // case 5:
-        r = v;
-        g = p;
-        b = q;
-        break;
-    }
-    return [r, g, b];
   };
 
   function luminance(r, g, b) {
@@ -155,16 +73,6 @@ const NeumorphismBox = () => {
     } else {
       setNeedToUseDark(false);
     }
-    // console.log(rgbToPass, "this is rgb to pass");
-    // var hsv = RGBtoHSV(rgbToPass);
-    // hsv[1] *= 1.15;
-    // if (hsv[2] + 35 > 255) {
-    //   hsv[2] = 255;
-    // } else {
-    //   hsv[2] += 35;
-    // }
-    // var rgb = HSVtoRGB(hsv);
-    // return pSBC(0.12, `rgb(${rgb})`, "c");
     let maxRRatio = 1.59;
     let maxGRatio = 1.60344;
     let maxBRatio = 1.59663;
@@ -200,15 +108,7 @@ const NeumorphismBox = () => {
       .replaceAll("(", "")
       .replaceAll(")", "")
       .split(",");
-    // var hsv = RGBtoHSV(rgbToPass);
-    // hsv[1] *= 1.05;
-    // if (hsv[2] - 28 < 0) {
-    //   hsv[2] = 0;
-    // } else {
-    //   hsv[2] -= 28;
-    // }
-    // var rgb = HSVtoRGB(hsv);
-    // return pSBC(-0.25, `rgb(${rgb})`, "c");
+
     let maxRRatio = 0.40625;
     let maxGRatio = 0.39655;
     let maxBRatio = 0.403361;
@@ -396,66 +296,6 @@ const NeumorphismBox = () => {
       })
     );
   };
-
-  const elementFlat = `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="24"
-      viewBox="0 0 145 24"
-      fill="none"
-      stroke="${backgroundColor}"
-    >
-      <path
-        d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145"
-        stroke="inherit"
-        stroke-width="6"
-      ></path>
-    </svg>`;
-
-  const elementConcave = `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="24"
-      viewBox="0 0 145 24"
-      fill="none"
-      stroke="${backgroundColor}"
-    >
-      <path
-        d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3.39336C22 2.7091 22.6808 2.2299 23.3304 2.44485C59.2066 14.3156 85.7767 12.9047 120.7 2.39438C121.343 2.20072 122 2.67921 122 3.3512V7.00001C122 15.2843 128.716 22 137 22H145"
-        stroke="inherit"
-        stroke-width="6"
-      ></path>
-    </svg>`;
-
-  const elementConvex = `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="24"
-      viewBox="0 0 145 33"
-      fill="none"
-      stroke="${backgroundColor}"
-    >
-      <path
-        d="M0 31H7C15.2843 31 22 24.2843 22 16V11.7329C22 11.2966 22.2898 10.9083 22.7061 10.7779C60.0722 -0.924818 84.913 -0.925978 121.302 10.7745C121.714 10.9071 122 11.2935 122 11.727V16C122 24.2843 128.716 31 137 31H145"
-        stroke="inherit"
-        stroke-width="6"
-      ></path>
-    </svg>`;
-
-  const elementPressed = `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="24"
-      viewBox="0 0 145 24"
-      fill="none"
-      stroke="${backgroundColor}"
-    >
-      <path
-        d="M0 2H22V21C22 21.5523 22.4477 22 23 22H121C121.552 22 122 21.5523 122 21V2H145"
-        stroke="inherit"
-        stroke-width="6"
-      ></path>
-    </svg>`;
 
   const configElementBox = () => {
     return (
@@ -845,7 +685,7 @@ const NeumorphismBox = () => {
             >
               <img
                 alt={"flat"}
-                src={getSvgToImg(elementFlat)}
+                src={getSvgToImg(ElementFlat(backgroundColor))}
                 style={{ width: "55%" }}
               />
             </button>
@@ -869,7 +709,7 @@ const NeumorphismBox = () => {
             >
               <img
                 alt="concave"
-                src={getSvgToImg(elementConcave)}
+                src={getSvgToImg(ElementConcave(backgroundColor))}
                 style={{ width: "55%" }}
               />
             </button>
@@ -892,7 +732,7 @@ const NeumorphismBox = () => {
             >
               <img
                 alt="convex"
-                src={getSvgToImg(elementConvex)}
+                src={getSvgToImg(ElementConvex(backgroundColor))}
                 style={{ width: "55%" }}
               />
             </button>
@@ -916,7 +756,7 @@ const NeumorphismBox = () => {
             >
               <img
                 alt="pressed"
-                src={getSvgToImg(elementPressed)}
+                src={getSvgToImg(ElementPressed(backgroundColor))}
                 style={{ width: "55%" }}
               />
             </button>
@@ -1116,6 +956,7 @@ const NeumorphismBox = () => {
         id="arrangeParent"
         style={{
           background: `${backgroundColor}`,
+          fontFamily: 'Gilroy'
         }}
       >
         <div id="mainBox">

@@ -1,9 +1,10 @@
 import { useMediaQuery } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
-import { useTheme } from '@material-ui/core/styles'
+import { AppContext } from "../../Context/AppContext";
+import { useTheme } from "@mui/material/styles";
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import React from 'react'
+import { useState, useContext, useEffect } from "react";
 
 // interface TabPanelProps {
 //   children?: React.ReactNode
@@ -53,21 +54,27 @@ export default function ScrollableTabs(props) {
     dynamicInfo,
     multiDynamicInfo,
   } = props
-  const theme = useTheme()
+
+  const [state] = useContext(AppContext);
+  const theme = useTheme();
+
+  const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
+
+  useEffect(() => {
+    setThemeld(state.isDarkMode ? "dark" : "light");
+  }, [state]);
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
     defaultMatches: true,
   })
 
   return (
-    <div
-      className={`core-tab ${dynamicInfo && 'single-dynamicInfo'}
-    ${multiDynamicInfo && 'multi-dynamicInfo'}
-    `}
-    >
+    <div>
       <AppBar
         position="static"
-        className={fixed && 'fixed-search-header'}
+        color={"inherit"}
+        className={fixed && "fixed-search-header"}
+        style={{backgroundColor: theme[themeld].appBar.backgroundColor}}
       >
         <Tabs
           value={value}
@@ -75,12 +82,13 @@ export default function ScrollableTabs(props) {
           aria-label="simple tabs example"
           indicatorColor="primary"
           //variant={isDesktop ? null : 'fullWidth'}
-          variant={'scrollable'}
+          variant={"scrollable"}
         >
           {tabs?.map((v, index) => (
             <Tab
               label={v.label}
-              className={`${fontSize && 'tab-font'}`}
+              style={{ color: theme[themeld].tab.color }}
+              className={`${fontSize && "tab-font"}`}
               key={index}
               {...a11yProps(index)}
             />
@@ -93,5 +101,5 @@ export default function ScrollableTabs(props) {
         </TabPanel>
       ))}
     </div>
-  )
+  );
 }

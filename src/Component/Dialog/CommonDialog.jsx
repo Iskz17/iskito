@@ -33,7 +33,6 @@ export default function CommonDialog(props) {
       <Dialog
         open={props.open}
         TransitionComponent={Transition}
-        fullWidth="sm"
         keepMounted
         onClose={props.onClose}
         aria-describedby="alert-dialog-slide-description"
@@ -57,14 +56,14 @@ export default function CommonDialog(props) {
           </IconButton>
         </Stack>
         {props.src ? (
-          <Stack direction="row" justifyContent={"center"} spacing={1}>
+          <Stack direction="row" justifyContent={"center"} spacing={1} style={{padding: "10px"}}>
             <Box
               component="img"
               sx={{
                 height: 233,
                 width: 350,
-                // maxHeight: { xs: 233, md: 167 },
-                // maxWidth: { xs: 350, md: 250 },
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
                 borderRadius: "5px",
               }}
               alt="The house from the offer."

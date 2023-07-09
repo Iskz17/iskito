@@ -3,6 +3,7 @@ import Typewriter from "typewriter-effect";
 import Kito from "./kito-nobg.png";
 import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
+import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import { DialogCollection } from "./DialogCollection/DialogCollection";
 import Stack from "@mui/material/Stack";
 import { useState, useContext } from "react";
@@ -45,7 +46,7 @@ const App = () => {
   const prepareTabs = () => {
     return [
       {
-        label: "1 tab",
+        label: "Neumorphism",
         key: 0,
         content: (
           <Section>
@@ -54,20 +55,20 @@ const App = () => {
         ),
       },
       {
-        label: "2 tab",
+        label: "Dialog",
         key: 1,
         content: (
           <Section>
-            <NewmorphismBox />
+           <DialogCollection />
           </Section>
         ),
       },
       {
-        label: "3 tab",
+        label: "Glassmorphism",
         key: 2,
         content: (
           <Section>
-            <NewmorphismBox />
+            <GlassmorphismBox />
           </Section>
         ),
       },
@@ -257,17 +258,11 @@ const App = () => {
         //#endregion
         */}
         <Section>
-          <NewmorphismBox />
-        </Section>
-        <Section>
-          <DialogCollection />
-          <Switch
+        <Switch
             checked={checked}
             onChange={handleChange}
             inputProps={{ "aria-label": "controlled" }}
           />
-        </Section>
-        <Section>
           <ScrollableTabs
             value={tabValue}
             onChange={handleChangeTab}

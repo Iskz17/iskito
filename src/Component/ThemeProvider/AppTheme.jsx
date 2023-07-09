@@ -28,6 +28,12 @@ const lightTheme = {
   dialogPaper: {
     backgroundColor: "rgb(255,255,255)",
     color:"rgb(20,21,21)"
+  },
+  appBar: {
+    color: "white"
+  },
+  tab: {
+    color: "rgb(20,21,21)"
   }
 };
 
@@ -57,6 +63,12 @@ const darkTheme = {
   dialogPaper: {
     backgroundColor: "rgb(20,21,21)",
     color: "rgb(255,255,255)"
+  },
+  appBar: {
+    backgroundColor: "rgb(20,21,21)"
+  },
+  tab: {
+    color: "white"
   }
 };
 

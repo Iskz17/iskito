@@ -7,7 +7,7 @@ import { useTheme } from "@mui/material/styles";
 export function PrimaryButton({ children, ...other }) {
   const theme = useTheme();
   const [state] = useContext(AppContext);
-  const [themeld, setThemeld] = useState("light");
+  const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
 
   useEffect(() => {
     setThemeld(state.isDarkMode ? "dark" : "light");

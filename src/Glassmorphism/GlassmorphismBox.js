@@ -9,10 +9,10 @@ import { PrimaryButton } from "../Component/Button/CustomButton";
 import { pSBC } from "../Neumorphism/PBSC";
 import "./GlassmorphismBox.css";
 import CroppedCC from "../Assets/croped cc.png";
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from "@mui/material/MenuItem";
+import Switch, { SwitchProps } from "@mui/material/Switch";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const GlassmorphismBox = () => {
   let settingMargin = {
@@ -33,6 +33,8 @@ const GlassmorphismBox = () => {
   ]);
   const [cardColor, setCardColor] = useState("#ebebeb");
   const [currentCardType, setCurrentCardType] = useState("Credit Card");
+  const [currentBackgroundType, setCurrentBackgroundType] =
+    useState("Mesh Gradient");
 
   const backgroundColorInputEl0 = useRef(null);
   const backgroundColorInputEl1 = useRef(null);
@@ -73,6 +75,65 @@ const GlassmorphismBox = () => {
     }));
   }, []);
 
+  const IOSSwitch = useMemo(() => {
+    return styled((props) => (
+      <Switch
+        focusVisibleClassName=".Mui-focusVisible"
+        disableRipple
+        {...props}
+      />
+    ))(({ theme }) => ({
+      width: 42,
+      height: 26,
+      padding: 0,
+      "& .MuiSwitch-switchBase": {
+        padding: 0,
+        margin: 2,
+        transitionDuration: "300ms",
+        "&.Mui-checked": {
+          transform: "translateX(16px)",
+          color: "#fff",
+          "& + .MuiSwitch-track": {
+            backgroundColor:
+              theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
+            opacity: 1,
+            border: 0,
+          },
+          "&.Mui-disabled + .MuiSwitch-track": {
+            opacity: 0.5,
+          },
+        },
+        "&.Mui-focusVisible .MuiSwitch-thumb": {
+          color: "#33cf4d",
+          border: "6px solid #fff",
+        },
+        "&.Mui-disabled .MuiSwitch-thumb": {
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[600],
+        },
+        "&.Mui-disabled + .MuiSwitch-track": {
+          opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
+        },
+      },
+      "& .MuiSwitch-thumb": {
+        boxSizing: "border-box",
+        width: 22,
+        height: 22,
+      },
+      "& .MuiSwitch-track": {
+        borderRadius: 26 / 2,
+        backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
+        opacity: 1,
+        transition: theme.transitions.create(["background-color"], {
+          duration: 500,
+        }),
+      },
+    }));
+  }, []);
+
+  const backgroundType = ["Solid", "Mesh Gradient", "Image"];
   const cardType = ["Social Media", "Credit Card"];
 
   const convertToRgbWithOpacity = (hexColor, opacity) => {
@@ -260,6 +321,68 @@ const GlassmorphismBox = () => {
     );
   };
 
+  const MeshGradientBackground = () => {
+    return (
+      <Box
+        style={{
+          backgroundColor: `${backgroundColor[2]}`,
+          backgroundImage: ` radial-gradient(at 47% 33%, ${backgroundColor[0]} 0, transparent 59%), 
+      radial-gradient(at 82% 65%, ${backgroundColor[1]} 0, transparent 55%)`,
+          height: "98%",
+          width: "98%",
+          borderRadius: "15px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          perspective: "600px",
+        }}
+      >
+        {HandleCardContent}
+      </Box>
+    );
+  };
+
+  const SolidBackground = () => {
+    return (
+      <Box
+        style={{
+          backgroundColor: `${backgroundColor[0]}`,
+          height: "98%",
+          width: "98%",
+          borderRadius: "15px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          perspective: "600px",
+        }}
+      >
+        {HandleCardContent}
+      </Box>
+    );
+  };
+
+  const ImageBackground = () => {
+    return (
+      <Box
+        style={{
+          backgroundImage: `url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`,
+          backgroundPosition: "center", /* Center the image */
+          backgroundRepeat: "no-repeat", /* Do not repeat the image */
+          backgroundSize: "cover", /* Resize the background image to cover the entire container */
+          height: "98%",
+          width: "98%",
+          borderRadius: "15px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          perspective: "600px",
+        }}
+      >
+        {HandleCardContent}
+      </Box>
+    );
+  };
+
   const HandleCardContent = useMemo(() => {
     switch (currentCardType) {
       case "Credit Card": {
@@ -271,16 +394,167 @@ const GlassmorphismBox = () => {
       default:
         return null;
     }
-  }, [opacityVal, cardColor, blurVal, saturationVal, currentCardType ]);
+  }, [opacityVal, cardColor, blurVal, saturationVal, currentCardType]);
+
+  const HandleBackgroundContent = useMemo(() => {
+    switch (currentBackgroundType) {
+      case "Mesh Gradient": {
+        return <>{MeshGradientBackground()}</>;
+      }
+      case "Solid": {
+        return <>{SolidBackground()}</>;
+      }
+      case "Image": {
+        return <>{ImageBackground()}</>
+      }
+      default:
+        <></>;
+    }
+  }, [
+    currentBackgroundType,
+    backgroundColor,
+    opacityVal,
+    cardColor,
+    blurVal,
+    saturationVal,
+    currentCardType,
+  ]);
+
+  const HandleCSSContent = () => {
+    return (
+      <Stack
+        style={{
+          width: "100%",
+          height: "100%",
+          padding: "8px",
+          fontSize: "19px",
+          color: "white"
+        }}
+        spacing={2}
+        direction="column"
+        sx={{ px: 1 }}
+        alignItems="flex-start"
+      >
+        <span>
+          <span style={{ color: "#53d56d" }}>{`body `}</span>
+          <span>{`{`}</span>
+        </span>
+        <span>
+          <span style={{ color: "#00fff5" }}>{` background-color `}</span>
+          <span>{`: `}</span>
+          <span style={{ color: "#fa55fb" }}>{`${backgroundColor[2]}`}</span>
+          <span>;</span>
+        </span>
+        <span>
+          <span style={{ color: "#00fff5" }}>{`background-image `}</span>
+          <span>{`: `}</span>
+        </span>
+
+        <span>
+          <span style={{ color: "#00fff5" }}>{`radial-gradient`}</span>
+          <span>{`(`}</span>
+          <span
+            style={{ color: "#fa55fb" }}
+          >{`at 47% 33%, ${backgroundColor[0]} 0, transparent 59%`}</span>
+          <span>{`),`}</span>
+        </span>
+        <span>
+          <span style={{ color: "#00fff5" }}>{`radial-gradient`}</span>
+          <span>{`(`}</span>
+          <span style={{ color: "#fa55fb" }}>
+            {`at 82% 65%, ${backgroundColor[1]} 0, transparent 55%`}
+          </span>
+          <span>{`);`}</span>
+        </span>
+        <span>{`}`}</span>
+
+        <span>
+          <span style={{ color: "#53d56d" }}>{`.card `}</span>
+          <span style={{ color: "white" }}>{`{`}</span>
+        </span>
+        <span>
+          <span style={{ color: "#00fff5" }}>{`backdrop-filter `}</span>
+          <span>{`: `}</span>
+          <span style={{ color: "#00fff5" }}>{`blur`}</span>
+          <span>{`(`}</span>
+          <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
+          <span>{`) `}</span>
+          <span style={{ color: "#00fff5" }}>{`saturate`}</span>
+          <span>{`(`}</span>
+          <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
+          <span>{`); `}</span>
+        </span>
+        <span>
+          <span style={{ color: "#00fff5" }}>{`-webkit-backdrop-filter `}</span>
+          <span>{`: `}</span>
+          <span style={{ color: "#00fff5" }}>{`blur`}</span>
+          <span>{`(`}</span>
+          <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
+          <span>{`) `}</span>
+          <span style={{ color: "#00fff5" }}>{`saturate`}</span>
+          <span>{`(`}</span>
+          <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
+          <span>{`); `}</span>
+        </span>
+        <span>
+          {" "}
+          <span style={{ color: "#00fff5" }}>{`background-color `}</span>
+          <span>{`: `}</span>
+          <span style={{ color: "#fa55fb" }}>{` ${convertToRgbWithOpacity(
+            cardColor,
+            opacityVal
+          )}`}</span>
+          <span>{`;`}</span>
+        </span>
+
+        <span>
+          <span style={{ color: "#00fff5" }}>{`border-radius `}</span>
+          <span>{`: `}</span>
+          <span style={{ color: "#fa55fb" }}>{`12px`}</span>
+          <span>{`;`}</span>
+        </span>
+
+        <span>
+          <span style={{ color: "#00fff5" }}>{`border `}</span>
+          <span>{`: `}</span>
+          <span
+            style={{ color: "#fa55fb" }}
+          >{`1px solid rgba(255, 255, 255, 0.25)`}</span>
+          <span>{`;`}</span>
+        </span>
+
+        <span>{`}`}</span>
+      </Stack>
+    );
+  }
 
   const handleChange = (event) => {
     setCurrentCardType(event.target.value);
   };
 
-  const handleRenderMenuItem = useMemo(() =>
-    cardType?.map((type) => <MenuItem key={`${type}_menuItem`} value={type}>{type}</MenuItem>)
-  ,[]);
-    
+  const handleChangeBackground = (event) => {
+    setCurrentBackgroundType(event.target.value);
+  };
+
+  const handleRenderMenuItem = useMemo(
+    () =>
+      cardType?.map((type) => (
+        <MenuItem key={`${type}_menuItem`} value={type}>
+          {type}
+        </MenuItem>
+      )),
+    []
+  );
+
+  const handleRenderMenuItemBg = useMemo(
+    () =>
+      backgroundType?.map((type) => (
+        <MenuItem key={`${type}_menuItem`} value={type}>
+          {type}
+        </MenuItem>
+      )),
+    []
+  );
 
   return (
     <>
@@ -292,6 +566,17 @@ const GlassmorphismBox = () => {
           color: "rgba(255, 255, 255, 0.7)",
         }}
       >
+        <Stack
+          style={{ width: "100%" }}
+          spacing={1}
+          direction="column"
+          sx={{ py: 2 }}
+          alignItems="center"
+          justifyContent={"center"}
+        >
+          <span style={{ fontSize: "2em", fontWeight: 900 }}>Glass UI</span>
+          <span>from scratch project</span>
+        </Stack>
         <Box
           style={{
             width: "80%",
@@ -300,7 +585,7 @@ const GlassmorphismBox = () => {
             backdropFilter: "blur(16px)",
             border: "1px solid rgba(255, 255, 255, 0.125)",
             ...settingMargin,
-            marginBottom: "30px",
+            marginBottom: "20px",
           }}
         >
           <Stack
@@ -434,8 +719,8 @@ const GlassmorphismBox = () => {
                     size="small"
                   >
                     <Select
-                      value={currentCardType}
-                      onChange={handleChange}
+                      value={currentBackgroundType}
+                      onChange={handleChangeBackground}
                       displayEmpty
                       style={{
                         border: "1px solid rgba(255, 255, 255, 0.125)",
@@ -458,7 +743,7 @@ const GlassmorphismBox = () => {
                         },
                       }}
                     >
-                      {handleRenderMenuItem}
+                      {handleRenderMenuItemBg}
                     </Select>
                   </FormControl>
                 </Box>
@@ -766,7 +1051,7 @@ const GlassmorphismBox = () => {
                 }}
                 spacing={2}
                 direction="row"
-                sx={{ px: 2.5, py:2 }}
+                sx={{ px: 2.5, py: 2 }}
                 alignItems="flex-start"
                 justifyContent={"space-between"}
               >
@@ -806,7 +1091,7 @@ const GlassmorphismBox = () => {
                     </Select>
                   </FormControl>
                 </Box>
-                <Box>Switch Button</Box>
+                <Box>{<IOSSwitch />}</Box>
               </Stack>
               <Stack
                 style={{
@@ -818,30 +1103,17 @@ const GlassmorphismBox = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Box
-                  style={{
-                    backgroundColor: `${backgroundColor[2]}`,
-                    backgroundImage: ` radial-gradient(at 47% 33%, ${backgroundColor[0]} 0, transparent 59%), 
-                  radial-gradient(at 82% 65%, ${backgroundColor[1]} 0, transparent 55%)`,
-                    height: "98%",
-                    width: "98%",
-                    borderRadius: "15px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    perspective: "600px",
-                  }}
-                >
-                  {HandleCardContent}
-                </Box>
+                {HandleBackgroundContent}
               </Stack>
             </Box>
             <Box
               style={{
-                width: "50%",
+                width: "40%",
                 height: "100%",
+                backgroundColor: "rgba(255,255,255, 0.1)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(255, 255, 255, 0.125)",
                 ...settingMargin,
-                background: "blue",
               }}
             >
               <Stack
@@ -851,8 +1123,8 @@ const GlassmorphismBox = () => {
                 sx={{ px: 1 }}
                 alignItems="flex-start"
               >
-                <Box>Background Type</Box>
-                <Box>content</Box>
+                <Box>CSS</Box>
+                <Box style={{ width: "100%" }}>{HandleCSSContent()}</Box>
               </Stack>
             </Box>
           </Stack>

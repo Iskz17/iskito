@@ -5,13 +5,11 @@ import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import { DialogCollection } from "./DialogCollection/DialogCollection";
-import Stack from "@mui/material/Stack";
-import { useState, useContext } from "react";
-import Button from "@mui/material/Button";
+import { useState, useContext, useMemo, useCallback } from "react";
 import "./Particle.css";
 import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
-import Switch from "@mui/material/Switch";
+import IOSSwitch from "./Component/Switch/IOSSwitch";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import Section from "./Component/Section/Section"
 
@@ -27,15 +25,18 @@ const App = () => {
   };
 
   //#region dark mode handle
-  const [checked, setChecked] = useState(true);
+  const [state, setState] = useContext(AppContext);
+  const [checked, setChecked] = useState(state.isDarkMode);
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    toggleDarkMode();
   };
-  const [state, setState] = useContext(AppContext);
-  const toggleDarkMode = () => {
-    setState({ isDarkMode: checked });
-  };
+
+  useMemo(() => {
+    if(checked == state.isDarkMode){
+      return;
+    }
+    setState({ isDarkMode: checked});
+  },[checked]);
   //#endregion
 
   //#region for tab demo
@@ -76,6 +77,16 @@ const App = () => {
 
   };
   //#endregion
+
+  const ForIOS = useMemo(() => {
+    return <IOSSwitch
+      // checked={checked}
+      onChange={(e) => {
+        handleChange(e);
+      }}
+      inputProps={{ "aria-label": "controlled" }}
+    />
+  }, [])
 
   return (
     <AppTheme>
@@ -258,11 +269,7 @@ const App = () => {
         //#endregion
         */}
         <Section>
-        <Switch
-            checked={checked}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
+          {ForIOS}
           <ScrollableTabs
             value={tabValue}
             onChange={handleChangeTab}

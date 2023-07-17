@@ -171,6 +171,7 @@ const NeumorphismBox = () => {
     );
     return pSBC(0, `rgb(${r},${g},${b})`, "c");
   };
+  
   const changeShapeControl = (type, color = null) => {
     setShadowType(type);
     if (type === "flat" || type === "pressed") {

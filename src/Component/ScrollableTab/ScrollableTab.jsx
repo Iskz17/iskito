@@ -7,6 +7,7 @@ import Tabs from '@mui/material/Tabs'
 import { useState, useContext, useEffect, useMemo } from "react";
 import IOSSwitch from "../Switch/IOSSwitch";
 import Stack from "@mui/material/Stack";
+import '../../index.css'
 
 // interface TabPanelProps {
 //   children?: React.ReactNode
@@ -97,31 +98,36 @@ export default function ScrollableTabs(props) {
   console.log('scrollable rerender')
 
   return (
-    <div>
+    <div style={{ fontFamily: "Gilroy" }}>
       <AppBar
         position="sticky"
         color={"inherit"}
         className={fixed && "fixed-search-header"}
-        style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}>
+        style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}
+      >
         <Stack
           style={{ width: "100%" }}
           spacing={2}
           direction="row"
-          sx={{ px: 0}}
+          sx={{ px: 0 }}
           alignItems="center"
-          justifyContent={"space-between"}>
+          justifyContent={"space-between"}
+        >
           <Tabs
             value={value}
             onChange={onChange}
             aria-label="simple tabs example"
             indicatorColor="primary"
             //variant={isDesktop ? null : 'fullWidth'}
-            variant={"scrollable"}>
+            variant={"scrollable"}
+          >
             {tabs?.map((v, index) => (
               <Tab
                 label={v.label}
-                style={{ color: theme[themeld].tab.color }}
-                className={`${fontSize && "tab-font"}`}
+                style={{
+                  color: theme[themeld].tab.color,
+                  fontFamily: "Gilroy",
+                }}
                 key={index}
                 {...a11yProps(index)}
               />

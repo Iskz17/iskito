@@ -566,6 +566,7 @@ const GlassmorphismBox = () => {
           fontFamily: "Gilroy",
           background: "#1F2929",
           color: "rgba(255, 255, 255, 0.7)",
+          height: "unset"
         }}
       >
         <Stack

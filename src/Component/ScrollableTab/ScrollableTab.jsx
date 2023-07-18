@@ -99,7 +99,7 @@ export default function ScrollableTabs(props) {
   return (
     <div>
       <AppBar
-        position="static"
+        position="sticky"
         color={"inherit"}
         className={fixed && "fixed-search-header"}
         style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}>

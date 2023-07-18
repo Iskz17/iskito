@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import {
   ElementFlat,
   ElementConcave,
@@ -30,21 +30,6 @@ const NeumorphismBox = () => {
     padding: 0,
   };
 
-  function luminance(r, g, b) {
-    var a = [r, g, b].map(function (v) {
-      v /= 255;
-      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-  }
-  function contrast(rgb1, rgb2) {
-    var lum1 = luminance(rgb1[0], rgb1[1], rgb1[2]);
-    var lum2 = luminance(rgb2[0], rgb2[1], rgb2[2]);
-    var brightest = Math.max(lum1, lum2);
-    var darkest = Math.min(lum1, lum2);
-    return (brightest + 0.05) / (darkest + 0.05);
-  }
-
   const [valueSize, setValueSize] = useState(300);
   const [backgroundColor, setBackgroundColor] = useState("#CAE6E8");
   const [lightShadow, setLightShadow] = useState("#E8FFFF");
@@ -62,129 +47,140 @@ const NeumorphismBox = () => {
   const [shadowType, setShadowType] = useState("flat");
   const [needToUseDark, setNeedToUseDark] = useState(true);
 
-  const changeControlFlow = (hexColor) => {
-    let rgbConverted = pSBC(0, hexColor, "c");
-    let rgbToPass = rgbConverted
-      .replaceAll("rgb", "")
-      .replaceAll("(", "")
-      .replaceAll(")", "")
-      .split(",");
-    if (
-      contrast(
-        [255, 255, 255],
-        [parseInt(rgbToPass[0]), parseInt(rgbToPass[1]), parseInt(rgbToPass[2])]
-      ) < 2
-    ) {
-      setNeedToUseDark(true);
-    } else {
-      setNeedToUseDark(false);
-    }
-    let maxRRatio = 1.59;
-    let maxGRatio = 1.60344;
-    let maxBRatio = 1.59663;
+  let PBSCCal = useCallback((p0, color) => {
+    return pSBC(p0, color, "c");
+  }, []);
 
-    const colorGuard = (num) => {
-      if (num > 255) {
-        return 255;
-      }
-      return num;
+  useMemo(() => {
+    let luminance = (r, g, b) => {
+      var a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.039 ? v / 12.9 : Math.pow((v + 0.05) / 1.05, 2.4);
+      });
+      return a[0] * 0.21 + a[1] * 0.71 + a[2] * 0.07;
     };
 
-    /**
-     * chosen intensity
-     */
-    // let r = colorGuard(parseInt(rgbToPass[0]) * 1.1875);
-    // let g = colorGuard(parseInt(rgbToPass[1]) * 1.18681);
-    // let b = colorGuard(parseInt(rgbToPass[2]) * 1.18681);
-    let r = colorGuard(
-      parseInt(rgbToPass[0]) * (maxRRatio * (valueIntensity / 100))
-    );
-    let g = colorGuard(
-      parseInt(rgbToPass[1]) * (maxGRatio * (valueIntensity / 100))
-    );
-    let b = colorGuard(
-      parseInt(rgbToPass[2]) * (maxBRatio * (valueIntensity / 100))
-    );
-    return pSBC(0, `rgb(${r},${g},${b})`, "c");
-  };
-  const changeControlFlowDark = (hexColor) => {
-    let rgbConverted = pSBC(0, hexColor, "c");
-    let rgbToPass = rgbConverted
-      .replaceAll("rgb", "")
-      .replaceAll("(", "")
-      .replaceAll(")", "")
-      .split(",");
-
-    let maxRRatio = 0.40625;
-    let maxGRatio = 0.39655;
-    let maxBRatio = 0.403361;
-    const colorGuard = (num) => {
-      if (num < 0) {
-        return 0;
-      }
-      return num;
+    let contrast = (rgb1, rgb2) => {
+      var lum1 = luminance(rgb1[0], rgb1[1], rgb1[2]);
+      var lum2 = luminance(rgb2[0], rgb2[1], rgb2[2]);
+      var brightest = Math.max(lum1, lum2);
+      var darkest = Math.min(lum1, lum2);
+      return (brightest + 0.05) / (darkest + 0.05);
     };
 
-    // let r = colorGuard(parseInt(rgbToPass[0]) * 0.8125);
-    // let g = colorGuard(parseInt(rgbToPass[1]) * 0.810345);
-    // let b = colorGuard(parseInt(rgbToPass[2]) * 0.806723);
-    const maxShadowGuard = (num, type) => {
-      if (type === "r") {
-        // if (num > 0.8125) {
-        //   return 1;
-        // }
-        if (num > 1) {
-          return 1;
+    const changeControlFlow = () => {
+      let rgbConverted = PBSCCal(0, backgroundColor, "c");
+      let rgbToPass = rgbConverted
+        .replaceAll("rgb", "")
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .split(",");
+      if (
+        contrast(
+          [255, 255, 255],
+          [
+            parseInt(rgbToPass[0]),
+            parseInt(rgbToPass[1]),
+            parseInt(rgbToPass[2]),
+          ]
+        ) < 2
+      ) {
+        setNeedToUseDark(true);
+      } else {
+        setNeedToUseDark(false);
+      }
+      let maxRRatio = 1.59;
+      let maxGRatio = 1.6;
+      let maxBRatio = 1.59;
+
+      const colorGuard = (num) => {
+        if (num > 255) {
+          return 255;
         }
         return num;
-      }
-      if (type === "g") {
-        // if (num > 0.810345) {
-        //   return 1;
-        // }
-        if (num > 1) {
-          return 1;
-        }
-        return num;
-      }
-      if (type === "b") {
-        // if (num > 0.806723) {
-        //   return 1;
-        // }
-        if (num > 1) {
-          return 1;
-        }
-        return num;
-      }
+      };
+
+      let r = colorGuard(
+        parseInt(rgbToPass[0]) * (maxRRatio * (valueIntensity / 100))
+      );
+      let g = colorGuard(
+        parseInt(rgbToPass[1]) * (maxGRatio * (valueIntensity / 100))
+      );
+      let b = colorGuard(
+        parseInt(rgbToPass[2]) * (maxBRatio * (valueIntensity / 100))
+      );
+      return PBSCCal(0, `rgb(${r},${g},${b})`);
     };
-    let r = colorGuard(
-      parseInt(rgbToPass[0]) *
-        maxShadowGuard(maxRRatio * (100 / (valueIntensity - 25)), "r")
-    );
-    let g = colorGuard(
-      parseInt(rgbToPass[1]) *
-        maxShadowGuard(maxGRatio * (100 / (valueIntensity - 25)), "g")
-    );
-    let b = colorGuard(
-      parseInt(rgbToPass[2]) *
-        maxShadowGuard(maxBRatio * (100 / (valueIntensity - 25)), "b")
-    );
-    return pSBC(0, `rgb(${r},${g},${b})`, "c");
-  };
-  
-  const changeShapeControl = (type, color = null) => {
-    setShadowType(type);
-    if (type === "flat" || type === "pressed") {
+
+    const changeControlFlowDark = () => {
+      let rgbConverted = PBSCCal(0, backgroundColor);
+      let rgbToPass = rgbConverted
+        .replaceAll("rgb", "")
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .split(",");
+
+      let maxRRatio = 0.4;
+      let maxGRatio = 0.39;
+      let maxBRatio = 0.4;
+      const colorGuard = (num) => {
+        if (num < 0) {
+          return 0;
+        }
+        return num;
+      };
+
+      const maxShadowGuard = (num, type) => {
+        if (type === "r") {
+          if (num > 1) {
+            return 1;
+          }
+          return num;
+        }
+        if (type === "g") {
+          if (num > 1) {
+            return 1;
+          }
+          return num;
+        }
+        if (type === "b") {
+          if (num > 1) {
+            return 1;
+          }
+          return num;
+        }
+      };
+      let r = colorGuard(
+        parseInt(rgbToPass[0]) *
+          maxShadowGuard(maxRRatio * (100 / (valueIntensity - 25)), "r")
+      );
+      let g = colorGuard(
+        parseInt(rgbToPass[1]) *
+          maxShadowGuard(maxGRatio * (100 / (valueIntensity - 25)), "g")
+      );
+      let b = colorGuard(
+        parseInt(rgbToPass[2]) *
+          maxShadowGuard(maxBRatio * (100 / (valueIntensity - 25)), "b")
+      );
+      return PBSCCal(0, `rgb(${r},${g},${b})`, "c");
+    };
+
+    setLightShadow(changeControlFlow());
+    setDarkShadow(changeControlFlowDark());
+  }, [backgroundColor, valueIntensity]);
+
+  useMemo(() => {
+    if (shadowType === "flat" || shadowType === "pressed") {
       return;
     }
-    let rgbConverted = pSBC(0, color ?? backgroundColor, "c");
+    let rgbConverted = PBSCCal(0, backgroundColor);
     let rgbToPass = rgbConverted
       .replaceAll("rgb", "")
       .replaceAll("(", "")
       .replaceAll(")", "")
       .split(",");
-    let lightRatio = 1.0714;
-    let darkRatio = 0.902;
+    let lightRatio = 1.07;
+    let darkRatio = 0.9;
 
     const colorGuard = (num) => {
       if (num < 0) {
@@ -196,9 +192,6 @@ const NeumorphismBox = () => {
       return num;
     };
 
-    // let r = colorGuard(parseInt(rgbToPass[0]) * 0.8125);
-    // let g = colorGuard(parseInt(rgbToPass[1]) * 0.810345);
-    // let b = colorGuard(parseInt(rgbToPass[2]) * 0.806723);
     let rLight = colorGuard(parseInt(rgbToPass[0]) * lightRatio);
     let gLight = colorGuard(parseInt(rgbToPass[1]) * lightRatio);
     let bLight = colorGuard(parseInt(rgbToPass[2]) * lightRatio);
@@ -207,13 +200,13 @@ const NeumorphismBox = () => {
     let gDark = colorGuard(parseInt(rgbToPass[1]) * darkRatio);
     let bDark = colorGuard(parseInt(rgbToPass[2]) * darkRatio);
 
-    switch (type) {
+    switch (shadowType) {
       case "flat": {
         return;
       }
       case "concave": {
         setShapeColor(
-          `${pSBC(0, `rgb(${rDark},${gDark},${bDark})`, "c")},  ${pSBC(
+          `${PBSCCal(0, `rgb(${rDark},${gDark},${bDark})`)},  ${PBSCCal(
             0,
             `rgb(${rLight},${gLight},${bLight})`,
             "c"
@@ -223,10 +216,9 @@ const NeumorphismBox = () => {
       }
       case "convex": {
         setShapeColor(
-          ` ${pSBC(0, `rgb(${rLight},${gLight},${bLight})`, "c")}, ${pSBC(
+          ` ${PBSCCal(0, `rgb(${rLight},${gLight},${bLight})`)}, ${PBSCCal(
             0,
-            `rgb(${rDark},${gDark},${bDark})`,
-            "c"
+            `rgb(${rDark},${gDark},${bDark})`
           )}`
         );
         return;
@@ -237,8 +229,8 @@ const NeumorphismBox = () => {
       default:
         break;
     }
-    //return pSBC(0, `rgb(${r},${g},${b})`, "c");
-  };
+  }, [shadowType, backgroundColor]);
+
   const handleChangeSize = (newValue) => {
     setValueSize(newValue.target.value);
     setValueRadMax(newValue.target.value / 2);
@@ -253,17 +245,12 @@ const NeumorphismBox = () => {
   };
   const handleChangeIntensity = (newValue) => {
     setValueIntensity(newValue.target.value);
-    setLightShadow(changeControlFlow(backgroundColor));
-    setDarkShadow(changeControlFlowDark(backgroundColor));
   };
   const handleChangeBlur = (newValue) => {
     setValueBlur(newValue.target.value);
   };
   const handleColorChange = (e) => {
     setBackgroundColor(e.target.value);
-    setLightShadow(changeControlFlow(e.target.value));
-    setDarkShadow(changeControlFlowDark(e.target.value));
-    changeShapeControl(shadowType, e.target.value);
   };
   const handleLightSource = (pos) => {
     setLightSourcePos(pos);
@@ -304,16 +291,15 @@ const NeumorphismBox = () => {
     );
   };
 
-  const configElementBox = () => {
+  const configElementBox = useCallback(() => {
     return (
       <>
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-            {" "}
             <span>{`Pick a color: `}</span>
             <input
               type="color"
-              style={{ border: "none", borderRadius:"5px", padding:"none" }}
+              style={{ border: "none", borderRadius: "5px", padding: "none" }}
               value={backgroundColor}
               onChange={(e) => handleColorChange(e)}
             />
@@ -327,7 +313,7 @@ const NeumorphismBox = () => {
                 border: "3px solid black",
                 textAlign: "center",
                 fontSize: "15px",
-                borderRadius:"5px"
+                borderRadius: "5px",
               }}
               onChange={(e) => handleColorChange(e)}
             />
@@ -355,20 +341,12 @@ const NeumorphismBox = () => {
                   width: 18,
                   backgroundColor: "#fff",
                   border: "2px solid currentColor",
-                  // "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-                  //   boxShadow: "inherit",
-                  // },
                   transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                   "&:before": {
                     boxShadow: "0 2px 12px 0 currentColor",
                   },
                   "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${
-                      //theme.palette.mode === 'dark'
-                      //? 'rgb(255 255 255 / 16%)'
-                      //:
-                      "rgb(82	175	119 / 16%)"
-                    }`,
+                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
                   },
                 },
                 "& .MuiSlider-valueLabel": {
@@ -418,20 +396,12 @@ const NeumorphismBox = () => {
                   width: 18,
                   backgroundColor: "#fff",
                   border: "2px solid currentColor",
-                  // "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-                  //   boxShadow: "inherit",
-                  // },
                   transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                   "&:before": {
                     boxShadow: "0 2px 12px 0 currentColor",
                   },
                   "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${
-                      //theme.palette.mode === 'dark'
-                      //? 'rgb(255 255 255 / 16%)'
-                      //:
-                      "rgb(82	175	119 / 16%)"
-                    }`,
+                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
                   },
                 },
                 "& .MuiSlider-valueLabel": {
@@ -481,20 +451,12 @@ const NeumorphismBox = () => {
                   width: 18,
                   backgroundColor: "#fff",
                   border: "2px solid currentColor",
-                  // "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-                  //   boxShadow: "inherit",
-                  // },
                   transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                   "&:before": {
                     boxShadow: "0 2px 12px 0 currentColor",
                   },
                   "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${
-                      //theme.palette.mode === 'dark'
-                      //? 'rgb(255 255 255 / 16%)'
-                      //:
-                      "rgb(82	175	119 / 16%)"
-                    }`,
+                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
                   },
                 },
                 "& .MuiSlider-valueLabel": {
@@ -544,20 +506,12 @@ const NeumorphismBox = () => {
                   width: 18,
                   backgroundColor: "#fff",
                   border: "2px solid currentColor",
-                  // "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-                  //   boxShadow: "inherit",
-                  // },
                   transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                   "&:before": {
                     boxShadow: "0 2px 12px 0 currentColor",
                   },
                   "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${
-                      //theme.palette.mode === 'dark'
-                      //? 'rgb(255 255 255 / 16%)'
-                      //:
-                      "rgb(82	175	119 / 16%)"
-                    }`,
+                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
                   },
                 },
                 "& .MuiSlider-valueLabel": {
@@ -607,20 +561,12 @@ const NeumorphismBox = () => {
                   width: 18,
                   backgroundColor: "#fff",
                   border: "2px solid currentColor",
-                  // "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-                  //   boxShadow: "inherit",
-                  // },
                   transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                   "&:before": {
                     boxShadow: "0 2px 12px 0 currentColor",
                   },
                   "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${
-                      //theme.palette.mode === 'dark'
-                      //? 'rgb(255 255 255 / 16%)'
-                      //:
-                      "rgb(82	175	119 / 16%)"
-                    }`,
+                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
                   },
                 },
                 "& .MuiSlider-valueLabel": {
@@ -688,7 +634,7 @@ const NeumorphismBox = () => {
                 borderRadius: "5px 0 0 5px",
               }}
               onClick={() => {
-                changeShapeControl("flat");
+                setShadowType("flat");
               }}
             >
               <img
@@ -712,7 +658,7 @@ const NeumorphismBox = () => {
                 textDecoration: "none",
               }}
               onClick={() => {
-                changeShapeControl("concave");
+                setShadowType("concave");
               }}
             >
               <img
@@ -735,7 +681,7 @@ const NeumorphismBox = () => {
                 textDecoration: "none",
               }}
               onClick={() => {
-                changeShapeControl("convex");
+                setShadowType("convex");
               }}
             >
               <img
@@ -759,7 +705,7 @@ const NeumorphismBox = () => {
                 borderRadius: "0 5px 5px 0",
               }}
               onClick={() => {
-                changeShapeControl("pressed");
+                setShadowType("pressed");
               }}
             >
               <img
@@ -859,9 +805,11 @@ const NeumorphismBox = () => {
               wordSpacing: "5px",
             }}
           >
-        <ClipboardCopy copyText={`
+            <ClipboardCopy
+              copyText={`
               border-radius: ${valueRad}px;
-              background: ${shadowType === "flat" || shadowType === "pressed"
+              background: ${
+                shadowType === "flat" || shadowType === "pressed"
                   ? `${backgroundColor};`
                   : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
               }
@@ -873,12 +821,21 @@ const NeumorphismBox = () => {
               ${shadowType === "pressed" ? "inset" : ""} 
               ${lightAngleValue[0]}${valueDistance}px ${
                 lightAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}/>
+              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}
+            />
           </Stack>
         </Box>
       </>
     );
-  };
+  }, [
+    backgroundColor,
+    shadowType,
+    valueDistance,
+    valueBlur,
+    valueIntensity,
+    valueSize,
+    valueRad,
+  ]);
   const backgroundAndShadow = {
     background:
       shadowType === "flat" || shadowType === "pressed"
@@ -895,99 +852,106 @@ const NeumorphismBox = () => {
       lightAngleValue[1]
     }${valueDistance}px ${valueBlur}px ${lightShadow}`,
   };
-  const topLightBoxes = (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        width: "100%",
-        height: "30px",
-      }}
-    >
-      <div style={{ ...relativeLayer }}>
-        <div
-          onClick={() => {
-            handleLightSource("topLeft");
-          }}
-          style={{
-            position: "absolute",
-            width: "30px",
-            height: "100%",
-            backgroundColor:
-              lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
-            left: 0,
-            borderRadius: "0 0 50px 0",
-            border: `2px solid ${
-              needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-            }`,
-          }}
-        ></div>
-        <div
-          onClick={() => {
-            handleLightSource("topRight");
-          }}
-          style={{
-            position: "absolute",
-            width: "30px",
-            height: "100%",
-            backgroundColor:
-              lightSourcePos === "topRight" ? "yellow" : "lightGrey",
-            right: 0,
-            borderRadius: "0 0 0 50px",
-            border: `2px solid ${
-              needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-            }`,
-          }}
-        ></div>
+
+  const topLightBoxes = useMemo(
+    () => (
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          width: "100%",
+          height: "30px",
+        }}
+      >
+        <div style={{ ...relativeLayer }}>
+          <div
+            onClick={() => {
+              handleLightSource("topLeft");
+            }}
+            style={{
+              position: "absolute",
+              width: "30px",
+              height: "100%",
+              backgroundColor:
+                lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
+              left: 0,
+              borderRadius: "0 0 50px 0",
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
+            }}
+          ></div>
+          <div
+            onClick={() => {
+              handleLightSource("topRight");
+            }}
+            style={{
+              position: "absolute",
+              width: "30px",
+              height: "100%",
+              backgroundColor:
+                lightSourcePos === "topRight" ? "yellow" : "lightGrey",
+              right: 0,
+              borderRadius: "0 0 0 50px",
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
+            }}
+          ></div>
+        </div>
       </div>
-    </div>
+    ),
+    [lightSourcePos, needToUseDark]
   );
-  const bottomLightBoxes = (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        height: "30px",
-      }}
-    >
-      <div style={{ ...relativeLayer }}>
-        <div
-          onClick={() => {
-            handleLightSource("bottomLeft");
-          }}
-          style={{
-            position: "absolute",
-            width: "30px",
-            height: "100%",
-            backgroundColor:
-              lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
-            left: 0,
-            borderRadius: "0 50px 0 0",
-            border: `2px solid ${
-              needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-            }`,
-          }}
-        ></div>
-        <div
-          onClick={() => {
-            handleLightSource("bottomRight");
-          }}
-          style={{
-            position: "absolute",
-            width: "30px",
-            height: "100%",
-            backgroundColor:
-              lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
-            right: 0,
-            borderRadius: "50px 0 0 0",
-            border: `2px solid ${
-              needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-            }`,
-          }}
-        ></div>
+  const bottomLightBoxes = useMemo(
+    () => (
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          height: "30px",
+        }}
+      >
+        <div style={{ ...relativeLayer }}>
+          <div
+            onClick={() => {
+              handleLightSource("bottomLeft");
+            }}
+            style={{
+              position: "absolute",
+              width: "30px",
+              height: "100%",
+              backgroundColor:
+                lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
+              left: 0,
+              borderRadius: "0 50px 0 0",
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
+            }}
+          ></div>
+          <div
+            onClick={() => {
+              handleLightSource("bottomRight");
+            }}
+            style={{
+              position: "absolute",
+              width: "30px",
+              height: "100%",
+              backgroundColor:
+                lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
+              right: 0,
+              borderRadius: "50px 0 0 0",
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
+            }}
+          ></div>
+        </div>
       </div>
-    </div>
+    ),
+    [lightSourcePos, needToUseDark]
   );
 
   return (
@@ -1004,12 +968,14 @@ const NeumorphismBox = () => {
           style={{
             ...flex,
             flexDirection: "column",
-            color:`${ needToUseDark ? "#001f3f" : "white"}`,
+            color: `${needToUseDark ? "#001f3f" : "white"}`,
             width: "100%",
-            paddingTop:"20px"
+            paddingTop: "20px",
           }}
         >
-          <span style={{fontSize:"2em", fontWeight:900}}>Neumorphism.io clone</span>
+          <span style={{ fontSize: "2em", fontWeight: 900 }}>
+            Neumorphism.io clone
+          </span>
           <span>from scratch project</span>
         </div>
         <div
@@ -1018,7 +984,7 @@ const NeumorphismBox = () => {
             ...flex,
             width: "100%",
             height: "100%",
-            marginTop:"-20px"
+            marginTop: "-20px",
           }}
         >
           <div id="mainBox">

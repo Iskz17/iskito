@@ -4,7 +4,9 @@ import { AppContext } from "../../Context/AppContext";
 import { useTheme } from "@mui/material/styles";
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
+import IOSSwitch from "../Switch/IOSSwitch";
+import Stack from "@mui/material/Stack";
 
 // interface TabPanelProps {
 //   children?: React.ReactNode
@@ -51,11 +53,13 @@ export default function ScrollableTabs(props) {
     tabs,
     fixed,
     fontSize,
+    includeDarkModeSwitch, 
     dynamicInfo,
     multiDynamicInfo,
   } = props
 
-  const [state] = useContext(AppContext);
+  const [state, setState] = useContext(AppContext);
+  const [checked, setChecked] = useState(state.isDarkMode);
   const theme = useTheme();
 
   const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
@@ -64,9 +68,33 @@ export default function ScrollableTabs(props) {
     setThemeld(state.isDarkMode ? "dark" : "light");
   }, [state]);
 
+  
+  useMemo(() => {
+    if (checked == state.isDarkMode) {
+      return;
+    }
+    setState({ isDarkMode: checked });
+  }, [checked]);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
     defaultMatches: true,
-  })
+  });
+
+  const ForIOS = useMemo(() => {
+    return <IOSSwitch
+      // checked={checked}
+      onChange={(e) => {
+        handleChange(e);
+      }}
+      inputProps={{ "aria-label": "controlled" }}
+    />
+  }, [])
+
+  console.log('scrollable rerender')
 
   return (
     <div>
@@ -74,26 +102,33 @@ export default function ScrollableTabs(props) {
         position="static"
         color={"inherit"}
         className={fixed && "fixed-search-header"}
-        style={{backgroundColor: theme[themeld].appBar.backgroundColor}}
-      >
-        <Tabs
-          value={value}
-          onChange={onChange}
-          aria-label="simple tabs example"
-          indicatorColor="primary"
-          //variant={isDesktop ? null : 'fullWidth'}
-          variant={"scrollable"}
-        >
-          {tabs?.map((v, index) => (
-            <Tab
-              label={v.label}
-              style={{ color: theme[themeld].tab.color }}
-              className={`${fontSize && "tab-font"}`}
-              key={index}
-              {...a11yProps(index)}
-            />
-          ))}
-        </Tabs>
+        style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}>
+        <Stack
+          style={{ width: "100%" }}
+          spacing={2}
+          direction="row"
+          sx={{ px: 0}}
+          alignItems="center"
+          justifyContent={"space-between"}>
+          <Tabs
+            value={value}
+            onChange={onChange}
+            aria-label="simple tabs example"
+            indicatorColor="primary"
+            //variant={isDesktop ? null : 'fullWidth'}
+            variant={"scrollable"}>
+            {tabs?.map((v, index) => (
+              <Tab
+                label={v.label}
+                style={{ color: theme[themeld].tab.color }}
+                className={`${fontSize && "tab-font"}`}
+                key={index}
+                {...a11yProps(index)}
+              />
+            ))}
+          </Tabs>
+          {includeDarkModeSwitch && ForIOS}
+        </Stack>
       </AppBar>
       {tabs?.map((v, index) => (
         <TabPanel value={value} index={index}>

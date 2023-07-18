@@ -9,7 +9,6 @@ import { useState, useContext, useMemo, useCallback } from "react";
 import "./Particle.css";
 import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
-import IOSSwitch from "./Component/Switch/IOSSwitch";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import Section from "./Component/Section/Section"
 
@@ -23,21 +22,6 @@ const App = () => {
     padding: "13px 3%",
     textAlign: "center",
   };
-
-  //#region dark mode handle
-  const [state, setState] = useContext(AppContext);
-  const [checked, setChecked] = useState(state.isDarkMode);
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  useMemo(() => {
-    if(checked == state.isDarkMode){
-      return;
-    }
-    setState({ isDarkMode: checked});
-  },[checked]);
-  //#endregion
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
@@ -77,16 +61,6 @@ const App = () => {
 
   };
   //#endregion
-
-  const ForIOS = useMemo(() => {
-    return <IOSSwitch
-      // checked={checked}
-      onChange={(e) => {
-        handleChange(e);
-      }}
-      inputProps={{ "aria-label": "controlled" }}
-    />
-  }, [])
 
   return (
     <AppTheme>
@@ -269,11 +243,11 @@ const App = () => {
         //#endregion
         */}
         <Section>
-          {ForIOS}
           <ScrollableTabs
             value={tabValue}
             onChange={handleChangeTab}
             tabs={prepareTabs()}
+            includeDarkModeSwitch = {true}
           />
         </Section>
       </div>

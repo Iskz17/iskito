@@ -4,7 +4,7 @@ import { AppContext } from "../../Context/AppContext";
 import { useTheme } from "@mui/material/styles";
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import { useState, useContext, useEffect, useMemo } from "react";
+import { useState, useContext, useEffect, useMemo, memo } from "react";
 import IOSSwitch from "../Switch/IOSSwitch";
 import Stack from "@mui/material/Stack";
 import '../../index.css'
@@ -47,17 +47,17 @@ function a11yProps(index) {
 //   multiDynamicInfo?: boolean
 // }
 
-export default function ScrollableTabs(props) {
+const ScrollableTabs = (props) => {
   const {
     value,
     onChange,
     tabs,
     fixed,
     fontSize,
-    includeDarkModeSwitch, 
+    includeDarkModeSwitch,
     dynamicInfo,
     multiDynamicInfo,
-  } = props
+  } = props;
 
   const [state, setState] = useContext(AppContext);
   const [checked, setChecked] = useState(state.isDarkMode);
@@ -69,7 +69,6 @@ export default function ScrollableTabs(props) {
     setThemeld(state.isDarkMode ? "dark" : "light");
   }, [state]);
 
-  
   useMemo(() => {
     if (checked == state.isDarkMode) {
       return;
@@ -81,21 +80,23 @@ export default function ScrollableTabs(props) {
     setChecked(event.target.checked);
   };
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"), {
     defaultMatches: true,
   });
 
   const ForIOS = useMemo(() => {
-    return <IOSSwitch
-      // checked={checked}
-      onChange={(e) => {
-        handleChange(e);
-      }}
-      inputProps={{ "aria-label": "controlled" }}
-    />
-  }, [])
+    return (
+      <IOSSwitch
+        // checked={checked}
+        onChange={(e) => {
+          handleChange(e);
+        }}
+        inputProps={{ "aria-label": "controlled" }}
+      />
+    );
+  }, []);
 
-  console.log('scrollable rerender')
+  console.log("scrollable rerender");
 
   return (
     <div style={{ fontFamily: "Gilroy" }}>
@@ -143,4 +144,6 @@ export default function ScrollableTabs(props) {
       ))}
     </div>
   );
-}
+};
+
+export default memo(ScrollableTabs);

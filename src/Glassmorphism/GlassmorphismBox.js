@@ -3,8 +3,9 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
-import { styled } from "@mui/material/styles";
-import React, { useState, useRef, useMemo, useCallback } from "react";
+import { styled, useTheme, createTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React, { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { PrimaryButton } from "../Component/Button/CustomButton";
 import { pSBC } from "../Neumorphism/PBSC";
 import "./GlassmorphismBox.css";
@@ -24,6 +25,18 @@ const GlassmorphismBox = () => {
     padding: 0,
   };
 
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 940,
+        laptop: 1024,
+        desktop: 1200,
+      },
+    },
+  });
+  const matches = useMediaQuery(theme.breakpoints.down("tablet"));
+
   const [blurVal, setBlurVal] = useState(10);
   const [opacityVal, setOpacityVal] = useState(50);
   const [saturationVal, setSaturationVal] = useState(120);
@@ -33,6 +46,7 @@ const GlassmorphismBox = () => {
     "#53D56D",
     "#92B9DD",
   ]);
+  // const [matches, setMatches] = useState(changeOrientation);
   const [cardColor, setCardColor] = useState("#ebebeb");
   const [currentCardType, setCurrentCardType] = useState("Credit Card");
   const [currentBackgroundType, setCurrentBackgroundType] =
@@ -77,63 +91,11 @@ const GlassmorphismBox = () => {
     }));
   }, []);
 
-  const IOSSwitch = useMemo(() => {
-    return styled((props) => (
-      <Switch
-        focusVisibleClassName=".Mui-focusVisible"
-        disableRipple
-        {...props}
-      />
-    ))(({ theme }) => ({
-      width: 42,
-      height: 26,
-      padding: 0,
-      "& .MuiSwitch-switchBase": {
-        padding: 0,
-        margin: 2,
-        transitionDuration: "300ms",
-        "&.Mui-checked": {
-          transform: "translateX(16px)",
-          color: "#fff",
-          "& + .MuiSwitch-track": {
-            backgroundColor:
-              theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
-            opacity: 1,
-            border: 0,
-          },
-          "&.Mui-disabled + .MuiSwitch-track": {
-            opacity: 0.5,
-          },
-        },
-        "&.Mui-focusVisible .MuiSwitch-thumb": {
-          color: "#33cf4d",
-          border: "6px solid #fff",
-        },
-        "&.Mui-disabled .MuiSwitch-thumb": {
-          color:
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[600],
-        },
-        "&.Mui-disabled + .MuiSwitch-track": {
-          opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
-        },
-      },
-      "& .MuiSwitch-thumb": {
-        boxSizing: "border-box",
-        width: 22,
-        height: 22,
-      },
-      "& .MuiSwitch-track": {
-        borderRadius: 26 / 2,
-        backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
-        opacity: 1,
-        transition: theme.transitions.create(["background-color"], {
-          duration: 500,
-        }),
-      },
-    }));
-  }, []);
+  // useEffect(() => {
+  //   setMatches(changeOrientation);
+  //   console.log('useeffect', changeOrientation)
+  // }, [changeOrientation]);
+
 
   const backgroundType = ["Solid", "Mesh Gradient", "Image"];
   const cardType = ["Social Media", "Credit Card"];
@@ -177,7 +139,7 @@ const GlassmorphismBox = () => {
     setSaturationVal(newValue.target.value);
   }, []);
 
-  const SocialMediaCard = () => {
+  const SocialMediaCard = useCallback(() => {
     console.log("rerender this social media");
     return (
       <Box
@@ -229,15 +191,15 @@ const GlassmorphismBox = () => {
         </Stack>
       </Box>
     );
-  };
+  }, [blurVal, cardColor, opacityVal, saturationVal]);
 
-  const CreditCard = () => {
+  const CreditCard = useCallback(() => {
     console.log("rerender this cc");
     return (
       <Box
         style={{
-          height: "50%",
-          width: "65%",
+          height: matches ? "70%" : "50%",
+          width: matches ? "80%" : "65%",
           backdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           WebkitBackdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           backgroundColor: `${convertToRgbWithOpacity(cardColor, opacityVal)}`,
@@ -283,8 +245,8 @@ const GlassmorphismBox = () => {
           <div
             // src={CardChip}
             style={{
-              width: "60px",
-              height: "50%",
+              width: matches ? "46px" : "60px",
+              height: matches ? "40%" : "50%",
               background: "rgba(255,255,255,0.9)",
               opacity: ".6",
               borderRadius: "8px",
@@ -294,7 +256,7 @@ const GlassmorphismBox = () => {
             style={{
               letterSpacing: "5px",
               fontWeight: "800",
-              fontSize: "20px",
+              fontSize: matches ? "13px" : "20px",
               color: "white",
             }}
           >
@@ -321,9 +283,22 @@ const GlassmorphismBox = () => {
         </Stack>
       </Box>
     );
-  };
+  },[blurVal, cardColor, matches, opacityVal, saturationVal]);
 
-  const MeshGradientBackground = () => {
+  const HandleCardContent = useMemo(() => {
+    switch (currentCardType) {
+      case "Credit Card": {
+        return <>{CreditCard()}</>;
+      }
+      case "Social Media": {
+        return <>{SocialMediaCard()}</>;
+      }
+      default:
+        return null;
+    }
+  }, [currentCardType, CreditCard, SocialMediaCard]);
+
+  const MeshGradientBackground = useCallback(() => {
     return (
       <Box
         style={{
@@ -342,9 +317,9 @@ const GlassmorphismBox = () => {
         {HandleCardContent}
       </Box>
     );
-  };
+  }, [HandleCardContent, backgroundColor]);
 
-  const SolidBackground = () => {
+  const SolidBackground = useCallback(() => {
     return (
       <Box
         style={{
@@ -361,16 +336,17 @@ const GlassmorphismBox = () => {
         {HandleCardContent}
       </Box>
     );
-  };
+  },[backgroundColor, HandleCardContent]);
 
-  const ImageBackground = () => {
+  const ImageBackground = useCallback(() => {
     return (
       <Box
         style={{
           backgroundImage: `url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`,
-          backgroundPosition: "center", /* Center the image */
-          backgroundRepeat: "no-repeat", /* Do not repeat the image */
-          backgroundSize: "cover", /* Resize the background image to cover the entire container */
+          backgroundPosition: "center" /* Center the image */,
+          backgroundRepeat: "no-repeat" /* Do not repeat the image */,
+          backgroundSize:
+            "cover" /* Resize the background image to cover the entire container */,
           height: "98%",
           width: "98%",
           borderRadius: "15px",
@@ -383,20 +359,7 @@ const GlassmorphismBox = () => {
         {HandleCardContent}
       </Box>
     );
-  };
-
-  const HandleCardContent = useMemo(() => {
-    switch (currentCardType) {
-      case "Credit Card": {
-        return <>{CreditCard()}</>;
-      }
-      case "Social Media": {
-        return <>{SocialMediaCard()}</>;
-      }
-      default:
-        return null;
-    }
-  }, [opacityVal, cardColor, blurVal, saturationVal, currentCardType]);
+  }, [HandleCardContent]);
 
   const HandleBackgroundContent = useMemo(() => {
     switch (currentBackgroundType) {
@@ -407,19 +370,16 @@ const GlassmorphismBox = () => {
         return <>{SolidBackground()}</>;
       }
       case "Image": {
-        return <>{ImageBackground()}</>
+        return <>{ImageBackground()}</>;
       }
       default:
         <></>;
     }
   }, [
     currentBackgroundType,
-    backgroundColor,
-    opacityVal,
-    cardColor,
-    blurVal,
-    saturationVal,
-    currentCardType,
+    ImageBackground,
+    SolidBackground,
+    MeshGradientBackground,
   ]);
 
   const HandleCSSContent = () => {
@@ -427,13 +387,13 @@ const GlassmorphismBox = () => {
       <Stack
         style={{
           width: "100%",
-          height: "100%",
+          height: "50%",
           padding: "8px",
-          fontSize: "19px",
-          color: "white"
+          fontSize: matches ? "15px" : "19px",
+          color: "white",
         }}
         spacing={2}
-        direction="column"
+        direction={"column"}
         sx={{ px: 1 }}
         alignItems="flex-start"
       >
@@ -528,7 +488,7 @@ const GlassmorphismBox = () => {
         <span>{`}`}</span>
       </Stack>
     );
-  }
+  };
 
   const handleChange = (event) => {
     setCurrentCardType(event.target.value);
@@ -558,6 +518,550 @@ const GlassmorphismBox = () => {
     []
   );
 
+  const configBox = (
+    <Box
+      style={{
+        width: "80%",
+        height: matches ? "100%" : "140px",
+        backgroundColor: "rgba(255,255,255, 0.1)",
+        backdropFilter: "blur(16px)",
+        border: "1px solid rgba(255, 255, 255, 0.125)",
+        ...settingMargin,
+        marginBottom: "20px",
+      }}
+    >
+      <Stack
+        style={{ width: "100%", height: "100%" }}
+        gap={"5px"}
+        sx={{ px: 1, py: 1 }}
+        direction={matches ? "column" : "row"}
+        alignItems={matches ? "space-between" : "center"}
+        justifyContent={"space-evenly"}
+      >
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={1}
+            direction="column"
+            alignItems="flex-start"
+          >
+            <Box>Background Color:</Box>
+            <Stack
+              style={{ width: "100%", height: "100%", padding: "5px" }}
+              spacing={1}
+              direction="row"
+              alignItems="flex-start"
+            >
+              <Box
+                style={{
+                  borderRadius: "5px",
+                  height: "100%",
+                  width: "33%",
+                  padding: "none",
+                  border: "none",
+                  backgroundColor: `${backgroundColor[0]}`,
+                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                }}
+                onClick={() => {
+                  backgroundColorInputEl0.current.click();
+                }}
+              >
+                <input
+                  ref={backgroundColorInputEl0}
+                  type="color"
+                  style={{
+                    WebkitAppearance: "none",
+                    visibility: "hidden",
+                  }}
+                  value={backgroundColor[0]}
+                  onChange={(e) => handleColorChange(e, 0)}
+                />
+              </Box>
+              <Box
+                style={{
+                  borderRadius: "5px",
+                  height: "100%",
+                  width: "33%",
+                  padding: "none",
+                  border: "none",
+                  backgroundColor: `${backgroundColor[1]}`,
+                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                }}
+                onClick={() => {
+                  backgroundColorInputEl1.current.click();
+                }}
+              >
+                <input
+                  ref={backgroundColorInputEl1}
+                  type="color"
+                  style={{
+                    WebkitAppearance: "none",
+                    visibility: "hidden",
+                  }}
+                  value={backgroundColor[1]}
+                  onChange={(e) => handleColorChange(e, 1)}
+                />
+              </Box>
+              <Box
+                style={{
+                  borderRadius: "5px",
+                  height: "100%",
+                  width: "33%",
+                  padding: "none",
+                  border: "none",
+                  backgroundColor: `${backgroundColor[2]}`,
+                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                }}
+                onClick={() => {
+                  backgroundColorInputEl2.current.click();
+                }}
+              >
+                <input
+                  ref={backgroundColorInputEl2}
+                  type="color"
+                  style={{
+                    WebkitAppearance: "none",
+                    visibility: "hidden",
+                  }}
+                  value={backgroundColor[2]}
+                  onChange={(e) => handleColorChange(e, 2)}
+                />
+              </Box>
+            </Stack>
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={1}
+            direction="column"
+            sx={{ px: 1 }}
+            alignItems="flex-start"
+          >
+            <Box>Background Type:</Box>
+            <Box style={{ width: "inherit" }}>
+              <FormControl
+                sx={{
+                  width: "100%",
+                  padding: 0,
+                }}
+                size="small"
+              >
+                <Select
+                  value={currentBackgroundType}
+                  onChange={handleChangeBackground}
+                  displayEmpty
+                  style={{
+                    border: "1px solid rgba(255, 255, 255, 0.125)",
+                    color: "rgba(255, 255, 255, 0.7)",
+                    padding: 0,
+                  }}
+                  sx={{
+                    color: "white",
+                    ".MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    ".MuiSvgIcon-root ": {
+                      fill: "white !important",
+                    },
+                  }}
+                >
+                  {handleRenderMenuItemBg}
+                </Select>
+              </FormControl>
+            </Box>
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={1}
+            direction="column"
+            alignItems="flex-start"
+          >
+            <Box>Card Color: </Box>
+            <Stack
+              style={{ width: "100%", height: "100%", padding: "5px" }}
+              spacing={1}
+              direction="row"
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <Box
+                style={{
+                  borderRadius: "5px",
+                  height: "100%",
+                  width: "33%",
+                  padding: "none",
+                  border: "none",
+                  backgroundColor: `${cardColor}`,
+                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                }}
+                onClick={() => {
+                  cardColorInputEl.current.click();
+                }}
+              >
+                <input
+                  ref={cardColorInputEl}
+                  type="color"
+                  style={{
+                    WebkitAppearance: "none",
+                    visibility: "hidden",
+                  }}
+                  value={cardColor}
+                  onChange={(e) => handleColorChange(e)}
+                />
+              </Box>
+            </Stack>
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={2}
+            direction="column"
+            sx={{ px: 1 }}
+            alignItems="flex-start"
+          >
+            <Box style={{ width: "100%" }}>
+              <span>{`Blur Value:`}</span>
+              <Slider
+                value={blurVal}
+                size="medium"
+                onChange={handleChangeBlur}
+                max={25}
+                valueLabelDisplay="auto"
+                aria-labelledby="continuous-slider-size"
+                sx={{
+                  color: "WHITE",
+                  height: 8,
+                  "& .MuiSlider-track": {
+                    border: "none",
+                  },
+                  "& .MuiSlider-thumb": {
+                    height: 18,
+                    width: 18,
+                    backgroundColor: "#fff",
+                    border: "2px solid currentColor",
+                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+                    "&:before": {
+                      boxShadow: "0 2px 12px 0 currentColor",
+                    },
+                    "&:hover, &.Mui-focusVisible": {
+                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
+                    },
+                  },
+                  "& .MuiSlider-valueLabel": {
+                    lineHeight: 1.2,
+                    fontSize: 12,
+                    background: "unset",
+                    color: "#001f3f",
+                    padding: 0,
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50% 50% 50% 0",
+                    backgroundColor: "white",
+                    transformOrigin: "bottom left",
+                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
+                    "&:before": { display: "none" },
+                    "&.MuiSlider-valueLabelOpen": {
+                      transform:
+                        "translate(50%, -100%) rotate(-45deg) scale(1)",
+                    },
+                    "& > *": {
+                      transform: "rotate(45deg)",
+                    },
+                  },
+                }}
+              />
+              <span>{blurVal}px</span>
+            </Box>
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={2}
+            direction="column"
+            sx={{ px: 1 }}
+            alignItems="flex-start"
+          >
+            <Box style={{ width: "100%" }}>
+              <span>{`Opacity:`}</span>
+              <Slider
+                value={opacityVal}
+                size="medium"
+                onChange={handleChangeOpacity}
+                min={0}
+                max={100}
+                valueLabelDisplay="auto"
+                aria-labelledby="continuous-slider-size"
+                sx={{
+                  color: "WHITE",
+                  height: 8,
+                  "& .MuiSlider-track": {
+                    border: "none",
+                  },
+                  "& .MuiSlider-thumb": {
+                    height: 18,
+                    width: 18,
+                    backgroundColor: "#fff",
+                    border: "2px solid currentColor",
+                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+                    "&:before": {
+                      boxShadow: "0 2px 12px 0 currentColor",
+                    },
+                    "&:hover, &.Mui-focusVisible": {
+                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
+                    },
+                  },
+                  "& .MuiSlider-valueLabel": {
+                    lineHeight: 1.2,
+                    fontSize: 12,
+                    background: "unset",
+                    color: "#001f3f",
+                    padding: 0,
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50% 50% 50% 0",
+                    backgroundColor: "white",
+                    transformOrigin: "bottom left",
+                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
+                    "&:before": { display: "none" },
+                    "&.MuiSlider-valueLabelOpen": {
+                      transform:
+                        "translate(50%, -100%) rotate(-45deg) scale(1)",
+                    },
+                    "& > *": {
+                      transform: "rotate(45deg)",
+                    },
+                  },
+                }}
+              />
+              <span>{opacityVal}%</span>
+            </Box>
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            height: matches ? "10%" : "100%",
+            width: matches ? "100%" : "14%",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={2}
+            direction="column"
+            sx={{ px: 1 }}
+            alignItems="flex-start"
+          >
+            <Box style={{ width: "100%" }}>
+              <span>{`Saturation:`}</span>
+              <Slider
+                value={saturationVal}
+                size="medium"
+                onChange={handleChangeSaturation}
+                min={0}
+                max={200}
+                valueLabelDisplay="auto"
+                aria-labelledby="continuous-slider-size"
+                sx={{
+                  color: "WHITE",
+                  height: 8,
+                  "& .MuiSlider-track": {
+                    border: "none",
+                  },
+                  "& .MuiSlider-thumb": {
+                    height: 18,
+                    width: 18,
+                    backgroundColor: "#fff",
+                    border: "2px solid currentColor",
+                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+                    "&:before": {
+                      boxShadow: "0 2px 12px 0 currentColor",
+                    },
+                    "&:hover, &.Mui-focusVisible": {
+                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
+                    },
+                  },
+                  "& .MuiSlider-valueLabel": {
+                    lineHeight: 1.2,
+                    fontSize: 12,
+                    background: "unset",
+                    color: "#001f3f",
+                    padding: 0,
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50% 50% 50% 0",
+                    backgroundColor: "white",
+                    transformOrigin: "bottom left",
+                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
+                    "&:before": { display: "none" },
+                    "&.MuiSlider-valueLabelOpen": {
+                      transform:
+                        "translate(50%, -100%) rotate(-45deg) scale(1)",
+                    },
+                    "& > *": {
+                      transform: "rotate(45deg)",
+                    },
+                  },
+                }}
+              />
+              <span>{saturationVal}%</span>
+            </Box>
+          </Stack>
+        </Box>
+      </Stack>
+    </Box>
+  );
+
+  const contentBox = (
+    <Box
+      style={{
+        width: "80%",
+        ...settingMargin,
+      }}
+    >
+      <Stack
+        style={{ width: "100%" }}
+        gap={"10px"}
+        direction={matches ? "column" : "row"}
+        sx={{ py: matches? 1: 2 }}
+        alignItems="space-between"
+        justifyContent="space-between"
+      >
+        <Box
+          style={{
+            width: matches ? "100%" : "50%",
+            height: matches ? "450px" : "700px",
+            ...settingMargin,
+            backgroundColor: "rgba(255,255,255, 0.1)",
+            border: "1px solid rgba(255, 255, 255, 0.125)",
+          }}
+        >
+          <Stack
+            style={{
+              width: "100%",
+              height: "50px",
+            }}
+            spacing={2}
+            direction="row"
+            sx={{ px: 2.5, py: 2 }}
+            alignItems="flex-start"
+            justifyContent={"space-between"}
+          >
+            <Box>
+              <FormControl
+                sx={{
+                  minWidth: "150px",
+                }}
+                size="small"
+              >
+                <Select
+                  value={currentCardType}
+                  onChange={handleChange}
+                  displayEmpty
+                  style={{
+                    border: "1px solid rgba(255, 255, 255, 0.125)",
+                    color: "rgba(255, 255, 255, 0.7)",
+                    padding: 0,
+                  }}
+                  sx={{
+                    color: "white",
+                    ".MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(228, 219, 233, 0.25)",
+                    },
+                    ".MuiSvgIcon-root ": {
+                      fill: "white !important",
+                    },
+                  }}
+                >
+                  {handleRenderMenuItem}
+                </Select>
+              </FormControl>
+            </Box>
+          </Stack>
+          <Stack
+            style={{
+              width: "100%",
+              height: "90%",
+            }}
+            direction="row"
+            sx={{ px: 2, py: 2 }}
+            alignItems="center"
+            justifyContent={"center"}
+          >
+            {HandleBackgroundContent}
+          </Stack>
+        </Box>
+        <Box
+          style={{
+            width: matches ? "100%" : "40%",
+            height: "100%",
+            backgroundColor: "rgba(255,255,255, 0.1)",
+            backdropFilter: "blur(16px)",
+            border: "1px solid rgba(255, 255, 255, 0.125)",
+            ...settingMargin,
+          }}
+        >
+          <Stack
+            style={{ width: "100%", height: "100%", padding: "15px" }}
+            spacing={2}
+            direction={"column"}
+            sx={{ px: 1 }}
+            alignItems="flex-start"
+          >
+            <Box>CSS</Box>
+            <Box style={{ width: "100%" }}>{HandleCSSContent()}</Box>
+          </Stack>
+        </Box>
+      </Stack>
+    </Box>
+  );
+
   return (
     <>
       <div
@@ -566,7 +1070,7 @@ const GlassmorphismBox = () => {
           fontFamily: "Gilroy",
           background: "#1F2929",
           color: "rgba(255, 255, 255, 0.7)",
-          height: "unset"
+          height: "unset",
         }}
       >
         <Stack
@@ -578,560 +1082,19 @@ const GlassmorphismBox = () => {
           justifyContent={"center"}
         >
           <span style={{ fontSize: "2em", fontWeight: 900 }}>Glass UI</span>
-          <span>from scratch project</span>
+          <span>from scratch project {`${matches}`}</span>
         </Stack>
-        <Box
-          style={{
-            width: "80%",
-            height: "140px",
-            backgroundColor: "rgba(255,255,255, 0.1)",
-            backdropFilter: "blur(16px)",
-            border: "1px solid rgba(255, 255, 255, 0.125)",
-            ...settingMargin,
-            marginBottom: "20px",
-          }}
+        <Stack
+          style={{ width: "100%" }}
+          spacing={1}
+          direction={"column"}
+          sx={{ py: 2 }}
+          alignItems="center"
+          justifyContent={"center"}
         >
-          <Stack
-            style={{ width: "100%", height: "100%" }}
-            spacing={2}
-            direction="row"
-            sx={{ px: 1, py: 2 }}
-            alignItems="center"
-            justifyContent={"space-evenly"}
-          >
-            <Box
-              style={{
-                height: "100%",
-                width: "14%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={1}
-                direction="column"
-                alignItems="flex-start"
-              >
-                <Box>Background Color:</Box>
-                <Stack
-                  style={{ width: "100%", height: "100%", padding: "5px" }}
-                  spacing={2}
-                  direction="row"
-                  alignItems="flex-start"
-                >
-                  <Box
-                    style={{
-                      borderRadius: "50%",
-                      height: "40px",
-                      width: "40px",
-                      padding: "none",
-                      border: "none",
-                      backgroundColor: `${backgroundColor[0]}`,
-                      boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
-                    }}
-                    onClick={() => {
-                      backgroundColorInputEl0.current.click();
-                    }}
-                  >
-                    <input
-                      ref={backgroundColorInputEl0}
-                      type="color"
-                      style={{
-                        WebkitAppearance: "none",
-                        visibility: "hidden",
-                      }}
-                      value={backgroundColor[0]}
-                      onChange={(e) => handleColorChange(e, 0)}
-                    />
-                  </Box>
-                  <Box
-                    style={{
-                      borderRadius: "50%",
-                      height: "40px",
-                      width: "40px",
-                      padding: "none",
-                      border: "none",
-                      backgroundColor: `${backgroundColor[1]}`,
-                      boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
-                    }}
-                    onClick={() => {
-                      backgroundColorInputEl1.current.click();
-                    }}
-                  >
-                    <input
-                      ref={backgroundColorInputEl1}
-                      type="color"
-                      style={{
-                        WebkitAppearance: "none",
-                        visibility: "hidden",
-                      }}
-                      value={backgroundColor[1]}
-                      onChange={(e) => handleColorChange(e, 1)}
-                    />
-                  </Box>
-                  <Box
-                    style={{
-                      borderRadius: "50%",
-                      height: "40px",
-                      width: "40px",
-                      padding: "none",
-                      border: "none",
-                      backgroundColor: `${backgroundColor[2]}`,
-                      boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
-                    }}
-                    onClick={() => {
-                      backgroundColorInputEl2.current.click();
-                    }}
-                  >
-                    <input
-                      ref={backgroundColorInputEl2}
-                      type="color"
-                      style={{
-                        WebkitAppearance: "none",
-                        visibility: "hidden",
-                      }}
-                      value={backgroundColor[2]}
-                      onChange={(e) => handleColorChange(e, 2)}
-                    />
-                  </Box>
-                </Stack>
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                height: "100%",
-                width: "14%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={1}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box>Background Type:</Box>
-                <Box>
-                  <FormControl
-                    sx={{
-                      minWidth: "150px",
-                    }}
-                    size="small"
-                  >
-                    <Select
-                      value={currentBackgroundType}
-                      onChange={handleChangeBackground}
-                      displayEmpty
-                      style={{
-                        border: "1px solid rgba(255, 255, 255, 0.125)",
-                        color: "rgba(255, 255, 255, 0.7)",
-                        padding: 0,
-                      }}
-                      sx={{
-                        color: "white",
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        ".MuiSvgIcon-root ": {
-                          fill: "white !important",
-                        },
-                      }}
-                    >
-                      {handleRenderMenuItemBg}
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                height: "100%",
-                width: "12%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={2}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box>
-                  Card Color:
-                  <Stack
-                    style={{ width: "100%", height: "100%", padding: "5px" }}
-                    spacing={2}
-                    direction="row"
-                    alignItems="center"
-                    justifyContent={"center"}
-                  >
-                    <Box>{`${cardColor}`}</Box>
-                    <Box
-                      style={{
-                        borderRadius: "50%",
-                        height: "40px",
-                        width: "40px",
-                        padding: "none",
-                        border: "none",
-                        backgroundColor: `${cardColor}`,
-                        boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
-                      }}
-                      onClick={() => {
-                        cardColorInputEl.current.click();
-                      }}
-                    >
-                      <input
-                        ref={cardColorInputEl}
-                        type="color"
-                        style={{
-                          WebkitAppearance: "none",
-                          visibility: "hidden",
-                        }}
-                        value={cardColor}
-                        onChange={(e) => handleColorChange(e)}
-                      />
-                    </Box>
-                  </Stack>
-                </Box>
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                height: "100%",
-                width: "20%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={2}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box style={{ width: "100%" }}>
-                  <span>{`Blur Value:`}</span>
-                  <Slider
-                    value={blurVal}
-                    size="medium"
-                    onChange={handleChangeBlur}
-                    max={25}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="continuous-slider-size"
-                    sx={{
-                      color: "WHITE",
-                      height: 8,
-                      "& .MuiSlider-track": {
-                        border: "none",
-                      },
-                      "& .MuiSlider-thumb": {
-                        height: 18,
-                        width: 18,
-                        backgroundColor: "#fff",
-                        border: "2px solid currentColor",
-                        transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                        "&:before": {
-                          boxShadow: "0 2px 12px 0 currentColor",
-                        },
-                        "&:hover, &.Mui-focusVisible": {
-                          boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                        },
-                      },
-                      "& .MuiSlider-valueLabel": {
-                        lineHeight: 1.2,
-                        fontSize: 12,
-                        background: "unset",
-                        color: "#001f3f",
-                        padding: 0,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50% 50% 50% 0",
-                        backgroundColor: "white",
-                        transformOrigin: "bottom left",
-                        transform:
-                          "translate(50%, -100%) rotate(-45deg) scale(0)",
-                        "&:before": { display: "none" },
-                        "&.MuiSlider-valueLabelOpen": {
-                          transform:
-                            "translate(50%, -100%) rotate(-45deg) scale(1)",
-                        },
-                        "& > *": {
-                          transform: "rotate(45deg)",
-                        },
-                      },
-                    }}
-                  />
-                  <span>{blurVal}px</span>
-                </Box>
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                height: "100%",
-                width: "20%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={2}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box style={{ width: "100%" }}>
-                  <span>{`Opacity:`}</span>
-                  <Slider
-                    value={opacityVal}
-                    size="medium"
-                    onChange={handleChangeOpacity}
-                    min={0}
-                    max={100}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="continuous-slider-size"
-                    sx={{
-                      color: "WHITE",
-                      height: 8,
-                      "& .MuiSlider-track": {
-                        border: "none",
-                      },
-                      "& .MuiSlider-thumb": {
-                        height: 18,
-                        width: 18,
-                        backgroundColor: "#fff",
-                        border: "2px solid currentColor",
-                        transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                        "&:before": {
-                          boxShadow: "0 2px 12px 0 currentColor",
-                        },
-                        "&:hover, &.Mui-focusVisible": {
-                          boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                        },
-                      },
-                      "& .MuiSlider-valueLabel": {
-                        lineHeight: 1.2,
-                        fontSize: 12,
-                        background: "unset",
-                        color: "#001f3f",
-                        padding: 0,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50% 50% 50% 0",
-                        backgroundColor: "white",
-                        transformOrigin: "bottom left",
-                        transform:
-                          "translate(50%, -100%) rotate(-45deg) scale(0)",
-                        "&:before": { display: "none" },
-                        "&.MuiSlider-valueLabelOpen": {
-                          transform:
-                            "translate(50%, -100%) rotate(-45deg) scale(1)",
-                        },
-                        "& > *": {
-                          transform: "rotate(45deg)",
-                        },
-                      },
-                    }}
-                  />
-                  <span>{opacityVal}%</span>
-                </Box>
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                height: "100%",
-                width: "20%",
-                ...settingMargin,
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={2}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box style={{ width: "100%" }}>
-                  <span>{`Saturation:`}</span>
-                  <Slider
-                    value={saturationVal}
-                    size="medium"
-                    onChange={handleChangeSaturation}
-                    min={0}
-                    max={200}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="continuous-slider-size"
-                    sx={{
-                      color: "WHITE",
-                      height: 8,
-                      "& .MuiSlider-track": {
-                        border: "none",
-                      },
-                      "& .MuiSlider-thumb": {
-                        height: 18,
-                        width: 18,
-                        backgroundColor: "#fff",
-                        border: "2px solid currentColor",
-                        transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                        "&:before": {
-                          boxShadow: "0 2px 12px 0 currentColor",
-                        },
-                        "&:hover, &.Mui-focusVisible": {
-                          boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                        },
-                      },
-                      "& .MuiSlider-valueLabel": {
-                        lineHeight: 1.2,
-                        fontSize: 12,
-                        background: "unset",
-                        color: "#001f3f",
-                        padding: 0,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50% 50% 50% 0",
-                        backgroundColor: "white",
-                        transformOrigin: "bottom left",
-                        transform:
-                          "translate(50%, -100%) rotate(-45deg) scale(0)",
-                        "&:before": { display: "none" },
-                        "&.MuiSlider-valueLabelOpen": {
-                          transform:
-                            "translate(50%, -100%) rotate(-45deg) scale(1)",
-                        },
-                        "& > *": {
-                          transform: "rotate(45deg)",
-                        },
-                      },
-                    }}
-                  />
-                  <span>{saturationVal}%</span>
-                </Box>
-              </Stack>
-            </Box>
-          </Stack>
-        </Box>
-        <Box
-          style={{
-            width: "80%",
-            height: "700px",
-            ...settingMargin,
-          }}
-        >
-          <Stack
-            style={{ width: "100%", height: "100%" }}
-            spacing={2}
-            direction="row"
-            sx={{ py: 2 }}
-            alignItems="space-between"
-            justifyContent="space-between"
-          >
-            <Box
-              style={{
-                width: "50%",
-                height: "100%",
-                ...settingMargin,
-                backgroundColor: "rgba(255,255,255, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-              }}
-            >
-              <Stack
-                style={{
-                  width: "100%",
-                  height: "10%",
-                }}
-                spacing={2}
-                direction="row"
-                sx={{ px: 2.5, py: 2 }}
-                alignItems="flex-start"
-                justifyContent={"space-between"}
-              >
-                <Box>
-                  <FormControl
-                    sx={{
-                      minWidth: "150px",
-                    }}
-                    size="small"
-                  >
-                    <Select
-                      value={currentCardType}
-                      onChange={handleChange}
-                      displayEmpty
-                      style={{
-                        border: "1px solid rgba(255, 255, 255, 0.125)",
-                        color: "rgba(255, 255, 255, 0.7)",
-                        padding: 0,
-                      }}
-                      sx={{
-                        color: "white",
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(228, 219, 233, 0.25)",
-                        },
-                        ".MuiSvgIcon-root ": {
-                          fill: "white !important",
-                        },
-                      }}
-                    >
-                      {handleRenderMenuItem}
-                    </Select>
-                  </FormControl>
-                </Box>
-                <Box>{<IOSSwitch />}</Box>
-              </Stack>
-              <Stack
-                style={{
-                  width: "100%",
-                  height: "90%",
-                }}
-                direction="row"
-                sx={{ px: 2, py: 2 }}
-                alignItems="center"
-                justifyContent={"center"}
-              >
-                {HandleBackgroundContent}
-              </Stack>
-            </Box>
-            <Box
-              style={{
-                width: "40%",
-                height: "100%",
-                backgroundColor: "rgba(255,255,255, 0.1)",
-                backdropFilter: "blur(16px)",
-                border: "1px solid rgba(255, 255, 255, 0.125)",
-                ...settingMargin,
-              }}
-            >
-              <Stack
-                style={{ width: "100%", height: "100%", padding: "15px" }}
-                spacing={2}
-                direction="column"
-                sx={{ px: 1 }}
-                alignItems="flex-start"
-              >
-                <Box>CSS</Box>
-                <Box style={{ width: "100%" }}>{HandleCSSContent()}</Box>
-              </Stack>
-            </Box>
-          </Stack>
-        </Box>
+          {configBox}
+          {contentBox}
+        </Stack>
       </div>
     </>
   );

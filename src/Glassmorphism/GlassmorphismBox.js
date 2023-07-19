@@ -3,17 +3,24 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
-import { styled, useTheme, createTheme } from "@mui/material/styles";
+import { styled, createTheme } from "@mui/material/styles";
+import { AppContext } from "../Context/AppContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React, { useState, useRef, useMemo, useCallback, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useMemo,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import { PrimaryButton } from "../Component/Button/CustomButton";
 import { pSBC } from "../Neumorphism/PBSC";
 import "./GlassmorphismBox.css";
 import CroppedCC from "../Assets/croped cc.png";
 import MenuItem from "@mui/material/MenuItem";
-import Switch, { SwitchProps } from "@mui/material/Switch";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
 //might need browserfs for this
 
@@ -35,18 +42,23 @@ const GlassmorphismBox = () => {
       },
     },
   });
+  const [state] = useContext(AppContext);
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   const [blurVal, setBlurVal] = useState(10);
   const [opacityVal, setOpacityVal] = useState(50);
   const [saturationVal, setSaturationVal] = useState(120);
-  const [needToUseDark, setNeedToUseDark] = useState(true);
+  const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [backgroundColor, setBackgroundColor] = useState([
     "#DF68B9",
     "#53D56D",
     "#92B9DD",
   ]);
-  // const [matches, setMatches] = useState(changeOrientation);
+
+  useEffect(() => {
+    setNeedToUseDark(state.isDarkMode);
+  }, [state]);
+
   const [cardColor, setCardColor] = useState("#ebebeb");
   const [currentCardType, setCurrentCardType] = useState("Credit Card");
   const [currentBackgroundType, setCurrentBackgroundType] =
@@ -90,12 +102,6 @@ const GlassmorphismBox = () => {
       },
     }));
   }, []);
-
-  // useEffect(() => {
-  //   setMatches(changeOrientation);
-  //   console.log('useeffect', changeOrientation)
-  // }, [changeOrientation]);
-
 
   const backgroundType = ["Solid", "Mesh Gradient", "Image"];
   const cardType = ["Social Media", "Credit Card"];
@@ -523,9 +529,13 @@ const GlassmorphismBox = () => {
       style={{
         width: "80%",
         height: matches ? "100%" : "140px",
-        backgroundColor: "rgba(255,255,255, 0.1)",
+        backgroundColor: needToUseDark
+          ? "rgba(255,255,255, 0.1)"
+          : "rgba(255,255,255, 0.5)",
         backdropFilter: "blur(16px)",
-        border: "1px solid rgba(255, 255, 255, 0.125)",
+        border: needToUseDark
+          ? "1px solid rgba(255, 255, 255, 0.125)"
+          : "1px solid rgba(0, 0, 0, 0.125)",
         ...settingMargin,
         marginBottom: "20px",
       }}
@@ -665,22 +675,32 @@ const GlassmorphismBox = () => {
                   displayEmpty
                   style={{
                     border: "1px solid rgba(255, 255, 255, 0.125)",
-                    color: "rgba(255, 255, 255, 0.7)",
+                    color: needToUseDark
+                      ? "rgba(255, 255, 255, 0.7)"
+                      : "rgba(0, 0, 0, 0.7)",
                     padding: 0,
                   }}
                   sx={{
-                    color: "white",
+                    color: needToUseDark ? "white" : "rgba(0, 0, 0, 0.7)",
                     ".MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     ".MuiSvgIcon-root ": {
-                      fill: "white !important",
+                      fill: needToUseDark
+                        ? "white !important"
+                        : "rgba(0, 0, 0, 0.7) !important",
                     },
                   }}
                 >
@@ -963,7 +983,7 @@ const GlassmorphismBox = () => {
         style={{ width: "100%" }}
         gap={"10px"}
         direction={matches ? "column" : "row"}
-        sx={{ py: matches? 1: 2 }}
+        sx={{ py: matches ? 1 : 2 }}
         alignItems="space-between"
         justifyContent="space-between"
       >
@@ -972,8 +992,12 @@ const GlassmorphismBox = () => {
             width: matches ? "100%" : "50%",
             height: matches ? "450px" : "700px",
             ...settingMargin,
-            backgroundColor: "rgba(255,255,255, 0.1)",
-            border: "1px solid rgba(255, 255, 255, 0.125)",
+            backgroundColor: needToUseDark
+              ? "rgba(255,255,255, 0.1)"
+              : "rgba(255,255,255, 0.5)",
+            border: needToUseDark
+              ? "1px solid rgba(255, 255, 255, 0.125)"
+              : "1px solid rgba(0, 0, 0, 0.125)",
           }}
         >
           <Stack
@@ -1000,22 +1024,32 @@ const GlassmorphismBox = () => {
                   displayEmpty
                   style={{
                     border: "1px solid rgba(255, 255, 255, 0.125)",
-                    color: "rgba(255, 255, 255, 0.7)",
+                    color: needToUseDark
+                      ? "rgba(255, 255, 255, 0.7)"
+                      : "rgba(0, 0, 0, 0.7)",
                     padding: 0,
                   }}
                   sx={{
-                    color: "white",
+                    color: needToUseDark ? "white" : "rgba(0, 0, 0, 0.7)",
                     ".MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(228, 219, 233, 0.25)",
+                      borderColor: needToUseDark
+                        ? "rgba(228, 219, 233, 0.25)"
+                        : "(50,50,50, 0.25)",
                     },
                     ".MuiSvgIcon-root ": {
-                      fill: "white !important",
+                      fill: needToUseDark
+                        ? "white !important"
+                        : "rgba(0, 0, 0, 0.7) !important",
                     },
                   }}
                 >
@@ -1041,9 +1075,13 @@ const GlassmorphismBox = () => {
           style={{
             width: matches ? "100%" : "40%",
             height: "100%",
-            backgroundColor: "rgba(255,255,255, 0.1)",
+            backgroundColor: needToUseDark
+              ? "rgba(255,255,255, 0.1)"
+              : "rgba(255,255,255, 0.5)",
             backdropFilter: "blur(16px)",
-            border: "1px solid rgba(255, 255, 255, 0.125)",
+            border: needToUseDark
+              ? "1px solid rgba(255, 255, 255, 0.125)"
+              : "1px solid rgba(0, 0, 0, 0.125)",
             ...settingMargin,
           }}
         >
@@ -1068,8 +1106,10 @@ const GlassmorphismBox = () => {
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
-          background: "#1F2929",
-          color: "rgba(255, 255, 255, 0.7)",
+          background: needToUseDark ? "#1F2929" : "rgba(227,227,227)",
+          color: needToUseDark
+            ? "rgba(255, 255, 255, 0.7)"
+            : "rgba(0, 0, 0, 0.7)",
           height: "unset",
         }}
       >

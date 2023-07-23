@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import CustomSlider from "../Component/Slider/CustomSlider";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
@@ -858,54 +858,13 @@ const GlassmorphismBox = () => {
           >
             <Box style={{ width: "100%" }}>
               <span>{`Blur Value:`}</span>
-              <Slider
+              <CustomSlider
                 value={blurVal}
                 size="medium"
                 onChange={handleChangeBlur}
                 max={25}
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
-                sx={{
-                  color: needToUseDark ? "WHITE" : "#1f2929",
-                  height: 8,
-                  "& .MuiSlider-track": {
-                    border: "none",
-                  },
-                  "& .MuiSlider-thumb": {
-                    height: 18,
-                    width: 18,
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    border: "2px solid currentColor",
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:before": {
-                      boxShadow: "0 2px 12px 0 currentColor",
-                    },
-                    "&:hover, &.Mui-focusVisible": {
-                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                    },
-                  },
-                  "& .MuiSlider-valueLabel": {
-                    lineHeight: 1.2,
-                    fontSize: 12,
-                    background: "unset",
-                    color: !needToUseDark ? "WHITE" : "#1f2929",
-                    padding: 0,
-                    width: 32,
-                    height: 32,
-                    borderRadius: "50% 50% 50% 0",
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    transformOrigin: "bottom left",
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                    "&:before": { display: "none" },
-                    "&.MuiSlider-valueLabelOpen": {
-                      transform:
-                        "translate(50%, -100%) rotate(-45deg) scale(1)",
-                    },
-                    "& > *": {
-                      transform: "rotate(45deg)",
-                    },
-                  },
-                }}
               />
               <span>{blurVal}px</span>
             </Box>
@@ -927,7 +886,7 @@ const GlassmorphismBox = () => {
           >
             <Box style={{ width: "100%" }}>
               <span>{`Opacity:`}</span>
-              <Slider
+              <CustomSlider
                 value={opacityVal}
                 size="medium"
                 onChange={handleChangeOpacity}
@@ -935,47 +894,6 @@ const GlassmorphismBox = () => {
                 max={100}
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
-                sx={{
-                  color: needToUseDark ? "WHITE" : "#1f2929",
-                  height: 8,
-                  "& .MuiSlider-track": {
-                    border: "none",
-                  },
-                  "& .MuiSlider-thumb": {
-                    height: 18,
-                    width: 18,
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    border: "2px solid currentColor",
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:before": {
-                      boxShadow: "0 2px 12px 0 currentColor",
-                    },
-                    "&:hover, &.Mui-focusVisible": {
-                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                    },
-                  },
-                  "& .MuiSlider-valueLabel": {
-                    lineHeight: 1.2,
-                    fontSize: 12,
-                    background: "unset",
-                    color: !needToUseDark ? "WHITE" : "#1f2929",
-                    padding: 0,
-                    width: 32,
-                    height: 32,
-                    borderRadius: "50% 50% 50% 0",
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    transformOrigin: "bottom left",
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                    "&:before": { display: "none" },
-                    "&.MuiSlider-valueLabelOpen": {
-                      transform:
-                        "translate(50%, -100%) rotate(-45deg) scale(1)",
-                    },
-                    "& > *": {
-                      transform: "rotate(45deg)",
-                    },
-                  },
-                }}
               />
               <span>{opacityVal}%</span>
             </Box>
@@ -997,7 +915,7 @@ const GlassmorphismBox = () => {
           >
             <Box style={{ width: "100%" }}>
               <span>{`Saturation:`}</span>
-              <Slider
+              <CustomSlider
                 value={saturationVal}
                 size="medium"
                 onChange={handleChangeSaturation}
@@ -1005,47 +923,6 @@ const GlassmorphismBox = () => {
                 max={200}
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
-                sx={{
-                  color: needToUseDark ? "WHITE" : "#1f2929",
-                  height: 8,
-                  "& .MuiSlider-track": {
-                    border: "none",
-                  },
-                  "& .MuiSlider-thumb": {
-                    height: 18,
-                    width: 18,
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    border: "2px solid currentColor",
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:before": {
-                      boxShadow: "0 2px 12px 0 currentColor",
-                    },
-                    "&:hover, &.Mui-focusVisible": {
-                      boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                    },
-                  },
-                  "& .MuiSlider-valueLabel": {
-                    lineHeight: 1.2,
-                    fontSize: 12,
-                    background: "unset",
-                    color: !needToUseDark ? "WHITE" : "#1f2929",
-                    padding: 0,
-                    width: 32,
-                    height: 32,
-                    borderRadius: "50% 50% 50% 0",
-                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
-                    transformOrigin: "bottom left",
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                    "&:before": { display: "none" },
-                    "&.MuiSlider-valueLabelOpen": {
-                      transform:
-                        "translate(50%, -100%) rotate(-45deg) scale(1)",
-                    },
-                    "& > *": {
-                      transform: "rotate(45deg)",
-                    },
-                  },
-                }}
               />
               <span>{saturationVal}%</span>
             </Box>

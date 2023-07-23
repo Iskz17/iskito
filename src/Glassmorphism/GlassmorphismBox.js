@@ -289,7 +289,7 @@ const GlassmorphismBox = () => {
         </Stack>
       </Box>
     );
-  },[blurVal, cardColor, matches, opacityVal, saturationVal]);
+  }, [blurVal, cardColor, matches, opacityVal, saturationVal]);
 
   const HandleCardContent = useMemo(() => {
     switch (currentCardType) {
@@ -342,7 +342,7 @@ const GlassmorphismBox = () => {
         {HandleCardContent}
       </Box>
     );
-  },[backgroundColor, HandleCardContent]);
+  }, [backgroundColor, HandleCardContent]);
 
   const ImageBackground = useCallback(() => {
     return (
@@ -388,7 +388,79 @@ const GlassmorphismBox = () => {
     MeshGradientBackground,
   ]);
 
+  const HandleBackgroundCSS = () => {
+    const attributeColor = "#0ac7c4";
+    switch (currentBackgroundType) {
+      case "Mesh Gradient": {
+        return (
+          <>
+            <span>
+              <span
+                style={{ color: attributeColor }}
+              >{`background-image `}</span>
+              <span>{`: `}</span>
+            </span>
+            <span>
+              <span style={{ color: attributeColor }}>{`radial-gradient`}</span>
+              <span>{`(`}</span>
+              <span
+                style={{ color: "#fa55fb" }}
+              >{`at 47% 33%, ${backgroundColor[0]} 0, transparent 59%`}</span>
+              <span>{`),`}</span>
+            </span>
+            <span>
+              <span style={{ color: attributeColor }}>{`radial-gradient`}</span>
+              <span>{`(`}</span>
+              <span style={{ color: "#fa55fb" }}>
+                {`at 82% 65%, ${backgroundColor[1]} 0, transparent 55%`}
+              </span>
+              <span>{`);`}</span>
+            </span>
+          </>
+        );
+      }
+
+      case "Solid": {
+        return (
+          <>
+            <span>
+              <span
+                style={{ color: attributeColor }}
+              >{`background-image `}</span>
+              <span>{`: `}</span>
+              <span
+                style={{ color: attributeColor }}
+              >{`${backgroundColor[0]}`}</span>
+              <span>{`;`}</span>
+            </span>
+          </>
+        );
+      }
+
+      case "Image": {
+        return (
+          <>
+            <span>
+              <span
+                style={{ color: attributeColor }}
+              >{`background-image `}</span>
+              <span>{`: `}</span>
+              <span
+                style={{ color: attributeColor }}
+              >{`url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`}</span>
+              <span>{`;`}</span>
+            </span>
+          </>
+        );
+      }
+
+      default:
+        return null;
+    }
+  };
+
   const HandleCSSContent = () => {
+    const attributeColor = "#0ac7c4";
     return (
       <Stack
         style={{
@@ -396,7 +468,9 @@ const GlassmorphismBox = () => {
           height: "50%",
           padding: "8px",
           fontSize: matches ? "15px" : "19px",
-          color: "white",
+          color: needToUseDark
+            ? "rgba(255, 255, 255, 0.7)"
+            : "rgba(0, 0, 0, 0.7)",
         }}
         spacing={2}
         direction={"column"}
@@ -408,65 +482,49 @@ const GlassmorphismBox = () => {
           <span>{`{`}</span>
         </span>
         <span>
-          <span style={{ color: "#00fff5" }}>{` background-color `}</span>
+          <span style={{ color: attributeColor }}>{` background-color `}</span>
           <span>{`: `}</span>
           <span style={{ color: "#fa55fb" }}>{`${backgroundColor[2]}`}</span>
           <span>;</span>
         </span>
-        <span>
-          <span style={{ color: "#00fff5" }}>{`background-image `}</span>
-          <span>{`: `}</span>
-        </span>
 
-        <span>
-          <span style={{ color: "#00fff5" }}>{`radial-gradient`}</span>
-          <span>{`(`}</span>
-          <span
-            style={{ color: "#fa55fb" }}
-          >{`at 47% 33%, ${backgroundColor[0]} 0, transparent 59%`}</span>
-          <span>{`),`}</span>
-        </span>
-        <span>
-          <span style={{ color: "#00fff5" }}>{`radial-gradient`}</span>
-          <span>{`(`}</span>
-          <span style={{ color: "#fa55fb" }}>
-            {`at 82% 65%, ${backgroundColor[1]} 0, transparent 55%`}
-          </span>
-          <span>{`);`}</span>
-        </span>
+        {HandleBackgroundCSS()}
+
         <span>{`}`}</span>
 
         <span>
           <span style={{ color: "#53d56d" }}>{`.card `}</span>
-          <span style={{ color: "white" }}>{`{`}</span>
+          <span>{`{`}</span>
         </span>
         <span>
-          <span style={{ color: "#00fff5" }}>{`backdrop-filter `}</span>
+          <span style={{ color: attributeColor }}>{`backdrop-filter `}</span>
           <span>{`: `}</span>
-          <span style={{ color: "#00fff5" }}>{`blur`}</span>
+          <span style={{ color: attributeColor }}>{`blur`}</span>
           <span>{`(`}</span>
           <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
           <span>{`) `}</span>
-          <span style={{ color: "#00fff5" }}>{`saturate`}</span>
+          <span style={{ color: attributeColor }}>{`saturate`}</span>
           <span>{`(`}</span>
           <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
           <span>{`); `}</span>
         </span>
         <span>
-          <span style={{ color: "#00fff5" }}>{`-webkit-backdrop-filter `}</span>
+          <span
+            style={{ color: attributeColor }}
+          >{`-webkit-backdrop-filter `}</span>
           <span>{`: `}</span>
-          <span style={{ color: "#00fff5" }}>{`blur`}</span>
+          <span style={{ color: attributeColor }}>{`blur`}</span>
           <span>{`(`}</span>
           <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
           <span>{`) `}</span>
-          <span style={{ color: "#00fff5" }}>{`saturate`}</span>
+          <span style={{ color: attributeColor }}>{`saturate`}</span>
           <span>{`(`}</span>
           <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
           <span>{`); `}</span>
         </span>
         <span>
           {" "}
-          <span style={{ color: "#00fff5" }}>{`background-color `}</span>
+          <span style={{ color: attributeColor }}>{`background-color `}</span>
           <span>{`: `}</span>
           <span style={{ color: "#fa55fb" }}>{` ${convertToRgbWithOpacity(
             cardColor,
@@ -476,14 +534,14 @@ const GlassmorphismBox = () => {
         </span>
 
         <span>
-          <span style={{ color: "#00fff5" }}>{`border-radius `}</span>
+          <span style={{ color: attributeColor }}>{`border-radius `}</span>
           <span>{`: `}</span>
           <span style={{ color: "#fa55fb" }}>{`12px`}</span>
           <span>{`;`}</span>
         </span>
 
         <span>
-          <span style={{ color: "#00fff5" }}>{`border `}</span>
+          <span style={{ color: attributeColor }}>{`border `}</span>
           <span>{`: `}</span>
           <span
             style={{ color: "#fa55fb" }}

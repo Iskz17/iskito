@@ -960,7 +960,7 @@ const NeumorphismBox = () => {
         id="arrangeParent"
         style={{
           background: `${backgroundColor}`,
-          fontFamily:"Gilroy",
+          fontFamily: "Gilroy",
         }}
       >
         <div

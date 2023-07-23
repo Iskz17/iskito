@@ -574,9 +574,16 @@ const GlassmorphismBox = () => {
                   height: "100%",
                   width: "33%",
                   padding: "none",
-                  border: "none",
+                  border: needToUseDark
+                    ? "1px solid rgba(255, 255, 255, 0.125)"
+                    : "1px solid rgba(0, 0, 0, 0.125)",
                   backgroundColor: `${backgroundColor[0]}`,
-                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                  boxShadow: needToUseDark
+                    ? `rgb(52 54 57 / 82%) 5px 9px 10px`
+                    : `${convertToRgbWithOpacity(
+                        backgroundColor[0],
+                        70
+                      )} 5px 9px 10px`,
                 }}
                 onClick={() => {
                   backgroundColorInputEl0.current.click();
@@ -599,9 +606,16 @@ const GlassmorphismBox = () => {
                   height: "100%",
                   width: "33%",
                   padding: "none",
-                  border: "none",
+                  border: needToUseDark
+                    ? "1px solid rgba(255, 255, 255, 0.125)"
+                    : "1px solid rgba(0, 0, 0, 0.125)",
                   backgroundColor: `${backgroundColor[1]}`,
-                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                  boxShadow: needToUseDark
+                    ? `rgb(52 54 57 / 82%) 5px 9px 10px`
+                    : `${convertToRgbWithOpacity(
+                        backgroundColor[1],
+                        70
+                      )} 5px 9px 10px`,
                 }}
                 onClick={() => {
                   backgroundColorInputEl1.current.click();
@@ -624,9 +638,16 @@ const GlassmorphismBox = () => {
                   height: "100%",
                   width: "33%",
                   padding: "none",
-                  border: "none",
+                  border: needToUseDark
+                    ? "1px solid rgba(255, 255, 255, 0.125)"
+                    : "1px solid rgba(0, 0, 0, 0.125)",
                   backgroundColor: `${backgroundColor[2]}`,
-                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                  boxShadow: needToUseDark
+                    ? `rgb(52 54 57 / 82%) 5px 9px 10px`
+                    : `${convertToRgbWithOpacity(
+                        backgroundColor[2],
+                        70
+                      )} 5px 9px 10px`,
                 }}
                 onClick={() => {
                   backgroundColorInputEl2.current.click();
@@ -737,9 +758,13 @@ const GlassmorphismBox = () => {
                   height: "100%",
                   width: "33%",
                   padding: "none",
-                  border: "none",
+                  border: needToUseDark
+                    ? "1px solid rgba(255, 255, 255, 0.125)"
+                    : "1px solid rgba(0, 0, 0, 0.125)",
                   backgroundColor: `${cardColor}`,
-                  boxShadow: `rgb(52 54 57 / 82%) 5px 9px 10px`,
+                  boxShadow: needToUseDark
+                    ? `rgb(52 54 57 / 82%) 5px 9px 10px`
+                    : `${convertToRgbWithOpacity(cardColor, 70)} 5px 9px 10px`,
                 }}
                 onClick={() => {
                   cardColorInputEl.current.click();
@@ -783,7 +808,7 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
                 sx={{
-                  color: "WHITE",
+                  color: needToUseDark ? "WHITE" : "#1f2929",
                   height: 8,
                   "& .MuiSlider-track": {
                     border: "none",
@@ -791,7 +816,7 @@ const GlassmorphismBox = () => {
                   "& .MuiSlider-thumb": {
                     height: 18,
                     width: 18,
-                    backgroundColor: "#fff",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     border: "2px solid currentColor",
                     transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                     "&:before": {
@@ -805,12 +830,12 @@ const GlassmorphismBox = () => {
                     lineHeight: 1.2,
                     fontSize: 12,
                     background: "unset",
-                    color: "#001f3f",
+                    color: !needToUseDark ? "WHITE" : "#1f2929",
                     padding: 0,
                     width: 32,
                     height: 32,
                     borderRadius: "50% 50% 50% 0",
-                    backgroundColor: "white",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     transformOrigin: "bottom left",
                     transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
                     "&:before": { display: "none" },
@@ -853,7 +878,7 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
                 sx={{
-                  color: "WHITE",
+                  color: needToUseDark ? "WHITE" : "#1f2929",
                   height: 8,
                   "& .MuiSlider-track": {
                     border: "none",
@@ -861,7 +886,7 @@ const GlassmorphismBox = () => {
                   "& .MuiSlider-thumb": {
                     height: 18,
                     width: 18,
-                    backgroundColor: "#fff",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     border: "2px solid currentColor",
                     transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                     "&:before": {
@@ -875,12 +900,12 @@ const GlassmorphismBox = () => {
                     lineHeight: 1.2,
                     fontSize: 12,
                     background: "unset",
-                    color: "#001f3f",
+                    color: !needToUseDark ? "WHITE" : "#1f2929",
                     padding: 0,
                     width: 32,
                     height: 32,
                     borderRadius: "50% 50% 50% 0",
-                    backgroundColor: "white",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     transformOrigin: "bottom left",
                     transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
                     "&:before": { display: "none" },
@@ -923,7 +948,7 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
                 sx={{
-                  color: "WHITE",
+                  color: needToUseDark ? "WHITE" : "#1f2929",
                   height: 8,
                   "& .MuiSlider-track": {
                     border: "none",
@@ -931,7 +956,7 @@ const GlassmorphismBox = () => {
                   "& .MuiSlider-thumb": {
                     height: 18,
                     width: 18,
-                    backgroundColor: "#fff",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     border: "2px solid currentColor",
                     transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
                     "&:before": {
@@ -945,12 +970,12 @@ const GlassmorphismBox = () => {
                     lineHeight: 1.2,
                     fontSize: 12,
                     background: "unset",
-                    color: "#001f3f",
+                    color: !needToUseDark ? "WHITE" : "#1f2929",
                     padding: 0,
                     width: 32,
                     height: 32,
                     borderRadius: "50% 50% 50% 0",
-                    backgroundColor: "white",
+                    backgroundColor: needToUseDark ? "WHITE" : "#1f2929",
                     transformOrigin: "bottom left",
                     transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
                     "&:before": { display: "none" },

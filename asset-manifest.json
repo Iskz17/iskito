@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/iskito-project/static/css/main.18a8188e.css",
+    "main.js": "/iskito-project/static/js/main.faeed0e8.js",
+    "static/media/kito-nobg.png": "/iskito-project/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
+    "static/media/Gilroy-Light.otf": "/iskito-project/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
+    "static/media/croped cc.png": "/iskito-project/static/media/croped cc.b3365e2f6ce09a8b3e57.png",
+    "index.html": "/iskito-project/index.html",
+    "main.18a8188e.css.map": "/iskito-project/static/css/main.18a8188e.css.map",
+    "main.faeed0e8.js.map": "/iskito-project/static/js/main.faeed0e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18a8188e.css",
+    "static/js/main.faeed0e8.js"
+  ]
+}

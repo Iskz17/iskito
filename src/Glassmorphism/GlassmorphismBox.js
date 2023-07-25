@@ -17,7 +17,7 @@ import React, {
 import { PrimaryButton } from "../Component/Button/CustomButton";
 import { pSBC } from "../Neumorphism/PBSC";
 import "./GlassmorphismBox.css";
-import CroppedCC from "../Assets/croped cc.png";
+import CroppedCC from "../Assets/cropedcc.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";

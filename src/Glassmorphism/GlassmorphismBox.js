@@ -21,6 +21,7 @@ import CroppedCC from "../Assets/croped cc.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { IsNullOrUndefined } from "../Utils/Utils";
 
 //might need browserfs for this
 
@@ -42,6 +43,7 @@ const GlassmorphismBox = () => {
       },
     },
   });
+
   const [state] = useContext(AppContext);
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
@@ -120,10 +122,6 @@ const GlassmorphismBox = () => {
     return `rgba(${rgbToPass[0]},${rgbToPass[1]},${rgbToPass[2]}, ${
       opacity / 100
     })`;
-  };
-
-  const IsNullOrUndefined = (input) => {
-    return Object.is(input, undefined) || Object.is(input, null);
   };
 
   const handleColorChange = (e, index = null) => {
@@ -1082,7 +1080,7 @@ const GlassmorphismBox = () => {
           justifyContent={"center"}
         >
           <span style={{ fontSize: "2em", fontWeight: 900 }}>Glass UI</span>
-          <span>from scratch project {`${matches}`}</span>
+          <span>from scratch project</span>
         </Stack>
         <Stack
           style={{ width: "100%" }}

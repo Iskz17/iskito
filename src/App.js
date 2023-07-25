@@ -4,6 +4,7 @@ import Kito from "./kito-nobg.png";
 import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
+import LazyLoading from "./LazyLoading/LazyLoading";
 import { DialogCollection } from "./DialogCollection/DialogCollection";
 import { useState, useContext, useMemo, useCallback } from "react";
 import "./Particle.css";
@@ -39,21 +40,30 @@ const App = () => {
           </Section>
         ),
       },
-      {
-        label: "Dialog",
-        key: 1,
-        content: (
-          <Section>
-           <DialogCollection />
-          </Section>
-        ),
-      },
+      // {
+      //   label: "Dialog",
+      //   key: 1,
+      //   content: (
+      //     <Section>
+      //      <DialogCollection />
+      //     </Section>
+      //   ),
+      // },
       {
         label: "Glassmorphism",
         key: 2,
         content: (
           <Section>
             <GlassmorphismBox />
+          </Section>
+        ),
+      },
+      {
+        label: "Lazy Loading",
+        key: 3,
+        content: (
+          <Section>
+            <LazyLoading />
           </Section>
         ),
       },

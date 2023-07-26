@@ -64,7 +64,6 @@ const LazyLoading = () => {
     })
       .then((res) => res.blob())
       .then((data) => {
-        //console.log(data);
         const options = {
           // As the key specify the maximum size
           // Leave blank for infinity

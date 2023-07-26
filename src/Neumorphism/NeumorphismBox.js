@@ -11,6 +11,8 @@ import {
 import "./NeumorphismBox.css";
 import { pSBC } from "./PBSC";
 import { ClipboardCopy } from "../CopyToClipboard/Clipboard";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { styled, createTheme } from "@mui/material/styles";
 
 const NeumorphismBox = () => {
   let flex = {
@@ -46,6 +48,18 @@ const NeumorphismBox = () => {
   const [shapeColor, setShapeColor] = useState(""); //light, dark
   const [shadowType, setShadowType] = useState("flat");
   const [needToUseDark, setNeedToUseDark] = useState(true);
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 940,
+        laptop: 1024,
+        desktop: 1200,
+      },
+    },
+  });
+  const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   let PBSCCal = useCallback((p0, color) => {
     return pSBC(p0, color, "c");
@@ -312,7 +326,7 @@ const NeumorphismBox = () => {
                 height: "30px",
                 border: "3px solid black",
                 textAlign: "center",
-                fontSize: "15px",
+                fontSize: "12px",
                 borderRadius: "5px",
               }}
               onChange={(e) => handleColorChange(e)}
@@ -985,6 +999,8 @@ const NeumorphismBox = () => {
             width: "100%",
             height: "100%",
             marginTop: "-20px",
+            gap: "20px",
+            flexDirection: matches ? "column" : "row",
           }}
         >
           <div id="mainBox">
@@ -1013,7 +1029,7 @@ const NeumorphismBox = () => {
             id="configBox"
             style={{
               ...flex,
-              color: needToUseDark ? "#001f3f" : "white",
+              color: needToUseDark ? "#001f3f" : "white"
             }}
           >
             <div
@@ -1023,6 +1039,7 @@ const NeumorphismBox = () => {
                 width: "99%",
                 height: "98%",
                 borderRadius: "30px",
+                padding: "30px 0",
                 ...backgroundAndShadow,
               }}
             >

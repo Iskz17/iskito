@@ -1,7 +1,6 @@
-import Box from "@mui/material/Box";
 import CustomSlider from "../Component/Slider/CustomSlider";
 import Stack from "@mui/material/Stack";
-import React, { useState, useCallback, useMemo, useRef } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   ElementFlat,
   ElementConcave,
@@ -9,10 +8,10 @@ import {
   ElementPressed,
 } from "./Element";
 import "./NeumorphismBox.css";
-import { pSBC } from "./PBSC";
 import { ClipboardCopy } from "../CopyToClipboard/Clipboard";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { styled, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import { needDarkMode, calculateShadow } from "../Utils/Utils";
 
 const NeumorphismBox = () => {
   let flex = {
@@ -20,22 +19,13 @@ const NeumorphismBox = () => {
     justifyContent: "center",
     alignItems: "center",
   };
-  let relativeLayer = {
-    position: "relative",
-    height: "100%",
-    width: "100%",
-  };
-
-  let settingMargin = {
-    marginBottom: "0px",
-    marginTop: "0px",
-    padding: 0,
-  };
 
   const [valueSize, setValueSize] = useState(300);
   const [backgroundColor, setBackgroundColor] = useState("#CAE6E8");
   const [lightShadow, setLightShadow] = useState("#E8FFFF");
   const [darkShadow, setDarkShadow] = useState("#ACC4C5");
+  const [lightInnerShadow, setLightInnerShadow] = useState("#E8FFFF");
+  const [darkInnerShadow, setDarkInnerShadow] = useState("#ACC4C5");
   const [valueRad, setValueRad] = useState(30);
   const [valueRadMax, setValueRadMax] = useState(120);
   const [valueDistance, setValueDistance] = useState(23);
@@ -61,180 +51,30 @@ const NeumorphismBox = () => {
   });
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
-  let PBSCCal = useCallback((p0, color) => {
-    return pSBC(p0, color, "c");
-  }, []);
-
-  useMemo(() => {
-    let luminance = (r, g, b) => {
-      var a = [r, g, b].map(function (v) {
-        v /= 255;
-        return v <= 0.039 ? v / 12.9 : Math.pow((v + 0.05) / 1.05, 2.4);
-      });
-      return a[0] * 0.21 + a[1] * 0.71 + a[2] * 0.07;
-    };
-
-    let contrast = (rgb1, rgb2) => {
-      var lum1 = luminance(rgb1[0], rgb1[1], rgb1[2]);
-      var lum2 = luminance(rgb2[0], rgb2[1], rgb2[2]);
-      var brightest = Math.max(lum1, lum2);
-      var darkest = Math.min(lum1, lum2);
-      return (brightest + 0.05) / (darkest + 0.05);
-    };
-
-    const changeControlFlow = () => {
-      let rgbConverted = PBSCCal(0, backgroundColor, "c");
-      let rgbToPass = rgbConverted
-        .replaceAll("rgb", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "")
-        .split(",");
-      if (
-        contrast(
-          [255, 255, 255],
-          [
-            parseInt(rgbToPass[0]),
-            parseInt(rgbToPass[1]),
-            parseInt(rgbToPass[2]),
-          ]
-        ) < 2
-      ) {
-        setNeedToUseDark(true);
-      } else {
-        setNeedToUseDark(false);
-      }
-      let maxRRatio = 1.59;
-      let maxGRatio = 1.6;
-      let maxBRatio = 1.59;
-
-      const colorGuard = (num) => {
-        if (num > 255) {
-          return 255;
-        }
-        return num;
-      };
-
-      let r = colorGuard(
-        parseInt(rgbToPass[0]) * (maxRRatio * (valueIntensity / 100))
-      );
-      let g = colorGuard(
-        parseInt(rgbToPass[1]) * (maxGRatio * (valueIntensity / 100))
-      );
-      let b = colorGuard(
-        parseInt(rgbToPass[2]) * (maxBRatio * (valueIntensity / 100))
-      );
-      return PBSCCal(0, `rgb(${r},${g},${b})`);
-    };
-
-    const changeControlFlowDark = () => {
-      let rgbConverted = PBSCCal(0, backgroundColor);
-      let rgbToPass = rgbConverted
-        .replaceAll("rgb", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "")
-        .split(",");
-
-      let maxRRatio = 0.4;
-      let maxGRatio = 0.39;
-      let maxBRatio = 0.4;
-      const colorGuard = (num) => {
-        if (num < 0) {
-          return 0;
-        }
-        return num;
-      };
-
-      const maxShadowGuard = (num, type) => {
-        if (type === "r") {
-          if (num > 1) {
-            return 1;
-          }
-          return num;
-        }
-        if (type === "g") {
-          if (num > 1) {
-            return 1;
-          }
-          return num;
-        }
-        if (type === "b") {
-          if (num > 1) {
-            return 1;
-          }
-          return num;
-        }
-      };
-      let r = colorGuard(
-        parseInt(rgbToPass[0]) *
-          maxShadowGuard(maxRRatio * (100 / (valueIntensity - 25)), "r")
-      );
-      let g = colorGuard(
-        parseInt(rgbToPass[1]) *
-          maxShadowGuard(maxGRatio * (100 / (valueIntensity - 25)), "g")
-      );
-      let b = colorGuard(
-        parseInt(rgbToPass[2]) *
-          maxShadowGuard(maxBRatio * (100 / (valueIntensity - 25)), "b")
-      );
-      return PBSCCal(0, `rgb(${r},${g},${b})`, "c");
-    };
-
-    setLightShadow(changeControlFlow());
-    setDarkShadow(changeControlFlowDark());
+  useEffect(() => {
+    setNeedToUseDark(needDarkMode(backgroundColor));
+    const [ls, ds, lis, dis] = calculateShadow(backgroundColor, valueIntensity);
+    setLightShadow(ls);
+    setDarkShadow(ds);
+    setLightInnerShadow(lis);
+    setDarkInnerShadow(dis);
   }, [backgroundColor, valueIntensity]);
 
-  useMemo(() => {
+  useEffect(() => {
     if (shadowType === "flat" || shadowType === "pressed") {
       return;
     }
-    let rgbConverted = PBSCCal(0, backgroundColor);
-    let rgbToPass = rgbConverted
-      .replaceAll("rgb", "")
-      .replaceAll("(", "")
-      .replaceAll(")", "")
-      .split(",");
-    let lightRatio = 1.07;
-    let darkRatio = 0.9;
-
-    const colorGuard = (num) => {
-      if (num < 0) {
-        return 0;
-      }
-      if (num > 255) {
-        return 255;
-      }
-      return num;
-    };
-
-    let rLight = colorGuard(parseInt(rgbToPass[0]) * lightRatio);
-    let gLight = colorGuard(parseInt(rgbToPass[1]) * lightRatio);
-    let bLight = colorGuard(parseInt(rgbToPass[2]) * lightRatio);
-
-    let rDark = colorGuard(parseInt(rgbToPass[0]) * darkRatio);
-    let gDark = colorGuard(parseInt(rgbToPass[1]) * darkRatio);
-    let bDark = colorGuard(parseInt(rgbToPass[2]) * darkRatio);
 
     switch (shadowType) {
       case "flat": {
         return;
       }
       case "concave": {
-        setShapeColor(
-          `${PBSCCal(0, `rgb(${rDark},${gDark},${bDark})`)},  ${PBSCCal(
-            0,
-            `rgb(${rLight},${gLight},${bLight})`,
-            "c"
-          )}`
-        );
+        setShapeColor(`${darkInnerShadow}, ${lightInnerShadow}`);
         return;
       }
       case "convex": {
-        setShapeColor(
-          ` ${PBSCCal(0, `rgb(${rLight},${gLight},${bLight})`)}, ${PBSCCal(
-            0,
-            `rgb(${rDark},${gDark},${bDark})`
-          )}`
-        );
+        setShapeColor(`${lightInnerShadow}, ${darkInnerShadow}`);
         return;
       }
       case "pressed": {
@@ -243,7 +83,7 @@ const NeumorphismBox = () => {
       default:
         break;
     }
-  }, [shadowType, backgroundColor]);
+  }, [shadowType, darkInnerShadow, lightInnerShadow]);
 
   const handleChangeSize = (newValue) => {
     setValueSize(newValue.target.value);
@@ -308,7 +148,7 @@ const NeumorphismBox = () => {
   const configElementBox = useCallback(() => {
     return (
       <>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Pick a color: `}</span>
             <input
@@ -332,8 +172,8 @@ const NeumorphismBox = () => {
               onChange={(e) => handleColorChange(e)}
             />
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Size:`}</span>
             <CustomSlider
@@ -347,8 +187,8 @@ const NeumorphismBox = () => {
             />
             <span>{valueSize}px</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Radius:`}</span>
             <CustomSlider
@@ -362,8 +202,8 @@ const NeumorphismBox = () => {
             />
             <span>{valueRad}px</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Distance:`}</span>
             <CustomSlider
@@ -377,8 +217,8 @@ const NeumorphismBox = () => {
             />
             <span>{valueDistance}px</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Intensity:`}</span>
             <CustomSlider
@@ -392,8 +232,8 @@ const NeumorphismBox = () => {
             />
             <span>{valueIntensity}</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Blur:`}</span>
             <CustomSlider
@@ -407,8 +247,8 @@ const NeumorphismBox = () => {
             />
             <span>{valueBlur}px</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack
             spacing={2}
             direction="row"
@@ -417,8 +257,8 @@ const NeumorphismBox = () => {
           >
             <span style={{ paddingBottom: "5px" }}>{`Shape:`}</span>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin }}>
+        </div>
+        <div className="configChildRow">
           <Stack
             spacing={0}
             direction="row"
@@ -529,8 +369,8 @@ const NeumorphismBox = () => {
               />
             </button>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin, marginTop: "5px" }}>
+        </div>
+        <div className="configChildRow" style={{ marginTop: "5px" }}>
           <Stack
             spacing={1}
             direction="column"
@@ -603,8 +443,8 @@ const NeumorphismBox = () => {
               }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}</span>
             </div>
           </Stack>
-        </Box>
-        <Box style={{ width: "80%", ...settingMargin, marginTop: "5px" }}>
+        </div>
+        <div className="configChildRow" style={{ marginTop: "5px" }}>
           <Stack
             spacing={0}
             direction="column"
@@ -638,47 +478,48 @@ const NeumorphismBox = () => {
               }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}
             />
           </Stack>
-        </Box>
+        </div>
       </>
     );
   }, [
     backgroundColor,
-    shadowType,
-    valueDistance,
-    valueBlur,
-    valueIntensity,
     valueSize,
     valueRad,
+    valueRadMax,
+    valueDistance,
+    valueIntensity,
+    valueBlur,
+    needToUseDark,
+    shadowType,
+    shapeColorAngle,
+    shapeColor,
+    darkAngleValue,
+    darkShadow,
+    lightAngleValue,
+    lightShadow,
   ]);
 
   document.body.style.cssText = `
-     --neumorph-height-width: ${valueSize}px;
-     --neumorph-borderradius: ${valueRad}px;
-     --neumorph-background: ${
-       shadowType === "flat" || shadowType === "pressed"
-         ? `${backgroundColor};`
-         : `linear-gradient(${shapeColorAngle},${shapeColor});`
-     }
-     --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]}${valueDistance}px 
-                            ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${darkShadow},
-                            ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${lightShadow};
-    `;
-  const backgroundAndShadow = {
-    background:
-      shadowType === "flat" || shadowType === "pressed"
-        ? `${backgroundColor}`
-        : `linear-gradient(${shapeColorAngle},${shapeColor})`,
-    boxShadow: `${shadowType === "pressed" ? "inset" : ""} ${
-      darkAngleValue[0]
-    }${valueDistance}px ${
-      darkAngleValue[1]
-    }${valueDistance}px ${valueBlur}px ${darkShadow},
-                ${shadowType === "pressed" ? "inset" : ""} ${
-      lightAngleValue[0]
-    }${valueDistance}px ${
-      lightAngleValue[1]
-    }${valueDistance}px ${valueBlur}px ${lightShadow}`,
-  };
+  --neumorph-height-width: ${valueSize}px;
+  --neumorph-borderradius: ${valueRad}px;
+  --neumorph-background: ${backgroundColor};
+  --neumorph-previewBackground: ${
+    shadowType === "flat" || shadowType === "pressed"
+      ? `${backgroundColor};`
+      : `linear-gradient(${shapeColorAngle},${shapeColor});`
+  }
+  --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${
+    darkAngleValue[0]
+  }${valueDistance}px 
+                         ${
+                           darkAngleValue[1]
+                         }${valueDistance}px ${valueBlur}px ${darkShadow},
+                         ${shadowType === "pressed" ? "inset" : ""} ${
+    lightAngleValue[0]
+  }${valueDistance}px ${
+    lightAngleValue[1]
+  }${valueDistance}px ${valueBlur}px ${lightShadow};
+ `;
 
   const topLightBoxes = useMemo(
     () => (
@@ -690,7 +531,7 @@ const NeumorphismBox = () => {
           height: "30px",
         }}
       >
-        <div style={{ ...relativeLayer }}>
+        <div className="relativeLayer">
           <div
             onClick={() => {
               handleLightSource("topLeft");
@@ -740,7 +581,7 @@ const NeumorphismBox = () => {
           height: "30px",
         }}
       >
-        <div style={{ ...relativeLayer }}>
+        <div className="relativeLayer">
           <div
             onClick={() => {
               handleLightSource("bottomLeft");
@@ -786,7 +627,6 @@ const NeumorphismBox = () => {
       <div
         id="arrangeParent"
         style={{
-          background: `${backgroundColor}`,
           fontFamily: "Gilroy",
         }}
       >
@@ -825,9 +665,7 @@ const NeumorphismBox = () => {
               }}
             >
               {topLightBoxes}
-              <div
-              className="insideTargetBox"
-              ></div>
+              <div className="insideTargetBox"></div>
               {bottomLightBoxes}
             </div>
           </div>
@@ -835,11 +673,11 @@ const NeumorphismBox = () => {
             id="configBox"
             style={{
               ...flex,
-              color: needToUseDark ? "#001f3f" : "white"
+              color: needToUseDark ? "#001f3f" : "white",
             }}
           >
             <div
-            className="insideConfigBox"
+              className="insideConfigBox"
               style={{
                 ...flex,
               }}

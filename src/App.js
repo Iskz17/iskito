@@ -257,7 +257,7 @@ const App = () => {
             value={tabValue}
             onChange={handleChangeTab}
             tabs={prepareTabs()}
-            includeDarkModeSwitch = {true}
+            includeDarkModeSwitch={true}
           />
         </Section>
       </div>

@@ -149,7 +149,6 @@ const GlassmorphismBox = () => {
         style={{
           height: "86%",
           width: "60%",
-          borderRadius: "15px",
           backdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           WebkitBackdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           backgroundColor: `${convertToRgbWithOpacity(cardColor, opacityVal)}`,

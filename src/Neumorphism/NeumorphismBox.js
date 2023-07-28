@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import CustomSlider from "../Component/Slider/CustomSlider";
 import Stack from "@mui/material/Stack";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useRef } from "react";
 import {
   ElementFlat,
   ElementConcave,
@@ -336,7 +336,7 @@ const NeumorphismBox = () => {
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Size:`}</span>
-            <Slider
+            <CustomSlider
               value={valueSize}
               size="medium"
               onChange={handleChangeSize}
@@ -344,46 +344,6 @@ const NeumorphismBox = () => {
               max={410}
               valueLabelDisplay="auto"
               aria-labelledby="continuous-slider-size"
-              sx={{
-                color: needToUseDark ? "#001f3f" : "white",
-                height: 8,
-                "& .MuiSlider-track": {
-                  border: "none",
-                },
-                "& .MuiSlider-thumb": {
-                  height: 18,
-                  width: 18,
-                  backgroundColor: "#fff",
-                  border: "2px solid currentColor",
-                  transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:before": {
-                    boxShadow: "0 2px 12px 0 currentColor",
-                  },
-                  "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                  },
-                },
-                "& .MuiSlider-valueLabel": {
-                  lineHeight: 1.2,
-                  fontSize: 12,
-                  background: "unset",
-                  color: !needToUseDark ? "#001f3f" : "white",
-                  padding: 0,
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50% 50% 50% 0",
-                  backgroundColor: needToUseDark ? "#001f3f" : "white",
-                  transformOrigin: "bottom left",
-                  transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                  "&:before": { display: "none" },
-                  "&.MuiSlider-valueLabelOpen": {
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-                  },
-                  "& > *": {
-                    transform: "rotate(45deg)",
-                  },
-                },
-              }}
             />
             <span>{valueSize}px</span>
           </Stack>
@@ -391,7 +351,7 @@ const NeumorphismBox = () => {
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Radius:`}</span>
-            <Slider
+            <CustomSlider
               value={valueRad}
               size="medium"
               onChange={handleChangeRad}
@@ -399,46 +359,6 @@ const NeumorphismBox = () => {
               max={valueRadMax}
               valueLabelDisplay="auto"
               aria-labelledby="continuous-slider-radius"
-              sx={{
-                color: needToUseDark ? "#001f3f" : "white",
-                height: 8,
-                "& .MuiSlider-track": {
-                  border: "none",
-                },
-                "& .MuiSlider-thumb": {
-                  height: 18,
-                  width: 18,
-                  backgroundColor: "#fff",
-                  border: "2px solid currentColor",
-                  transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:before": {
-                    boxShadow: "0 2px 12px 0 currentColor",
-                  },
-                  "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                  },
-                },
-                "& .MuiSlider-valueLabel": {
-                  lineHeight: 1.2,
-                  fontSize: 12,
-                  background: "unset",
-                  color: !needToUseDark ? "#001f3f" : "white",
-                  padding: 0,
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50% 50% 50% 0",
-                  backgroundColor: needToUseDark ? "#001f3f" : "white",
-                  transformOrigin: "bottom left",
-                  transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                  "&:before": { display: "none" },
-                  "&.MuiSlider-valueLabelOpen": {
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-                  },
-                  "& > *": {
-                    transform: "rotate(45deg)",
-                  },
-                },
-              }}
             />
             <span>{valueRad}px</span>
           </Stack>
@@ -446,7 +366,7 @@ const NeumorphismBox = () => {
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Distance:`}</span>
-            <Slider
+            <CustomSlider
               value={valueDistance}
               size="medium"
               onChange={handleChangeDistance}
@@ -454,46 +374,6 @@ const NeumorphismBox = () => {
               max={50}
               valueLabelDisplay="auto"
               aria-labelledby="continuous-slider-distance"
-              sx={{
-                color: needToUseDark ? "#001f3f" : "white",
-                height: 8,
-                "& .MuiSlider-track": {
-                  border: "none",
-                },
-                "& .MuiSlider-thumb": {
-                  height: 18,
-                  width: 18,
-                  backgroundColor: "#fff",
-                  border: "2px solid currentColor",
-                  transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:before": {
-                    boxShadow: "0 2px 12px 0 currentColor",
-                  },
-                  "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                  },
-                },
-                "& .MuiSlider-valueLabel": {
-                  lineHeight: 1.2,
-                  fontSize: 12,
-                  background: "unset",
-                  color: !needToUseDark ? "#001f3f" : "white",
-                  padding: 0,
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50% 50% 50% 0",
-                  backgroundColor: needToUseDark ? "#001f3f" : "white",
-                  transformOrigin: "bottom left",
-                  transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                  "&:before": { display: "none" },
-                  "&.MuiSlider-valueLabelOpen": {
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-                  },
-                  "& > *": {
-                    transform: "rotate(45deg)",
-                  },
-                },
-              }}
             />
             <span>{valueDistance}px</span>
           </Stack>
@@ -501,7 +381,7 @@ const NeumorphismBox = () => {
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Intensity:`}</span>
-            <Slider
+            <CustomSlider
               value={valueIntensity}
               size="medium"
               onChange={handleChangeIntensity}
@@ -509,46 +389,6 @@ const NeumorphismBox = () => {
               max={100}
               valueLabelDisplay="auto"
               aria-labelledby="continuous-slider-intensity"
-              sx={{
-                color: needToUseDark ? "#001f3f" : "white",
-                height: 8,
-                "& .MuiSlider-track": {
-                  border: "none",
-                },
-                "& .MuiSlider-thumb": {
-                  height: 18,
-                  width: 18,
-                  backgroundColor: "#fff",
-                  border: "2px solid currentColor",
-                  transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:before": {
-                    boxShadow: "0 2px 12px 0 currentColor",
-                  },
-                  "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                  },
-                },
-                "& .MuiSlider-valueLabel": {
-                  lineHeight: 1.2,
-                  fontSize: 12,
-                  background: "unset",
-                  color: !needToUseDark ? "#001f3f" : "white",
-                  padding: 0,
-                  height: 18,
-                  width: 18,
-                  borderRadius: "50% 50% 50% 0",
-                  backgroundColor: needToUseDark ? "#001f3f" : "white",
-                  transformOrigin: "bottom left",
-                  transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                  "&:before": { display: "none" },
-                  "&.MuiSlider-valueLabelOpen": {
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-                  },
-                  "& > *": {
-                    transform: "rotate(45deg)",
-                  },
-                },
-              }}
             />
             <span>{valueIntensity}</span>
           </Stack>
@@ -556,7 +396,7 @@ const NeumorphismBox = () => {
         <Box style={{ width: "80%", ...settingMargin }}>
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Blur:`}</span>
-            <Slider
+            <CustomSlider
               value={valueBlur}
               size="medium"
               onChange={handleChangeBlur}
@@ -564,46 +404,6 @@ const NeumorphismBox = () => {
               max={100}
               valueLabelDisplay="auto"
               aria-labelledby="continuous-slider-blur"
-              sx={{
-                color: needToUseDark ? "#001f3f" : "white",
-                height: 8,
-                "& .MuiSlider-track": {
-                  border: "none",
-                },
-                "& .MuiSlider-thumb": {
-                  height: 18,
-                  width: 18,
-                  backgroundColor: "#fff",
-                  border: "2px solid currentColor",
-                  transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:before": {
-                    boxShadow: "0 2px 12px 0 currentColor",
-                  },
-                  "&:hover, &.Mui-focusVisible": {
-                    boxShadow: `0px 0px 0px 8px ${"rgb(82	175	119 / 16%)"}`,
-                  },
-                },
-                "& .MuiSlider-valueLabel": {
-                  lineHeight: 1.2,
-                  fontSize: 12,
-                  background: "unset",
-                  color: !needToUseDark ? "#001f3f" : "white",
-                  padding: 0,
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50% 50% 50% 0",
-                  backgroundColor: needToUseDark ? "#001f3f" : "white",
-                  transformOrigin: "bottom left",
-                  transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-                  "&:before": { display: "none" },
-                  "&.MuiSlider-valueLabelOpen": {
-                    transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-                  },
-                  "& > *": {
-                    transform: "rotate(45deg)",
-                  },
-                },
-              }}
             />
             <span>{valueBlur}px</span>
           </Stack>
@@ -850,6 +650,19 @@ const NeumorphismBox = () => {
     valueSize,
     valueRad,
   ]);
+
+  document.body.style.cssText = `
+     --neumorph-height-width: ${valueSize}px;
+     --neumorph-borderradius: ${valueRad}px;
+     --neumorph-background: ${
+       shadowType === "flat" || shadowType === "pressed"
+         ? `${backgroundColor};`
+         : `linear-gradient(${shapeColorAngle},${shapeColor});`
+     }
+     --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]}${valueDistance}px 
+                            ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${darkShadow},
+                            ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${lightShadow};
+    `;
   const backgroundAndShadow = {
     background:
       shadowType === "flat" || shadowType === "pressed"
@@ -1013,14 +826,7 @@ const NeumorphismBox = () => {
             >
               {topLightBoxes}
               <div
-                style={{
-                  height: `${valueSize}px`,
-                  width: `${valueSize}px`,
-                  transition:
-                    "width 0.3s cubic-bezier(.47,1.64,.41,.8), border-radius 0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  borderRadius: `${valueRad}px`,
-                  ...backgroundAndShadow,
-                }}
+              className="insideTargetBox"
               ></div>
               {bottomLightBoxes}
             </div>
@@ -1033,14 +839,9 @@ const NeumorphismBox = () => {
             }}
           >
             <div
+            className="insideConfigBox"
               style={{
                 ...flex,
-                flexDirection: "column",
-                width: "99%",
-                height: "98%",
-                borderRadius: "30px",
-                padding: "30px 0",
-                ...backgroundAndShadow,
               }}
             >
               {configElementBox()}

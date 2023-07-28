@@ -65,27 +65,35 @@ const LazyLoading = () => {
     setNeedToUseDark(state.isDarkMode);
   }, [state]);
 
-  const compressedImg = (link, setResult) => {
+  const compressedImg = async (arr) => {
     const getSvgToImg = (el) => {
       return URL.createObjectURL(el);
     };
-    fetch(link, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.blob())
-      .then((data) => {
-        const options = {
-          // As the key specify the maximum size
-          // Leave blank for infinity
-          maxSizeMB: 0.08,
-          // Use webworker for faster compression with
-          // the help of threads
-          useWebWorker: true,
-        };
-        Compress(data, options)
+
+    const promises = arr.map((x) =>
+      fetch(x.link, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+    );
+
+    const responses = await Promise.allSettled(promises);
+    const blobs = responses.map((res) => res.value.blob());
+    const blobsVal = await Promise.allSettled(blobs);
+    const options = {
+      // As the key specify the maximum size
+      // Leave blank for infinity
+      maxSizeMB: 0.08,
+      // Use webworker for faster compression with
+      // the help of threads
+      useWebWorker: true,
+    };
+
+    const compressedAll = blobsVal.map((res, index) => {
+      return new Promise((resolve, reject) => {
+        Compress(res.value, options)
           .then((compressedBlob) => {
             // Compressed file is of Blob type
             // You can drop off here if you want to work with a Blob file
@@ -98,20 +106,26 @@ const LazyLoading = () => {
             //   type: file.type,
             //   lastModified: Date.now(),
             // });
-
-            setResult(getSvgToImg(compressedBlob));
-
+            arr[index].setResult(getSvgToImg(compressedBlob));
             // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
+            resolve();
           })
           .catch((e) => {
             console.log(e);
             // Show the user a toast message or notification that something went wrong while compressing file
           });
       });
+    });
+
+    await Promise.allSettled(compressedAll).then(() => {
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 2000);
+    });
   };
 
   useEffect(() => {
-    [
+    const arr = [
       {
         link: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
         setResult: setKitoCompressed,
@@ -120,12 +134,8 @@ const LazyLoading = () => {
         link: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2",
         setResult: setAnotherCompressed,
       },
-    ].forEach((obj) => {
-      compressedImg(obj.link, obj.setResult);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 2000);
-    });
+    ];
+    compressedImg(arr);
   }, []);
 
   return (

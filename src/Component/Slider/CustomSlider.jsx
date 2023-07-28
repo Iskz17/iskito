@@ -5,11 +5,16 @@ import '../../index.css'
 
 const CustomSlider = (props) => {
   const [state] = useContext(AppContext);
+  const {darkmodevalue, overridedarkmode, ...others} = props
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
 
   useEffect(() => {
+    if(overridedarkmode){
+      setNeedToUseDark(darkmodevalue);
+      return;
+    }
     setNeedToUseDark(state.isDarkMode);
-  }, [state]);
+  }, [state, darkmodevalue, overridedarkmode]);
 
   return (
     <Slider
@@ -53,7 +58,7 @@ const CustomSlider = (props) => {
           },
         },
       }}
-      {...props}
+      {...others}
     />
   );
 };

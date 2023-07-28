@@ -177,6 +177,8 @@ const NeumorphismBox = () => {
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Size:`}</span>
             <CustomSlider
+              overridedarkmode={true}
+              darkmodevalue={!needToUseDark}
               value={valueSize}
               size="medium"
               onChange={handleChangeSize}
@@ -192,6 +194,8 @@ const NeumorphismBox = () => {
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Radius:`}</span>
             <CustomSlider
+              overridedarkmode={true}
+              darkmodevalue={!needToUseDark}
               value={valueRad}
               size="medium"
               onChange={handleChangeRad}
@@ -207,6 +211,8 @@ const NeumorphismBox = () => {
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Distance:`}</span>
             <CustomSlider
+              overridedarkmode={true}
+              darkmodevalue={!needToUseDark}
               value={valueDistance}
               size="medium"
               onChange={handleChangeDistance}
@@ -222,6 +228,8 @@ const NeumorphismBox = () => {
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Intensity:`}</span>
             <CustomSlider
+              overridedarkmode={true}
+              darkmodevalue={!needToUseDark}
               value={valueIntensity}
               size="medium"
               onChange={handleChangeIntensity}
@@ -237,6 +245,8 @@ const NeumorphismBox = () => {
           <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
             <span>{`Blur:`}</span>
             <CustomSlider
+              overridedarkmode={true}
+              darkmodevalue={!needToUseDark}
               value={valueBlur}
               size="medium"
               onChange={handleChangeBlur}
@@ -628,23 +638,23 @@ const NeumorphismBox = () => {
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
+          color: `${needToUseDark ? "#001f3f" : "white"}`,
+          height: matches ? "unset" : "100vh",
         }}
       >
-        <div
-          id="title"
-          style={{
-            ...flex,
-            flexDirection: "column",
-            color: `${needToUseDark ? "#001f3f" : "white"}`,
-            width: "100%",
-            paddingTop: "20px",
-          }}
+        <Stack
+          style={{ width: "100%" }}
+          spacing={1}
+          direction="column"
+          sx={{ py: 2 }}
+          alignItems="center"
+          justifyContent={"center"}
         >
           <span style={{ fontSize: "2em", fontWeight: 900 }}>
             Neumorphism.io clone
           </span>
           <span>from scratch project</span>
-        </div>
+        </Stack>
         <div
           id="content"
           style={{

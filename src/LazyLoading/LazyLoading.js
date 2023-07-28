@@ -4,6 +4,8 @@ import { AppContext } from "../Context/AppContext";
 import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme } from "@mui/material/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@mui/material/Typography";
@@ -17,6 +19,17 @@ const LazyLoading = () => {
   const [anotherCompressed, setAnotherCompressed] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [isLoaded, setIsLoaded] = useState(false);
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 940,
+        laptop: 1024,
+        desktop: 1200,
+      },
+    },
+  });
+  const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   const useStyles = makeStyles(() => ({
     root: {
@@ -121,11 +134,13 @@ const LazyLoading = () => {
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
-          background: needToUseDark ? "rgba(41,20,62, 0.9)" : "rgba(227,227,227)",
+          background: needToUseDark
+            ? "rgba(41,20,62, 0.9)"
+            : "rgba(227,227,227)",
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
-          height: "100vh",
+          height: matches ? "unset" : "100vh",
         }}
       >
         <Stack
@@ -145,7 +160,7 @@ const LazyLoading = () => {
           style={{ width: "100%" }}
           spacing={1}
           gap={2}
-          direction={"row"}
+          direction={matches ? "column" : "row"}
           sx={{ py: 2 }}
           alignItems="center"
           justifyContent={"center"}
@@ -165,9 +180,7 @@ const LazyLoading = () => {
                   className={styles.mediaShadow}
                   component="img"
                   height={340}
-                  image={
-                    "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-                  }
+                  image={kitoCompressed}
                 />
               </div>
             ) : (
@@ -192,14 +205,17 @@ const LazyLoading = () => {
                 Lazy Loading
               </Typography>
               <Typography
-                variant="body2"
+                variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
               >
                 A low resolution was fetched first, while full picture is
                 downloading.
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant={matches ? "body1" : "body2"}
+                color="text.secondary"
+              >
                 Theoritically, we store this low res image but in this case, we
                 compressing it manually here.
               </Typography>
@@ -220,9 +236,7 @@ const LazyLoading = () => {
                   className={styles.mediaShadow}
                   component="img"
                   height={340}
-                  image={
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                  }
+                  image={anotherCompressed}
                 />
               </div>
             ) : (
@@ -247,19 +261,21 @@ const LazyLoading = () => {
                 Lazy Loading
               </Typography>
               <Typography
-                variant="body2"
+                variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
               >
                 Since the low res will likely be pixelated, we set it to blurry.
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant={matches ? "body1" : "body2"}
+                color="text.secondary"
+              >
                 The pulse animation gives info that the actual pic is yet to be
                 shown.
               </Typography>
             </CardContent>
           </Card>
-          <div></div>
         </Stack>
       </div>
     </>

@@ -136,6 +136,7 @@ const LazyLoading = () => {
       },
     ];
     compressedImg(arr);
+    console.log("passed async")
   }, []);
 
   return (
@@ -185,11 +186,13 @@ const LazyLoading = () => {
                   image={
                     "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
                   }
+                  loading="lazy"
                 />
                 <CardMedia
                   className={styles.mediaShadow}
                   component="img"
                   height={340}
+                  loading="lazy"
                   image={kitoCompressed}
                 />
               </div>
@@ -199,6 +202,7 @@ const LazyLoading = () => {
                   overflow: "hidden",
                   borderRadius: 6,
                   position: "relative",
+                  background: "grey"
                 }}
                 className="pulseAnimation"
               >
@@ -206,6 +210,7 @@ const LazyLoading = () => {
                   className={styles.mediaCompressed}
                   component="img"
                   height={340}
+                  loading="lazy"
                   image={kitoCompressed}
                 />
               </div>
@@ -255,6 +260,7 @@ const LazyLoading = () => {
                   overflow: "hidden",
                   borderRadius: 6,
                   position: "relative",
+                  background: "grey"
                 }}
                 className="pulseAnimation"
               >

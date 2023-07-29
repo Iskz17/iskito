@@ -4,16 +4,10 @@ import { AppContext } from "../../Context/AppContext";
 import { useTheme } from "@mui/material/styles";
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import { useState, useContext, useEffect, useMemo, memo } from "react";
+import { useState, useContext, useEffect, useMemo, memo} from "react";
 import IOSSwitch from "../Switch/IOSSwitch";
 import Stack from "@mui/material/Stack";
 import '../../index.css'
-
-// interface TabPanelProps {
-//   children?: React.ReactNode
-//   index: any
-//   value: any
-// }
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -37,15 +31,6 @@ function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`,
   }
 }
-// interface ITabsProps {
-//   value?: number
-//   onChange?: any
-//   tabs?: any
-//   fixed?: boolean
-//   fontSize?: boolean
-//   dynamicInfo?: boolean
-//   multiDynamicInfo?: boolean
-// }
 
 const ScrollableTabs = (props) => {
   const {
@@ -53,36 +38,38 @@ const ScrollableTabs = (props) => {
     onChange,
     tabs,
     fixed,
-    fontSize,
     includeDarkModeSwitch,
-    dynamicInfo,
-    multiDynamicInfo,
   } = props;
 
   const [state, setState] = useContext(AppContext);
   const [checked, setChecked] = useState(state.isDarkMode);
+  let updateFromContext = true;
   const theme = useTheme();
 
   const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
 
   useEffect(() => {
+    if(!updateFromContext){
+      return;
+    }
     setThemeld(state.isDarkMode ? "dark" : "light");
   }, [state]);
 
-  useMemo(() => {
-    if (checked == state.isDarkMode) {
+  useEffect(() => {
+    if (checked === state.isDarkMode) {
       return;
     }
-    setState({ isDarkMode: checked });
+    setState({ ...state, isDarkMode: checked });
+    setThemeld(checked ? "dark" : "light");
+    updateFromContext = false;
+    setTimeout(()=> {
+      updateFromContext = true;
+    },500);
   }, [checked]);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"), {
-    defaultMatches: true,
-  });
 
   const ForIOS = useMemo(() => {
     return (

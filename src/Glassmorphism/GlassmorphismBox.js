@@ -198,21 +198,21 @@ const GlassmorphismBox = () => {
   const CreditCard = useCallback(() => {
     return (
       <Box
+        sx={{
+          "&:hover": {
+            transform: "rotateY(35deg) translateX(20px) ",
+          },
+        }}
         style={{
-          height: matches ? "70%" : "50%",
-          width: matches ? "80%" : "65%",
+          height: matches ? "200px" : "50%",
+          width: matches ? "300px" : "65%",
           backdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           WebkitBackdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           backgroundColor: `${convertToRgbWithOpacity(cardColor, opacityVal)}`,
           borderRadius: "12px",
           border: "1px solid rgba(255, 255, 255, 0.25)",
-          transition: ".5s ease",
-          // transition: "0.5s cubic-bezier(.47,1.64,.41,.8)"
-        }}
-        sx={{
-          "&:hover": {
-            transform: "rotateY(35deg) translateX(20px) ",
-          },
+          transform: matches ? "rotateZ(90deg)" : null,
+          transition: ".5s ease"
         }}
       >
         <Stack
@@ -638,22 +638,19 @@ const GlassmorphismBox = () => {
                         70
                       )} 5px 9px 10px`,
                 }}
-                onClick={() => {
-                  backgroundColorInputEl0.current.click();
-                }}
+                htmlFor="color"
               >
                 <input
-                  ref={backgroundColorInputEl0}
                   type="color"
                   style={{
-                    WebkitAppearance: "none",
-                    visibility: "hidden",
+                    opacity: 0,
+                    width: "100%",
                   }}
                   value={backgroundColor[0]}
                   onChange={(e) => handleColorChange(e, 0)}
                 />
               </Box>
-              <Box
+              <label
                 style={{
                   borderRadius: "5px",
                   height: "100%",
@@ -669,22 +666,26 @@ const GlassmorphismBox = () => {
                         backgroundColor[1],
                         70
                       )} 5px 9px 10px`,
+                  cursor: "pointer",
                 }}
-                onClick={() => {
-                  backgroundColorInputEl1.current.click();
-                }}
+                // onClick={() => {
+                //   backgroundColorInputEl1.current.click();
+                // }}
               >
                 <input
-                  ref={backgroundColorInputEl1}
+                  // ref={backgroundColorInputEl1}
                   type="color"
                   style={{
-                    WebkitAppearance: "none",
-                    visibility: "hidden",
+                    opacity: 0,
+                    width: "100%",
+                    // WebkitAppearance:"none",
+                    // visibility:"hidden",
+                    cursor: "pointer",
                   }}
                   value={backgroundColor[1]}
                   onChange={(e) => handleColorChange(e, 1)}
                 />
-              </Box>
+              </label>
               <Box
                 style={{
                   borderRadius: "5px",
@@ -702,16 +703,12 @@ const GlassmorphismBox = () => {
                         70
                       )} 5px 9px 10px`,
                 }}
-                onClick={() => {
-                  backgroundColorInputEl2.current.click();
-                }}
               >
                 <input
-                  ref={backgroundColorInputEl2}
                   type="color"
                   style={{
-                    WebkitAppearance: "none",
-                    visibility: "hidden",
+                    opacity: 0,
+                    width: "100%",
                   }}
                   value={backgroundColor[2]}
                   onChange={(e) => handleColorChange(e, 2)}
@@ -819,16 +816,18 @@ const GlassmorphismBox = () => {
                     ? `rgb(52 54 57 / 82%) 5px 9px 10px`
                     : `${convertToRgbWithOpacity(cardColor, 70)} 5px 9px 10px`,
                 }}
-                onClick={() => {
-                  cardColorInputEl.current.click();
-                }}
+                // onClick={() => {
+                //   cardColorInputEl.current.click();
+                // }}
               >
                 <input
-                  ref={cardColorInputEl}
+                  // ref={cardColorInputEl}
                   type="color"
                   style={{
-                    WebkitAppearance: "none",
-                    visibility: "hidden",
+                    // WebkitAppearance: "none",
+                    // visibility: "hidden",
+                    opacity: 0,
+                    width: "100%",
                   }}
                   value={cardColor}
                   onChange={(e) => handleColorChange(e)}

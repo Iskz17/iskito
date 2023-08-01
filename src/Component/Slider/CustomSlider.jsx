@@ -11,8 +11,6 @@ const CustomSlider = (props) => {
     setNeedToUseDark(state.isDarkMode);
   }, [state]);
 
-  console.log("slider rerender");
-
   return (
     <Slider
       sx={{

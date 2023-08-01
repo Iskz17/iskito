@@ -146,7 +146,6 @@ const GlassmorphismBox = () => {
   }, []);
 
   const SocialMediaCard = useCallback(() => {
-    console.log("rerender this social media");
     return (
       <Box
         style={{
@@ -200,7 +199,6 @@ const GlassmorphismBox = () => {
   }, [blurVal, cardColor, opacityVal, saturationVal]);
 
   const CreditCard = useCallback(() => {
-    console.log("rerender this cc");
     return (
       <Box
         style={{

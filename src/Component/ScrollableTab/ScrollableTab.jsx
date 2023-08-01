@@ -96,8 +96,6 @@ const ScrollableTabs = (props) => {
     );
   }, []);
 
-  console.log("scrollable rerender");
-
   return (
     <div style={{ fontFamily: "Gilroy" }}>
       <AppBar

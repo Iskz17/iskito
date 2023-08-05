@@ -86,7 +86,7 @@ const ScrollableTabs = (props) => {
   return (
     <div style={{ fontFamily: "Gilroy" }}>
       <AppBar
-        position="sticky"
+        position="fixed"
         color={"inherit"}
         className={fixed && "fixed-search-header"}
         style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}

@@ -9,6 +9,8 @@ import { createTheme } from "@mui/material/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@mui/material/Typography";
+import mekito from "../Assets/kito.jpg";
+import { PrimaryButton } from "../Component/Button/CustomButton";
 import "./LazyLoading.css";
 
 //might need browserfs for this
@@ -17,8 +19,11 @@ const LazyLoading = () => {
   const [state] = useContext(AppContext);
   const [kitoCompressed, setKitoCompressed] = useState(null);
   const [anotherCompressed, setAnotherCompressed] = useState(null);
+  const [uploadAndDownload, setUploadAndDownload] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
+  const [downloadDisabled, setDownloadDisabled] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isUploadLoaded, setIsUploadLoaded] = useState(false);
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -65,11 +70,20 @@ const LazyLoading = () => {
     setNeedToUseDark(state.isDarkMode);
   }, [state]);
 
-  const compressedImg = async (arr) => {
-    const getSvgToImg = (el) => {
-      return URL.createObjectURL(el);
-    };
+  const getSvgToImg = (el) => {
+    return URL.createObjectURL(el);
+  };
 
+  const options = {
+    // As the key specify the maximum size
+    // Leave blank for infinity
+    maxSizeMB: 0.08,
+    // Use webworker for faster compression with
+    // the help of threads
+    useWebWorker: true,
+  };
+
+  const compressedImg = async (arr) => {
     const promises = arr.map((x) =>
       fetch(x.link, {
         headers: {
@@ -82,15 +96,6 @@ const LazyLoading = () => {
     const responses = await Promise.allSettled(promises);
     const blobs = responses.map((res) => res.value.blob());
     const blobsVal = await Promise.allSettled(blobs);
-    const options = {
-      // As the key specify the maximum size
-      // Leave blank for infinity
-      maxSizeMB: 0.08,
-      // Use webworker for faster compression with
-      // the help of threads
-      useWebWorker: true,
-    };
-
     const compressedAll = blobsVal.map((res, index) => {
       return new Promise((resolve, reject) => {
         Compress(res.value, options)
@@ -120,6 +125,7 @@ const LazyLoading = () => {
     await Promise.allSettled(compressedAll).then(() => {
       setTimeout(() => {
         setIsLoaded(true);
+        setIsUploadLoaded(true);
       }, 2000);
     });
   };
@@ -134,10 +140,54 @@ const LazyLoading = () => {
         link: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2",
         setResult: setAnotherCompressed,
       },
+      {
+        link: mekito,
+        setResult: setUploadAndDownload,
+      },
     ];
     compressedImg(arr);
-    console.log("passed async")
+    console.log("passed async");
   }, []);
+
+  const handleInput = () => {
+    document.getElementById('icon-button-file').click()
+  }
+
+  const handleUpload = async (event) => {
+    console.log(event.target.files[0]);
+    let file = event.target.files[0]
+    let blob = new Blob(
+      [new Uint8Array(await file.arrayBuffer())],
+      { type: file.type }
+    );
+    return new Promise((resolve, reject) => {
+      Compress(blob, options)
+        .then((compressedBlob) => {
+          // Compressed file is of Blob type
+          // You can drop off here if you want to work with a Blob file
+
+          // If you want to work with the File
+          // Let's convert it here, by adding a couple of attributes
+          compressedBlob.lastModifiedDate = new Date();
+          // Convert the blob to file
+          // const convertedBlobFile = new File([compressedBlob], file.name, {
+          //   type: file.type,
+          //   lastModified: Date.now(),
+          // });
+          setUploadAndDownload(getSvgToImg(compressedBlob));
+          // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
+          setTimeout(()=> {
+            setDownloadDisabled(false);
+            setIsUploadLoaded(true);
+          });
+          resolve();
+        })
+        .catch((e) => {
+          console.log(e);
+          // Show the user a toast message or notification that something went wrong while compressing file
+        });
+    });
+  }
 
   return (
     <>
@@ -202,7 +252,6 @@ const LazyLoading = () => {
                   overflow: "hidden",
                   borderRadius: 6,
                   position: "relative",
-                  background: "grey"
                 }}
                 className="pulseAnimation"
               >
@@ -260,7 +309,6 @@ const LazyLoading = () => {
                   overflow: "hidden",
                   borderRadius: 6,
                   position: "relative",
-                  background: "grey"
                 }}
                 className="pulseAnimation"
               >
@@ -290,6 +338,100 @@ const LazyLoading = () => {
                 The pulse animation gives info that the actual pic is yet to be
                 shown.
               </Typography>
+            </CardContent>
+          </Card>
+          <Card className={styles.root}>
+            {isUploadLoaded ? (
+              <div style={{ position: "relative" }}>
+                <CardMedia
+                  className={styles.media}
+                  component="img"
+                  height={340}
+                  image={uploadAndDownload}
+                />
+                <CardMedia
+                  className={styles.mediaShadow}
+                  component="img"
+                  height={340}
+                  image={uploadAndDownload}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  overflow: "hidden",
+                  borderRadius: 6,
+                  position: "relative",
+                }}
+                className="pulseAnimation"
+              >
+                <CardMedia
+                  className={styles.mediaCompressed}
+                  component="img"
+                  height={340}
+                  image={uploadAndDownload}
+                />
+              </div>
+            )}
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Lazy Loading
+              </Typography>
+              <Typography
+                variant={matches ? "body1" : "body2"}
+                color="text.secondary"
+                component="div"
+              >
+                Upload your image here. Then you'll able to download the
+                compressed version.
+              </Typography>
+              <Stack
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                spacing={2}
+                direction="row"
+                sx={{ px: 2, py: 2 }}
+                alignItems="center"
+                justifyContent={"center"}
+              >
+                <PrimaryButton
+                  size="medium"
+                  disableElevation
+                  variant="contained"
+                  onClick={() => handleInput()}
+                >
+                  {"Upload"}
+                  <input
+                    accept={"image/*"}
+                    hidden
+                    multiple
+                    onChange={(e) => {
+                      setIsUploadLoaded(false);
+                      setUploadAndDownload(null);
+                      handleUpload(e);
+                      e.target.value = null;
+                    }}
+                    id="icon-button-file"
+                    type="file"
+                  />
+                </PrimaryButton>
+                <PrimaryButton
+                  size="medium"
+                  disableElevation
+                  variant="contained"
+                  disabled={downloadDisabled}
+                  onClick={()=> {
+                    document.getElementById('download-compressed').click();
+                  }}
+                >
+                  {"Download"}
+                  <a id="download-compressed" hidden href={uploadAndDownload} download="compressedimage">
+                    Download
+                  </a>
+                </PrimaryButton>
+              </Stack>
             </CardContent>
           </Card>
         </Stack>

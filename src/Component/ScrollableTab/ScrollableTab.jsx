@@ -104,7 +104,6 @@ const ScrollableTabs = (props) => {
             onChange={onChange}
             aria-label="simple tabs example"
             indicatorColor="primary"
-            //variant={isDesktop ? null : 'fullWidth'}
             variant={"scrollable"}
           >
             {tabs?.map((v, index) => (

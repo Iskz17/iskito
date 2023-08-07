@@ -36,7 +36,14 @@ export const needDarkMode = (hex) => {
   return (brightest + 0.05) / (darkest + 0.05) < 2;
 };
 
-export const calculateShadow = (backgroundColor, intensity) => {
+export const calculateShadow = async (
+  backgroundColor,
+  intensity,
+  setLightShadow,
+  setDarkShadow,
+  setLightInnerShadow,
+  setDarkInnerShadow
+) => {
   const color = backgroundColor ?? "#CAE6E8";
   const [red, green, blue] = convertHexToRGB(color);
 
@@ -109,11 +116,34 @@ export const calculateShadow = (backgroundColor, intensity) => {
     let b = Math.round(colorGuard(blue * darkInnerRatio));
     return returnRgb(r, g, b);
   };
+  const arrayAll = [];
+  arrayAll.push(new Promise((resolve, reject) => {
+    setLightShadow(outerLightShadow());
+    resolve();
+  }));
+  arrayAll.push(new Promise((resolve, reject) => {
+    setDarkShadow(outerDarkShadow());
+    resolve();
+  }));
+  arrayAll.push(new Promise((resolve, reject) => {
+    setLightInnerShadow(innerLightShadow());
+    resolve();
+  }));
+  arrayAll.push(new Promise((resolve, reject) => {
+    setDarkInnerShadow(innerDarkShadow());
+    resolve();
+  }));
 
-  return [
-    outerLightShadow(),
-    outerDarkShadow(),
-    innerLightShadow(),
-    innerDarkShadow(),
-  ];
+  // return [
+  //   outerLightShadow(),
+  //   outerDarkShadow(),
+  //   innerLightShadow(),
+  //   innerDarkShadow(),
+  // ];
+  // return [
+  //   outerLightShadow(),
+  //   outerDarkShadow(),
+  //   innerLightShadow(),
+  //   innerDarkShadow(),
+  // ];
 };

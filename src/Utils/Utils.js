@@ -4,6 +4,14 @@ export function IsNullOrUndefined(input) {
   return Object.is(input, undefined) || Object.is(input, null);
 }
 
+export const getSvgToImg = (el) => {
+  return URL.createObjectURL(
+    new Blob([el], {
+      type: "image/svg+xml",
+    })
+  );
+};
+
 const luminance = (r, g, b) => {
   var a = [r, g, b].map(function (v) {
     v /= 255;

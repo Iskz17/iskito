@@ -12,6 +12,9 @@ import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import Section from "./Component/Section/Section"
+import worker_script from './worker';
+
+var myWorker = new Worker(worker_script);
 
 const App = () => {
   const headerItem = {
@@ -28,6 +31,10 @@ const App = () => {
   const [tabValue, setTabValue] = useState(0);
   const handleChangeTab = (event, newValue) => {
     setTabValue(newValue);
+    myWorker.onmessage = (m) => {
+      console.log("msg from worker: ", m.data);
+  };
+  myWorker.postMessage('im from main');
   };
   const prepareTabs = () => {
     return [

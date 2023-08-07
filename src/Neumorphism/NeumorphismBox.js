@@ -137,13 +137,6 @@ const NeumorphismBox = () => {
         return null;
     }
   };
-  const getSvgToImg = (el) => {
-    return URL.createObjectURL(
-      new Blob([el], {
-        type: "image/svg+xml",
-      })
-    );
-  };
 
   const configElementBox = useCallback(() => {
     return (
@@ -296,16 +289,17 @@ const NeumorphismBox = () => {
                 width: "25%",
                 height: "100%",
                 borderRadius: "5px 0 0 5px",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
               onClick={() => {
                 setShadowType("flat");
               }}
             >
-              <img
-                alt={"flat"}
-                src={getSvgToImg(ElementFlat(backgroundColor))}
-                style={{ width: "55%" }}
-              />
+              <div style={{ width: "55%" }}>
+                <ElementFlat backgroundColor={backgroundColor} />
+              </div>
             </button>
 
             <button
@@ -320,16 +314,17 @@ const NeumorphismBox = () => {
                 width: "25%",
                 height: "100%",
                 textDecoration: "none",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
               onClick={() => {
                 setShadowType("concave");
               }}
             >
-              <img
-                alt="concave"
-                src={getSvgToImg(ElementConcave(backgroundColor))}
-                style={{ width: "55%" }}
-              />
+              <div style={{ width: "55%" }}>
+                <ElementConcave backgroundColor={backgroundColor} />
+              </div>
             </button>
             <button
               style={{
@@ -343,16 +338,17 @@ const NeumorphismBox = () => {
                 width: "25%",
                 height: "100%",
                 textDecoration: "none",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
               onClick={() => {
                 setShadowType("convex");
               }}
             >
-              <img
-                alt="convex"
-                src={getSvgToImg(ElementConvex(backgroundColor))}
-                style={{ width: "55%" }}
-              />
+              <div style={{ width: "55%" }}>
+                <ElementConvex backgroundColor={backgroundColor} />
+              </div>
             </button>
             <button
               style={{
@@ -367,16 +363,17 @@ const NeumorphismBox = () => {
                 height: "100%",
                 textDecoration: "none",
                 borderRadius: "0 5px 5px 0",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
               onClick={() => {
                 setShadowType("pressed");
               }}
             >
-              <img
-                alt="pressed"
-                src={getSvgToImg(ElementPressed(backgroundColor))}
-                style={{ width: "55%" }}
-              />
+              <div style={{ width: "55%" }}>
+                <ElementPressed backgroundColor={backgroundColor} />
+              </div>
             </button>
           </Stack>
         </div>
@@ -419,11 +416,10 @@ const NeumorphismBox = () => {
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >{`${
-                shadowType === "flat" || shadowType === "pressed"
-                  ? `${backgroundColor};`
-                  : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
-              }`}</span>
+              >{`${shadowType === "flat" || shadowType === "pressed"
+                ? `${backgroundColor};`
+                : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
+                }`}</span>
             </div>
             <div>
               {`box-shadow:`}
@@ -434,11 +430,9 @@ const NeumorphismBox = () => {
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >{`${`${shadowType === "pressed" ? "inset" : ""} ${
-                darkAngleValue[0]
-              }${valueDistance}px ${
-                darkAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${darkShadow.toLowerCase()},`}`}</span>
+              >{`${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+                }${valueDistance}px ${darkAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${darkShadow.toLowerCase()},`}`}</span>
               <span
                 style={{
                   marginLeft: "100px",
@@ -448,9 +442,8 @@ const NeumorphismBox = () => {
                   display: "flex",
                 }}
               >{`${shadowType === "pressed" ? "inset" : ""} 
-              ${lightAngleValue[0]}${valueDistance}px ${
-                lightAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}</span>
+              ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}</span>
             </div>
           </Stack>
         </div>
@@ -472,20 +465,16 @@ const NeumorphismBox = () => {
             <ClipboardCopy
               copyText={`
               border-radius: ${valueRad}px;
-              background: ${
-                shadowType === "flat" || shadowType === "pressed"
+              background: ${shadowType === "flat" || shadowType === "pressed"
                   ? `${backgroundColor};`
                   : `linear-gradient(${shapeColorAngle}, ${shapeColor});`
-              }
-              box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${
-                darkAngleValue[0]
-              }${valueDistance}px ${
-                darkAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${darkShadow.toLowerCase()},`}
+                }
+              box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+                }${valueDistance}px ${darkAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${darkShadow.toLowerCase()},`}
               ${shadowType === "pressed" ? "inset" : ""} 
-              ${lightAngleValue[0]}${valueDistance}px ${
-                lightAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}
+              ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${lightShadow.toLowerCase()};`}
             />
           </Stack>
         </div>
@@ -513,22 +502,17 @@ const NeumorphismBox = () => {
   --neumorph-height-width: ${valueSize}px;
   --neumorph-borderradius: ${valueRad}px;
   --neumorph-background: ${backgroundColor};
-  --neumorph-previewBackground: ${
-    shadowType === "flat" || shadowType === "pressed"
+  --neumorph-previewBackground: ${shadowType === "flat" || shadowType === "pressed"
       ? `${backgroundColor};`
       : `linear-gradient(${shapeColorAngle},${shapeColor});`
-  }
-  --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${
-    darkAngleValue[0]
-  }${valueDistance}px 
-                         ${
-                           darkAngleValue[1]
-                         }${valueDistance}px ${valueBlur}px ${darkShadow},
-                         ${shadowType === "pressed" ? "inset" : ""} ${
-    lightAngleValue[0]
-  }${valueDistance}px ${
-    lightAngleValue[1]
-  }${valueDistance}px ${valueBlur}px ${lightShadow};
+    }
+  --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+    }${valueDistance}px 
+                         ${darkAngleValue[1]
+    }${valueDistance}px ${valueBlur}px ${darkShadow},
+                         ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]
+    }${valueDistance}px ${lightAngleValue[1]
+    }${valueDistance}px ${valueBlur}px ${lightShadow};
  `;
 
   const topLightBoxes = useMemo(
@@ -554,9 +538,8 @@ const NeumorphismBox = () => {
                 lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 0 50px 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
           <div
@@ -571,9 +554,8 @@ const NeumorphismBox = () => {
                 lightSourcePos === "topRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "0 0 0 50px",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
         </div>
@@ -604,9 +586,8 @@ const NeumorphismBox = () => {
                 lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 50px 0 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
           <div
@@ -621,9 +602,8 @@ const NeumorphismBox = () => {
                 lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "50px 0 0 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
         </div>

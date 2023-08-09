@@ -36,13 +36,9 @@ export const needDarkMode = (hex) => {
   return (brightest + 0.05) / (darkest + 0.05) < 2;
 };
 
-export const calculateShadow = async (
+export const calculateShadow = (
   backgroundColor,
-  intensity,
-  setLightShadow,
-  setDarkShadow,
-  setLightInnerShadow,
-  setDarkInnerShadow
+  intensity
 ) => {
   const color = backgroundColor ?? "#CAE6E8";
   const [red, green, blue] = convertHexToRGB(color);
@@ -67,12 +63,6 @@ export const calculateShadow = async (
   const returnRgb = (r, g, b) => `rgb(${r},${g},${b})`;
 
   const outerLightShadow = () => {
-    // const colorGuard = (num) => {
-    //   if (num > 255) {
-    //     return 255;
-    //   }
-    //   return num;
-    // };
 
     let r = colorGuard(Math.round(red * lightIntensity));
     let g = colorGuard(Math.round(green * lightIntensity));
@@ -81,13 +71,6 @@ export const calculateShadow = async (
   };
 
   const outerDarkShadow = () => {
-    // const colorGuard = (num) => {
-    //   if (num < 0) {
-    //     return 0;
-    //   }
-    //   return num;
-    // };
-
     const maxShadowGuard = (num) => {
       if (num > 1) {
         return 1;
@@ -116,34 +99,12 @@ export const calculateShadow = async (
     let b = Math.round(colorGuard(blue * darkInnerRatio));
     return returnRgb(r, g, b);
   };
-  const arrayAll = [];
-  arrayAll.push(new Promise((resolve, reject) => {
-    setLightShadow(outerLightShadow());
-    resolve();
-  }));
-  arrayAll.push(new Promise((resolve, reject) => {
-    setDarkShadow(outerDarkShadow());
-    resolve();
-  }));
-  arrayAll.push(new Promise((resolve, reject) => {
-    setLightInnerShadow(innerLightShadow());
-    resolve();
-  }));
-  arrayAll.push(new Promise((resolve, reject) => {
-    setDarkInnerShadow(innerDarkShadow());
-    resolve();
-  }));
 
-  // return [
-  //   outerLightShadow(),
-  //   outerDarkShadow(),
-  //   innerLightShadow(),
-  //   innerDarkShadow(),
-  // ];
-  // return [
-  //   outerLightShadow(),
-  //   outerDarkShadow(),
-  //   innerLightShadow(),
-  //   innerDarkShadow(),
-  // ];
+
+  return [
+    outerLightShadow(),
+    outerDarkShadow(),
+    innerLightShadow(),
+    innerDarkShadow(),
+  ];
 };

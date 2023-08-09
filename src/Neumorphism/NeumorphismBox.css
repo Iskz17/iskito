@@ -6,6 +6,7 @@
   --neumorph-background: #CAE6E8;
   --neumorph-previewBackground: #CAE6E8;
   --neumorph-boxShadow:23px 23px 60px #acc4c5, -23px -23px 60px #e8ffff;
+  --neumorph-backgroundCSS: "#CAE6E8";
 }
 
 #arrangeParent {
@@ -63,6 +64,22 @@
   border-radius: var(--neumorph-borderradius);
   background: var(--neumorph-previewBackground);
   box-shadow: var(--neumorph-boxShadow);
+}
+
+svg {
+  stroke: var(--neumorph-background);
+}
+
+#ClipboardCSS {
+  color: var(--neumorph-background)
+}
+#ClipboardCSSBackgroundValue:before {
+  content: var(--neumorph-backgroundCSS);
+}
+
+.wrapCSS {
+  width: 100%;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 1137px) {

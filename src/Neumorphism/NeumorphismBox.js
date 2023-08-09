@@ -731,7 +731,7 @@ const NeumorphismBox = () => {
             <div
               className="insideConfigBox"
               style={{
-                ...flex,
+                ...flex
               }}
             >
               {configElementBox()}

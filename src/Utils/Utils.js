@@ -28,6 +28,10 @@ export const convertHexToRGB = (hex) => {
   return [red, green, blue];
 };
 
+export const convertRgbToHex = (r, g, b) => {
+  return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+}
+
 export const needDarkMode = (hex) => {
   const [r, g, b] = convertHexToRGB(hex);
   var lum2 = luminance(r, g, b);
@@ -60,7 +64,8 @@ export const calculateShadow = (
     return num;
   };
 
-  const returnRgb = (r, g, b) => `rgb(${r},${g},${b})`;
+  // const returnRgb = (r, g, b) => `rgb(${r},${g},${b})`;
+  const returnRgb = (r, g, b) => convertRgbToHex(r,g,b);
 
   const outerLightShadow = () => {
 

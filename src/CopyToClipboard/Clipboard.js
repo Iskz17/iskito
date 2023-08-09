@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {PrimaryButton} from "../Component/Button/CustomButton"
 
-export function ClipboardCopy({ copyText }) {
+export function ClipboardCopy({ copyText, hidden, id }) {
   const [isCopied, setIsCopied] = useState(false);
 
   // This is the function we wrote earlier
@@ -30,12 +30,13 @@ export function ClipboardCopy({ copyText }) {
   };
 
   return (
-    <div>
-      <PrimaryButton 
-       size="small"
-       disableElevation
-       variant="contained"
-      onClick={handleCopyClick}>
+    <div id={id} hidden={hidden} onClick={id?handleCopyClick: undefined}>
+      <PrimaryButton
+        size="small"
+        disableElevation
+        variant="contained"
+        onClick={handleCopyClick}
+      >
         <span>{isCopied ? "Copied!" : "Copy"}</span>
       </PrimaryButton>
     </div>

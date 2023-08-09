@@ -1,6 +1,6 @@
 import CustomSlider from "../Component/Slider/CustomSlider";
 import Stack from "@mui/material/Stack";
-import React, { useState,useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import {
   ElementFlat,
   ElementConcave,
@@ -12,6 +12,7 @@ import { ClipboardCopy } from "../CopyToClipboard/Clipboard";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme } from "@mui/material/styles";
 import { needDarkMode, calculateShadow } from "../Utils/Utils";
+import { PrimaryButton } from "../Component/Button/CustomButton";
 
 const NeumorphismBox = () => {
   let flex = {
@@ -34,7 +35,7 @@ const NeumorphismBox = () => {
     lightShadow: "#E8FFFF",
     darkShadow: "#ACC4C5",
     lightInnerShadow: "#E8FFFF",
-    darkInnerShadow: "#ACC4C5"
+    darkInnerShadow: "#ACC4C5",
   });
 
   const [valueSize, setValueSize] = useState(300);
@@ -48,6 +49,7 @@ const NeumorphismBox = () => {
   const [lightSourcePos, setLightSourcePos] = useState("topLeft");
   const [shadowType, setShadowType] = useState("flat");
   const [needToUseDark, setNeedToUseDark] = useState(true);
+  const [isCopied, setIsCopied] = useState(false);
 
   const theme = createTheme({
     breakpoints: {
@@ -65,17 +67,27 @@ const NeumorphismBox = () => {
 
   const [clipboardText, setClipboardText] = useState(`
   border-radius: ${valueRad}px;
-  background: ${shadowType === "flat" || shadowType === "pressed"
+  background: ${
+    shadowType === "flat" || shadowType === "pressed"
       ? `${cssParametersObj.current.backgroundColor};`
       : `linear-gradient(${cssParametersObj.current.shapeColorAngle}, ${cssParametersObj.current.shapeColor});`
-    }
-  box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
-    }${valueDistance}px ${darkAngleValue[1]
-    }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow},`}
-  ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow};`);
+  }
+  box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${
+    darkAngleValue[0]
+  }${valueDistance}px ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${
+    cssParametersObj.current.darkShadow
+  },`}
+  ${shadowType === "pressed" ? "inset" : ""} ${
+    lightAngleValue[0]
+  }${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${
+    cssParametersObj.current.lightShadow
+  };`);
 
   useEffect(() => {
-    cssParametersObj.current = { ...cssParametersObj.current, shadowType: shadowType };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      shadowType: shadowType,
+    };
     updateDocumentCSS(cssParametersObj.current);
   }, [shadowType]);
 
@@ -92,9 +104,8 @@ const NeumorphismBox = () => {
     lightShadow,
     darkShadow,
     lightInnerShadow,
-    darkInnerShadow
+    darkInnerShadow,
   }) => {
-
     const getInsetShadowColor = (type) => {
       let lis = lightInnerShadow;
       let dis = darkInnerShadow;
@@ -104,13 +115,21 @@ const NeumorphismBox = () => {
           return;
         }
         case "concave": {
-          let sc = `${dis},${lis}`
-          cssParametersObj.current = { ...cssParametersObj.current, shadowType: shadowType, shapeColor: sc };
+          let sc = `${dis},${lis}`;
+          cssParametersObj.current = {
+            ...cssParametersObj.current,
+            shadowType: shadowType,
+            shapeColor: sc,
+          };
           return sc;
         }
         case "convex": {
-          let sc = `${lis},${dis}`
-          cssParametersObj.current = { ...cssParametersObj.current, shadowType: shadowType, shapeColor: sc };
+          let sc = `${lis},${dis}`;
+          cssParametersObj.current = {
+            ...cssParametersObj.current,
+            shadowType: shadowType,
+            shapeColor: sc,
+          };
           return sc;
         }
         case "pressed": {
@@ -121,7 +140,12 @@ const NeumorphismBox = () => {
       }
     };
 
-    let previewShadow = shadowType === "flat" || shadowType === "pressed" ? backgroundColor : `linear-gradient(${shapeColorAngle},${getInsetShadowColor(shadowType)})`;
+    let previewShadow =
+      shadowType === "flat" || shadowType === "pressed"
+        ? backgroundColor
+        : `linear-gradient(${shapeColorAngle},${getInsetShadowColor(
+            shadowType
+          )})`;
 
     document.body.style.cssText = `
     --neumorph-height-width: ${valueSize}px;
@@ -129,40 +153,78 @@ const NeumorphismBox = () => {
     --neumorph-background: ${backgroundColor};
     --neumorph-backgroundCSS: "${previewShadow}";
     --neumorph-previewBackground: ${previewShadow};
-    --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]}${valueDistance}px ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${darkShadow}, ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${lightShadow};
+    --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${
+      darkAngleValue[0]
+    }${valueDistance}px ${
+      darkAngleValue[1]
+    }${valueDistance}px ${valueBlur}px ${darkShadow}, ${
+      shadowType === "pressed" ? "inset" : ""
+    } ${lightAngleValue[0]}${valueDistance}px ${
+      lightAngleValue[1]
+    }${valueDistance}px ${valueBlur}px ${lightShadow};
    `;
+  };
 
-    setClipboardText(`border-radius: ${valueRad}px;
-                      background: ${shadowType === "flat" || shadowType === "pressed"?
-                                   `${backgroundColor};`
-                                    : `linear-gradient(${shapeColorAngle}, ${cssParametersObj.current.shapeColor});`
-                                  }
-                      box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
-      }${valueDistance}px ${darkAngleValue[1]
-      }${valueDistance}px ${valueBlur}px ${darkShadow},`}
-  ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${lightShadow};`)
-  }
+  useEffect(()=>{
+    document.getElementById('clipboardCopy').click();
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1500);
+  },[clipboardText])
+
+  const handleClipboardText = () => {
+    setClipboardText(`border-radius: ${cssParametersObj.current.valueRad}px;
+    background: ${
+      cssParametersObj.current.shadowType === "flat" || cssParametersObj.current.shadowType === "pressed"
+        ? `${cssParametersObj.current.backgroundColor};`
+        : `linear-gradient(${cssParametersObj.current.shapeColorAngle}, ${cssParametersObj.current.shapeColor});`
+    }
+    box-shadow: ${`${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
+      cssParametersObj.current.darkAngleValue[0]
+    }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.darkAngleValue[1]}${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${
+      cssParametersObj.current.darkShadow
+    },`}
+${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
+  cssParametersObj.current.lightAngleValue[0]
+    }${cssParametersObj.current.valueDistance}px ${
+      cssParametersObj.current.lightAngleValue[1]
+    }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${
+      cssParametersObj.current.lightShadow
+    };`);
+  };
 
   const handleChangeSize = (newValue) => {
     let ValueSize = newValue.target.value;
     let RadMax = newValue.target.value / 2;
     let Distance = Math.floor(newValue.target.value / 10);
-    let Blur = Math.floor((newValue.target.value / 10) * 1.75)
+    let Blur = Math.floor((newValue.target.value / 10) * 1.75);
 
     setValueSize(ValueSize);
     setValueRadMax(RadMax);
     setValueDistance(Distance);
     setValueBlur(Blur);
-    cssParametersObj.current = { ...cssParametersObj.current, valueSize: ValueSize, valueDistance: Distance, valueBlur: Blur };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      valueSize: ValueSize,
+      valueDistance: Distance,
+      valueBlur: Blur,
+    };
     updateDocumentCSS(cssParametersObj.current);
   };
   const handleChangeRad = (newValue) => {
     setValueRad(newValue.target.value);
-    cssParametersObj.current = { ...cssParametersObj.current, valueRad: newValue.target.value };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      valueRad: newValue.target.value,
+    };
     updateDocumentCSS(cssParametersObj.current);
   };
   const handleChangeDistance = (newValue) => {
-    cssParametersObj.current = { ...cssParametersObj.current, valueDistance: newValue.target.value };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      valueDistance: newValue.target.value,
+    };
     updateDocumentCSS(cssParametersObj.current);
     setValueDistance(newValue.target.value);
   };
@@ -171,28 +233,41 @@ const NeumorphismBox = () => {
       cssParametersObj.current.backgroundColor,
       newValue.target.value
     );
-    cssParametersObj.current = { ...cssParametersObj.current, valueIntensity: newValue.target.value, lightShadow: ls, darkShadow: ds, lightInnerShadow: lis, darkInnerShadow: dis };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      valueIntensity: newValue.target.value,
+      lightShadow: ls,
+      darkShadow: ds,
+      lightInnerShadow: lis,
+      darkInnerShadow: dis,
+    };
     updateDocumentCSS(cssParametersObj.current);
     setValueIntensity(newValue.target.value);
   };
   const handleChangeBlur = (newValue) => {
-    cssParametersObj.current = { ...cssParametersObj.current, valueBlur: newValue.target.value };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      valueBlur: newValue.target.value,
+    };
     updateDocumentCSS(cssParametersObj.current);
     setValueBlur(newValue.target.value);
   };
   const handleColorChange = (e) => {
     setNeedToUseDark(needDarkMode(e.target.value));
-    const [ls, ds, lis, dis] = calculateShadow(
-      e.target.value,
-      valueIntensity
-    );
+    const [ls, ds, lis, dis] = calculateShadow(e.target.value, valueIntensity);
 
     colorPicker.current.value = e.target.value;
     textBoxColorPicker.current.value = e.target.value;
 
-    cssParametersObj.current = { ...cssParametersObj.current, backgroundColor: e.target.value, lightShadow: ls, darkShadow: ds, lightInnerShadow: lis, darkInnerShadow: dis };
+    cssParametersObj.current = {
+      ...cssParametersObj.current,
+      backgroundColor: e.target.value,
+      lightShadow: ls,
+      darkShadow: ds,
+      lightInnerShadow: lis,
+      darkInnerShadow: dis,
+    };
     updateDocumentCSS(cssParametersObj.current);
-
   };
   const handleLightSource = (pos) => {
     setLightSourcePos(pos);
@@ -203,7 +278,12 @@ const NeumorphismBox = () => {
         let shapeColorAngle = "145deg";
         setLightAngleValue(lightAngleValue);
         setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = { ...cssParametersObj.current, lightAngleValue, darkAngleValue, shapeColorAngle };
+        cssParametersObj.current = {
+          ...cssParametersObj.current,
+          lightAngleValue,
+          darkAngleValue,
+          shapeColorAngle,
+        };
         updateDocumentCSS(cssParametersObj.current);
         break;
       }
@@ -213,7 +293,12 @@ const NeumorphismBox = () => {
         let shapeColorAngle = "225deg";
         setLightAngleValue(lightAngleValue);
         setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = { ...cssParametersObj.current, lightAngleValue, darkAngleValue, shapeColorAngle };
+        cssParametersObj.current = {
+          ...cssParametersObj.current,
+          lightAngleValue,
+          darkAngleValue,
+          shapeColorAngle,
+        };
         updateDocumentCSS(cssParametersObj.current);
         break;
       }
@@ -223,7 +308,12 @@ const NeumorphismBox = () => {
         let shapeColorAngle = "45deg";
         setLightAngleValue(lightAngleValue);
         setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = { ...cssParametersObj.current, lightAngleValue, darkAngleValue, shapeColorAngle };
+        cssParametersObj.current = {
+          ...cssParametersObj.current,
+          lightAngleValue,
+          darkAngleValue,
+          shapeColorAngle,
+        };
         updateDocumentCSS(cssParametersObj.current);
         break;
       }
@@ -233,7 +323,12 @@ const NeumorphismBox = () => {
         let shapeColorAngle = "315deg";
         setLightAngleValue(lightAngleValue);
         setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = { ...cssParametersObj.current, lightAngleValue, darkAngleValue, shapeColorAngle };
+        cssParametersObj.current = {
+          ...cssParametersObj.current,
+          lightAngleValue,
+          darkAngleValue,
+          shapeColorAngle,
+        };
         updateDocumentCSS(cssParametersObj.current);
         break;
       }
@@ -525,8 +620,7 @@ const NeumorphismBox = () => {
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >
-              </span>
+              ></span>
             </div>
             <div className="wrapCSS">
               {`box-shadow:`}
@@ -537,9 +631,11 @@ const NeumorphismBox = () => {
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >{`${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
-                }${valueDistance}px ${darkAngleValue[1]
-                }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow.toLowerCase()},`}`}</span>
+              >{`${`${shadowType === "pressed" ? "inset" : ""} ${
+                darkAngleValue[0]
+              }${valueDistance}px ${
+                darkAngleValue[1]
+              }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow.toLowerCase()},`}`}</span>
               <span
                 style={{
                   marginLeft: "100px",
@@ -549,8 +645,9 @@ const NeumorphismBox = () => {
                   display: "flex",
                 }}
               >{`${shadowType === "pressed" ? "inset" : ""} 
-              ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
-                }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow.toLowerCase()};`}</span>
+              ${lightAngleValue[0]}${valueDistance}px ${
+                lightAngleValue[1]
+              }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow.toLowerCase()};`}</span>
             </div>
           </Stack>
         </div>
@@ -568,9 +665,15 @@ const NeumorphismBox = () => {
               wordSpacing: "5px",
             }}
           >
-            <ClipboardCopy
-              copyText={clipboardText}
-            />
+            <PrimaryButton
+              onClick={handleClipboardText}
+              disableElevation
+              variant="contained"
+              size="small"
+            >
+              <span>{isCopied ? "Copied!" : "Copy"}</span>
+            </PrimaryButton>
+            <ClipboardCopy id="clipboardCopy" copyText={clipboardText} hidden />
           </Stack>
         </div>
       </>
@@ -600,8 +703,9 @@ const NeumorphismBox = () => {
                 lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 0 50px 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
             }}
           ></div>
           <div
@@ -616,8 +720,9 @@ const NeumorphismBox = () => {
                 lightSourcePos === "topRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "0 0 0 50px",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
             }}
           ></div>
         </div>
@@ -648,8 +753,9 @@ const NeumorphismBox = () => {
                 lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 50px 0 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
             }}
           ></div>
           <div
@@ -664,8 +770,9 @@ const NeumorphismBox = () => {
                 lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "50px 0 0 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
+              border: `2px solid ${
+                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+              }`,
             }}
           ></div>
         </div>
@@ -731,7 +838,7 @@ const NeumorphismBox = () => {
             <div
               className="insideConfigBox"
               style={{
-                ...flex
+                ...flex,
               }}
             >
               {configElementBox()}

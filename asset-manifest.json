@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/iskito-project/static/css/main.51bfc5f1.css",
-    "main.js": "/iskito-project/static/js/main.9054834f.js",
+    "main.js": "/iskito-project/static/js/main.abb00b8b.js",
     "static/media/kito-nobg.png": "/iskito-project/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito-project/static/media/kito.4dc77956c18c9968bc5b.jpg",
     "static/media/Gilroy-Light.otf": "/iskito-project/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
     "static/media/cropedcc.png": "/iskito-project/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
     "index.html": "/iskito-project/index.html",
     "main.51bfc5f1.css.map": "/iskito-project/static/css/main.51bfc5f1.css.map",
-    "main.9054834f.js.map": "/iskito-project/static/js/main.9054834f.js.map"
+    "main.abb00b8b.js.map": "/iskito-project/static/js/main.abb00b8b.js.map"
   },
   "entrypoints": [
     "static/css/main.51bfc5f1.css",
-    "static/js/main.9054834f.js"
+    "static/js/main.abb00b8b.js"
   ]
 }

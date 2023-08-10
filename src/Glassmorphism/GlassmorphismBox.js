@@ -1076,7 +1076,7 @@ const GlassmorphismBox = () => {
           justifyContent={"center"}
         >
           <span style={{ fontSize: "2em", fontWeight: 900 }}>Glass UI</span>
-          <span>from scratch project</span>
+          <span>frosted glass style</span>
         </Stack>
         <Stack
           style={{ width: "100%" }}

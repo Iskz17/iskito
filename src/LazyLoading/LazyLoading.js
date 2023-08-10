@@ -215,7 +215,7 @@ const LazyLoading = () => {
           <span style={{ fontSize: "2em", fontWeight: 900 }}>
             Lazy Loading Card
           </span>
-          <span>from scratch project</span>
+          <span>reduce mental loading</span>
         </Stack>
         <Stack
           style={{ width: "100%" }}

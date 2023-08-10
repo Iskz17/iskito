@@ -336,7 +336,6 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
         return null;
     }
   };
-
   const configElementBox = () => {
     return (
       <>
@@ -679,7 +678,6 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </>
     );
   };
-
   const topLightBoxes = useMemo(
     () => (
       <div
@@ -800,9 +798,9 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
           justifyContent={"center"}
         >
           <span style={{ fontSize: "2em", fontWeight: 900 }}>
-            Neumorphism.io clone
+            Neumorphism UI
           </span>
-          <span>from scratch project</span>
+          <span>soft shadow style</span>
         </Stack>
         <div
           id="content"

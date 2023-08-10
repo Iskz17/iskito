@@ -16,6 +16,12 @@
     filter: none;
   }
 }
+
+:root{
+  --musicplayer-1stcolor: #e784b3;
+  --musicplayer-2ndcolor: #f5c26b;
+}
+
 .particle {
   position: absolute;
   border-radius: 50%;
@@ -129,12 +135,13 @@
     transform: translateY(-280px);
   }
 }
+
 .particle:nth-child(1) {
   height: 19px;
   width: 19px;
   left: 1%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -147,7 +154,7 @@
   width: 20px;
   left: 18%;
   top: 51%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 28s;
   animation-name: float;
@@ -160,7 +167,7 @@
   width: 18px;
   left: 11%;
   top: 55%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 24s;
   animation-name: float2;
@@ -173,7 +180,7 @@
   width: 20px;
   left: 1%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -186,7 +193,7 @@
   width: 20px;
   left: 100%;
   top: 99%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 23s;
   animation-name: float;
@@ -199,7 +206,7 @@
   width: 20px;
   left: 17%;
   top: 10%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -212,7 +219,7 @@
   width: 15px;
   left: 7%;
   top: 74%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 37s;
   animation-name: float2;
@@ -225,7 +232,7 @@
   width: 14px;
   left: 31%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 38s;
   animation-name: floatReverse;
@@ -238,7 +245,7 @@
   width: 17px;
   left: 10%;
   top: 75%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 40s;
   animation-name: float;
@@ -251,7 +258,7 @@
   width: 20px;
   left: 5%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 24s;
   animation-name: floatReverse2;
@@ -264,7 +271,7 @@
   width: 12px;
   left: 59%;
   top: 67%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 39s;
   animation-name: float2;
@@ -277,7 +284,7 @@
   width: 16px;
   left: 73%;
   top: 91%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -290,7 +297,7 @@
   width: 16px;
   left: 51%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 36s;
   animation-name: float;
@@ -303,7 +310,7 @@
   width: 14px;
   left: 12%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 38s;
   animation-name: float2;
@@ -316,7 +323,7 @@
   width: 20px;
   left: 34%;
   top: 85%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 40s;
   animation-name: float;
@@ -329,7 +336,7 @@
   width: 13px;
   left: 40%;
   top: 41%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -342,7 +349,7 @@
   width: 25px;
   left: 19%;
   top: 49%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 22s;
   animation-name: floatReverse;
@@ -355,7 +362,7 @@
   width: 12px;
   left: 21%;
   top: 20%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -368,7 +375,7 @@
   width: 14px;
   left: 46%;
   top: 36%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 29s;
   animation-name: float;
@@ -381,7 +388,7 @@
   width: 12px;
   left: 66%;
   top: 22%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 31s;
   animation-name: float2;
@@ -394,7 +401,7 @@
   width: 25px;
   left: 6%;
   top: 41%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 40s;
   animation-name: float2;
@@ -407,7 +414,7 @@
   width: 25px;
   left: 16%;
   top: 46%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -420,7 +427,7 @@
   width: 18px;
   left: 50%;
   top: 72%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 35s;
   animation-name: float;
@@ -433,7 +440,7 @@
   width: 19px;
   left: 11%;
   top: 6%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 39s;
   animation-name: float;
@@ -446,7 +453,7 @@
   width: 19px;
   left: 9%;
   top: 76%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 25s;
   animation-name: float2;
@@ -459,7 +466,7 @@
   width: 23px;
   left: 42%;
   top: 23%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 37s;
   animation-name: float2;
@@ -472,7 +479,7 @@
   width: 16px;
   left: 8%;
   top: 97%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 39s;
   animation-name: float;
@@ -485,7 +492,7 @@
   width: 20px;
   left: 88%;
   top: 72%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 28s;
   animation-name: float2;
@@ -498,7 +505,7 @@
   width: 22px;
   left: 95%;
   top: 75%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 37s;
   animation-name: float;
@@ -511,7 +518,7 @@
   width: 22px;
   left: 41%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 36s;
   animation-name: float;
@@ -524,7 +531,7 @@
   width: 23px;
   left: 62%;
   top: 77%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 28s;
   animation-name: floatReverse;
@@ -537,7 +544,7 @@
   width: 22px;
   left: 23%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 33s;
   animation-name: float;
@@ -550,7 +557,7 @@
   width: 16px;
   left: 74%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -563,7 +570,7 @@
   width: 22px;
   left: 18%;
   top: 60%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 39s;
   animation-name: float2;
@@ -576,7 +583,7 @@
   width: 20px;
   left: 9%;
   top: 97%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 21s;
   animation-name: float;
@@ -589,7 +596,7 @@
   width: 20px;
   left: 45%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 39s;
   animation-name: float;
@@ -602,7 +609,7 @@
   width: 19px;
   left: 64%;
   top: 73%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -615,7 +622,7 @@
   width: 11px;
   left: 67%;
   top: 60%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -628,7 +635,7 @@
   width: 19px;
   left: 36%;
   top: 51%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 24s;
   animation-name: float2;
@@ -641,7 +648,7 @@
   width: 12px;
   left: 82%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 30s;
   animation-name: float2;
@@ -654,7 +661,7 @@
   width: 20px;
   left: 10%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 36s;
   animation-name: float2;
@@ -667,7 +674,7 @@
   width: 21px;
   left: 18%;
   top: 36%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 26s;
   animation-name: floatReverse2;
@@ -680,7 +687,7 @@
   width: 21px;
   left: 94%;
   top: 14%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 39s;
   animation-name: float2;
@@ -693,7 +700,7 @@
   width: 19px;
   left: 83%;
   top: 47%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 36s;
   animation-name: float;
@@ -706,7 +713,7 @@
   width: 11px;
   left: 42%;
   top: 91%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 25s;
   animation-name: float;
@@ -719,7 +726,7 @@
   width: 18px;
   left: 61%;
   top: 44%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 37s;
   animation-name: float2;
@@ -732,7 +739,7 @@
   width: 20px;
   left: 48%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -745,7 +752,7 @@
   width: 13px;
   left: 76%;
   top: 88%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 30s;
   animation-name: floatReverse2;
@@ -758,7 +765,7 @@
   width: 21px;
   left: 30%;
   top: 4%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -771,7 +778,7 @@
   width: 11px;
   left: 61%;
   top: 56%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 38s;
   animation-name: floatReverse2;
@@ -784,7 +791,7 @@
   width: 11px;
   left: 26%;
   top: 77%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 36s;
   animation-name: float;
@@ -797,7 +804,7 @@
   width: 11px;
   left: 19%;
   top: 65%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 24s;
   animation-name: float;
@@ -810,7 +817,7 @@
   width: 17px;
   left: 16%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -823,7 +830,7 @@
   width: 18px;
   left: 2%;
   top: 2%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 32s;
   animation-name: float2;
@@ -836,7 +843,7 @@
   width: 17px;
   left: 97%;
   top: 66%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -849,7 +856,7 @@
   width: 15px;
   left: 13%;
   top: 89%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -862,7 +869,7 @@
   width: 21px;
   left: 9%;
   top: 12%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -875,7 +882,7 @@
   width: 18px;
   left: 42%;
   top: 41%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 25s;
   animation-name: float;
@@ -888,7 +895,7 @@
   width: 24px;
   left: 73%;
   top: 17%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 33s;
   animation-name: float;
@@ -901,7 +908,7 @@
   width: 25px;
   left: 19%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 25s;
   animation-name: float;
@@ -914,7 +921,7 @@
   width: 17px;
   left: 77%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 36s;
   animation-name: float;
@@ -927,7 +934,7 @@
   width: 22px;
   left: 100%;
   top: 76%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 36s;
   animation-name: float2;
@@ -940,7 +947,7 @@
   width: 14px;
   left: 62%;
   top: 69%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -953,7 +960,7 @@
   width: 22px;
   left: 52%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 33s;
   animation-name: float2;
@@ -966,7 +973,7 @@
   width: 21px;
   left: 13%;
   top: 61%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -979,7 +986,7 @@
   width: 13px;
   left: 27%;
   top: 84%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -992,7 +999,7 @@
   width: 19px;
   left: 7%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 30s;
   animation-name: float2;
@@ -1005,7 +1012,7 @@
   width: 16px;
   left: 91%;
   top: 78%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 31s;
   animation-name: float2;
@@ -1018,7 +1025,7 @@
   width: 14px;
   left: 24%;
   top: 79%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 29s;
   animation-name: float;
@@ -1031,7 +1038,7 @@
   width: 18px;
   left: 72%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -1044,7 +1051,7 @@
   width: 17px;
   left: 59%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -1057,7 +1064,7 @@
   width: 16px;
   left: 32%;
   top: 42%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 27s;
   animation-name: float2;
@@ -1070,7 +1077,7 @@
   width: 14px;
   left: 85%;
   top: 43%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -1083,7 +1090,7 @@
   width: 21px;
   left: 92%;
   top: 69%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -1096,7 +1103,7 @@
   width: 13px;
   left: 67%;
   top: 78%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 30s;
   animation-name: float2;
@@ -1109,7 +1116,7 @@
   width: 15px;
   left: 51%;
   top: 18%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 33s;
   animation-name: float;
@@ -1122,7 +1129,7 @@
   width: 17px;
   left: 82%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 40s;
   animation-name: float2;
@@ -1135,7 +1142,7 @@
   width: 18px;
   left: 80%;
   top: 58%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 34s;
   animation-name: float;
@@ -1148,7 +1155,7 @@
   width: 11px;
   left: 94%;
   top: 27%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 36s;
   animation-name: floatReverse;
@@ -1161,7 +1168,7 @@
   width: 16px;
   left: 85%;
   top: 9%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -1174,7 +1181,7 @@
   width: 15px;
   left: 58%;
   top: 24%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 25s;
   animation-name: floatReverse;
@@ -1187,7 +1194,7 @@
   width: 22px;
   left: 37%;
   top: 44%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 32s;
   animation-name: floatReverse;
@@ -1200,7 +1207,7 @@
   width: 16px;
   left: 80%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -1213,7 +1220,7 @@
   width: 19px;
   left: 34%;
   top: 48%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 39s;
   animation-name: float;
@@ -1226,7 +1233,7 @@
   width: 18px;
   left: 40%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -1239,7 +1246,7 @@
   width: 17px;
   left: 62%;
   top: 27%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 24s;
   animation-name: floatReverse2;
@@ -1252,7 +1259,7 @@
   width: 14px;
   left: 53%;
   top: 17%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 40s;
   animation-name: float2;
@@ -1265,7 +1272,7 @@
   width: 12px;
   left: 44%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 28s;
   animation-name: floatReverse2;
@@ -1278,7 +1285,7 @@
   width: 17px;
   left: 16%;
   top: 9%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 26s;
   animation-name: float2;
@@ -1291,7 +1298,7 @@
   width: 11px;
   left: 92%;
   top: 3%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -1304,7 +1311,7 @@
   width: 21px;
   left: 66%;
   top: 39%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 27s;
   animation-name: float2;
@@ -1317,7 +1324,7 @@
   width: 13px;
   left: 55%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -1330,7 +1337,7 @@
   width: 21px;
   left: 71%;
   top: 75%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 23s;
   animation-name: float;
@@ -1343,7 +1350,7 @@
   width: 18px;
   left: 4%;
   top: 4%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -1356,7 +1363,7 @@
   width: 16px;
   left: 84%;
   top: 58%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -1369,7 +1376,7 @@
   width: 24px;
   left: 34%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 24s;
   animation-name: float;
@@ -1382,7 +1389,7 @@
   width: 18px;
   left: 20%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 38s;
   animation-name: floatReverse;
@@ -1395,7 +1402,7 @@
   width: 18px;
   left: 8%;
   top: 87%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -1408,7 +1415,7 @@
   width: 12px;
   left: 40%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 36s;
   animation-name: float;
@@ -1421,7 +1428,7 @@
   width: 11px;
   left: 30%;
   top: 9%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -1434,7 +1441,7 @@
   width: 25px;
   left: 17%;
   top: 64%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 29s;
   animation-name: float;
@@ -1447,7 +1454,7 @@
   width: 13px;
   left: 47%;
   top: 37%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 37s;
   animation-name: float2;
@@ -1460,7 +1467,7 @@
   width: 25px;
   left: 46%;
   top: 79%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 31s;
   animation-name: float2;
@@ -1473,7 +1480,7 @@
   width: 17px;
   left: 81%;
   top: 99%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 23s;
   animation-name: float2;
@@ -1486,7 +1493,7 @@
   width: 11px;
   left: 41%;
   top: 74%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 21s;
   animation-name: floatReverse2;
@@ -1499,7 +1506,7 @@
   width: 16px;
   left: 40%;
   top: 87%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 28s;
   animation-name: floatReverse;
@@ -1512,7 +1519,7 @@
   width: 25px;
   left: 27%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 22s;
   animation-name: float2;
@@ -1525,7 +1532,7 @@
   width: 11px;
   left: 11%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -1538,7 +1545,7 @@
   width: 15px;
   left: 56%;
   top: 78%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 39s;
   animation-name: float2;
@@ -1551,7 +1558,7 @@
   width: 21px;
   left: 3%;
   top: 24%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -1564,7 +1571,7 @@
   width: 13px;
   left: 3%;
   top: 57%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -1577,7 +1584,7 @@
   width: 12px;
   left: 39%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 40s;
   animation-name: float;
@@ -1590,7 +1597,7 @@
   width: 13px;
   left: 69%;
   top: 66%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 37s;
   animation-name: float;
@@ -1603,7 +1610,7 @@
   width: 14px;
   left: 87%;
   top: 85%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 33s;
   animation-name: float;
@@ -1616,7 +1623,7 @@
   width: 17px;
   left: 33%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 28s;
   animation-name: float;
@@ -1629,7 +1636,7 @@
   width: 22px;
   left: 31%;
   top: 85%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 34s;
   animation-name: float;
@@ -1642,7 +1649,7 @@
   width: 11px;
   left: 61%;
   top: 26%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -1655,7 +1662,7 @@
   width: 20px;
   left: 4%;
   top: 61%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 39s;
   animation-name: float2;
@@ -1668,7 +1675,7 @@
   width: 23px;
   left: 98%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -1681,7 +1688,7 @@
   width: 18px;
   left: 40%;
   top: 58%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -1694,7 +1701,7 @@
   width: 17px;
   left: 83%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 32s;
   animation-name: float;
@@ -1707,7 +1714,7 @@
   width: 13px;
   left: 89%;
   top: 2%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 22s;
   animation-name: floatReverse;
@@ -1720,7 +1727,7 @@
   width: 22px;
   left: 76%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 25s;
   animation-name: float2;
@@ -1733,7 +1740,7 @@
   width: 25px;
   left: 100%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 26s;
   animation-name: floatReverse2;
@@ -1746,7 +1753,7 @@
   width: 20px;
   left: 72%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 31s;
   animation-name: float;
@@ -1759,7 +1766,7 @@
   width: 25px;
   left: 84%;
   top: 85%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 36s;
   animation-name: float;
@@ -1772,7 +1779,7 @@
   width: 22px;
   left: 23%;
   top: 31%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 32s;
   animation-name: float2;
@@ -1785,7 +1792,7 @@
   width: 19px;
   left: 70%;
   top: 53%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 23s;
   animation-name: float;
@@ -1798,7 +1805,7 @@
   width: 13px;
   left: 78%;
   top: 88%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 36s;
   animation-name: floatReverse;
@@ -1811,7 +1818,7 @@
   width: 13px;
   left: 69%;
   top: 17%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -1824,7 +1831,7 @@
   width: 13px;
   left: 10%;
   top: 19%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 22s;
   animation-name: float2;
@@ -1837,7 +1844,7 @@
   width: 24px;
   left: 18%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -1850,7 +1857,7 @@
   width: 14px;
   left: 41%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 27s;
   animation-name: float;
@@ -1863,7 +1870,7 @@
   width: 14px;
   left: 98%;
   top: 66%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 40s;
   animation-name: float2;
@@ -1876,7 +1883,7 @@
   width: 25px;
   left: 54%;
   top: 81%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -1889,7 +1896,7 @@
   width: 15px;
   left: 67%;
   top: 43%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 21s;
   animation-name: floatReverse2;
@@ -1902,7 +1909,7 @@
   width: 12px;
   left: 96%;
   top: 82%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -1915,7 +1922,7 @@
   width: 25px;
   left: 15%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 25s;
   animation-name: float;
@@ -1928,7 +1935,7 @@
   width: 22px;
   left: 13%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 36s;
   animation-name: float2;
@@ -1941,7 +1948,7 @@
   width: 22px;
   left: 56%;
   top: 27%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 27s;
   animation-name: float2;
@@ -1954,7 +1961,7 @@
   width: 15px;
   left: 95%;
   top: 14%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 39s;
   animation-name: float;
@@ -1967,7 +1974,7 @@
   width: 25px;
   left: 23%;
   top: 36%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 27s;
   animation-name: float2;
@@ -1980,7 +1987,7 @@
   width: 19px;
   left: 51%;
   top: 4%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -1993,7 +2000,7 @@
   width: 13px;
   left: 24%;
   top: 91%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 37s;
   animation-name: float;
@@ -2006,7 +2013,7 @@
   width: 12px;
   left: 13%;
   top: 77%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -2019,7 +2026,7 @@
   width: 23px;
   left: 27%;
   top: 61%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -2032,7 +2039,7 @@
   width: 24px;
   left: 21%;
   top: 100%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -2045,7 +2052,7 @@
   width: 11px;
   left: 27%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 21s;
   animation-name: float;
@@ -2058,7 +2065,7 @@
   width: 22px;
   left: 61%;
   top: 99%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -2071,7 +2078,7 @@
   width: 16px;
   left: 97%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 36s;
   animation-name: float2;
@@ -2084,7 +2091,7 @@
   width: 23px;
   left: 87%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 23s;
   animation-name: float2;
@@ -2097,7 +2104,7 @@
   width: 16px;
   left: 76%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 37s;
   animation-name: floatReverse2;
@@ -2110,7 +2117,7 @@
   width: 16px;
   left: 78%;
   top: 46%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -2123,7 +2130,7 @@
   width: 14px;
   left: 23%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -2136,7 +2143,7 @@
   width: 21px;
   left: 32%;
   top: 47%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 33s;
   animation-name: float2;
@@ -2149,7 +2156,7 @@
   width: 21px;
   left: 16%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 39s;
   animation-name: float2;
@@ -2162,7 +2169,7 @@
   width: 20px;
   left: 55%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -2175,7 +2182,7 @@
   width: 14px;
   left: 46%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 25s;
   animation-name: float;
@@ -2188,7 +2195,7 @@
   width: 17px;
   left: 97%;
   top: 51%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 27s;
   animation-name: float2;
@@ -2201,7 +2208,7 @@
   width: 17px;
   left: 33%;
   top: 49%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 25s;
   animation-name: float;
@@ -2214,7 +2221,7 @@
   width: 16px;
   left: 80%;
   top: 72%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -2227,7 +2234,7 @@
   width: 18px;
   left: 58%;
   top: 29%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 25s;
   animation-name: floatReverse2;
@@ -2240,7 +2247,7 @@
   width: 20px;
   left: 77%;
   top: 34%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 22s;
   animation-name: floatReverse2;
@@ -2253,7 +2260,7 @@
   width: 14px;
   left: 10%;
   top: 23%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 32s;
   animation-name: floatReverse;
@@ -2266,7 +2273,7 @@
   width: 25px;
   left: 50%;
   top: 23%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 28s;
   animation-name: float2;
@@ -2279,7 +2286,7 @@
   width: 25px;
   left: 48%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -2292,7 +2299,7 @@
   width: 14px;
   left: 83%;
   top: 84%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 25s;
   animation-name: float;
@@ -2305,7 +2312,7 @@
   width: 15px;
   left: 78%;
   top: 91%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 32s;
   animation-name: floatReverse;
@@ -2318,7 +2325,7 @@
   width: 24px;
   left: 9%;
   top: 47%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 21s;
   animation-name: float2;
@@ -2331,7 +2338,7 @@
   width: 18px;
   left: 53%;
   top: 68%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 30s;
   animation-name: floatReverse;
@@ -2344,7 +2351,7 @@
   width: 22px;
   left: 10%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -2357,7 +2364,7 @@
   width: 18px;
   left: 89%;
   top: 89%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -2370,7 +2377,7 @@
   width: 24px;
   left: 13%;
   top: 76%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 24s;
   animation-name: floatReverse;
@@ -2383,7 +2390,7 @@
   width: 17px;
   left: 5%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 25s;
   animation-name: float2;
@@ -2396,7 +2403,7 @@
   width: 21px;
   left: 72%;
   top: 79%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 38s;
   animation-name: float;
@@ -2409,7 +2416,7 @@
   width: 11px;
   left: 13%;
   top: 82%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -2422,7 +2429,7 @@
   width: 19px;
   left: 75%;
   top: 64%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 37s;
   animation-name: float2;
@@ -2435,7 +2442,7 @@
   width: 17px;
   left: 32%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -2448,7 +2455,7 @@
   width: 13px;
   left: 60%;
   top: 49%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -2461,7 +2468,7 @@
   width: 24px;
   left: 4%;
   top: 46%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -2474,7 +2481,7 @@
   width: 19px;
   left: 73%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 35s;
   animation-name: float2;
@@ -2487,7 +2494,7 @@
   width: 18px;
   left: 8%;
   top: 76%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: floatReverse2;
@@ -2500,7 +2507,7 @@
   width: 11px;
   left: 3%;
   top: 2%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -2513,7 +2520,7 @@
   width: 20px;
   left: 95%;
   top: 38%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 37s;
   animation-name: floatReverse2;
@@ -2526,7 +2533,7 @@
   width: 14px;
   left: 17%;
   top: 3%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 26s;
   animation-name: float2;
@@ -2539,7 +2546,7 @@
   width: 23px;
   left: 35%;
   top: 96%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 23s;
   animation-name: float2;
@@ -2552,7 +2559,7 @@
   width: 23px;
   left: 96%;
   top: 95%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -2565,7 +2572,7 @@
   width: 20px;
   left: 46%;
   top: 82%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 30s;
   animation-name: float2;
@@ -2578,7 +2585,7 @@
   width: 16px;
   left: 40%;
   top: 56%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 25s;
   animation-name: float2;
@@ -2591,7 +2598,7 @@
   width: 24px;
   left: 58%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 27s;
   animation-name: float2;
@@ -2604,7 +2611,7 @@
   width: 23px;
   left: 40%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 25s;
   animation-name: float2;
@@ -2617,7 +2624,7 @@
   width: 25px;
   left: 62%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 30s;
   animation-name: floatReverse2;
@@ -2630,7 +2637,7 @@
   width: 22px;
   left: 5%;
   top: 78%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 29s;
   animation-name: float2;
@@ -2643,7 +2650,7 @@
   width: 23px;
   left: 24%;
   top: 21%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 21s;
   animation-name: float;
@@ -2656,7 +2663,7 @@
   width: 13px;
   left: 56%;
   top: 29%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -2669,7 +2676,7 @@
   width: 23px;
   left: 81%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -2682,7 +2689,7 @@
   width: 18px;
   left: 84%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -2695,7 +2702,7 @@
   width: 22px;
   left: 67%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 39s;
   animation-name: float;
@@ -2708,7 +2715,7 @@
   width: 13px;
   left: 74%;
   top: 38%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 30s;
   animation-name: float;
@@ -2721,7 +2728,7 @@
   width: 11px;
   left: 25%;
   top: 65%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 30s;
   animation-name: floatReverse;
@@ -2734,7 +2741,7 @@
   width: 23px;
   left: 62%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 25s;
   animation-name: float2;
@@ -2747,7 +2754,7 @@
   width: 22px;
   left: 92%;
   top: 13%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 31s;
   animation-name: floatReverse;
@@ -2760,7 +2767,7 @@
   width: 13px;
   left: 83%;
   top: 4%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: float2;
@@ -2773,7 +2780,7 @@
   width: 12px;
   left: 23%;
   top: 48%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 37s;
   animation-name: float2;
@@ -2786,7 +2793,7 @@
   width: 11px;
   left: 36%;
   top: 41%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 30s;
   animation-name: floatReverse2;
@@ -2799,7 +2806,7 @@
   width: 17px;
   left: 86%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 30s;
   animation-name: float2;
@@ -2812,7 +2819,7 @@
   width: 21px;
   left: 58%;
   top: 53%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 26s;
   animation-name: float;
@@ -2825,7 +2832,7 @@
   width: 22px;
   left: 33%;
   top: 40%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 32s;
   animation-name: float2;
@@ -2838,7 +2845,7 @@
   width: 12px;
   left: 21%;
   top: 56%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 25s;
   animation-name: floatReverse;
@@ -2851,7 +2858,7 @@
   width: 14px;
   left: 8%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -2864,7 +2871,7 @@
   width: 16px;
   left: 3%;
   top: 48%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 36s;
   animation-name: float;
@@ -2877,7 +2884,7 @@
   width: 13px;
   left: 74%;
   top: 21%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 32s;
   animation-name: float2;
@@ -2890,7 +2897,7 @@
   width: 11px;
   left: 9%;
   top: 59%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -2903,7 +2910,7 @@
   width: 23px;
   left: 26%;
   top: 95%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -2916,7 +2923,7 @@
   width: 16px;
   left: 61%;
   top: 100%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 25s;
   animation-name: floatReverse2;
@@ -2929,7 +2936,7 @@
   width: 17px;
   left: 4%;
   top: 12%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -2942,7 +2949,7 @@
   width: 17px;
   left: 59%;
   top: 55%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -2955,7 +2962,7 @@
   width: 12px;
   left: 94%;
   top: 81%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 23s;
   animation-name: float2;
@@ -2968,7 +2975,7 @@
   width: 23px;
   left: 78%;
   top: 62%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -2981,7 +2988,7 @@
   width: 22px;
   left: 72%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -2994,7 +3001,7 @@
   width: 20px;
   left: 18%;
   top: 12%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -3007,7 +3014,7 @@
   width: 24px;
   left: 12%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 30s;
   animation-name: float;
@@ -3020,7 +3027,7 @@
   width: 17px;
   left: 14%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 21s;
   animation-name: float;
@@ -3033,7 +3040,7 @@
   width: 19px;
   left: 41%;
   top: 31%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -3046,7 +3053,7 @@
   width: 25px;
   left: 18%;
   top: 30%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -3059,7 +3066,7 @@
   width: 15px;
   left: 71%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 25s;
   animation-name: floatReverse2;
@@ -3072,7 +3079,7 @@
   width: 11px;
   left: 45%;
   top: 26%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 40s;
   animation-name: float;
@@ -3085,7 +3092,7 @@
   width: 13px;
   left: 72%;
   top: 29%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -3098,7 +3105,7 @@
   width: 22px;
   left: 22%;
   top: 84%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 28s;
   animation-name: float2;
@@ -3111,7 +3118,7 @@
   width: 14px;
   left: 99%;
   top: 95%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -3124,7 +3131,7 @@
   width: 25px;
   left: 75%;
   top: 59%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 27s;
   animation-name: float2;
@@ -3137,7 +3144,7 @@
   width: 13px;
   left: 28%;
   top: 12%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -3150,7 +3157,7 @@
   width: 11px;
   left: 100%;
   top: 88%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 38s;
   animation-name: float2;
@@ -3163,7 +3170,7 @@
   width: 21px;
   left: 98%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 38s;
   animation-name: float;
@@ -3176,7 +3183,7 @@
   width: 11px;
   left: 68%;
   top: 63%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -3189,7 +3196,7 @@
   width: 18px;
   left: 77%;
   top: 39%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 39s;
   animation-name: floatReverse2;
@@ -3202,7 +3209,7 @@
   width: 12px;
   left: 50%;
   top: 55%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -3215,7 +3222,7 @@
   width: 13px;
   left: 7%;
   top: 6%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 27s;
   animation-name: float2;
@@ -3228,7 +3235,7 @@
   width: 15px;
   left: 4%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 26s;
   animation-name: floatReverse2;
@@ -3241,7 +3248,7 @@
   width: 17px;
   left: 22%;
   top: 75%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -3254,7 +3261,7 @@
   width: 25px;
   left: 45%;
   top: 34%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 39s;
   animation-name: float;
@@ -3267,7 +3274,7 @@
   width: 11px;
   left: 90%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 32s;
   animation-name: floatReverse;
@@ -3280,7 +3287,7 @@
   width: 22px;
   left: 45%;
   top: 21%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 28s;
   animation-name: float;
@@ -3293,7 +3300,7 @@
   width: 19px;
   left: 23%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 37s;
   animation-name: float2;
@@ -3306,7 +3313,7 @@
   width: 22px;
   left: 63%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 27s;
   animation-name: float2;
@@ -3319,7 +3326,7 @@
   width: 25px;
   left: 67%;
   top: 20%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 34s;
   animation-name: floatReverse;
@@ -3332,7 +3339,7 @@
   width: 14px;
   left: 28%;
   top: 69%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 37s;
   animation-name: float;
@@ -3345,7 +3352,7 @@
   width: 13px;
   left: 15%;
   top: 21%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 28s;
   animation-name: floatReverse;
@@ -3358,7 +3365,7 @@
   width: 12px;
   left: 3%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -3371,7 +3378,7 @@
   width: 24px;
   left: 73%;
   top: 65%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -3384,7 +3391,7 @@
   width: 13px;
   left: 39%;
   top: 16%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 31s;
   animation-name: float;
@@ -3397,7 +3404,7 @@
   width: 19px;
   left: 16%;
   top: 18%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 28s;
   animation-name: floatReverse;
@@ -3410,7 +3417,7 @@
   width: 14px;
   left: 19%;
   top: 9%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 21s;
   animation-name: float;
@@ -3423,7 +3430,7 @@
   width: 20px;
   left: 98%;
   top: 84%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 29s;
   animation-name: floatReverse2;
@@ -3436,7 +3443,7 @@
   width: 12px;
   left: 44%;
   top: 83%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 24s;
   animation-name: float2;
@@ -3449,7 +3456,7 @@
   width: 25px;
   left: 69%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 25s;
   animation-name: float;
@@ -3462,7 +3469,7 @@
   width: 22px;
   left: 7%;
   top: 46%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 37s;
   animation-name: float;
@@ -3475,7 +3482,7 @@
   width: 24px;
   left: 28%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 37s;
   animation-name: float;
@@ -3488,7 +3495,7 @@
   width: 14px;
   left: 63%;
   top: 42%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 21s;
   animation-name: floatReverse2;
@@ -3501,7 +3508,7 @@
   width: 15px;
   left: 48%;
   top: 2%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 30s;
   animation-name: floatReverse2;
@@ -3514,7 +3521,7 @@
   width: 22px;
   left: 100%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 23s;
   animation-name: float2;
@@ -3527,7 +3534,7 @@
   width: 15px;
   left: 75%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 32s;
   animation-name: float2;
@@ -3540,7 +3547,7 @@
   width: 25px;
   left: 67%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -3553,7 +3560,7 @@
   width: 15px;
   left: 100%;
   top: 5%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -3566,7 +3573,7 @@
   width: 22px;
   left: 19%;
   top: 84%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 31s;
   animation-name: floatReverse2;
@@ -3579,7 +3586,7 @@
   width: 18px;
   left: 40%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -3592,7 +3599,7 @@
   width: 25px;
   left: 51%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 32s;
   animation-name: float;
@@ -3605,7 +3612,7 @@
   width: 23px;
   left: 38%;
   top: 47%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 23s;
   animation-name: floatReverse2;
@@ -3618,7 +3625,7 @@
   width: 18px;
   left: 18%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 21s;
   animation-name: float;
@@ -3631,7 +3638,7 @@
   width: 13px;
   left: 12%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -3644,7 +3651,7 @@
   width: 15px;
   left: 30%;
   top: 71%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 32s;
   animation-name: float;
@@ -3657,7 +3664,7 @@
   width: 14px;
   left: 10%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 25s;
   animation-name: float;
@@ -3670,7 +3677,7 @@
   width: 16px;
   left: 58%;
   top: 68%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -3683,7 +3690,7 @@
   width: 22px;
   left: 89%;
   top: 52%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -3696,7 +3703,7 @@
   width: 16px;
   left: 85%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 39s;
   animation-name: float;
@@ -3709,7 +3716,7 @@
   width: 22px;
   left: 78%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 33s;
   animation-name: float;
@@ -3722,7 +3729,7 @@
   width: 20px;
   left: 5%;
   top: 64%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 25s;
   animation-name: floatReverse2;
@@ -3735,7 +3742,7 @@
   width: 22px;
   left: 50%;
   top: 10%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 26s;
   animation-name: floatReverse;
@@ -3748,7 +3755,7 @@
   width: 17px;
   left: 27%;
   top: 27%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 32s;
   animation-name: float;
@@ -3761,7 +3768,7 @@
   width: 12px;
   left: 3%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 35s;
   animation-name: float2;
@@ -3774,7 +3781,7 @@
   width: 25px;
   left: 78%;
   top: 11%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 39s;
   animation-name: floatReverse2;
@@ -3787,7 +3794,7 @@
   width: 11px;
   left: 28%;
   top: 29%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 37s;
   animation-name: float;
@@ -3800,7 +3807,7 @@
   width: 24px;
   left: 56%;
   top: 79%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 32s;
   animation-name: floatReverse2;
@@ -3813,7 +3820,7 @@
   width: 24px;
   left: 28%;
   top: 44%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 38s;
   animation-name: float2;
@@ -3826,7 +3833,7 @@
   width: 21px;
   left: 8%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 37s;
   animation-name: floatReverse2;
@@ -3839,7 +3846,7 @@
   width: 15px;
   left: 74%;
   top: 43%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -3852,7 +3859,7 @@
   width: 14px;
   left: 23%;
   top: 13%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 39s;
   animation-name: float2;
@@ -3865,7 +3872,7 @@
   width: 21px;
   left: 84%;
   top: 5%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 31s;
   animation-name: float2;
@@ -3878,7 +3885,7 @@
   width: 18px;
   left: 64%;
   top: 85%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 38s;
   animation-name: float;
@@ -3891,7 +3898,7 @@
   width: 15px;
   left: 17%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 33s;
   animation-name: float2;
@@ -3904,7 +3911,7 @@
   width: 23px;
   left: 52%;
   top: 89%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 27s;
   animation-name: float;
@@ -3917,7 +3924,7 @@
   width: 25px;
   left: 51%;
   top: 8%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 35s;
   animation-name: float;
@@ -3930,7 +3937,7 @@
   width: 18px;
   left: 45%;
   top: 73%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -3943,7 +3950,7 @@
   width: 25px;
   left: 98%;
   top: 87%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 28s;
   animation-name: floatReverse2;
@@ -3956,7 +3963,7 @@
   width: 23px;
   left: 5%;
   top: 23%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -3969,7 +3976,7 @@
   width: 11px;
   left: 69%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 31s;
   animation-name: floatReverse2;
@@ -3982,7 +3989,7 @@
   width: 22px;
   left: 76%;
   top: 34%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -3995,7 +4002,7 @@
   width: 14px;
   left: 6%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -4008,7 +4015,7 @@
   width: 16px;
   left: 59%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -4021,7 +4028,7 @@
   width: 25px;
   left: 23%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 22s;
   animation-name: float2;
@@ -4034,7 +4041,7 @@
   width: 23px;
   left: 27%;
   top: 67%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -4047,7 +4054,7 @@
   width: 24px;
   left: 19%;
   top: 33%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -4060,7 +4067,7 @@
   width: 19px;
   left: 45%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 35s;
   animation-name: floatReverse2;
@@ -4073,7 +4080,7 @@
   width: 13px;
   left: 52%;
   top: 35%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -4086,7 +4093,7 @@
   width: 11px;
   left: 42%;
   top: 2%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 32s;
   animation-name: float2;
@@ -4099,7 +4106,7 @@
   width: 24px;
   left: 5%;
   top: 22%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: float;
@@ -4112,7 +4119,7 @@
   width: 11px;
   left: 6%;
   top: 35%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 26s;
   animation-name: float2;
@@ -4125,7 +4132,7 @@
   width: 13px;
   left: 92%;
   top: 54%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 33s;
   animation-name: float2;
@@ -4138,7 +4145,7 @@
   width: 17px;
   left: 33%;
   top: 5%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 33s;
   animation-name: floatReverse;
@@ -4151,7 +4158,7 @@
   width: 21px;
   left: 52%;
   top: 94%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -4164,7 +4171,7 @@
   width: 13px;
   left: 24%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 29s;
   animation-name: floatReverse2;
@@ -4177,7 +4184,7 @@
   width: 20px;
   left: 32%;
   top: 62%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 22s;
   animation-name: floatReverse;
@@ -4190,7 +4197,7 @@
   width: 13px;
   left: 33%;
   top: 37%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -4203,7 +4210,7 @@
   width: 22px;
   left: 43%;
   top: 37%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 38s;
   animation-name: float;
@@ -4216,7 +4223,7 @@
   width: 14px;
   left: 99%;
   top: 42%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 23s;
   animation-name: float2;
@@ -4229,7 +4236,7 @@
   width: 14px;
   left: 3%;
   top: 32%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 31s;
   animation-name: float;
@@ -4242,7 +4249,7 @@
   width: 16px;
   left: 47%;
   top: 50%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -4255,7 +4262,7 @@
   width: 17px;
   left: 66%;
   top: 7%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 31s;
   animation-name: float2;
@@ -4268,7 +4275,7 @@
   width: 25px;
   left: 21%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -4281,7 +4288,7 @@
   width: 18px;
   left: 59%;
   top: 65%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -4294,7 +4301,7 @@
   width: 22px;
   left: 98%;
   top: 100%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 34s;
   animation-name: float;
@@ -4307,7 +4314,7 @@
   width: 17px;
   left: 29%;
   top: 19%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 35s;
   animation-name: float2;
@@ -4320,7 +4327,7 @@
   width: 19px;
   left: 32%;
   top: 10%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 31s;
   animation-name: floatReverse;
@@ -4333,7 +4340,7 @@
   width: 17px;
   left: 92%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 34s;
   animation-name: float;
@@ -4346,7 +4353,7 @@
   width: 12px;
   left: 77%;
   top: 50%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 39s;
   animation-name: float;
@@ -4359,7 +4366,7 @@
   width: 18px;
   left: 93%;
   top: 99%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 23s;
   animation-name: float;
@@ -4372,7 +4379,7 @@
   width: 14px;
   left: 54%;
   top: 73%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 31s;
   animation-name: float;
@@ -4385,7 +4392,7 @@
   width: 14px;
   left: 18%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -4398,7 +4405,7 @@
   width: 22px;
   left: 70%;
   top: 45%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 21s;
   animation-name: floatReverse2;
@@ -4411,7 +4418,7 @@
   width: 13px;
   left: 69%;
   top: 55%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 34s;
   animation-name: float2;
@@ -4424,7 +4431,7 @@
   width: 12px;
   left: 8%;
   top: 15%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 30s;
   animation-name: float2;
@@ -4437,7 +4444,7 @@
   width: 12px;
   left: 35%;
   top: 36%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 34s;
   animation-name: float;
@@ -4450,7 +4457,7 @@
   width: 13px;
   left: 82%;
   top: 66%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 24s;
   animation-name: floatReverse;
@@ -4463,7 +4470,7 @@
   width: 20px;
   left: 34%;
   top: 59%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 30s;
   animation-name: float2;
@@ -4476,7 +4483,7 @@
   width: 23px;
   left: 82%;
   top: 95%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 40s;
   animation-name: floatReverse;
@@ -4489,7 +4496,7 @@
   width: 15px;
   left: 77%;
   top: 20%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 35s;
   animation-name: floatReverse2;
@@ -4502,7 +4509,7 @@
   width: 15px;
   left: 80%;
   top: 47%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 24s;
   animation-name: floatReverse;
@@ -4515,7 +4522,7 @@
   width: 17px;
   left: 75%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 40s;
   animation-name: floatReverse2;
@@ -4528,7 +4535,7 @@
   width: 18px;
   left: 1%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 28s;
   animation-name: float2;
@@ -4541,7 +4548,7 @@
   width: 21px;
   left: 55%;
   top: 88%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 23s;
   animation-name: float2;
@@ -4554,7 +4561,7 @@
   width: 20px;
   left: 23%;
   top: 64%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -4567,7 +4574,7 @@
   width: 13px;
   left: 15%;
   top: 53%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 26s;
   animation-name: float2;
@@ -4580,7 +4587,7 @@
   width: 21px;
   left: 98%;
   top: 42%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 37s;
   animation-name: floatReverse;
@@ -4593,7 +4600,7 @@
   width: 16px;
   left: 76%;
   top: 59%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 34s;
   animation-name: float;
@@ -4606,7 +4613,7 @@
   width: 11px;
   left: 46%;
   top: 36%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 38s;
   animation-name: floatReverse;
@@ -4619,7 +4626,7 @@
   width: 24px;
   left: 79%;
   top: 3%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 38s;
   animation-name: floatReverse2;
@@ -4632,7 +4639,7 @@
   width: 19px;
   left: 16%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 21s;
   animation-name: float;
@@ -4645,7 +4652,7 @@
   width: 17px;
   left: 99%;
   top: 58%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 32s;
   animation-name: float;
@@ -4658,7 +4665,7 @@
   width: 22px;
   left: 38%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 40s;
   animation-name: float2;
@@ -4671,7 +4678,7 @@
   width: 16px;
   left: 42%;
   top: 25%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 40s;
   animation-name: float2;
@@ -4684,7 +4691,7 @@
   width: 21px;
   left: 35%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 25s;
   animation-name: float;
@@ -4697,7 +4704,7 @@
   width: 18px;
   left: 45%;
   top: 23%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 30s;
   animation-name: float;
@@ -4710,7 +4717,7 @@
   width: 18px;
   left: 41%;
   top: 99%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 31s;
   animation-name: floatReverse2;
@@ -4723,7 +4730,7 @@
   width: 15px;
   left: 34%;
   top: 66%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 39s;
   animation-name: floatReverse;
@@ -4736,7 +4743,7 @@
   width: 16px;
   left: 50%;
   top: 37%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 26s;
   animation-name: float;
@@ -4749,7 +4756,7 @@
   width: 23px;
   left: 54%;
   top: 75%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 34s;
   animation-name: floatReverse2;
@@ -4762,7 +4769,7 @@
   width: 20px;
   left: 1%;
   top: 8%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 39s;
   animation-name: floatReverse2;
@@ -4775,7 +4782,7 @@
   width: 14px;
   left: 89%;
   top: 31%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 30s;
   animation-name: floatReverse;
@@ -4788,7 +4795,7 @@
   width: 20px;
   left: 29%;
   top: 39%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 38s;
   animation-name: float;
@@ -4801,7 +4808,7 @@
   width: 13px;
   left: 56%;
   top: 4%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -4814,7 +4821,7 @@
   width: 13px;
   left: 52%;
   top: 18%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 28s;
   animation-name: float2;
@@ -4827,7 +4834,7 @@
   width: 11px;
   left: 91%;
   top: 28%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: float;
@@ -4840,7 +4847,7 @@
   width: 20px;
   left: 86%;
   top: 9%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 27s;
   animation-name: floatReverse2;
@@ -4853,7 +4860,7 @@
   width: 20px;
   left: 41%;
   top: 80%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -4866,7 +4873,7 @@
   width: 25px;
   left: 7%;
   top: 58%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 24s;
   animation-name: floatReverse2;
@@ -4879,7 +4886,7 @@
   width: 11px;
   left: 3%;
   top: 97%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 31s;
   animation-name: float2;
@@ -4892,7 +4899,7 @@
   width: 22px;
   left: 42%;
   top: 44%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -4905,7 +4912,7 @@
   width: 15px;
   left: 34%;
   top: 93%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -4918,7 +4925,7 @@
   width: 17px;
   left: 55%;
   top: 27%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 28s;
   animation-name: float2;
@@ -4931,7 +4938,7 @@
   width: 23px;
   left: 6%;
   top: 46%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 30s;
   animation-name: floatReverse2;
@@ -4944,7 +4951,7 @@
   width: 15px;
   left: 37%;
   top: 73%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -4957,7 +4964,7 @@
   width: 21px;
   left: 91%;
   top: 16%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 29s;
   animation-name: floatReverse2;
@@ -4970,7 +4977,7 @@
   width: 17px;
   left: 67%;
   top: 82%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 31s;
   animation-name: float2;
@@ -4983,7 +4990,7 @@
   width: 17px;
   left: 57%;
   top: 73%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
   animation-duration: 30s;
   animation-name: floatReverse;
@@ -4996,7 +5003,7 @@
   width: 18px;
   left: 93%;
   top: 62%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 29s;
   animation-name: floatReverse2;
@@ -5009,7 +5016,7 @@
   width: 13px;
   left: 76%;
   top: 98%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 26s;
   animation-name: float;
@@ -5022,7 +5029,7 @@
   width: 17px;
   left: 74%;
   top: 49%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 28s;
   animation-name: float;
@@ -5035,7 +5042,7 @@
   width: 14px;
   left: 80%;
   top: 17%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 35s;
   animation-name: floatReverse2;
@@ -5048,7 +5055,7 @@
   width: 22px;
   left: 93%;
   top: 79%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 36s;
   animation-name: floatReverse2;
@@ -5061,7 +5068,7 @@
   width: 13px;
   left: 35%;
   top: 59%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -5074,7 +5081,7 @@
   width: 18px;
   left: 45%;
   top: 57%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 39s;
   animation-name: float2;
@@ -5087,7 +5094,7 @@
   width: 23px;
   left: 44%;
   top: 70%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 21s;
   animation-name: floatReverse;
@@ -5100,7 +5107,7 @@
   width: 25px;
   left: 24%;
   top: 26%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 22s;
   animation-name: float2;
@@ -5113,7 +5120,7 @@
   width: 15px;
   left: 66%;
   top: 77%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 26s;
   animation-name: float2;
@@ -5126,7 +5133,7 @@
   width: 13px;
   left: 93%;
   top: 20%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
   animation-duration: 22s;
   animation-name: floatReverse;
@@ -5139,7 +5146,7 @@
   width: 11px;
   left: 2%;
   top: 16%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 40s;
   animation-name: float2;
@@ -5152,7 +5159,7 @@
   width: 17px;
   left: 16%;
   top: 89%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 38s;
   animation-name: floatReverse2;
@@ -5165,7 +5172,7 @@
   width: 17px;
   left: 12%;
   top: 77%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
   animation-duration: 31s;
   animation-name: float2;
@@ -5178,7 +5185,7 @@
   width: 24px;
   left: 6%;
   top: 40%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 35s;
   animation-name: float;
@@ -5191,7 +5198,7 @@
   width: 16px;
   left: 27%;
   top: 86%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 26s;
   animation-name: floatReverse2;
@@ -5204,7 +5211,7 @@
   width: 25px;
   left: 83%;
   top: 90%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -5217,7 +5224,7 @@
   width: 13px;
   left: 39%;
   top: 92%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.1s;
   animation-duration: 29s;
   animation-name: floatReverse;
@@ -5230,7 +5237,7 @@
   width: 11px;
   left: 5%;
   top: 5%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 29s;
   animation-name: float;
@@ -5243,7 +5250,7 @@
   width: 12px;
   left: 61%;
   top: 57%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 23s;
   animation-name: floatReverse;
@@ -5256,7 +5263,7 @@
   width: 13px;
   left: 100%;
   top: 48%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 22s;
   animation-name: float;
@@ -5269,7 +5276,7 @@
   width: 13px;
   left: 60%;
   top: 8%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.5s;
   animation-duration: 30s;
   animation-name: float2;
@@ -5282,7 +5289,7 @@
   width: 13px;
   left: 92%;
   top: 3%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.4s;
   animation-duration: 33s;
   animation-name: floatReverse2;
@@ -5295,7 +5302,7 @@
   width: 18px;
   left: 36%;
   top: 74%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;
   animation-duration: 35s;
   animation-name: floatReverse;
@@ -5308,7 +5315,7 @@
   width: 11px;
   left: 28%;
   top: 20%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
   animation-duration: 27s;
   animation-name: floatReverse;
@@ -5321,7 +5328,7 @@
   width: 13px;
   left: 30%;
   top: 35%;
-  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.8s;
   animation-duration: 32s;
   animation-name: float;

@@ -1,9 +1,9 @@
 import { AppContext } from "../../Context/AppContext";
-import { useState, useContext, useEffect, memo } from "react";
+import { useState, useContext, useEffect, memo, forwardRef } from "react";
 import Slider from "@mui/material/Slider";
 import '../../index.css'
 
-const CustomSlider = (props) => {
+const CustomSlider = forwardRef((props, ref) => {
   const [state] = useContext(AppContext);
   const {darkmodevalue, overridedarkmode, ...others} = props
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
@@ -18,6 +18,7 @@ const CustomSlider = (props) => {
 
   return (
     <Slider
+      ref={ref}
       sx={{
         color: needToUseDark ? "WHITE" : "#1f2929",
         height: 8,
@@ -61,6 +62,6 @@ const CustomSlider = (props) => {
       {...others}
     />
   );
-};
+});
 
 export default memo(CustomSlider);

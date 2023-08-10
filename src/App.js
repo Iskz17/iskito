@@ -5,6 +5,7 @@ import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import LazyLoading from "./LazyLoading/LazyLoading";
+import MusicPlayer from "./MusicPlayer/MusicPlayer"
 import { DialogCollection } from "./DialogCollection/DialogCollection";
 import { useState, useContext, useMemo, useCallback } from "react";
 import "./Particle.css";
@@ -71,6 +72,15 @@ const App = () => {
         content: (
           <Section>
             <LazyLoading />
+          </Section>
+        ),
+      },
+      {
+        label: "Music Player",
+        key: 4,
+        content: (
+          <Section>
+            <MusicPlayer />
           </Section>
         ),
       },

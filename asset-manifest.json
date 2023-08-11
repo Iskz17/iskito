@@ -1,18 +1,21 @@
 {
   "files": {
     "main.css": "/iskito-project/static/css/main.0425ba36.css",
-    "main.js": "/iskito-project/static/js/main.2bb79cd7.js",
+    "main.js": "/iskito-project/static/js/main.d82124a3.js",
+    "static/media/pg.mp3": "/iskito-project/static/media/pg.ab1c0aec1c51c5674a5a.mp3",
     "static/media/Lifetime.mp3": "/iskito-project/static/media/Lifetime.c1c91a1b0eaa3859ede6.mp3",
     "static/media/kito-nobg.png": "/iskito-project/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito-project/static/media/kito.4dc77956c18c9968bc5b.jpg",
+    "static/media/pgc.png": "/iskito-project/static/media/pgc.5f7a21b8474b0ed0e224.png",
     "static/media/Gilroy-Light.otf": "/iskito-project/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
     "static/media/cropedcc.png": "/iskito-project/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
+    "static/media/lftc.jpg": "/iskito-project/static/media/lftc.a787e5cf3f2f428fd112.jpg",
     "index.html": "/iskito-project/index.html",
     "main.0425ba36.css.map": "/iskito-project/static/css/main.0425ba36.css.map",
-    "main.2bb79cd7.js.map": "/iskito-project/static/js/main.2bb79cd7.js.map"
+    "main.d82124a3.js.map": "/iskito-project/static/js/main.d82124a3.js.map"
   },
   "entrypoints": [
     "static/css/main.0425ba36.css",
-    "static/js/main.2bb79cd7.js"
+    "static/js/main.d82124a3.js"
   ]
 }

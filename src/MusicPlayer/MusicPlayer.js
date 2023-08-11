@@ -197,7 +197,8 @@ const MusicPlayer = () => {
         <div
           style={{
             position: "absolute",
-            height: "calc(100vh - 20px)",
+            height: "100vh",
+            background: needToUseDark ? "#0f151a" : "#f0ddf3",
             width: "100%",
             overflow: "hidden",
             zIndex: 0,

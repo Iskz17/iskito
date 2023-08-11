@@ -1,15 +1,12 @@
 import "./App.css";
 import Typewriter from "typewriter-effect";
 import Kito from "./kito-nobg.png";
-import ParticleBackground from "./particle";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import LazyLoading from "./LazyLoading/LazyLoading";
 import MusicPlayer from "./MusicPlayer/MusicPlayer"
-import { DialogCollection } from "./DialogCollection/DialogCollection";
-import { useState, useContext, useMemo, useCallback } from "react";
+import { useState } from "react";
 import "./Particle.css";
-import { AppContext, AppContextProvider } from "./Context/AppContext";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import Section from "./Component/Section/Section"
@@ -18,15 +15,6 @@ import worker_script from './worker';
 var myWorker = new Worker(worker_script);
 
 const App = () => {
-  const headerItem = {
-    minwidth: "0",
-    height: "100%",
-    background: "rgba(152, 194, 211, 0.555)",
-    color: "white",
-    fontSize: "0.6em",
-    padding: "13px 3%",
-    textAlign: "center",
-  };
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);

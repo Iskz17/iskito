@@ -117,6 +117,7 @@ const MusicPlayer = () => {
 
   const handleEnded = () => {
     setIsPlaying(false);
+    handleNextSong();
   }
 
   const updateMax = () => {
@@ -172,6 +173,7 @@ const MusicPlayer = () => {
     document.body.style.cssText = `
     --musicplayer-1stcolor: ${state.isDarkMode? "#211145":"#e784b3"};
     --musicplayer-2ndcolor: ${state.isDarkMode? "#66ff00":"#f5c26b"};
+    --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"}
    `
   }, [state]);
 
@@ -189,7 +191,7 @@ const MusicPlayer = () => {
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
-          height: "100vh",
+          height:matches ? "unset" : "100vh",
         }}
       >
         <div

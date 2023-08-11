@@ -1,3 +1,7 @@
+:root{
+    --musicplayer-sectioncolor: white;
+  }
+
 .pulseAnimation::before {
     content:"";
     inset: 0;
@@ -25,4 +29,8 @@
     width: 100%;
     overflow: hidden;
     z-index: 1;
+}
+
+.sectionColor {
+    background: var(--musicplayer-sectioncolor);
 }

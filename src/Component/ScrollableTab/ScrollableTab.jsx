@@ -122,7 +122,11 @@ const ScrollableTabs = (props) => {
         </Stack>
       </AppBar>
       {tabs?.map((v, index) => (
-        <TabPanel value={value} index={index} key={`${index}_tabs`}>
+        <TabPanel
+          value={value}
+          index={index}
+          key={`${index}_tabs`}
+        >
           {v.content}
         </TabPanel>
       ))}

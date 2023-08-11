@@ -1079,7 +1079,7 @@ const GlassmorphismBox = () => {
           <span>frosted glass style</span>
         </Stack>
         <Stack
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}
           direction={"column"}
           sx={{ py: 2 }}

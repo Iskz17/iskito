@@ -1,4 +1,3 @@
-import Compress from "browser-image-compression";
 import Stack from "@mui/material/Stack";
 import { AppContext } from "../Context/AppContext";
 import React, { useState, useContext, useEffect, useRef } from "react";
@@ -10,9 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@mui/material/Typography";
 import mekito from "../Assets/kito.jpg";
-import { PrimaryButton } from "../Component/Button/CustomButton";
 import ParticleBackground from "../particle";
-import Box from "@mui/material/Box";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
@@ -23,6 +20,9 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PauseIcon from "@mui/icons-material/Pause";
 import lifetime from "../Assets/Lifetime.mp3";
+import pg from "../Assets/pg.mp3"
+import lftc from "../Assets/lftc.jpg"
+import pgc from "../Assets/pgc.png"
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
 
@@ -32,6 +32,8 @@ const MusicPlayer = () => {
   const [progressValue, setProgressValue] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [maxDuration, setMaxDuration] = useState(0);
+  const [track, setTrack] = useState();
+  const [index, setIndex] = useState(0);
   const audioRef = useRef(); // create a ref to access the <audio> element
   const theme = createTheme({
     breakpoints: {
@@ -45,12 +47,29 @@ const MusicPlayer = () => {
   });
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
-  // green #211145 0%, #66ff00
-  //pink
+    const tracks = [
+      {
+        cover: lftc,
+        title: "Lifetime - Justin Bieber",
+        data: lifetime,
+      },
+      {
+        cover: pgc,
+        title: "Perempuan Gila - Nadin Amizah",
+        data: pg,
+      },
+    ];
+
+    useEffect(()=> {
+      setTrack(tracks[0]);
+    },[])
+
+  // green #211145 #66ff00
+  //pink #e784b3 #f5c26b
 
   const useStyles = makeStyles(() => ({
     root: {
-      maxWidth: 400,
+      maxWidth: 390,
       height: 620,
       borderRadius: 12,
       padding: 20,
@@ -109,6 +128,32 @@ const MusicPlayer = () => {
     // progressRef.current.value = Math.round(audioRef.current.currentTime);
   }
 
+  const handleForward10 = () => {
+    audioRef.current.currentTime = audioRef.current.currentTime + 10; 
+  }
+
+  const handleRewind10 = () => {
+    audioRef.current.currentTime = audioRef.current.currentTime - 10;
+  }
+
+  const handleChangeSong = () => {
+    if(isPlaying){
+      audioRef.current.play();
+    }
+  }
+
+  const handleNextSong = () => {
+    setTrack(tracks[index === 0? 1: 0]);
+    setIndex(index === 0 ? 1 : 0);
+    handleChangeSong();
+  }
+
+  const handlePreviousSong = () => {
+    setTrack(tracks[index === 0? 1: 0]);
+    setIndex(index === 0 ? 1 : 0);
+    handleChangeSong();
+  }
+
   const formatTime = (time) => {
     if (time && !isNaN(time)) {
       const minutes = Math.floor(time / 60);
@@ -130,23 +175,27 @@ const MusicPlayer = () => {
    `
   }, [state]);
 
+  useEffect(() => {
+    handleChangeSong();
+  },[index])
+
   return (
     <>
       <div
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
-          background: needToUseDark ?"#0f151a" : "#f0ddf3",
+          background: needToUseDark ? "#0f151a" : "#f0ddf3",
           color: needToUseDark
-          ? "rgba(255, 255, 255, 0.7)"
-          : "rgba(0, 0, 0, 0.7)",
-          height: matches ? "unset" : "100vh",
+            ? "rgba(255, 255, 255, 0.7)"
+            : "rgba(0, 0, 0, 0.7)",
+          height: "100vh",
         }}
       >
         <div
           style={{
             position: "absolute",
-            height: matches ? "unset" : "calc(100% - 20px)",
+            height: "calc(100vh - 20px)",
             width: "100%",
             overflow: "hidden",
             zIndex: 0,
@@ -167,7 +216,7 @@ const MusicPlayer = () => {
           <span>Favorite song collections</span>
         </Stack>
         <Stack
-          style={{ width: "100%", zIndex: 2 }}
+          style={{ width: "100%", zIndex: 2, marginTop: matches ? "-26px" : 0 }}
           spacing={1}
           gap={2}
           direction={matches ? "column" : "row"}
@@ -195,10 +244,7 @@ const MusicPlayer = () => {
                   }}
                 />
               </IconButton>
-              <IconButton
-                aria-label="favorite"
-                size="small"
-              >
+              <IconButton aria-label="favorite" size="small">
                 <FavoriteBorderOutlinedIcon
                   style={{
                     color: "white",
@@ -220,13 +266,13 @@ const MusicPlayer = () => {
                 className={styles.media}
                 component="img"
                 height={340}
-                image={mekito}
+                image={track?.cover}
               />
               <CardMedia
                 className={styles.mediaShadow}
                 component="img"
                 height={340}
-                image={mekito}
+                image={track?.cover}
               />
             </div>
             <CardContent>
@@ -235,13 +281,14 @@ const MusicPlayer = () => {
                 gutterBottom
                 variant="h5"
                 component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
-                Lifetime
+                {track?.title}
               </Typography>
 
               <audio
                 ref={audioRef}
-                src={lifetime}
+                src={track?.data}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedData={updateMax}
                 onEnded={handleEnded}
@@ -256,7 +303,7 @@ const MusicPlayer = () => {
                 <span>{formatTime(progressValue)}</span>
                 <CustomSlider
                   // ref={progressRef}
-                  step={.2}
+                  step={0.2}
                   value={progressValue}
                   min={0}
                   max={maxDuration}
@@ -279,7 +326,11 @@ const MusicPlayer = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <IconButton aria-label="favorite" size="medium">
+                <IconButton
+                  aria-label="favorite"
+                  size="medium"
+                  onClick={handlePreviousSong}
+                >
                   <SkipPreviousIcon
                     style={{
                       color: "white",
@@ -288,7 +339,11 @@ const MusicPlayer = () => {
                     }}
                   />
                 </IconButton>
-                <IconButton aria-label="favorite" size="medium">
+                <IconButton
+                  aria-label="favorite"
+                  size="medium"
+                  onClick={handleRewind10}
+                >
                   <Replay10Icon
                     style={{
                       color: "white",
@@ -332,7 +387,11 @@ const MusicPlayer = () => {
                     />
                   </IconButton>
                 )}
-                <IconButton aria-label="favorite" size="medium">
+                <IconButton
+                  aria-label="favorite"
+                  size="medium"
+                  onClick={handleForward10}
+                >
                   <Forward10Icon
                     style={{
                       color: "white",
@@ -341,7 +400,11 @@ const MusicPlayer = () => {
                     }}
                   />
                 </IconButton>
-                <IconButton aria-label="favorite" size="medium">
+                <IconButton
+                  aria-label="favorite"
+                  size="medium"
+                  onClick={handleNextSong}
+                >
                   <SkipNextIcon
                     style={{
                       color: "white",

@@ -13,8 +13,6 @@ import mekito from "../Assets/kito.jpg";
 import { PrimaryButton } from "../Component/Button/CustomButton";
 import "./LazyLoading.css";
 
-//might need browserfs for this
-
 const LazyLoading = () => {
   const [state] = useContext(AppContext);
   const [kitoCompressed, setKitoCompressed] = useState(null);
@@ -218,7 +216,7 @@ const LazyLoading = () => {
           <span>reduce mental loading</span>
         </Stack>
         <Stack
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginTop: matches ? "-26px" : 0}}
           spacing={1}
           gap={2}
           direction={matches ? "column" : "row"}

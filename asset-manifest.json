@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/iskito-project/static/css/main.a6407d22.css",
-    "main.js": "/iskito-project/static/js/main.22847305.js",
-    "static/media/pg.mp3": "/iskito-project/static/media/pg.ab1c0aec1c51c5674a5a.mp3",
-    "static/media/Lifetime.mp3": "/iskito-project/static/media/Lifetime.c1c91a1b0eaa3859ede6.mp3",
-    "static/media/kito-nobg.png": "/iskito-project/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
-    "static/media/kito.jpg": "/iskito-project/static/media/kito.4dc77956c18c9968bc5b.jpg",
-    "static/media/pgc.png": "/iskito-project/static/media/pgc.5f7a21b8474b0ed0e224.png",
-    "static/media/Gilroy-Light.otf": "/iskito-project/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
-    "static/media/cropedcc.png": "/iskito-project/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
-    "static/media/lftc.jpg": "/iskito-project/static/media/lftc.a787e5cf3f2f428fd112.jpg",
-    "index.html": "/iskito-project/index.html",
-    "main.a6407d22.css.map": "/iskito-project/static/css/main.a6407d22.css.map",
-    "main.22847305.js.map": "/iskito-project/static/js/main.22847305.js.map"
+    "main.css": "/iskito/static/css/main.db51e9bc.css",
+    "main.js": "/iskito/static/js/main.bbeee54d.js",
+    "static/media/pg.mp3": "/iskito/static/media/pg.ab1c0aec1c51c5674a5a.mp3",
+    "static/media/Lifetime.mp3": "/iskito/static/media/Lifetime.c1c91a1b0eaa3859ede6.mp3",
+    "static/media/kito-nobg.png": "/iskito/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
+    "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
+    "static/media/pgc.png": "/iskito/static/media/pgc.5f7a21b8474b0ed0e224.png",
+    "static/media/Gilroy-Light.otf": "/iskito/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
+    "static/media/cropedcc.png": "/iskito/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
+    "static/media/lftc.jpg": "/iskito/static/media/lftc.a787e5cf3f2f428fd112.jpg",
+    "index.html": "/iskito/index.html",
+    "main.db51e9bc.css.map": "/iskito/static/css/main.db51e9bc.css.map",
+    "main.bbeee54d.js.map": "/iskito/static/js/main.bbeee54d.js.map"
   },
   "entrypoints": [
-    "static/css/main.a6407d22.css",
-    "static/js/main.22847305.js"
+    "static/css/main.db51e9bc.css",
+    "static/js/main.bbeee54d.js"
   ]
 }

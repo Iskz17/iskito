@@ -1,7 +1,9 @@
 import Stack from "@mui/material/Stack";
 import { AppContext } from "../Context/AppContext";
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomCard, CustomCardMedia, CustomCardMediaShadow } from "./CustomCard";
+import { lyrics } from "./Lyrics";
 import Card from "@material-ui/core/Card";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme } from "@mui/material/styles";
@@ -26,7 +28,7 @@ import pgc from "../Assets/pgc.png"
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
 
-const MusicPlayer = (props) => {
+const MusicPlayer = forwardRef((props, ref) => {
   const [state] = useContext(AppContext);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [progressValue, setProgressValue] = useState(0);
@@ -34,7 +36,9 @@ const MusicPlayer = (props) => {
   const [maxDuration, setMaxDuration] = useState(0);
   const [track, setTrack] = useState();
   const [index, setIndex] = useState(0);
+  const [currentLyric, setCurrentLyric] = useState();
   const audioRef = useRef(); // create a ref to access the <audio> element
+  const lyricRef = useRef("");
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -62,47 +66,48 @@ const MusicPlayer = (props) => {
 
     useEffect(()=> {
       setTrack(tracks[0]);
+      setCurrentLyric(lyrics[0]);
     },[])
 
   // green #211145 #66ff00
   //pink #e784b3 #f5c26b
 
-  const useStyles = makeStyles(() => ({
-    root: {
-      maxWidth: 390,
-      height: 620,
-      borderRadius: 12,
-      padding: 20,
-      boxShadow: "none",
-      background: "#121212",
-      backdropFilter: "blur(10px) saturate(120%)",
-      backgroundColor: needToUseDark
-        ? "rgba(0,0,0, 0.5)"
-        : "rgba(82,86,87, 0.2)",
-    },
-    media: {
-      width: "90%",
-      borderRadius: 20,
-      position: "relative",
-      zIndex: 1,
-      transition: "filter .5s ease-in-out",
-    },
-    mediaShadow: {
-      filter: "blur(10px) saturate(0.9)",
-      position: "absolute",
-      width: "90%",
-      top: 0,
-      zIndex: 0,
-      transition: "filter 5s ease-in-out",
-    },
-    mediaCompressed: {
-      borderRadius: 20,
-      position: "relative",
-      transition: "filter .5s ease-in-out",
-      filter: "blur(15px) saturate(0.7)",
-    },
-  }));
-  const styles = useStyles();
+  // const useStyles = makeStyles(() => ({
+  //   root: {
+  //     maxWidth: 390,
+  //     height: 620,
+  //     borderRadius: 12,
+  //     padding: 20,
+  //     boxShadow: "none",
+  //     background: "#121212",
+  //     backdropFilter: "blur(10px) saturate(120%)",
+  //     backgroundColor: needToUseDark
+  //       ? "rgba(0,0,0, 0.5)"
+  //       : "rgba(82,86,87, 0.2)",
+  //   },
+  //   media: {
+  //     width: "90%",
+  //     borderRadius: 20,
+  //     position: "relative",
+  //     zIndex: 1,
+  //     transition: "filter .5s ease-in-out",
+  //   },
+  //   mediaShadow: {
+  //     filter: "blur(10px) saturate(0.9)",
+  //     position: "absolute",
+  //     width: "90%",
+  //     top: 0,
+  //     zIndex: 0,
+  //     transition: "filter 5s ease-in-out",
+  //   },
+  //   mediaCompressed: {
+  //     borderRadius: 20,
+  //     position: "relative",
+  //     transition: "filter .5s ease-in-out",
+  //     filter: "blur(15px) saturate(0.7)",
+  //   },
+  // }));
+  // const styles = useStyles();
   const handlePause = () => {
     audioRef.current.pause(); // pause the audio track
   };
@@ -127,6 +132,15 @@ const MusicPlayer = (props) => {
   const handleTimeUpdate = () => {
     setProgressValue(audioRef.current.currentTime);
     // progressRef.current.value = Math.round(audioRef.current.currentTime);
+  }
+
+  const getCurrentLine = (time) => {
+   let currTime = Math.floor(time);
+   if(currentLyric && currentLyric[currTime]){
+    lyricRef.current =  currentLyric[currTime];
+    return currentLyric[currTime];
+   }
+   return lyricRef.current;
   }
 
   const handleForward10 = () => {
@@ -185,7 +199,7 @@ const MusicPlayer = (props) => {
   return (
     <>
       <div
-      className="blobContainer"
+        className="blobContainer"
         style={{
           position: "absolute",
           background: needToUseDark ? "#0f151a" : "#f0ddf3",
@@ -233,7 +247,7 @@ const MusicPlayer = (props) => {
           alignItems="center"
           justifyContent={"center"}
         >
-          <Card className={styles.root}>
+          <CustomCard isDarkMode={needToUseDark}>
             <Stack
               direction="row"
               justifyContent={"space-between"}
@@ -271,14 +285,12 @@ const MusicPlayer = (props) => {
                 alignItems: "center",
               }}
             >
-              <CardMedia
-                className={styles.media}
+              <CustomCardMedia
                 component="img"
                 height={340}
                 image={track?.cover}
               />
-              <CardMedia
-                className={styles.mediaShadow}
+              <CustomCardMediaShadow
                 component="img"
                 height={340}
                 image={track?.cover}
@@ -309,20 +321,30 @@ const MusicPlayer = (props) => {
                 spacing={2}
                 style={{ color: "white" }}
               >
-                <span>{formatTime(progressValue)}</span>
-                <CustomSlider
-                  // ref={progressRef}
-                  step={0.2}
-                  value={progressValue}
-                  min={0}
-                  max={maxDuration}
-                  overridedarkmode={true}
-                  darkmodevalue={true}
-                  onChange={(e) => {
-                    handleChangeProgress(e);
-                  }}
-                />
-                <span>{formatTime(maxDuration)}</span>
+                <div style={{ width: "40px" }}>{formatTime(progressValue)}</div>
+                <div style={{ flex: 1 }}>
+                  <CustomSlider
+                    step={0.2}
+                    value={progressValue}
+                    min={0}
+                    max={maxDuration}
+                    overridedarkmode={true}
+                    darkmodevalue={true}
+                    onChange={(e) => {
+                      handleChangeProgress(e);
+                    }}
+                  />
+                </div>
+                <div style={{ width: "40px" }}>{formatTime(maxDuration)}</div>
+              </Stack>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={2}
+                style={{ color: "white" }}
+              >
+                <div>{getCurrentLine(progressValue)}</div>
               </Stack>
               <Stack
                 style={{
@@ -424,11 +446,11 @@ const MusicPlayer = (props) => {
                 </IconButton>
               </Stack>
             </CardContent>
-          </Card>
+          </CustomCard>
         </Stack>
       </div>
     </>
   );
-};
+});
 
 export default MusicPlayer;

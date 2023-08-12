@@ -69,15 +69,6 @@ const App = () => {
         key: 4,
         content: (
           <Section ref={blobRef}>
-            {/* <div
-             className="blobContainer"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "inherit",
-                background: "green",
-              }}
-            ></div> */}
             <MusicPlayer blobRef={blobRef}/>
           </Section>
         ),

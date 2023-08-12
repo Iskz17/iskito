@@ -5,11 +5,11 @@ import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import LazyLoading from "./LazyLoading/LazyLoading";
 import MusicPlayer from "./MusicPlayer/MusicPlayer"
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Particle.css";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
-import Section from "./Component/Section/Section"
+import { Section } from "./Component/Section/Section";
 import worker_script from './worker';
 
 var myWorker = new Worker(worker_script);
@@ -18,6 +18,7 @@ const App = () => {
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
+  const blobRef = useState();
   const handleChangeTab = (event, newValue) => {
     setTabValue(newValue);
     myWorker.onmessage = (m) => {
@@ -67,8 +68,17 @@ const App = () => {
         label: "Music Player",
         key: 4,
         content: (
-          <Section>
-            <MusicPlayer />
+          <Section ref={blobRef}>
+            {/* <div
+             className="blobContainer"
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "inherit",
+                background: "green",
+              }}
+            ></div> */}
+            <MusicPlayer blobRef={blobRef}/>
           </Section>
         ),
       },

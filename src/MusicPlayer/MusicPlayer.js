@@ -26,7 +26,7 @@ import pgc from "../Assets/pgc.png"
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
 
-const MusicPlayer = () => {
+const MusicPlayer = (props) => {
   const [state] = useContext(AppContext);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [progressValue, setProgressValue] = useState(0);
@@ -173,7 +173,8 @@ const MusicPlayer = () => {
     document.body.style.cssText = `
     --musicplayer-1stcolor: ${state.isDarkMode? "#211145":"#e784b3"};
     --musicplayer-2ndcolor: ${state.isDarkMode? "#66ff00":"#f5c26b"};
-    --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"}
+    --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
+    --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
    `
   }, [state]);
 
@@ -184,6 +185,18 @@ const MusicPlayer = () => {
   return (
     <>
       <div
+      className="blobContainer"
+        style={{
+          position: "absolute",
+          background: needToUseDark ? "#0f151a" : "#f0ddf3",
+          width: "100%",
+          overflow: "hidden",
+          zIndex: 0,
+        }}
+      >
+        <ParticleBackground />
+      </div>
+      <div
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
@@ -191,24 +204,12 @@ const MusicPlayer = () => {
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
-          height:matches ? "unset" : "100vh",
+          height: matches ? "unset" : "100vh",
+          overflowX: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            height: "100vh",
-            background: needToUseDark ? "#0f151a" : "#f0ddf3",
-            width: "100%",
-            overflow: "hidden",
-            zIndex: 0,
-          }}
-        >
-          <ParticleBackground />
-        </div>
-
         <Stack
-          style={{ width: "100%", zIndex: 2 }}
+          style={{ width: "100%", zIndex: 2, position: "relative" }}
           spacing={1}
           direction="column"
           sx={{ py: 2 }}
@@ -219,7 +220,12 @@ const MusicPlayer = () => {
           <span>Favorite song collections</span>
         </Stack>
         <Stack
-          style={{ width: "100%", zIndex: 2, marginTop: matches ? "-26px" : 0 }}
+          style={{
+            width: "100%",
+            zIndex: 2,
+            marginTop: matches ? "-26px" : 0,
+            position: "relative",
+          }}
           spacing={1}
           gap={2}
           direction={matches ? "column" : "row"}

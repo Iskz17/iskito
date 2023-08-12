@@ -20,11 +20,16 @@
 :root{
   --musicplayer-1stcolor: #e784b3;
   --musicplayer-2ndcolor: #f5c26b;
+  --musicplayer-blobContainerHeight: 100%;
 }
 
 .particle {
   position: absolute;
   border-radius: 50%;
+}
+
+.blobContainer {
+  height: var(--musicplayer-blobContainerHeight);
 }
 
 @-moz-keyframes float {
@@ -191,7 +196,7 @@
 .particle:nth-child(5) {
   height: 20px;
   width: 20px;
-  left: 100%;
+  left: 40%;
   top: 99%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.9s;
@@ -932,7 +937,7 @@
 .particle:nth-child(62) {
   height: 22px;
   width: 22px;
-  left: 100%;
+  left: 40%;
   top: 76%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 1s;
@@ -1738,7 +1743,7 @@
 .particle:nth-child(124) {
   height: 25px;
   width: 25px;
-  left: 100%;
+  left: 40%;
   top: 32%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
@@ -3155,7 +3160,7 @@
 .particle:nth-child(233) {
   height: 11px;
   width: 11px;
-  left: 100%;
+  left: 40%;
   top: 88%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.3s;
@@ -3519,7 +3524,7 @@
 .particle:nth-child(261) {
   height: 22px;
   width: 22px;
-  left: 100%;
+  left: 40%;
   top: 45%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.6s;
@@ -3558,7 +3563,7 @@
 .particle:nth-child(264) {
   height: 15px;
   width: 15px;
-  left: 100%;
+  left: 40%;
   top: 5%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.2s;
@@ -5261,7 +5266,7 @@
 .particle:nth-child(395) {
   height: 13px;
   width: 13px;
-  left: 100%;
+  left: 40%;
   top: 48%;
   background: linear-gradient(120deg, var(--musicplayer-1stcolor) 0%, var(--musicplayer-2ndcolor) 100%);
   animation-delay: 0.7s;

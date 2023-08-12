@@ -1,19 +1,20 @@
 import * as React from "react";
 
-export default function SectionDiv(props) {
+export const Section = React.forwardRef((props, ref) => {
   const { children, id, ...rest } = props;
   return (
     <div
       id={id}
+      ref={ref}
       className="sectionColor"
       style={{
         width: "100%",
-        height: "100vh",
-        paddingTop:"15px"
+        height: "inherit",
+        paddingTop:"15px",
       }}
       {...rest}
     >
       {children}
     </div>
   );
-}
+});

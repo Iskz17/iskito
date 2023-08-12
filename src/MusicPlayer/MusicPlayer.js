@@ -1,16 +1,12 @@
 import Stack from "@mui/material/Stack";
 import { AppContext } from "../Context/AppContext";
 import React, { useState, useContext, useEffect, useRef, forwardRef } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { CustomCard, CustomCardMedia, CustomCardMediaShadow } from "./CustomCard";
 import { lyrics } from "./Lyrics";
-import Card from "@material-ui/core/Card";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme } from "@mui/material/styles";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@mui/material/Typography";
-import mekito from "../Assets/kito.jpg";
 import ParticleBackground from "../particle";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -69,7 +65,7 @@ const MusicPlayer = forwardRef((props, ref) => {
       setCurrentLyric(lyrics[0]);
     },[])
 
-  // green #211145 #66ff00
+  //green #211145 #66ff00
   //pink #e784b3 #f5c26b
 
   // const useStyles = makeStyles(() => ({
@@ -303,7 +299,7 @@ const MusicPlayer = forwardRef((props, ref) => {
               <Typography
                 color="white"
                 gutterBottom
-                variant="h5"
+                variant="h7"
                 component="div"
                 style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
@@ -340,15 +336,9 @@ const MusicPlayer = forwardRef((props, ref) => {
                 </div>
                 <div style={{ width: "40px" }}>{formatTime(maxDuration)}</div>
               </Stack>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={2}
-                style={{ color: "white" }}
-              >
-                <div>{getCurrentLine(progressValue)}</div>
-              </Stack>
+              <span style={{ color: "white" }}>
+                {getCurrentLine(progressValue)}
+              </span>
               <Stack
                 style={{
                   width: "100%",

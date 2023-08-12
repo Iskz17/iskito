@@ -1,5 +1,5 @@
 {
-  "name": "iskito-project",
+  "name": "iskito",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,5 +49,5 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
-  "homepage": "https://iskz17.github.io/iskito-project"
+  "homepage": "https://iskz17.github.io/iskito"
 }

@@ -8,7 +8,6 @@ import { AppContext } from "../Context/AppContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, {
   useState,
-  useRef,
   useMemo,
   useCallback,
   useContext,
@@ -65,11 +64,6 @@ const GlassmorphismBox = () => {
   const [currentCardType, setCurrentCardType] = useState("Credit Card");
   const [currentBackgroundType, setCurrentBackgroundType] =
     useState("Mesh Gradient");
-
-  const backgroundColorInputEl0 = useRef(null);
-  const backgroundColorInputEl1 = useRef(null);
-  const backgroundColorInputEl2 = useRef(null);
-  const cardColorInputEl = useRef(null);
 
   const StyledBadge = useMemo(() => {
     return styled(Badge)(({ theme }) => ({
@@ -244,7 +238,6 @@ const GlassmorphismBox = () => {
           justifyContent={"center"}
         >
           <div
-            // src={CardChip}
             style={{
               width: matches ? "46px" : "60px",
               height: matches ? "40%" : "50%",
@@ -626,6 +619,7 @@ const GlassmorphismBox = () => {
                   borderRadius: "5px",
                   height: "100%",
                   width: "33%",
+                  cursor: "pointer",
                   padding: "none",
                   border: needToUseDark
                     ? "1px solid rgba(255, 255, 255, 0.125)"
@@ -639,18 +633,22 @@ const GlassmorphismBox = () => {
                       )} 5px 9px 10px`,
                 }}
                 htmlFor="color"
+                onClick={() => {
+                  document.getElementById("color0").click();
+                }}
               >
                 <input
+                  id="color0"
                   type="color"
                   style={{
-                    opacity: 0,
+                    visibility: "hidden",
                     width: "100%",
                   }}
                   value={backgroundColor[0]}
                   onChange={(e) => handleColorChange(e, 0)}
                 />
               </Box>
-              <label
+              <Box
                 style={{
                   borderRadius: "5px",
                   height: "100%",
@@ -668,24 +666,22 @@ const GlassmorphismBox = () => {
                       )} 5px 9px 10px`,
                   cursor: "pointer",
                 }}
-                // onClick={() => {
-                //   backgroundColorInputEl1.current.click();
-                // }}
+                onClick={() => {
+                  document.getElementById("color1").click();
+                }}
               >
                 <input
-                  // ref={backgroundColorInputEl1}
+                  id="color1"
                   type="color"
                   style={{
-                    opacity: 0,
+                    visibility: "hidden",
                     width: "100%",
-                    // WebkitAppearance:"none",
-                    // visibility:"hidden",
                     cursor: "pointer",
                   }}
                   value={backgroundColor[1]}
                   onChange={(e) => handleColorChange(e, 1)}
                 />
-              </label>
+              </Box>
               <Box
                 style={{
                   borderRadius: "5px",
@@ -702,12 +698,17 @@ const GlassmorphismBox = () => {
                         backgroundColor[2],
                         70
                       )} 5px 9px 10px`,
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  document.getElementById("color2").click();
                 }}
               >
                 <input
+                  id="color2"
                   type="color"
                   style={{
-                    opacity: 0,
+                    visibility: "hidden",
                     width: "100%",
                   }}
                   value={backgroundColor[2]}
@@ -815,18 +816,17 @@ const GlassmorphismBox = () => {
                   boxShadow: needToUseDark
                     ? `rgb(52 54 57 / 82%) 5px 9px 10px`
                     : `${convertToRgbWithOpacity(cardColor, 70)} 5px 9px 10px`,
+                  cursor: "pointer",
                 }}
-                // onClick={() => {
-                //   cardColorInputEl.current.click();
-                // }}
+                onClick={() => {
+                  document.getElementById("color3").click();
+                }}
               >
                 <input
-                  // ref={cardColorInputEl}
+                  id="color3"
                   type="color"
                   style={{
-                    // WebkitAppearance: "none",
-                    // visibility: "hidden",
-                    opacity: 0,
+                    visibility: "hidden",
                     width: "100%",
                   }}
                   value={cardColor}

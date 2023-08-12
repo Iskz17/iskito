@@ -116,7 +116,7 @@ const MusicPlayer = (props) => {
   }
 
   const handleEnded = () => {
-    setIsPlaying(false);
+    // setIsPlaying(false);
     handleNextSong();
   }
 

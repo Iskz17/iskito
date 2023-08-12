@@ -122,6 +122,7 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   const handleEnded = () => {
     // setIsPlaying(false);
+    lyricRef.current = "";
     handleNextSong();
   }
 
@@ -154,12 +155,14 @@ const MusicPlayer = forwardRef((props, ref) => {
   const handleChangeSong = () => {
     if(isPlaying){
       audioRef.current.play();
+      lyricRef.current = "";
     }
   }
 
   const handleNextSong = () => {
     setTrack(tracks[index === 0? 1: 0]);
     setIndex(index === 0 ? 1 : 0);
+    setCurrentLyric(lyrics[index === 0? 1: 0])
     handleChangeSong();
   }
 

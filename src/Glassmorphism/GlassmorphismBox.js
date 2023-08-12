@@ -25,13 +25,6 @@ import { IsNullOrUndefined } from "../Utils/Utils";
 //might need browserfs for this
 
 const GlassmorphismBox = () => {
-  let settingMargin = {
-    marginBottom: "0px",
-    marginTop: "0px",
-    borderRadius: "15px",
-    padding: 0,
-  };
-
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -139,16 +132,12 @@ const GlassmorphismBox = () => {
 
   const SocialMediaCard = useCallback(() => {
     return (
-      <Box
+      <div
+        className="socialMediaCard"
         style={{
-          height: "86%",
-          width: "60%",
           backdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           WebkitBackdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           backgroundColor: `${convertToRgbWithOpacity(cardColor, opacityVal)}`,
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.25)",
-          transition: ".5s ease",
         }}
       >
         <Stack
@@ -185,28 +174,21 @@ const GlassmorphismBox = () => {
             for a long freaking text.
           </span>
         </Stack>
-      </Box>
+      </div>
     );
   }, [blurVal, cardColor, opacityVal, saturationVal]);
 
   const CreditCard = useCallback(() => {
     return (
-      <Box
-        sx={{
-          "&:hover": {
-            transform: "rotateY(35deg) translateX(20px) ",
-          },
-        }}
+      <div
+        className="creditCard"
         style={{
           height: matches ? "200px" : "50%",
           width: matches ? "300px" : "65%",
           backdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           WebkitBackdropFilter: `blur(${blurVal}px) saturate(${saturationVal}%)`,
           backgroundColor: `${convertToRgbWithOpacity(cardColor, opacityVal)}`,
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.25)",
           transform: matches ? "rotateZ(90deg)" : null,
-          transition: ".5s ease"
         }}
       >
         <Stack
@@ -275,7 +257,7 @@ const GlassmorphismBox = () => {
             Aqilah Iskandar
           </span>
         </Stack>
-      </Box>
+      </div>
     );
   }, [blurVal, cardColor, matches, opacityVal, saturationVal]);
 
@@ -294,64 +276,37 @@ const GlassmorphismBox = () => {
 
   const MeshGradientBackground = useCallback(() => {
     return (
-      <Box
+      <div
+        className="backgroundSetting"
         style={{
           backgroundColor: `${backgroundColor[2]}`,
           backgroundImage: ` radial-gradient(at 47% 33%, ${backgroundColor[0]} 0, transparent 59%), 
       radial-gradient(at 82% 65%, ${backgroundColor[1]} 0, transparent 55%)`,
-          height: "98%",
-          width: "98%",
-          borderRadius: "15px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          perspective: "600px",
         }}
       >
         {HandleCardContent}
-      </Box>
+      </div>
     );
   }, [HandleCardContent, backgroundColor]);
 
   const SolidBackground = useCallback(() => {
     return (
-      <Box
+      <div
+        className="backgroundSetting"
         style={{
           backgroundColor: `${backgroundColor[0]}`,
-          height: "98%",
-          width: "98%",
-          borderRadius: "15px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          perspective: "600px",
         }}
       >
         {HandleCardContent}
-      </Box>
+      </div>
     );
   }, [backgroundColor, HandleCardContent]);
 
   const ImageBackground = useCallback(() => {
     return (
-      <Box
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`,
-          backgroundPosition: "center" /* Center the image */,
-          backgroundRepeat: "no-repeat" /* Do not repeat the image */,
-          backgroundSize:
-            "cover" /* Resize the background image to cover the entire container */,
-          height: "98%",
-          width: "98%",
-          borderRadius: "15px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          perspective: "600px",
-        }}
-      >
+      <div className="backgroundSetting imageBackgroundSetting">
         {HandleCardContent}
-      </Box>
+      </div>
     );
   }, [HandleCardContent]);
 
@@ -571,7 +526,8 @@ const GlassmorphismBox = () => {
   );
 
   const configBox = (
-    <Box
+    <div
+      className="settingMargin"
       style={{
         width: "80%",
         height: matches ? "100%" : "140px",
@@ -582,7 +538,6 @@ const GlassmorphismBox = () => {
         border: needToUseDark
           ? "1px solid rgba(255, 255, 255, 0.125)"
           : "1px solid rgba(0, 0, 0, 0.125)",
-        ...settingMargin,
         marginBottom: "20px",
       }}
     >
@@ -594,11 +549,11 @@ const GlassmorphismBox = () => {
         alignItems={matches ? "space-between" : "center"}
         justifyContent={"space-evenly"}
       >
-        <Box
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -717,12 +672,12 @@ const GlassmorphismBox = () => {
               </Box>
             </Stack>
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -781,12 +736,12 @@ const GlassmorphismBox = () => {
               </FormControl>
             </Box>
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -835,12 +790,12 @@ const GlassmorphismBox = () => {
               </Box>
             </Stack>
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -863,12 +818,12 @@ const GlassmorphismBox = () => {
               <span>{blurVal}px</span>
             </Box>
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -892,12 +847,12 @@ const GlassmorphismBox = () => {
               <span>{opacityVal}%</span>
             </Box>
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             height: matches ? "10%" : "100%",
             width: matches ? "100%" : "14%",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -921,16 +876,16 @@ const GlassmorphismBox = () => {
               <span>{saturationVal}%</span>
             </Box>
           </Stack>
-        </Box>
+        </div>
       </Stack>
-    </Box>
+    </div>
   );
 
   const contentBox = (
-    <Box
+    <div
+      className="settingMargin"
       style={{
         width: "80%",
-        ...settingMargin,
       }}
     >
       <Stack
@@ -941,11 +896,11 @@ const GlassmorphismBox = () => {
         alignItems="space-between"
         justifyContent="space-between"
       >
-        <Box
+        <div
+          className="settingMargin"
           style={{
             width: matches ? "100%" : "50%",
             height: matches ? "450px" : "700px",
-            ...settingMargin,
             backgroundColor: needToUseDark
               ? "rgba(255,255,255, 0.1)"
               : "rgba(255,255,255, 0.5)",
@@ -1024,8 +979,9 @@ const GlassmorphismBox = () => {
           >
             {HandleBackgroundContent}
           </Stack>
-        </Box>
-        <Box
+        </div>
+        <div
+          className="settingMargin"
           style={{
             width: matches ? "100%" : "40%",
             height: "100%",
@@ -1036,7 +992,6 @@ const GlassmorphismBox = () => {
             border: needToUseDark
               ? "1px solid rgba(255, 255, 255, 0.125)"
               : "1px solid rgba(0, 0, 0, 0.125)",
-            ...settingMargin,
           }}
         >
           <Stack
@@ -1049,9 +1004,9 @@ const GlassmorphismBox = () => {
             <Box>CSS</Box>
             <Box style={{ width: "100%" }}>{HandleCSSContent()}</Box>
           </Stack>
-        </Box>
+        </div>
       </Stack>
-    </Box>
+    </div>
   );
 
   return (

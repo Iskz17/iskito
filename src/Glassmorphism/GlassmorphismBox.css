@@ -14,3 +14,43 @@
   padding: 24px;
   padding-top: 20px;
 }
+
+.settingMargin {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border-radius: 15px;
+  padding: 0;
+}
+
+.socialMediaCard {
+  height: 86%;
+  width: 60%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: .5s ease;
+}
+
+.creditCard {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: .5s ease;
+}
+.creditCard:hover{
+  transform: rotateY(35deg) translateX(20px);
+}
+
+.backgroundSetting {
+  height: 98%;
+  width: 98%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 600px;
+}
+.imageBackgroundSetting {
+  background-image: url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}

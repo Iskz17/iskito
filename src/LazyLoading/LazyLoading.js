@@ -148,16 +148,15 @@ const LazyLoading = () => {
   }, []);
 
   const handleInput = () => {
-    document.getElementById('icon-button-file').click()
-  }
+    document.getElementById("icon-button-file").click();
+  };
 
   const handleUpload = async (event) => {
     console.log(event.target.files[0]);
-    let file = event.target.files[0]
-    let blob = new Blob(
-      [new Uint8Array(await file.arrayBuffer())],
-      { type: file.type }
-    );
+    let file = event.target.files[0];
+    let blob = new Blob([new Uint8Array(await file.arrayBuffer())], {
+      type: file.type,
+    });
     return new Promise((resolve, reject) => {
       Compress(blob, options)
         .then((compressedBlob) => {
@@ -174,7 +173,7 @@ const LazyLoading = () => {
           // });
           setUploadAndDownload(getSvgToImg(compressedBlob));
           // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
-          setTimeout(()=> {
+          setTimeout(() => {
             setDownloadDisabled(false);
             setIsUploadLoaded(true);
           });
@@ -185,7 +184,7 @@ const LazyLoading = () => {
           // Show the user a toast message or notification that something went wrong while compressing file
         });
     });
-  }
+  };
 
   return (
     <>
@@ -216,7 +215,7 @@ const LazyLoading = () => {
           <span>reduce mental loading</span>
         </Stack>
         <Stack
-          style={{ width: "100%", marginTop: matches ? "-26px" : 0}}
+          style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}
           gap={2}
           direction={matches ? "column" : "row"}
@@ -263,13 +262,19 @@ const LazyLoading = () => {
               </div>
             )}
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+              >
                 Lazy Loading
               </Typography>
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
                 A low resolution was fetched first, while full picture is
                 downloading.
@@ -277,6 +282,7 @@ const LazyLoading = () => {
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
                 Theoritically, we store this low res image but in this case, we
                 compressing it manually here.
@@ -319,19 +325,26 @@ const LazyLoading = () => {
               </div>
             )}
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+              >
                 Lazy Loading
               </Typography>
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
                 Since the low res will likely be pixelated, we set it to blurry.
               </Typography>
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
                 The pulse animation gives info that the actual pic is yet to be
                 shown.
@@ -372,13 +385,19 @@ const LazyLoading = () => {
               </div>
             )}
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+              >
                 Lazy Loading
               </Typography>
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
+                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
               >
                 Upload your image here. Then you'll able to download the
                 compressed version.
@@ -420,12 +439,17 @@ const LazyLoading = () => {
                   disableElevation
                   variant="contained"
                   disabled={downloadDisabled}
-                  onClick={()=> {
-                    document.getElementById('download-compressed').click();
+                  onClick={() => {
+                    document.getElementById("download-compressed").click();
                   }}
                 >
                   {"Download"}
-                  <a id="download-compressed" hidden href={uploadAndDownload} download="compressedimage">
+                  <a
+                    id="download-compressed"
+                    hidden
+                    href={uploadAndDownload}
+                    download="compressedimage"
+                  >
                     Download
                   </a>
                 </PrimaryButton>

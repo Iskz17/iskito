@@ -19,7 +19,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PauseIcon from "@mui/icons-material/Pause";
 import lifetime from "../Assets/Lifetime.mp3";
 import pg from "../Assets/pg.mp3"
-import lftc from "../Assets/lftc.jpg"
+import lftc from "../Assets/lftc.png"
 import pgc from "../Assets/pgc.png"
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
@@ -178,7 +178,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         seconds < 10 ? `0${seconds}` : `${seconds}`;
       return `${formatMinutes}:${formatSeconds}`;
     }
-    return '00:00';
+    return '0:00';
   };
 
   useEffect(() => {

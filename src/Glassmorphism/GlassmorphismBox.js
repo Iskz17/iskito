@@ -20,6 +20,7 @@ import CroppedCC from "../Assets/cropedcc.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Dropdown } from "../Component/Dropdown/Dropdown";
 import { IsNullOrUndefined } from "../Utils/Utils";
 
 //might need browserfs for this
@@ -696,43 +697,13 @@ const GlassmorphismBox = () => {
                 }}
                 size="small"
               >
-                <Select
+                <Dropdown
                   value={currentBackgroundType}
                   onChange={handleChangeBackground}
                   displayEmpty
-                  style={{
-                    border: "1px solid rgba(255, 255, 255, 0.125)",
-                    color: needToUseDark
-                      ? "rgba(255, 255, 255, 0.7)"
-                      : "rgba(0, 0, 0, 0.7)",
-                    padding: 0,
-                  }}
-                  sx={{
-                    color: needToUseDark ? "white" : "rgba(0, 0, 0, 0.7)",
-                    ".MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    ".MuiSvgIcon-root ": {
-                      fill: needToUseDark
-                        ? "white !important"
-                        : "rgba(0, 0, 0, 0.7) !important",
-                    },
-                  }}
                 >
                   {handleRenderMenuItemBg}
-                </Select>
+                </Dropdown>
               </FormControl>
             </Box>
           </Stack>
@@ -927,43 +898,13 @@ const GlassmorphismBox = () => {
                 }}
                 size="small"
               >
-                <Select
+                <Dropdown
                   value={currentCardType}
                   onChange={handleChange}
                   displayEmpty
-                  style={{
-                    border: "1px solid rgba(255, 255, 255, 0.125)",
-                    color: needToUseDark
-                      ? "rgba(255, 255, 255, 0.7)"
-                      : "rgba(0, 0, 0, 0.7)",
-                    padding: 0,
-                  }}
-                  sx={{
-                    color: needToUseDark ? "white" : "rgba(0, 0, 0, 0.7)",
-                    ".MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: needToUseDark
-                        ? "rgba(228, 219, 233, 0.25)"
-                        : "(50,50,50, 0.25)",
-                    },
-                    ".MuiSvgIcon-root ": {
-                      fill: needToUseDark
-                        ? "white !important"
-                        : "rgba(0, 0, 0, 0.7) !important",
-                    },
-                  }}
                 >
                   {handleRenderMenuItem}
-                </Select>
+                </Dropdown>
               </FormControl>
             </Box>
           </Stack>

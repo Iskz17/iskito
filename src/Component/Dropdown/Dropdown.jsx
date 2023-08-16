@@ -1,10 +1,11 @@
 import * as React from "react";
-import { useContext} from "react";
+import { useContext, useEffect, useState} from "react";
 import Select from "@mui/material/Select";
 import { AppContext } from "../../Context/AppContext";
 
-export function Dropdown({ children, isDarkmode, ...other }) {
+export function Dropdown({ children, isDarkMode, overrideDarkmode, ...other }) {
   const [state] = useContext(AppContext);
+  const [useDarkMode, setUseDarkMode] = useState(overrideDarkmode? isDarkMode: state.isDarkMode);
 
   /**
    * you need this to adjust the width
@@ -16,36 +17,39 @@ export function Dropdown({ children, isDarkmode, ...other }) {
                 size="small"
               >
    */
+  useEffect(()=> {
+    setUseDarkMode(overrideDarkmode? isDarkMode: state.isDarkMode);
+  },[state, isDarkMode, overrideDarkmode])
 
   return (
     <Select
     displayEmpty
     style={{
       border: "1px solid rgba(255, 255, 255, 0.125)",
-      color: state.isDarkMode
+      color: useDarkMode
         ? "rgba(255, 255, 255, 0.7)"
         : "rgba(0, 0, 0, 0.7)",
       padding: 0,
     }}
     sx={{
-      color: state.isDarkMode ? "white" : "rgba(0, 0, 0, 0.7)",
+      color: useDarkMode ? "white" : "rgba(0, 0, 0, 0.7)",
       ".MuiOutlinedInput-notchedOutline": {
-        borderColor:state.isDarkMode
+        borderColor:useDarkMode
           ? "rgba(228, 219, 233, 0.25)"
           : "(50,50,50, 0.25)",
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: state.isDarkMode
+        borderColor: useDarkMode
           ? "rgba(228, 219, 233, 0.25)"
           : "(50,50,50, 0.25)",
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: state.isDarkMode
+        borderColor: useDarkMode
           ? "rgba(228, 219, 233, 0.25)"
           : "(50,50,50, 0.25)",
       },
       ".MuiSvgIcon-root ": {
-        fill: state.isDarkMode
+        fill: useDarkMode
           ? "white !important"
           : "rgba(0, 0, 0, 0.7) !important",
       },

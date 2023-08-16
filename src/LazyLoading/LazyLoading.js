@@ -12,6 +12,9 @@ import Typography from "@mui/material/Typography";
 import mekito from "../Assets/kito.jpg";
 import { PrimaryButton } from "../Component/Button/CustomButton";
 import "./LazyLoading.css";
+import { Dropdown } from "../Component/Dropdown/Dropdown";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 
 const LazyLoading = () => {
   const [state] = useContext(AppContext);
@@ -20,8 +23,10 @@ const LazyLoading = () => {
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [downloadDisabled, setDownloadDisabled] = useState(true);
+  const [uploadedBlob, setUploadedBlob] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isUploadLoaded, setIsUploadLoaded] = useState(false);
+  const [currentFileType, setCurrentFileType] = useState(null);
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -38,6 +43,13 @@ const LazyLoading = () => {
     root: {
       maxWidth: 343,
       height: 530,
+      borderRadius: 12,
+      padding: 12,
+      boxShadow: "none",
+    },
+    rootUploadDownload: {
+      maxWidth: 343,
+      height: 570,
       borderRadius: 12,
       padding: 12,
       boxShadow: "none",
@@ -75,7 +87,7 @@ const LazyLoading = () => {
   const options = {
     // As the key specify the maximum size
     // Leave blank for infinity
-    maxSizeMB: 0.08,
+    maxSizeMB: 0.07,
     // Use webworker for faster compression with
     // the help of threads
     useWebWorker: true,
@@ -105,11 +117,11 @@ const LazyLoading = () => {
             // Let's convert it here, by adding a couple of attributes
             compressedBlob.lastModifiedDate = new Date();
             // Convert the blob to file
-            // const convertedBlobFile = new File([compressedBlob], file.name, {
-            //   type: file.type,
-            //   lastModified: Date.now(),
-            // });
-            arr[index].setResult(getSvgToImg(compressedBlob));
+            const convertedBlobFile = new File([compressedBlob], ";aklsjfgjfa", {
+              type: "image/png",
+              lastModified: Date.now(),
+            });
+            arr[index].setResult(getSvgToImg(convertedBlobFile));
             // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
             resolve();
           })
@@ -151,8 +163,34 @@ const LazyLoading = () => {
     document.getElementById("icon-button-file").click();
   };
 
+  const handleRenderMenuItemBg = () =>
+    ["image/webp", "image/png", "image/jpeg"]?.map((type) => (
+      <MenuItem
+        style={{ fontFamily: "Gilroy" }}
+        key={`${type}_menuItem`}
+        value={type}
+      >
+        {type}
+      </MenuItem>
+    ));
+
+  const handleFileTypeChange = (event) => {
+    Compress.canvasToFile(
+      Compress.drawImageInCanvas(document.getElementById("testconvert")),
+      event.target.value,
+      "compressedImage"
+    ).then(data => {
+      setUploadAndDownload(getSvgToImg(data));
+    });
+    // const convertedBlobFile = new File([uploadedBlob], "compressedImage", {
+    //   type: event.target.value,
+    //   lastModified: Date.now(),
+    // });
+    // setUploadAndDownload(getSvgToImg(convertedBlobFile));
+    setCurrentFileType(event.target.value);
+  }
+
   const handleUpload = async (event) => {
-    console.log(event.target.files[0]);
     let file = event.target.files[0];
     let blob = new Blob([new Uint8Array(await file.arrayBuffer())], {
       type: file.type,
@@ -162,16 +200,17 @@ const LazyLoading = () => {
         .then((compressedBlob) => {
           // Compressed file is of Blob type
           // You can drop off here if you want to work with a Blob file
-
+          setCurrentFileType(file.type);
           // If you want to work with the File
           // Let's convert it here, by adding a couple of attributes
           compressedBlob.lastModifiedDate = new Date();
           // Convert the blob to file
-          // const convertedBlobFile = new File([compressedBlob], file.name, {
-          //   type: file.type,
-          //   lastModified: Date.now(),
-          // });
-          setUploadAndDownload(getSvgToImg(compressedBlob));
+          const convertedBlobFile = new File([compressedBlob], file.name, {
+            type: file.type,
+            lastModified: Date.now(),
+          });
+          setUploadedBlob(compressedBlob);
+          setUploadAndDownload(getSvgToImg(convertedBlobFile));
           // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
           setTimeout(() => {
             setDownloadDisabled(false);
@@ -351,7 +390,11 @@ const LazyLoading = () => {
               </Typography>
             </CardContent>
           </Card>
-          <Card className={styles.root}>
+          <Card
+            className={
+              downloadDisabled ? styles.root : styles.rootUploadDownload
+            }
+          >
             {isUploadLoaded ? (
               <div style={{ position: "relative" }}>
                 <CardMedia
@@ -366,6 +409,7 @@ const LazyLoading = () => {
                   height={340}
                   image={uploadAndDownload}
                 />
+                <img id="testconvert" src={uploadAndDownload} hidden />
               </div>
             ) : (
               <div
@@ -402,6 +446,57 @@ const LazyLoading = () => {
                 Upload your image here. Then you'll able to download the
                 compressed version.
               </Typography>
+              {!downloadDisabled ? (
+                <Stack
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  spacing={1}
+                  direction="column"
+                  sx={{ px: 1, py: 1 }}
+                  alignItems="center"
+                  justifyContent={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
+                  >
+                    <Typography
+                      variant={matches ? "body1" : "body2"}
+                      color="text.secondary"
+                      component="div"
+                      style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                    >
+                      Download type:
+                    </Typography>
+
+                    <FormControl
+                      sx={{
+                        minWidth: "100px",
+                      }}
+                      size="small"
+                    >
+                      <Dropdown
+                        value={currentFileType}
+                        onChange={handleFileTypeChange}
+                        displayEmpty
+                        overrideDarkmode={true}
+                        isDarkMode={false}
+                        style={{ fontFamily: "Gilroy", fontSize: "13px" }}
+                      >
+                        {handleRenderMenuItemBg()}
+                      </Dropdown>
+                    </FormControl>
+                  </div>
+                </Stack>
+              ) : null}
               <Stack
                 style={{
                   width: "100%",
@@ -409,7 +504,7 @@ const LazyLoading = () => {
                 }}
                 spacing={2}
                 direction="row"
-                sx={{ px: 2, py: 2 }}
+                sx={{ px: 2, py: downloadDisabled ? 2 : 1 }}
                 alignItems="center"
                 justifyContent={"center"}
               >

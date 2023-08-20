@@ -64,6 +64,7 @@ const NeumorphismBox = () => {
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
   let textBoxColorPicker = useRef(null);
   let colorPicker = useRef(null);
+  let firstLoad = useRef(true);
 
   const [clipboardText, setClipboardText] = useState(`
   border-radius: ${valueRad}px;
@@ -89,6 +90,9 @@ const NeumorphismBox = () => {
       shadowType: shadowType,
     };
     updateDocumentCSS(cssParametersObj.current);
+    return ()=> {
+      cssParametersObj = null;
+    };
   }, [shadowType]);
 
   const updateDocumentCSS = ({
@@ -166,11 +170,16 @@ const NeumorphismBox = () => {
   };
 
   useEffect(()=>{
-    document.getElementById('clipboardCopy').click();
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1500);
+    if(firstLoad){
+      firstLoad = false;
+    }else{
+      document.getElementById('clipboardCopy').click();
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 1500);
+    }
+    return null;
   },[clipboardText])
 
   const handleClipboardText = () => {

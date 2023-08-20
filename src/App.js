@@ -18,7 +18,7 @@ const App = () => {
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
-  const blobRef = useState();
+  const blobRef = useRef(null);
   const handleChangeTab = (event, newValue) => {
     setTabValue(newValue);
     myWorker.onmessage = (m) => {

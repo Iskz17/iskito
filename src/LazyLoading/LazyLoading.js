@@ -23,7 +23,7 @@ const LazyLoading = () => {
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [downloadDisabled, setDownloadDisabled] = useState(true);
-  const [uploadedBlob, setUploadedBlob] = useState(null);
+  // const [uploadedBlob, setUploadedBlob] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isUploadLoaded, setIsUploadLoaded] = useState(false);
   const [currentFileType, setCurrentFileType] = useState(null);
@@ -78,6 +78,7 @@ const LazyLoading = () => {
 
   useEffect(() => {
     setNeedToUseDark(state.isDarkMode);
+    return null;
   }, [state]);
 
   const getSvgToImg = (el) => {
@@ -141,7 +142,7 @@ const LazyLoading = () => {
   };
 
   useEffect(() => {
-    const arr = [
+    let arr = [
       {
         link: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
         setResult: setKitoCompressed,
@@ -156,7 +157,9 @@ const LazyLoading = () => {
       },
     ];
     compressedImg(arr);
-    console.log("passed async");
+    return () => {
+      arr = null;
+    }
   }, []);
 
   const handleInput = () => {
@@ -209,7 +212,7 @@ const LazyLoading = () => {
             type: file.type,
             lastModified: Date.now(),
           });
-          setUploadedBlob(compressedBlob);
+          // setUploadedBlob(compressedBlob);
           setUploadAndDownload(getSvgToImg(convertedBlobFile));
           // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
           setTimeout(() => {

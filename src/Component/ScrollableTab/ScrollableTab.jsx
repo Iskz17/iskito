@@ -4,16 +4,17 @@ import { AppContext } from "../../Context/AppContext";
 import { useTheme } from "@mui/material/styles";
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import { useState, useContext, useEffect, useMemo, memo} from "react";
+import { useState, useContext, useEffect, useMemo, memo, forwardRef} from "react";
 import IOSSwitch from "../Switch/IOSSwitch";
 import Stack from "@mui/material/Stack";
 import '../../index.css'
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props
+const TabPanel = forwardRef((props, ref) => {
+  const { children, value, index, ...other } = props;
 
   return (
     <div
+      ref={ref}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -22,8 +23,8 @@ function TabPanel(props) {
     >
       {value === index && <div>{children}</div>}
     </div>
-  )
-}
+  );
+});
 
 function a11yProps(index) {
   return {
@@ -32,14 +33,8 @@ function a11yProps(index) {
   }
 }
 
-const ScrollableTabs = (props) => {
-  const {
-    value,
-    onChange,
-    tabs,
-    fixed,
-    includeDarkModeSwitch,
-  } = props;
+const ScrollableTabs = forwardRef((props, ref) => {
+  const { value, onChange, tabs, fixed, includeDarkModeSwitch } = props;
 
   const [state, setState] = useContext(AppContext);
   const [checked, setChecked] = useState(state.isDarkMode);
@@ -49,7 +44,7 @@ const ScrollableTabs = (props) => {
   const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
 
   useEffect(() => {
-    if(!updateFromContext){
+    if (!updateFromContext) {
       return;
     }
     setThemeld(state.isDarkMode ? "dark" : "light");
@@ -62,9 +57,9 @@ const ScrollableTabs = (props) => {
     setState({ ...state, isDarkMode: checked });
     setThemeld(checked ? "dark" : "light");
     updateFromContext = false;
-    setTimeout(()=> {
+    setTimeout(() => {
       updateFromContext = true;
-    },500);
+    }, 500);
   }, [checked]);
 
   const handleChange = (event) => {
@@ -84,7 +79,7 @@ const ScrollableTabs = (props) => {
   }, []);
 
   return (
-    <div style={{ fontFamily: "Gilroy" }}>
+    <div ref={ref} style={{ fontFamily: "Gilroy" }}>
       <AppBar
         position="fixed"
         color={"inherit"}
@@ -122,16 +117,12 @@ const ScrollableTabs = (props) => {
         </Stack>
       </AppBar>
       {tabs?.map((v, index) => (
-        <TabPanel
-          value={value}
-          index={index}
-          key={`${index}_tabs`}
-        >
+        <TabPanel value={value} index={index} key={`${index}_tabs`}>
           {v.content}
         </TabPanel>
       ))}
     </div>
   );
-};
+});
 
 export default memo(ScrollableTabs);

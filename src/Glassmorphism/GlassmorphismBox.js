@@ -14,14 +14,12 @@ import React, {
   useEffect,
 } from "react";
 import { PrimaryButton } from "../Component/Button/CustomButton";
-import { pSBC } from "../Neumorphism/PBSC";
 import "./GlassmorphismBox.css";
 import CroppedCC from "../Assets/cropedcc.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { Dropdown } from "../Component/Dropdown/Dropdown";
-import { IsNullOrUndefined } from "../Utils/Utils";
+import { IsNullOrUndefined, convertHexToRGB } from "../Utils/Utils";
 
 //might need browserfs for this
 
@@ -97,19 +95,8 @@ const GlassmorphismBox = () => {
   const cardType = ["Social Media", "Credit Card"];
 
   const convertToRgbWithOpacity = (hexColor, opacity) => {
-    let rgbConverted = pSBC(0, hexColor, "c");
-    if (!rgbConverted) {
-      return "transparent";
-    }
-    let rgbToPass = rgbConverted
-      .replaceAll("rgb", "")
-      .replaceAll("(", "")
-      .replaceAll(")", "")
-      .split(",");
-
-    return `rgba(${rgbToPass[0]},${rgbToPass[1]},${rgbToPass[2]}, ${
-      opacity / 100
-    })`;
+    const [r,g,b] = convertHexToRGB(hexColor);
+    return `rgba(${r},${g},${b}, ${opacity / 100})`;
   };
 
   const handleColorChange = (e, index = null) => {
@@ -333,29 +320,24 @@ const GlassmorphismBox = () => {
   ]);
 
   const HandleBackgroundCSS = () => {
-    const attributeColor = "#0ac7c4";
     switch (currentBackgroundType) {
       case "Mesh Gradient": {
         return (
           <>
             <span>
-              <span
-                style={{ color: attributeColor }}
-              >{`background-image `}</span>
+              <span className="attributeColor">{`background-image `}</span>
               <span>{`: `}</span>
             </span>
             <span>
-              <span style={{ color: attributeColor }}>{`radial-gradient`}</span>
+              <span className="attributeColor">{`radial-gradient`}</span>
               <span>{`(`}</span>
-              <span
-                style={{ color: "#fa55fb" }}
-              >{`at 47% 33%, ${backgroundColor[0]} 0, transparent 59%`}</span>
+              <span className="valueColor">{`at 47% 33%, ${backgroundColor[0]} 0, transparent 59%`}</span>
               <span>{`),`}</span>
             </span>
             <span>
-              <span style={{ color: attributeColor }}>{`radial-gradient`}</span>
+              <span className="attributeColor">{`radial-gradient`}</span>
               <span>{`(`}</span>
-              <span style={{ color: "#fa55fb" }}>
+              <span className="valueColor">
                 {`at 82% 65%, ${backgroundColor[1]} 0, transparent 55%`}
               </span>
               <span>{`);`}</span>
@@ -368,13 +350,9 @@ const GlassmorphismBox = () => {
         return (
           <>
             <span>
-              <span
-                style={{ color: attributeColor }}
-              >{`background-image `}</span>
+              <span className="attributeColor">{`background-image `}</span>
               <span>{`: `}</span>
-              <span
-                style={{ color: attributeColor }}
-              >{`${backgroundColor[0]}`}</span>
+              <span className="attributeColor">{`${backgroundColor[0]}`}</span>
               <span>{`;`}</span>
             </span>
           </>
@@ -385,13 +363,9 @@ const GlassmorphismBox = () => {
         return (
           <>
             <span>
-              <span
-                style={{ color: attributeColor }}
-              >{`background-image `}</span>
+              <span className="attributeColor">{`background-image `}</span>
               <span>{`: `}</span>
-              <span
-                style={{ color: attributeColor }}
-              >{`url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`}</span>
+              <span className="attributeColor">{`url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`}</span>
               <span>{`;`}</span>
             </span>
           </>
@@ -404,7 +378,6 @@ const GlassmorphismBox = () => {
   };
 
   const HandleCSSContent = () => {
-    const attributeColor = "#0ac7c4";
     return (
       <Stack
         style={{
@@ -426,9 +399,9 @@ const GlassmorphismBox = () => {
           <span>{`{`}</span>
         </span>
         <span>
-          <span style={{ color: attributeColor }}>{` background-color `}</span>
+          <span className="attributeColor">{` background-color `}</span>
           <span>{`: `}</span>
-          <span style={{ color: "#fa55fb" }}>{`${backgroundColor[2]}`}</span>
+          <span className="valueColor">{`${backgroundColor[2]}`}</span>
           <span>;</span>
         </span>
 
@@ -441,36 +414,34 @@ const GlassmorphismBox = () => {
           <span>{`{`}</span>
         </span>
         <span>
-          <span style={{ color: attributeColor }}>{`backdrop-filter `}</span>
+          <span className="attributeColor">{`backdrop-filter `}</span>
           <span>{`: `}</span>
-          <span style={{ color: attributeColor }}>{`blur`}</span>
+          <span className="attributeColor">{`blur`}</span>
           <span>{`(`}</span>
-          <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
+          <span className="valueColor">{`${blurVal}px`}</span>
           <span>{`) `}</span>
-          <span style={{ color: attributeColor }}>{`saturate`}</span>
+          <span className="attributeColor">{`saturate`}</span>
           <span>{`(`}</span>
-          <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
+          <span className="valueColor">{`${saturationVal}%`}</span>
           <span>{`); `}</span>
         </span>
         <span>
-          <span
-            style={{ color: attributeColor }}
-          >{`-webkit-backdrop-filter `}</span>
+          <span className="attributeColor">{`-webkit-backdrop-filter `}</span>
           <span>{`: `}</span>
-          <span style={{ color: attributeColor }}>{`blur`}</span>
+          <span className="attributeColor">{`blur`}</span>
           <span>{`(`}</span>
-          <span style={{ color: "#fa55fb" }}>{`${blurVal}px`}</span>
+          <span className="valueColor">{`${blurVal}px`}</span>
           <span>{`) `}</span>
-          <span style={{ color: attributeColor }}>{`saturate`}</span>
+          <span className="attributeColor">{`saturate`}</span>
           <span>{`(`}</span>
-          <span style={{ color: "#fa55fb" }}>{`${saturationVal}%`}</span>
+          <span className="valueColor">{`${saturationVal}%`}</span>
           <span>{`); `}</span>
         </span>
         <span>
           {" "}
-          <span style={{ color: attributeColor }}>{`background-color `}</span>
+          <span className="attributeColor">{`background-color `}</span>
           <span>{`: `}</span>
-          <span style={{ color: "#fa55fb" }}>{` ${convertToRgbWithOpacity(
+          <span className="valueColor">{` ${convertToRgbWithOpacity(
             cardColor,
             opacityVal
           )}`}</span>
@@ -478,18 +449,16 @@ const GlassmorphismBox = () => {
         </span>
 
         <span>
-          <span style={{ color: attributeColor }}>{`border-radius `}</span>
+          <span className="attributeColor">{`border-radius `}</span>
           <span>{`: `}</span>
-          <span style={{ color: "#fa55fb" }}>{`12px`}</span>
+          <span className="valueColor">{`12px`}</span>
           <span>{`;`}</span>
         </span>
 
         <span>
-          <span style={{ color: attributeColor }}>{`border `}</span>
+          <span className="attributeColor">{`border `}</span>
           <span>{`: `}</span>
-          <span
-            style={{ color: "#fa55fb" }}
-          >{`1px solid rgba(255, 255, 255, 0.25)`}</span>
+          <span className="valueColor">{`1px solid rgba(255, 255, 255, 0.25)`}</span>
           <span>{`;`}</span>
         </span>
 
@@ -543,7 +512,7 @@ const GlassmorphismBox = () => {
       }}
     >
       <Stack
-        style={{ width: "100%", height: "100%" }}
+        className="boxFullWidth"
         gap={"5px"}
         sx={{ px: 1, py: 1 }}
         direction={matches ? "column" : "row"}
@@ -558,14 +527,16 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={1}
             direction="column"
             alignItems="flex-start"
           >
             <Box>Background Color:</Box>
             <Stack
-              style={{ width: "100%", height: "100%", padding: "5px" }}
+              className="boxFullWidth"
+              style={{ padding: "5px" }}
               spacing={1}
               direction="row"
               alignItems="flex-start"
@@ -682,14 +653,15 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={1}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
             <Box>Background Type:</Box>
-            <Box style={{ width: "inherit" }}>
+            <Box className="boxFullWidth">
               <FormControl
                 sx={{
                   width: "100%",
@@ -716,14 +688,16 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={1}
             direction="column"
             alignItems="flex-start"
           >
             <Box>Card Color: </Box>
             <Stack
-              style={{ width: "100%", height: "100%", padding: "5px" }}
+              className="boxFullWidth"
+              style={{ padding: "5px" }}
               spacing={1}
               direction="row"
               alignItems="center"
@@ -770,13 +744,14 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
-            <Box style={{ width: "100%" }}>
+            <Box className="boxFullWidth">
               <span>{`Blur Value:`}</span>
               <CustomSlider
                 value={blurVal}
@@ -798,13 +773,14 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
-            <Box style={{ width: "100%" }}>
+            <Box className="boxFullWidth">
               <span>{`Opacity:`}</span>
               <CustomSlider
                 value={opacityVal}
@@ -827,13 +803,14 @@ const GlassmorphismBox = () => {
           }}
         >
           <Stack
-            style={{ width: "100%", height: "100%", padding: "15px" }}
+            className="boxFullWidth"
+            style={{ padding: "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
-            <Box style={{ width: "100%" }}>
+            <Box className="boxFullWidth">
               <span>{`Saturation:`}</span>
               <CustomSlider
                 value={saturationVal}

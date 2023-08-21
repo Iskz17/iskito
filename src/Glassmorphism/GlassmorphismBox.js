@@ -95,7 +95,7 @@ const GlassmorphismBox = () => {
   const cardType = ["Social Media", "Credit Card"];
 
   const convertToRgbWithOpacity = (hexColor, opacity) => {
-    const [r,g,b] = convertHexToRGB(hexColor);
+    const [r, g, b] = convertHexToRGB(hexColor);
     return `rgba(${r},${g},${b}, ${opacity / 100})`;
   };
 
@@ -478,7 +478,15 @@ const GlassmorphismBox = () => {
   const handleRenderMenuItem = useMemo(
     () =>
       cardType?.map((type) => (
-        <MenuItem key={`${type}_menuItem`} value={type}>
+        <MenuItem
+          key={`${type}_menuItem`}
+          value={type}
+          style={{
+            height: "30px",
+            fontSize: "15px",
+            fontFamily: "Gilroy",
+          }}
+        >
           {type}
         </MenuItem>
       )),
@@ -488,7 +496,15 @@ const GlassmorphismBox = () => {
   const handleRenderMenuItemBg = useMemo(
     () =>
       backgroundType?.map((type) => (
-        <MenuItem key={`${type}_menuItem`} value={type}>
+        <MenuItem
+          key={`${type}_menuItem`}
+          value={type}
+          style={{
+            height: "30px",
+            fontSize: "15px",
+            fontFamily: "Gilroy",
+          }}
+        >
           {type}
         </MenuItem>
       )),
@@ -500,7 +516,7 @@ const GlassmorphismBox = () => {
       className="settingMargin"
       style={{
         width: "80%",
-        height: matches ? "100%" : "140px",
+        height: matches ? "100%" : "115px",
         backgroundColor: needToUseDark
           ? "rgba(255,255,255, 0.1)"
           : "rgba(255,255,255, 0.5)",
@@ -528,7 +544,7 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={1}
             direction="column"
             alignItems="flex-start"
@@ -568,8 +584,8 @@ const GlassmorphismBox = () => {
                   id="color0"
                   type="color"
                   style={{
-                    visibility: "hidden",
-                    width: "100%",
+                    opacity: 0,
+                    cursor: "pointer",
                   }}
                   value={backgroundColor[0]}
                   onChange={(e) => handleColorChange(e, 0)}
@@ -601,8 +617,7 @@ const GlassmorphismBox = () => {
                   id="color1"
                   type="color"
                   style={{
-                    visibility: "hidden",
-                    width: "100%",
+                    opacity: 0,
                     cursor: "pointer",
                   }}
                   value={backgroundColor[1]}
@@ -635,8 +650,8 @@ const GlassmorphismBox = () => {
                   id="color2"
                   type="color"
                   style={{
-                    visibility: "hidden",
-                    width: "100%",
+                    opacity: 0,
+                    cursor: "pointer",
                   }}
                   value={backgroundColor[2]}
                   onChange={(e) => handleColorChange(e, 2)}
@@ -654,7 +669,7 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={1}
             direction="column"
             sx={{ px: 1 }}
@@ -673,6 +688,11 @@ const GlassmorphismBox = () => {
                   value={currentBackgroundType}
                   onChange={handleChangeBackground}
                   displayEmpty
+                  style={{
+                    height: "30px",
+                    fontSize: "15px",
+                    fontFamily: "Gilroy",
+                  }}
                 >
                   {handleRenderMenuItemBg}
                 </Dropdown>
@@ -689,7 +709,7 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={1}
             direction="column"
             alignItems="flex-start"
@@ -706,6 +726,7 @@ const GlassmorphismBox = () => {
               <Box
                 style={{
                   borderRadius: "5px",
+                  position: "relative",
                   height: "100%",
                   width: "33%",
                   padding: "none",
@@ -726,8 +747,8 @@ const GlassmorphismBox = () => {
                   id="color3"
                   type="color"
                   style={{
-                    visibility: "hidden",
-                    width: "100%",
+                    opacity: 0,
+                    cursor: "pointer",
                   }}
                   value={cardColor}
                   onChange={(e) => handleColorChange(e)}
@@ -745,14 +766,14 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
             <Box className="boxFullWidth">
-              <span>{`Blur Value:`}</span>
+              <span>{`Blur Value: ${blurVal}px`}</span>
               <CustomSlider
                 value={blurVal}
                 size="medium"
@@ -761,7 +782,6 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
               />
-              <span>{blurVal}px</span>
             </Box>
           </Stack>
         </div>
@@ -774,14 +794,14 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
             <Box className="boxFullWidth">
-              <span>{`Opacity:`}</span>
+              <span>{`Opacity: ${opacityVal}%`}</span>
               <CustomSlider
                 value={opacityVal}
                 size="medium"
@@ -791,7 +811,6 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
               />
-              <span>{opacityVal}%</span>
             </Box>
           </Stack>
         </div>
@@ -804,14 +823,14 @@ const GlassmorphismBox = () => {
         >
           <Stack
             className="boxFullWidth"
-            style={{ padding: "15px" }}
+            style={{ padding: matches ? "10px" : "15px" }}
             spacing={2}
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start"
           >
             <Box className="boxFullWidth">
-              <span>{`Saturation:`}</span>
+              <span>{`Saturation: ${saturationVal}%`}</span>
               <CustomSlider
                 value={saturationVal}
                 size="medium"
@@ -821,7 +840,6 @@ const GlassmorphismBox = () => {
                 valueLabelDisplay="auto"
                 aria-labelledby="continuous-slider-size"
               />
-              <span>{saturationVal}%</span>
             </Box>
           </Stack>
         </div>
@@ -879,6 +897,11 @@ const GlassmorphismBox = () => {
                   value={currentCardType}
                   onChange={handleChange}
                   displayEmpty
+                  style={{
+                    height: "30px",
+                    fontSize: "15px",
+                    fontFamily: "Gilroy",
+                  }}
                 >
                   {handleRenderMenuItem}
                 </Dropdown>
@@ -891,7 +914,7 @@ const GlassmorphismBox = () => {
               height: "90%",
             }}
             direction="row"
-            sx={{ px: 2, py: 2 }}
+            sx={{ px: 2, py: 1 }}
             alignItems="center"
             justifyContent={"center"}
           >

@@ -192,6 +192,7 @@ const MusicPlayer = forwardRef((props, ref) => {
     --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
     --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
    `;
+   return () => {}
   }, [state]);
 
   useEffect(() => {

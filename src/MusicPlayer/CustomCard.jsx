@@ -16,6 +16,7 @@ export const CustomCard = memo(
           boxShadow: "none",
           backdropFilter: "blur(10px) saturate(120%)",
           WebkitBackdropFilter: "blur(10px) saturate(120%)",
+          WebkitBorderRadius: "12px",
           background: props?.isDarkMode
             ? "rgba(0,0,0, 0.5)"
             : "rgba(82,86,87, 0.2)",

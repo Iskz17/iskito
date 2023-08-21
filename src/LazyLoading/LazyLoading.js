@@ -78,7 +78,7 @@ const LazyLoading = () => {
 
   useEffect(() => {
     setNeedToUseDark(state.isDarkMode);
-    return null;
+    return () => {};
   }, [state]);
 
   const getSvgToImg = (el) => {
@@ -236,7 +236,7 @@ const LazyLoading = () => {
           fontFamily: "Gilroy",
           background: needToUseDark
             ? "rgba(41,20,62, 0.9)"
-            : "rgba(227,227,227)",
+            : "rgba(240,203,168)",
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",

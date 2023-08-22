@@ -10,6 +10,7 @@ export const CustomCard = memo(
         ref={ref}
         style={{
           maxWidth: 390,
+          width:390,
           height: 630,
           borderRadius: 12,
           padding: 20,
@@ -20,6 +21,10 @@ export const CustomCard = memo(
           background: props?.isDarkMode
             ? "rgba(0,0,0, 0.5)"
             : "rgba(82,86,87, 0.2)",
+          display:"flex",
+          justifyContent:"center"
+          // display:"flex",
+          // flexDirection:"row",
         }}
       >
         {props?.children}

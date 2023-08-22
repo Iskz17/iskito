@@ -1,6 +1,6 @@
 import Stack from "@mui/material/Stack";
 import { AppContext } from "../Context/AppContext";
-import React, { useState, useContext, useEffect, useRef, forwardRef } from "react";
+import React, { useState, useContext, useEffect, useRef, forwardRef, useMemo } from "react";
 import { CustomCard, CustomCardMedia, CustomCardMediaShadow } from "./CustomCard";
 import { lyrics } from "./Lyrics";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -35,6 +35,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   const [track, setTrack] = useState();
   const [index, setIndex] = useState(0);
   const [currentLyric, setCurrentLyric] = useState();
+  const [show, setShow] = useState(true);
   const audioRef = useRef(); // create a ref to access the <audio> element
   const lyricRef = useRef("");
   const theme = createTheme({
@@ -50,23 +51,26 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
-  const tracks = [
-    {
-      cover: lftc,
-      title: "Lifetime - Justin Bieber",
-      data: lifetime,
-    },
-    {
-      cover: pgc,
-      title: "Perempuan Gila - Nadin Amizah",
-      data: pg,
-    },
-  ];
+  const tracks = useMemo(() => {
+    return [
+      {
+        cover: lftc,
+        title: "Lifetime - Justin Bieber",
+        data: lifetime,
+      },
+      {
+        cover: pgc,
+        title: "Perempuan Gila - Nadin Amizah",
+        data: pg,
+      },
+    ]
+  }, []);
 
   useEffect(() => {
     setTrack(tracks[0]);
     setCurrentLyric(lyrics[0]);
-  }, []);
+    return () => { }
+  }, [tracks]);
 
   //green #211145 #66ff00
   //pink #e784b3 #f5c26b
@@ -192,11 +196,12 @@ const MusicPlayer = forwardRef((props, ref) => {
     --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
     --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
    `;
-   return () => {}
+    return () => { }
   }, [state]);
 
   useEffect(() => {
     handleChangeSong();
+    return () => { }
   }, [index]);
 
   return (
@@ -240,12 +245,11 @@ const MusicPlayer = forwardRef((props, ref) => {
         <Stack
           style={{
             width: "100%",
-            // height: "500px",
             zIndex: 2,
             marginTop: matches ? "-26px" : 0,
             position: "relative",
           }}
-          ref={stackRef}
+          // ref={stackRef}
           spacing={1}
           gap={2}
           direction={matches ? "column" : "row"}
@@ -253,225 +257,454 @@ const MusicPlayer = forwardRef((props, ref) => {
           alignItems="center"
           justifyContent={"center"}
         >
-          <Slide in={true} direction="up" container={stackRef.current}>
-            <CustomCard isDarkMode={needToUseDark}>
-              <Stack
-                direction="row"
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                style={{ marginBottom: "10px" }}
-              >
-                <IconButton
-                  aria-label="subscribe notification"
-                  size="small"
-                  // style={{ backgroundColor: "#4d5051" }}
-                >
-                  <ArrowBackIosNewOutlinedIcon
-                    style={{
-                      color: "white",
-                      fontWeight: "900",
-                      fontSize: "20px",
-                      border: "none",
-                    }}
-                  />
-                </IconButton>
-              </Stack>
-              <div
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <CustomCardMedia
-                  component="img"
-                  height={340}
-                  image={track?.cover}
-                />
-                <CustomCardMediaShadow
-                  component="img"
-                  height={340}
-                  image={track?.cover}
-                />
-              </div>
-              <Stack
-                direction="row"
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                style={{ marginTop: "10px" }}
-              >
-                <IconButton
-                  aria-label="subscribe notification"
-                  size="small"
-                  // style={{ backgroundColor: "#4d5051" }}
-                >
-                  <NotificationsOutlinedIcon
-                    style={{
-                      color: "white",
-                      fontWeight: "900",
-                      fontSize: "20px",
-                    }}
-                  />
-                </IconButton>
-                <IconButton aria-label="favorite" size="small">
-                  <FavoriteBorderOutlinedIcon
-                    style={{
-                      color: "white",
-                      fontWeight: "900",
-                      fontSize: "20px",
-                    }}
-                  />
-                </IconButton>
-              </Stack>
-              <CardContent style={{ padding: "10px" }}>
-                <Typography
-                  color="white"
-                  gutterBottom
-                  variant="h7"
-                  component="div"
-                  style={{ fontFamily: "Gilroy", fontWeight: "900" }}
-                >
-                  {track?.title}
-                </Typography>
-
-                <audio
-                  ref={audioRef}
-                  src={track?.data}
-                  onTimeUpdate={handleTimeUpdate}
-                  onLoadedData={updateMax}
-                  onEnded={handleEnded}
-                />
+          {/* <Slide in={true} direction="up" container={stackRef.current}> */}
+          <CustomCard isDarkMode={needToUseDark} ref={stackRef}>
+            <Slide in={!show} direction="right" container={stackRef.current}>
+            <div style={{ position: "absolute" }}>
                 <Stack
                   direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  style={{ color: "white" }}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  style={{ marginBottom: "10px" }}
                 >
-                  <div style={{ width: "40px" }}>
-                    {formatTime(progressValue)}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <CustomSlider
-                      step={0.2}
-                      value={progressValue}
-                      min={0}
-                      max={maxDuration}
-                      overridedarkmode={true}
-                      darkmodevalue={true}
-                      onChange={(e) => {
-                        handleChangeProgress(e);
+                  <IconButton
+                    aria-label="go back"
+                    size="small"
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  // style={{ backgroundColor: "#4d5051" }}
+                  >
+                    <ArrowBackIosNewOutlinedIcon
+                      style={{
+                        color: "white",
+                        fontWeight: "900",
+                        fontSize: "20px",
+                        border: "none",
                       }}
                     />
-                  </div>
-                  <div style={{ width: "40px" }}>{formatTime(maxDuration)}</div>
+                  </IconButton>
                 </Stack>
-                <span style={{ color: "white" }}>
-                  {getCurrentLine(progressValue)}
-                </span>
-                <Stack
+                <div
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    position: "relative",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                  spacing={2}
+                >
+                  <CustomCardMedia
+                    component="img"
+                    height={340}
+                    image={track?.cover}
+                  />
+                  <CustomCardMediaShadow
+                    component="img"
+                    height={340}
+                    image={track?.cover}
+                  />
+                </div>
+                <Stack
                   direction="row"
-                  sx={{ px: 2, py: 2 }}
-                  alignItems="center"
-                  justifyContent={"center"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  style={{ marginTop: "10px" }}
                 >
                   <IconButton
-                    aria-label="favorite"
-                    size="medium"
-                    onClick={handlePreviousSong}
+                    aria-label="subscribe notification"
+                    size="small"
+                  // style={{ backgroundColor: "#4d5051" }}
                   >
-                    <SkipPreviousIcon
+                    <NotificationsOutlinedIcon
                       style={{
                         color: "white",
                         fontWeight: "900",
-                        fontSize: "30px",
+                        fontSize: "20px",
                       }}
                     />
                   </IconButton>
-                  <IconButton
-                    aria-label="favorite"
-                    size="medium"
-                    onClick={handleRewind10}
-                  >
-                    <Replay10Icon
+                  <IconButton aria-label="favorite" size="small">
+                    <FavoriteBorderOutlinedIcon
                       style={{
                         color: "white",
                         fontWeight: "900",
-                        fontSize: "30px",
-                      }}
-                    />
-                  </IconButton>
-                  {isPlaying ? (
-                    <IconButton
-                      aria-label="favorite"
-                      size="medium"
-                      onClick={() => {
-                        setIsPlaying(false);
-                        handlePause();
-                      }}
-                    >
-                      <PauseIcon
-                        style={{
-                          color: "white",
-                          fontWeight: "900",
-                          fontSize: "50px",
-                        }}
-                      />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="favorite"
-                      size="medium"
-                      onClick={() => {
-                        setIsPlaying(true);
-                        handlePlay();
-                      }}
-                    >
-                      <PlayCircleFilledIcon
-                        style={{
-                          color: "white",
-                          fontWeight: "900",
-                          fontSize: "50px",
-                        }}
-                      />
-                    </IconButton>
-                  )}
-                  <IconButton
-                    aria-label="favorite"
-                    size="medium"
-                    onClick={handleForward10}
-                  >
-                    <Forward10Icon
-                      style={{
-                        color: "white",
-                        fontWeight: "900",
-                        fontSize: "30px",
-                      }}
-                    />
-                  </IconButton>
-                  <IconButton
-                    aria-label="favorite"
-                    size="medium"
-                    onClick={handleNextSong}
-                  >
-                    <SkipNextIcon
-                      style={{
-                        color: "white",
-                        fontWeight: "900",
-                        fontSize: "30px",
+                        fontSize: "20px",
                       }}
                     />
                   </IconButton>
                 </Stack>
-              </CardContent>
-            </CustomCard>
-          </Slide>
+                <CardContent style={{ padding: "10px" }}>
+                  <Typography
+                    color="white"
+                    gutterBottom
+                    variant="h7"
+                    component="div"
+                    style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                  >
+                    {track?.title}
+                  </Typography>
+
+                  <audio
+                    ref={audioRef}
+                    src={track?.data}
+                    onTimeUpdate={handleTimeUpdate}
+                    onLoadedData={updateMax}
+                    onEnded={handleEnded}
+                  />
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
+                    style={{ color: "white" }}
+                  >
+                    <div style={{ width: "40px" }}>
+                      {formatTime(progressValue)}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <CustomSlider
+                        step={0.2}
+                        value={progressValue}
+                        min={0}
+                        max={maxDuration}
+                        overridedarkmode={true}
+                        darkmodevalue={true}
+                        onChange={(e) => {
+                          handleChangeProgress(e);
+                        }}
+                      />
+                    </div>
+                    <div style={{ width: "40px" }}>{formatTime(maxDuration)}</div>
+                  </Stack>
+                  <span style={{ color: "white" }}>
+                    {getCurrentLine(progressValue)}
+                  </span>
+                  <Stack
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    spacing={2}
+                    direction="row"
+                    sx={{ px: 2, py: 2 }}
+                    alignItems="center"
+                    justifyContent={"center"}
+                  >
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handlePreviousSong}
+                    >
+                      <SkipPreviousIcon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleRewind10}
+                    >
+                      <Replay10Icon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    {isPlaying ? (
+                      <IconButton
+                        aria-label="favorite"
+                        size="medium"
+                        onClick={() => {
+                          setIsPlaying(false);
+                          handlePause();
+                        }}
+                      >
+                        <PauseIcon
+                          style={{
+                            color: "white",
+                            fontWeight: "900",
+                            fontSize: "50px",
+                          }}
+                        />
+                      </IconButton>
+                    ) : (
+                      <IconButton
+                        aria-label="favorite"
+                        size="medium"
+                        onClick={() => {
+                          setIsPlaying(true);
+                          handlePlay();
+                        }}
+                      >
+                        <PlayCircleFilledIcon
+                          style={{
+                            color: "white",
+                            fontWeight: "900",
+                            fontSize: "50px",
+                          }}
+                        />
+                      </IconButton>
+                    )}
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleForward10}
+                    >
+                      <Forward10Icon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleNextSong}
+                    >
+                      <SkipNextIcon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                  </Stack>
+                </CardContent>
+              </div>
+            </Slide>
+            <Slide in={show} direction="left" container={stackRef.current}>
+              <div style={{ position: "absolute" }}>
+                <Stack
+                  direction="row"
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  style={{ marginBottom: "10px" }}
+                >
+                  <IconButton
+                    aria-label="go back"
+                    size="small"
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  // style={{ backgroundColor: "#4d5051" }}
+                  >
+                    <ArrowBackIosNewOutlinedIcon
+                      style={{
+                        color: "white",
+                        fontWeight: "900",
+                        fontSize: "20px",
+                        border: "none",
+                      }}
+                    />
+                  </IconButton>
+                </Stack>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <CustomCardMedia
+                    component="img"
+                    height={340}
+                    image={track?.cover}
+                  />
+                  <CustomCardMediaShadow
+                    component="img"
+                    height={340}
+                    image={track?.cover}
+                  />
+                </div>
+                <Stack
+                  direction="row"
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  style={{ marginTop: "10px" }}
+                >
+                  <IconButton
+                    aria-label="subscribe notification"
+                    size="small"
+                  // style={{ backgroundColor: "#4d5051" }}
+                  >
+                    <NotificationsOutlinedIcon
+                      style={{
+                        color: "white",
+                        fontWeight: "900",
+                        fontSize: "20px",
+                      }}
+                    />
+                  </IconButton>
+                  <IconButton aria-label="favorite" size="small">
+                    <FavoriteBorderOutlinedIcon
+                      style={{
+                        color: "white",
+                        fontWeight: "900",
+                        fontSize: "20px",
+                      }}
+                    />
+                  </IconButton>
+                </Stack>
+                <CardContent style={{ padding: "10px" }}>
+                  <Typography
+                    color="white"
+                    gutterBottom
+                    variant="h7"
+                    component="div"
+                    style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                  >
+                    {track?.title}
+                  </Typography>
+
+                  <audio
+                    ref={audioRef}
+                    src={track?.data}
+                    onTimeUpdate={handleTimeUpdate}
+                    onLoadedData={updateMax}
+                    onEnded={handleEnded}
+                  />
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
+                    style={{ color: "white" }}
+                  >
+                    <div style={{ width: "40px" }}>
+                      {formatTime(progressValue)}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <CustomSlider
+                        step={0.2}
+                        value={progressValue}
+                        min={0}
+                        max={maxDuration}
+                        overridedarkmode={true}
+                        darkmodevalue={true}
+                        onChange={(e) => {
+                          handleChangeProgress(e);
+                        }}
+                      />
+                    </div>
+                    <div style={{ width: "40px" }}>{formatTime(maxDuration)}</div>
+                  </Stack>
+                  <span style={{ color: "white" }}>
+                    {getCurrentLine(progressValue)}
+                  </span>
+                  <Stack
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    spacing={2}
+                    direction="row"
+                    sx={{ px: 2, py: 2 }}
+                    alignItems="center"
+                    justifyContent={"center"}
+                  >
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handlePreviousSong}
+                    >
+                      <SkipPreviousIcon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleRewind10}
+                    >
+                      <Replay10Icon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    {isPlaying ? (
+                      <IconButton
+                        aria-label="favorite"
+                        size="medium"
+                        onClick={() => {
+                          setIsPlaying(false);
+                          handlePause();
+                        }}
+                      >
+                        <PauseIcon
+                          style={{
+                            color: "white",
+                            fontWeight: "900",
+                            fontSize: "50px",
+                          }}
+                        />
+                      </IconButton>
+                    ) : (
+                      <IconButton
+                        aria-label="favorite"
+                        size="medium"
+                        onClick={() => {
+                          setIsPlaying(true);
+                          handlePlay();
+                        }}
+                      >
+                        <PlayCircleFilledIcon
+                          style={{
+                            color: "white",
+                            fontWeight: "900",
+                            fontSize: "50px",
+                          }}
+                        />
+                      </IconButton>
+                    )}
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleForward10}
+                    >
+                      <Forward10Icon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      aria-label="favorite"
+                      size="medium"
+                      onClick={handleNextSong}
+                    >
+                      <SkipNextIcon
+                        style={{
+                          color: "white",
+                          fontWeight: "900",
+                          fontSize: "30px",
+                        }}
+                      />
+                    </IconButton>
+                  </Stack>
+                </CardContent>
+              </div>
+            </Slide>
+          </CustomCard>
+          {/* </Slide> */}
         </Stack>
       </div>
     </>

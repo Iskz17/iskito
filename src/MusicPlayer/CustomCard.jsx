@@ -23,8 +23,6 @@ export const CustomCard = memo(
             : "rgba(82,86,87, 0.2)",
           display:"flex",
           justifyContent:"center"
-          // display:"flex",
-          // flexDirection:"row",
         }}
       >
         {props?.children}

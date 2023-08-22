@@ -170,8 +170,8 @@ const NeumorphismBox = () => {
   };
 
   useEffect(()=>{
-    if(firstLoad){
-      firstLoad = false;
+    if(firstLoad.current){
+      firstLoad.current = false;
     }else{
       document.getElementById('clipboardCopy').click();
       setIsCopied(true);

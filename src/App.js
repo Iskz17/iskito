@@ -19,6 +19,7 @@ const App = () => {
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
   const blobRef = useRef(null);
+  const sectionRef = useRef(null);
   const handleChangeTab = (event, newValue) => {
     setTabValue(newValue);
     myWorker.onmessage = (m) => {
@@ -32,8 +33,8 @@ const App = () => {
         label: "Neumorphism",
         key: 0,
         content: (
-          <Section>
-            <NewmorphismBox />
+          <Section ref={sectionRef}>
+            <NewmorphismBox sectionRef={sectionRef} />
           </Section>
         ),
       },

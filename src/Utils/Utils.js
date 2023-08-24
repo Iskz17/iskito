@@ -15,9 +15,9 @@ export const getSvgToImg = (el) => {
 const luminance = (r, g, b) => {
   var a = [r, g, b].map(function (v) {
     v /= 255;
-    return v <= 0.039 ? v / 12.9 : Math.pow((v + 0.05) / 1.05, 2.4);
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });
-  return a[0] * 0.21 + a[1] * 0.71 + a[2] * 0.07;
+  return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 };
 const whiteLum = luminance(255, 255, 255);
 
@@ -47,11 +47,12 @@ export const calculateShadow = (
   const color = backgroundColor ?? "#CAE6E8";
   const [red, green, blue] = convertHexToRGB(color);
 
-  let lightRatio = 1.6;
+  let maxRRatioL = 1.59;
+  let maxGRatioL = 1.60344;
+  let maxBRatioL = 1.59663;
   let darkRatio = 0.4;
-  let lightInnerRatio = 1.1;
-  let darkInnerRatio = 0.9;
-  let lightIntensity = (intensity / 100) * lightRatio;
+  let lightInnerRatio = 1.0714;
+  let darkInnerRatio = 0.902;
   let darkIntensity = (100 / (intensity - 25)) * darkRatio;
 
   const colorGuard = (num) => {
@@ -69,9 +70,9 @@ export const calculateShadow = (
 
   const outerLightShadow = () => {
 
-    let r = colorGuard(Math.round(red * lightIntensity));
-    let g = colorGuard(Math.round(green * lightIntensity));
-    let b = colorGuard(Math.round(blue * lightIntensity));
+    let r = colorGuard(Math.round(red * (intensity / 100) * maxRRatioL));
+    let g = colorGuard(Math.round(green * (intensity / 100) * maxGRatioL));
+    let b = colorGuard(Math.round(blue * (intensity / 100) * maxBRatioL));
     return returnRgb(r, g, b);
   };
 

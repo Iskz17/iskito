@@ -14,7 +14,7 @@ import { createTheme } from "@mui/material/styles";
 import { needDarkMode, calculateShadow } from "../Utils/Utils";
 import { PrimaryButton } from "../Component/Button/CustomButton";
 
-const NeumorphismBox = () => {
+const NeumorphismBox = (props) => {
   let flex = {
     display: "flex",
     justifyContent: "center",
@@ -23,7 +23,7 @@ const NeumorphismBox = () => {
 
   let cssParametersObj = useRef({
     backgroundColor: "#CAE6E8",
-    valueSize: "300",
+    valueSize: "250",
     valueRad: "30",
     valueBlur: "60",
     valueDistance: "23",
@@ -38,7 +38,7 @@ const NeumorphismBox = () => {
     darkInnerShadow: "#ACC4C5",
   });
 
-  const [valueSize, setValueSize] = useState(300);
+  const [valueSize, setValueSize] = useState(250);
   const [valueRad, setValueRad] = useState(30);
   const [valueRadMax, setValueRadMax] = useState(120);
   const [valueDistance, setValueDistance] = useState(23);
@@ -796,6 +796,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
           fontFamily: "Gilroy",
           color: `${needToUseDark ? "#001f3f" : "white"}`,
           height: matches ? "unset" : "100vh",
+          minHeight:"699px"
         }}
       >
         <Stack

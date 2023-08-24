@@ -229,6 +229,7 @@ const MusicPlayer = forwardRef((props, ref) => {
             : "rgba(0, 0, 0, 0.7)",
           height: matches ? "unset" : "100vh",
           overflowX: "hidden",
+          minHeight:"699px"
         }}
       >
         <Stack

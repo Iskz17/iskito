@@ -90,10 +90,11 @@ const ScrollableTabs = forwardRef((props, ref) => {
           style={{ width: "100%" }}
           spacing={2}
           direction="row"
-          sx={{ px: 0 }}
+          sx={{ px: 1 }}
           alignItems="center"
-          justifyContent={"space-between"}
+          justifyContent={"space-evenly"}
         >
+          {includeDarkModeSwitch && ForIOS}
           <Tabs
             value={value}
             onChange={onChange}
@@ -113,7 +114,6 @@ const ScrollableTabs = forwardRef((props, ref) => {
               />
             ))}
           </Tabs>
-          {includeDarkModeSwitch && ForIOS}
         </Stack>
       </AppBar>
       {tabs?.map((v, index) => (

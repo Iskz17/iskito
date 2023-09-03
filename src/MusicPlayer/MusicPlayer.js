@@ -268,6 +268,10 @@ const MusicPlayer = forwardRef((props, ref) => {
                     </span>
                   </div>
                 </div>
+                <div>
+                  {/* {your library} */}
+                  {/* {song list} */}
+                </div>
               </div>
             </Slide>
             <Slide in={show} direction="left" container={stackRef.current}>

@@ -10,10 +10,10 @@ export const CustomCard = memo(
         ref={ref}
         style={{
           maxWidth: 390,
-          width:390,
+          width: 390,
           height: 630,
           borderRadius: 12,
-          padding: 20,
+          padding: props.noPadding ? 0 : 20,
           boxShadow: "none",
           backdropFilter: "blur(10px) saturate(120%)",
           WebkitBackdropFilter: "blur(10px) saturate(120%)",
@@ -21,10 +21,9 @@ export const CustomCard = memo(
           background: props?.isDarkMode
             ? "rgba(0,0,0, 0.5)"
             : "rgba(82,86,87, 0.2)",
-          display:"flex",
-          justifyContent:"center"
-        }}
-      >
+          display: "flex",
+          justifyContent: "center",
+        }}>
         {props?.children}
       </Card>
     );
@@ -35,15 +34,15 @@ export const CustomCard = memo(
   //     return true;
   //   }
 );
-export const CustomCardMedia = memo(({children, ...others}) => {
+export const CustomCardMedia = memo(({children,fullWidth, ...others}) => {
     const useStyles = makeStyles(() => ({
       media: {
-        width: "90%",
-        borderRadius: 20,
+        width: fullWidth ? "100%" : "90%",
+        borderRadius: fullWidth ? 0 : 20,
         position: "relative",
         zIndex: 1,
         transition: "filter .5s ease-in-out",
-      }
+      },
     }));
     const styles = useStyles();
   

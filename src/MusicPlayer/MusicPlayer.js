@@ -25,7 +25,7 @@ import lftc from "../Assets/lftc.png"
 import pgc from "../Assets/pgc.png"
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
-
+// https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
   const [state] = useContext(AppContext);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
@@ -35,7 +35,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   const [track, setTrack] = useState();
   const [index, setIndex] = useState(0);
   const [currentLyric, setCurrentLyric] = useState();
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const audioRef = useRef(); // create a ref to access the <audio> element
   const lyricRef = useRef("");
   const theme = createTheme({
@@ -75,42 +75,6 @@ const MusicPlayer = forwardRef((props, ref) => {
   //green #211145 #66ff00
   //pink #e784b3 #f5c26b
 
-  // const useStyles = makeStyles(() => ({
-  //   root: {
-  //     maxWidth: 390,
-  //     height: 620,
-  //     borderRadius: 12,
-  //     padding: 20,
-  //     boxShadow: "none",
-  //     background: "#121212",
-  //     backdropFilter: "blur(10px) saturate(120%)",
-  //     backgroundColor: needToUseDark
-  //       ? "rgba(0,0,0, 0.5)"
-  //       : "rgba(82,86,87, 0.2)",
-  //   },
-  //   media: {
-  //     width: "90%",
-  //     borderRadius: 20,
-  //     position: "relative",
-  //     zIndex: 1,
-  //     transition: "filter .5s ease-in-out",
-  //   },
-  //   mediaShadow: {
-  //     filter: "blur(10px) saturate(0.9)",
-  //     position: "absolute",
-  //     width: "90%",
-  //     top: 0,
-  //     zIndex: 0,
-  //     transition: "filter 5s ease-in-out",
-  //   },
-  //   mediaCompressed: {
-  //     borderRadius: 20,
-  //     position: "relative",
-  //     transition: "filter .5s ease-in-out",
-  //     filter: "blur(15px) saturate(0.7)",
-  //   },
-  // }));
-  // const styles = useStyles();
   const handlePause = () => {
     audioRef.current.pause(); // pause the audio track
   };
@@ -150,11 +114,11 @@ const MusicPlayer = forwardRef((props, ref) => {
   };
 
   const handleForward10 = () => {
-    audioRef.current.currentTime = audioRef.current.currentTime + 10;
+    audioRef.current.currentTime += 10;
   };
 
   const handleRewind10 = () => {
-    audioRef.current.currentTime = audioRef.current.currentTime - 10;
+    audioRef.current.currentTime -= 10;
   };
 
   const handleChangeSong = () => {
@@ -259,7 +223,7 @@ const MusicPlayer = forwardRef((props, ref) => {
           justifyContent={"center"}
         >
           {/* <Slide in={true} direction="up" container={stackRef.current}> */}
-          <CustomCard isDarkMode={needToUseDark} ref={stackRef}>
+          <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
             <Slide in={!show} direction="right" container={stackRef.current}>
             <div style={{ position: "absolute" }}>
                 <Stack
@@ -298,11 +262,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     component="img"
                     height={340}
                     image={track?.cover}
-                  />
-                  <CustomCardMediaShadow
-                    component="img"
-                    height={340}
-                    image={track?.cover}
+                    fullWidth
                   />
                 </div>
                 <Stack

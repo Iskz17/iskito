@@ -11,7 +11,7 @@ export const CustomCard =
         ref={ref}
         style={{
           maxWidth: 390,
-          width: 390,
+          width: "90%",
           height: 630,
           borderRadius: 12,
           padding: props.noPadding ? 0 : 20,
@@ -24,7 +24,8 @@ export const CustomCard =
             : "rgba(82,86,87, 0.2)",
           display: "flex",
           justifyContent: "center",
-        }}>
+        }}
+      >
         {props?.children}
       </Card>
     );

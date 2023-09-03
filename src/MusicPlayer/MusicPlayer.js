@@ -209,7 +209,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         </Stack>
         <Stack
           style={{
-            width: "100%",
+            width: "100vw",
             zIndex: 2,
             marginTop: matches ? "-26px" : 0,
             position: "relative",
@@ -232,7 +232,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    boxShadow:"0 0px 10px 10px black"
+                    boxShadow: "0 0px 10px 10px black",
                   }}
                 >
                   <CustomCardMedia
@@ -275,7 +275,7 @@ const MusicPlayer = forwardRef((props, ref) => {
               </div>
             </Slide>
             <Slide in={show} direction="left" container={stackRef.current}>
-              <div style={{ position: "absolute", padding: 20 }}>
+              <div style={{ position: "absolute", width: "100%", padding: 20 }}>
                 <Stack
                   direction="row"
                   justifyContent={"space-between"}
@@ -397,15 +397,10 @@ const MusicPlayer = forwardRef((props, ref) => {
                     {getCurrentLine(progressValue)}
                   </span>
                   <Stack
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                    spacing={2}
                     direction="row"
                     sx={{ px: 2, py: 2 }}
                     alignItems="center"
-                    justifyContent={"center"}
+                    justifyContent={"space-evenly"}
                   >
                     <IconButton
                       aria-label="favorite"

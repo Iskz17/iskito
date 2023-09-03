@@ -3,7 +3,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import React, { memo, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-export const CustomCard = memo(
+export const CustomCard = 
+// memo(
   forwardRef((props, ref) => {
     return (
       <Card
@@ -27,13 +28,13 @@ export const CustomCard = memo(
         {props?.children}
       </Card>
     );
-  })
+  });
   // below is for conditional rendering for memo
   //   ,
   //   (prevProps, nextProps) => {
   //     return true;
   //   }
-);
+// );
 export const CustomCardMedia = memo(({children,fullWidth, ...others}) => {
     const useStyles = makeStyles(() => ({
       media: {

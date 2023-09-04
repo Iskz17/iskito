@@ -3,8 +3,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import React, { memo, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-export const CustomCard = 
-// memo(
+export const CustomCard = memo(
   forwardRef((props, ref) => {
     return (
       <Card
@@ -18,7 +17,8 @@ export const CustomCard =
           boxShadow: "none",
           backdropFilter: "blur(10px) saturate(120%)",
           WebkitBackdropFilter: "blur(10px) saturate(120%)",
-          WebkitBorderRadius: "12px",
+          WebkitBorderRadius: 12 ,
+          overflow:"hidden",
           background: props?.isDarkMode
             ? "rgba(0,0,0, 0.5)"
             : "rgba(82,86,87, 0.2)",
@@ -29,19 +29,19 @@ export const CustomCard =
         {props?.children}
       </Card>
     );
-  });
+  })
   // below is for conditional rendering for memo
   //   ,
   //   (prevProps, nextProps) => {
   //     return true;
   //   }
-// );
+);
 export const CustomCardMedia = memo(({children,fullWidth, ...others}) => {
     const useStyles = makeStyles(() => ({
       media: {
         width: fullWidth ? "100%" : "90%",
         borderRadius: fullWidth ? 0 : 20,
-        position: "relative",
+        WebkitBorderRadius: fullWidth ? "0 20px 20px 0" : 20,
         zIndex: 1,
         transition: "filter .5s ease-in-out",
       },

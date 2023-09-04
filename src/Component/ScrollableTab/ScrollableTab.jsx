@@ -92,7 +92,7 @@ const ScrollableTabs = forwardRef((props, ref) => {
           direction="row"
           sx={{ px: 1 }}
           alignItems="center"
-          justifyContent={"space-evenly"}
+          justifyContent={"flex-start"}
         >
           {includeDarkModeSwitch && ForIOS}
           <Tabs

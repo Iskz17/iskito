@@ -1,7 +1,18 @@
 import Stack from "@mui/material/Stack";
 import { AppContext } from "../Context/AppContext";
-import React, { useState, useContext, useEffect, useRef, forwardRef, useMemo } from "react";
-import { CustomCard, CustomCardMedia, CustomCardMediaShadow } from "./CustomCard";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  forwardRef,
+  useMemo,
+} from "react";
+import {
+  CustomCard,
+  CustomCardMedia,
+  CustomCardMediaShadow,
+} from "./CustomCard";
 import { lyrics } from "./Lyrics";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme } from "@mui/material/styles";
@@ -10,7 +21,7 @@ import Typography from "@mui/material/Typography";
 import ParticleBackground from "../particle";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import Slide from "@mui/material/Slide";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
@@ -20,9 +31,9 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PauseIcon from "@mui/icons-material/Pause";
 import lifetime from "../Assets/Lifetime.mp3";
-import pg from "../Assets/pg.mp3"
-import lftc from "../Assets/lftc.png"
-import pgc from "../Assets/pgc.png"
+import pg from "../Assets/pg.mp3";
+import lftc from "../Assets/lftc.png";
+import pgc from "../Assets/pgc.png";
 import CustomSlider from "../Component/Slider/CustomSlider";
 import "./MusicPlayer.css";
 // https://blog.logrocket.com/building-audio-player-react/
@@ -63,13 +74,13 @@ const MusicPlayer = forwardRef((props, ref) => {
         title: "Perempuan Gila - Nadin Amizah",
         data: pg,
       },
-    ]
+    ];
   }, []);
 
   useEffect(() => {
     setTrack(tracks[0]);
     setCurrentLyric(lyrics[0]);
-    return () => { }
+    return () => {};
   }, [tracks]);
 
   //green #211145 #66ff00
@@ -160,12 +171,12 @@ const MusicPlayer = forwardRef((props, ref) => {
     --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
     --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
    `;
-    return () => { }
+    return () => {};
   }, [state]);
 
   useEffect(() => {
     handleChangeSong();
-    return () => { }
+    return () => {};
   }, [index]);
 
   return (
@@ -197,7 +208,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         }}
       >
         <Stack
-          style={{ width: "100%", zIndex: 2, position: "relative" }}
+          style={{ width: "100vw", zIndex: 2, position: "relative" }}
           spacing={1}
           direction="column"
           sx={{ py: 2 }}
@@ -225,14 +236,22 @@ const MusicPlayer = forwardRef((props, ref) => {
           {/* <Slide in={true} direction="up" container={stackRef.current}> */}
           <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
             <Slide in={!show} direction="right" container={stackRef.current}>
-              <div style={{ position: "absolute", width: "100%" }}>
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  boxShadow: "0 0px 10px 10px black",
+                }}
+              >
                 <div
                   style={{
                     position: "relative",
                     display: "flex",
+                    overflowX: "hidden",
+                    width: "100%",
+                    height: "240px",
                     justifyContent: "center",
                     alignItems: "center",
-                    boxShadow: "0 0px 10px 10px black",
                   }}
                 >
                   <CustomCardMedia
@@ -247,7 +266,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                       zIndex: 4,
                       width: "100%",
                       height: "100%",
-                      backgroundImage:
+                      background:
                         "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.3))",
                     }}
                     onClick={() => {
@@ -268,14 +287,16 @@ const MusicPlayer = forwardRef((props, ref) => {
                     </span>
                   </div>
                 </div>
-                <div>
-                  {/* {your library} */}
-                  {/* {song list} */}
-                </div>
               </div>
             </Slide>
             <Slide in={show} direction="left" container={stackRef.current}>
-              <div style={{ position: "absolute", width: "100%", padding: 20 }}>
+              <div
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  padding: 20,
+                }}
+              >
                 <Stack
                   direction="row"
                   justifyContent={"space-between"}
@@ -310,12 +331,12 @@ const MusicPlayer = forwardRef((props, ref) => {
                 >
                   <CustomCardMedia
                     component="img"
-                    height={340}
+                    height={matches ? 290 : 340}
                     image={track?.cover}
                   />
                   <CustomCardMediaShadow
                     component="img"
-                    height={340}
+                    height={matches ? 290 : 340}
                     image={track?.cover}
                   />
                 </div>

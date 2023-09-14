@@ -56,6 +56,7 @@ const ScrollableTabs = forwardRef((props, ref) => {
     }
     setState({ ...state, isDarkMode: checked });
     setThemeld(checked ? "dark" : "light");
+    document.body.className = checked ? "bodyBgColor darkMode" : "bodyBgColor";
     updateFromContext = false;
     setTimeout(() => {
       updateFromContext = true;
@@ -117,7 +118,12 @@ const ScrollableTabs = forwardRef((props, ref) => {
         </Stack>
       </AppBar>
       {tabs?.map((v, index) => (
-        <TabPanel value={value} index={index} key={`${index}_tabs`}>
+        <TabPanel
+          value={value}
+          index={index}
+          key={`${index}_tabs`}
+          style={{ marginTop: "18px" }}
+        >
           {v.content}
         </TabPanel>
       ))}

@@ -49,6 +49,8 @@ const MusicPlayer = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
   const audioRef = useRef(); // create a ref to access the <audio> element
   const lyricRef = useRef("");
+  const firstSlideRef = useRef("right");
+  const secondSlideRef = useRef("left");
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -202,7 +204,7 @@ const MusicPlayer = forwardRef((props, ref) => {
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
-          height: matches ? "unset" : "100vh",
+          height: "100vh",
           overflowX: "hidden",
           maxHeight: "699px",
         }}
@@ -235,12 +237,9 @@ const MusicPlayer = forwardRef((props, ref) => {
         >
           {/* <Slide in={true} direction="up" container={stackRef.current}> */}
           <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
-            <Slide in={!show} direction="right" container={stackRef.current}>
+          <Slide in={!show} direction={firstSlideRef.current} container={stackRef.current}>
               <div
                 className="relative100"
-                style={{
-                  boxShadow: "0 0px 10px 10px black",
-                }}
               >
                 <div
                   className="relative100"
@@ -286,7 +285,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                 </div>
               </div>
             </Slide>
-            <Slide in={show} direction="left" container={stackRef.current}>
+            <Slide in={show} direction={secondSlideRef.current} container={stackRef.current}>
               <div
                 className="absolute100"
                 style={{
@@ -323,6 +322,15 @@ const MusicPlayer = forwardRef((props, ref) => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                  }}
+                  onClick={()=> {
+                    if(firstSlideRef.current === "left"){
+                      firstSlideRef.current = "right";
+                      secondSlideRef.current = "left";
+                    }else{
+                      firstSlideRef.current = "left";
+                      secondSlideRef.current = "right";
+                    }
                   }}
                 >
                   <CustomCardMedia

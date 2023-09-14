@@ -4,6 +4,14 @@
   padding: 0;
 }
 
+.bodyBgColor {
+  background-color: white;
+}
+
+.bodyBgColor.darkMode {
+  background-color: rgb(20,21,21);
+}
+
 html {
   font-size: 17px;
 }

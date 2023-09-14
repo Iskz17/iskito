@@ -80,7 +80,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   useEffect(() => {
     setTrack(tracks[0]);
     setCurrentLyric(lyrics[0]);
-    return () => {};
+    return () => { };
   }, [tracks]);
 
   //green #211145 #66ff00
@@ -171,12 +171,12 @@ const MusicPlayer = forwardRef((props, ref) => {
     --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
     --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
    `;
-    return () => {};
+    return () => { };
   }, [state]);
 
   useEffect(() => {
     handleChangeSong();
-    return () => {};
+    return () => { };
   }, [index]);
 
   return (
@@ -196,15 +196,15 @@ const MusicPlayer = forwardRef((props, ref) => {
       </div>
       <div
         id="arrangeParent"
+        className="gilroy"
         style={{
-          fontFamily: "Gilroy",
           background: needToUseDark ? "#0f151a" : "#f0ddf3",
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: matches ? "unset" : "100vh",
           overflowX: "hidden",
-          minHeight: "699px",
+          maxHeight: "699px",
         }}
       >
         <Stack
@@ -237,18 +237,16 @@ const MusicPlayer = forwardRef((props, ref) => {
           <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
             <Slide in={!show} direction="right" container={stackRef.current}>
               <div
+                className="relative100"
                 style={{
-                  position: "relative",
-                  width: "100%",
                   boxShadow: "0 0px 10px 10px black",
                 }}
               >
                 <div
+                  className="relative100"
                   style={{
-                    position: "relative",
                     display: "flex",
                     overflowX: "hidden",
-                    width: "100%",
                     height: "240px",
                     justifyContent: "center",
                     alignItems: "center",
@@ -261,10 +259,9 @@ const MusicPlayer = forwardRef((props, ref) => {
                     fullWidth
                   />
                   <div
+                    className="absolute100"
                     style={{
-                      position: "absolute",
                       zIndex: 4,
-                      width: "100%",
                       height: "100%",
                       background:
                         "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.3))",
@@ -291,9 +288,8 @@ const MusicPlayer = forwardRef((props, ref) => {
             </Slide>
             <Slide in={show} direction="left" container={stackRef.current}>
               <div
+                className="absolute100"
                 style={{
-                  position: "absolute",
-                  width: "100%",
                   padding: 20,
                 }}
               >
@@ -309,7 +305,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     onClick={() => {
                       setShow(!show);
                     }}
-                    // style={{ backgroundColor: "#4d5051" }}
+                  // style={{ backgroundColor: "#4d5051" }}
                   >
                     <ArrowBackIosNewOutlinedIcon
                       style={{
@@ -349,7 +345,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                   <IconButton
                     aria-label="subscribe notification"
                     size="small"
-                    // style={{ backgroundColor: "#4d5051" }}
+                  // style={{ backgroundColor: "#4d5051" }}
                   >
                     <NotificationsOutlinedIcon
                       style={{

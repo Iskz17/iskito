@@ -34,3 +34,17 @@
 .sectionColor {
     background: var(--musicplayer-sectioncolor);
 }
+
+.gilroy {
+    font-family: Gilroy;
+}
+
+.relative100 {
+    position:relative;
+    width: 100%;
+}
+
+.absolute100 {
+    position:absolute;
+    width:100%;
+}

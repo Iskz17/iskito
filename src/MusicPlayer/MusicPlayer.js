@@ -189,6 +189,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         style={{
           position: "absolute",
           background: needToUseDark ? "#0f151a" : "#f0ddf3",
+          height: "100vh",
           width: "100%",
           overflow: "hidden",
           zIndex: 0,
@@ -205,8 +206,7 @@ const MusicPlayer = forwardRef((props, ref) => {
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: "100vh",
-          overflowX: "hidden",
-          maxHeight: "699px",
+          overflowX: "hidden"
         }}
       >
         <Stack

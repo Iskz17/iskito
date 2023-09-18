@@ -1,6 +1,22 @@
-import { Stack, useMediaQuery, Typography, Slide, IconButton } from "@mui/material";
+import {
+  Stack,
+  useMediaQuery,
+  Typography,
+  Slide,
+  IconButton,
+} from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { NotificationsOutlined, FavoriteBorder, ArrowBackIosNew, PlayCircleFilled, Forward10, Replay10, SkipNext, SkipPrevious, Pause } from "@mui/icons-material";
+import {
+  NotificationsOutlined,
+  FavoriteBorder,
+  ArrowBackIosNew,
+  PlayCircleFilled,
+  Forward10,
+  Replay10,
+  SkipNext,
+  SkipPrevious,
+  Pause,
+} from "@mui/icons-material";
 import { AppContext } from "../Context/AppContext";
 import React, {
   useState,
@@ -18,7 +34,7 @@ import {
 import { lyrics } from "./Lyrics";
 import CardContent from "@material-ui/core/CardContent";
 import ParticleBackground from "../particle";
-import {lifetime, pg, lftc, pgc} from "../Assets/assets"
+import { lifetime, pg, lftc, pgc } from "../Assets/assets";
 import { CustomSlider } from "../Component/Component";
 import "./MusicPlayer.css";
 // https://blog.logrocket.com/building-audio-player-react/
@@ -32,6 +48,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   const [index, setIndex] = useState(0);
   const [currentLyric, setCurrentLyric] = useState();
   const [show, setShow] = useState(false);
+  const containerRef = useRef();
   const audioRef = useRef(); // create a ref to access the <audio> element
   const lyricRef = useRef("");
   const firstSlideRef = useRef("right");
@@ -67,7 +84,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   useEffect(() => {
     setTrack(tracks[0]);
     setCurrentLyric(lyrics[0]);
-    return () => { };
+    return () => {};
   }, [tracks]);
 
   //green #211145 #66ff00
@@ -152,24 +169,30 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   useEffect(() => {
     setNeedToUseDark(state.isDarkMode);
-    document.body.style.cssText = `
-    --musicplayer-1stcolor: ${state.isDarkMode ? "#211145" : "#e784b3"};
-    --musicplayer-2ndcolor: ${state.isDarkMode ? "#66ff00" : "#f5c26b"};
-    --musicplayer-sectioncolor: ${state.isDarkMode ? "#0f151a" : "#f0ddf3"};
-    --musicplayer-blobContainerHeight: ${props.blobRef.current.clientHeight}px;
-   `;
-    return () => { };
+    setTimeout(() => {
+      document.getElementsByClassName(
+        "blobContainerHeight"
+      )[0].style.cssText = `--musicplayer-blobContainerHeight: ${containerRef?.current.clientHeight}px;`;
+    }, 1000);
+
+    document.body.classList.add(
+      state.isDarkMode ? "musicPlayerDark" : "musicPlayerLight"
+    );
+    document.body.classList.remove(
+      state.isDarkMode ? "musicPlayerLight" : "musicPlayerDark"
+    );
+    return () => {};
   }, [state]);
 
   useEffect(() => {
     handleChangeSong();
-    return () => { };
+    return () => {};
   }, [index]);
 
   return (
     <>
       <div
-        ref={ref}
+        // ref={ref}
         className="blobContainer"
         style={{
           position: "absolute",
@@ -180,18 +203,21 @@ const MusicPlayer = forwardRef((props, ref) => {
           zIndex: 0,
         }}
       >
+        <div className="blobContainerHeight"></div>
         <ParticleBackground />
       </div>
       <div
+        ref={containerRef}
         id="arrangeParent"
         className="gilroy"
         style={{
-          background: needToUseDark ? "#0f151a" : "#f0ddf3",
+          background: "transparent",
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: "100vh",
-          overflowX: "hidden"
+          overflowX: "hidden",
+          position:"absolute"
         }}
       >
         <Stack
@@ -222,10 +248,12 @@ const MusicPlayer = forwardRef((props, ref) => {
         >
           {/* <Slide in={true} direction="up" container={stackRef.current}> */}
           <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
-            <Slide in={!show} direction={firstSlideRef.current} container={stackRef.current}>
-              <div
-                className="relative100"
-              >
+            <Slide
+              in={!show}
+              direction={firstSlideRef.current}
+              container={stackRef.current}
+            >
+              <div className="relative100">
                 <div
                   className="relative100"
                   style={{
@@ -270,7 +298,11 @@ const MusicPlayer = forwardRef((props, ref) => {
                 </div>
               </div>
             </Slide>
-            <Slide in={show} direction={secondSlideRef.current} container={stackRef.current}>
+            <Slide
+              in={show}
+              direction={secondSlideRef.current}
+              container={stackRef.current}
+            >
               <div
                 className="absolute100"
                 style={{
@@ -289,7 +321,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     onClick={() => {
                       setShow(!show);
                     }}
-                  // style={{ backgroundColor: "#4d5051" }}
+                    // style={{ backgroundColor: "#4d5051" }}
                   >
                     <ArrowBackIosNew
                       style={{
@@ -338,7 +370,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                   <IconButton
                     aria-label="subscribe notification"
                     size="small"
-                  // style={{ backgroundColor: "#4d5051" }}
+                    // style={{ backgroundColor: "#4d5051" }}
                   >
                     <NotificationsOutlined
                       style={{

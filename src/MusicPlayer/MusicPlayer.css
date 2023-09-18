@@ -1,25 +1,39 @@
-:root{
+/* :root{
     --musicplayer-sectioncolor: white;
-  }
+  } */
+
+.musicPlayerDark {
+    --musicplayer-1stcolor: #211145;
+    --musicplayer-2ndcolor: #66ff00;
+    --musicplayer-sectioncolor: #0f151a;
+}
+
+.musicPlayerlight {
+    --musicplayer-1stcolor: #e784b3;
+    --musicplayer-2ndcolor: #f5c26b;
+    --musicplayer-sectioncolor: #f0ddf3;
+}
 
 .pulseAnimation::before {
-    content:"";
+    content: "";
     inset: 0;
-    position:absolute;
-    background-color: rgba(255,255,255, 0.1);
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
     animation: pulse 2.5s infinite;
-    z-index:100;
+    z-index: 100;
 }
 
 @keyframes pulse {
     0% {
-        background-color: rgba(0,0,0, 0.2);
+        background-color: rgba(0, 0, 0, 0.2);
     }
+
     50% {
-        background-color: rgba(0,0,0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
     }
+
     100% {
-        background-color: rgba(0,0,0, 0.2);
+        background-color: rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -40,11 +54,11 @@
 }
 
 .relative100 {
-    position:relative;
+    position: relative;
     width: 100%;
 }
 
 .absolute100 {
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
 }

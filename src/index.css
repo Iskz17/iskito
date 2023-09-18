@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Gilroy';
-    src: local('Gilroy'), url(./font/Gilroy-Light.otf) format('opentype');
+    src: local('Gilroy'), url(./font/gilroy-regular.otf) format('opentype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
-  }
+}

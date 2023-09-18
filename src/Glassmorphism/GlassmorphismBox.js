@@ -1,11 +1,6 @@
-import Box from "@mui/material/Box";
-import CustomSlider from "../Component/Slider/CustomSlider";
-import Stack from "@mui/material/Stack";
-import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
-import { styled, createTheme } from "@mui/material/styles";
+import { CustomSlider, PrimaryButton, Dropdown } from "../Component/Component"
+import { Stack, Avatar, Box, Badge, MenuItem, FormControl, styled, createTheme, useMediaQuery } from "@mui/material";
 import { AppContext } from "../Context/AppContext";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import React, {
   useState,
   useMemo,
@@ -13,12 +8,8 @@ import React, {
   useContext,
   useEffect,
 } from "react";
-import { PrimaryButton } from "../Component/Button/CustomButton";
 import "./GlassmorphismBox.css";
 import CroppedCC from "../Assets/cropedcc.png";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import { Dropdown } from "../Component/Dropdown/Dropdown";
 import { IsNullOrUndefined, convertHexToRGB } from "../Utils/Utils";
 
 //might need browserfs for this
@@ -571,9 +562,9 @@ const GlassmorphismBox = () => {
                   boxShadow: needToUseDark
                     ? `rgb(52 54 57 / 82%) 5px 9px 10px`
                     : `${convertToRgbWithOpacity(
-                        backgroundColor[0],
-                        70
-                      )} 5px 9px 10px`,
+                      backgroundColor[0],
+                      70
+                    )} 5px 9px 10px`,
                 }}
                 htmlFor="color"
                 onClick={() => {
@@ -604,9 +595,9 @@ const GlassmorphismBox = () => {
                   boxShadow: needToUseDark
                     ? `rgb(52 54 57 / 82%) 5px 9px 10px`
                     : `${convertToRgbWithOpacity(
-                        backgroundColor[1],
-                        70
-                      )} 5px 9px 10px`,
+                      backgroundColor[1],
+                      70
+                    )} 5px 9px 10px`,
                   cursor: "pointer",
                 }}
                 onClick={() => {
@@ -637,9 +628,9 @@ const GlassmorphismBox = () => {
                   boxShadow: needToUseDark
                     ? `rgb(52 54 57 / 82%) 5px 9px 10px`
                     : `${convertToRgbWithOpacity(
-                        backgroundColor[2],
-                        70
-                      )} 5px 9px 10px`,
+                      backgroundColor[2],
+                      70
+                    )} 5px 9px 10px`,
                   cursor: "pointer",
                 }}
                 onClick={() => {
@@ -961,7 +952,7 @@ const GlassmorphismBox = () => {
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: "unset",
-          minHeight:"699px"
+          minHeight: "699px"
         }}
       >
         <Stack

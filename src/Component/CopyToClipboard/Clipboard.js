@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {PrimaryButton} from "../Component/Button/CustomButton"
+import React, { useState } from "react";
+import { PrimaryButton } from "../Button/CustomButton"
 
 export function ClipboardCopy({ copyText, hidden, id }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -30,7 +30,7 @@ export function ClipboardCopy({ copyText, hidden, id }) {
   };
 
   return (
-    <div id={id} hidden={hidden} onClick={id?handleCopyClick: undefined}>
+    <div id={id} hidden={hidden} onClick={id ? handleCopyClick : undefined}>
       <PrimaryButton
         size="small"
         disableElevation

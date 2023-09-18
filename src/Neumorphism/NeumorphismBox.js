@@ -1,5 +1,5 @@
-import CustomSlider from "../Component/Slider/CustomSlider";
-import Stack from "@mui/material/Stack";
+import { CustomSlider, PrimaryButton, ClipboardCopy } from "../Component/Component";
+import { Stack, useMediaQuery } from "@mui/material";
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import {
   ElementFlat,
@@ -8,11 +8,8 @@ import {
   ElementPressed,
 } from "./Element";
 import "./NeumorphismBox.css";
-import { ClipboardCopy } from "../CopyToClipboard/Clipboard";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme } from "@mui/material/styles";
 import { needDarkMode, calculateShadow } from "../Utils/Utils";
-import { PrimaryButton } from "../Component/Button/CustomButton";
 
 const NeumorphismBox = (props) => {
   let flex = {
@@ -68,21 +65,16 @@ const NeumorphismBox = (props) => {
 
   const [clipboardText, setClipboardText] = useState(`
   border-radius: ${valueRad}px;
-  background: ${
-    shadowType === "flat" || shadowType === "pressed"
+  background: ${shadowType === "flat" || shadowType === "pressed"
       ? `${cssParametersObj.current.backgroundColor};`
       : `linear-gradient(${cssParametersObj.current.shapeColorAngle}, ${cssParametersObj.current.shapeColor});`
-  }
-  box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${
-    darkAngleValue[0]
-  }${valueDistance}px ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${
-    cssParametersObj.current.darkShadow
-  },`}
-  ${shadowType === "pressed" ? "inset" : ""} ${
-    lightAngleValue[0]
-  }${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${
-    cssParametersObj.current.lightShadow
-  };`);
+    }
+  box-shadow: ${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+    }${valueDistance}px ${darkAngleValue[1]}${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow
+    },`}
+  ${shadowType === "pressed" ? "inset" : ""} ${lightAngleValue[0]
+    }${valueDistance}px ${lightAngleValue[1]}${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow
+    };`);
 
   useEffect(() => {
     cssParametersObj.current = {
@@ -90,7 +82,7 @@ const NeumorphismBox = (props) => {
       shadowType: shadowType,
     };
     updateDocumentCSS(cssParametersObj.current);
-    return ()=> {
+    return () => {
       cssParametersObj = null;
     };
   }, [shadowType]);
@@ -148,8 +140,8 @@ const NeumorphismBox = (props) => {
       shadowType === "flat" || shadowType === "pressed"
         ? backgroundColor
         : `linear-gradient(${shapeColorAngle},${getInsetShadowColor(
-            shadowType
-          )})`;
+          shadowType
+        )})`;
 
     document.body.style.cssText = `
     --neumorph-height-width: ${valueSize}px;
@@ -157,22 +149,18 @@ const NeumorphismBox = (props) => {
     --neumorph-background: ${backgroundColor};
     --neumorph-backgroundCSS: "${previewShadow}";
     --neumorph-previewBackground: ${previewShadow};
-    --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${
-      darkAngleValue[0]
-    }${valueDistance}px ${
-      darkAngleValue[1]
-    }${valueDistance}px ${valueBlur}px ${darkShadow}, ${
-      shadowType === "pressed" ? "inset" : ""
-    } ${lightAngleValue[0]}${valueDistance}px ${
-      lightAngleValue[1]
-    }${valueDistance}px ${valueBlur}px ${lightShadow};
+    --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+      }${valueDistance}px ${darkAngleValue[1]
+      }${valueDistance}px ${valueBlur}px ${darkShadow}, ${shadowType === "pressed" ? "inset" : ""
+      } ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
+      }${valueDistance}px ${valueBlur}px ${lightShadow};
    `;
   };
 
-  useEffect(()=>{
-    if(firstLoad.current){
+  useEffect(() => {
+    if (firstLoad.current) {
       firstLoad.current = false;
-    }else{
+    } else {
       document.getElementById('clipboardCopy').click();
       setIsCopied(true);
       setTimeout(() => {
@@ -180,27 +168,21 @@ const NeumorphismBox = (props) => {
       }, 1500);
     }
     return null;
-  },[clipboardText])
+  }, [clipboardText])
 
   const handleClipboardText = () => {
     setClipboardText(`border-radius: ${cssParametersObj.current.valueRad}px;
-    background: ${
-      cssParametersObj.current.shadowType === "flat" || cssParametersObj.current.shadowType === "pressed"
+    background: ${cssParametersObj.current.shadowType === "flat" || cssParametersObj.current.shadowType === "pressed"
         ? `${cssParametersObj.current.backgroundColor};`
         : `linear-gradient(${cssParametersObj.current.shapeColorAngle}, ${cssParametersObj.current.shapeColor});`
-    }
-    box-shadow: ${`${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
-      cssParametersObj.current.darkAngleValue[0]
-    }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.darkAngleValue[1]}${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${
-      cssParametersObj.current.darkShadow
-    },`}
-${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
-  cssParametersObj.current.lightAngleValue[0]
-    }${cssParametersObj.current.valueDistance}px ${
-      cssParametersObj.current.lightAngleValue[1]
-    }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${
-      cssParametersObj.current.lightShadow
-    };`);
+      }
+    box-shadow: ${`${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParametersObj.current.darkAngleValue[0]
+      }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.darkAngleValue[1]}${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${cssParametersObj.current.darkShadow
+      },`}
+${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParametersObj.current.lightAngleValue[0]
+      }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.lightAngleValue[1]
+      }${cssParametersObj.current.valueDistance}px ${cssParametersObj.current.valueBlur}px ${cssParametersObj.current.lightShadow
+      };`);
   };
 
   const handleChangeSize = (newValue) => {
@@ -639,11 +621,9 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                     ? "rgba(0,31,63,1)"
                     : "rgba(255,255,255,1)",
                 }}
-              >{`${`${shadowType === "pressed" ? "inset" : ""} ${
-                darkAngleValue[0]
-              }${valueDistance}px ${
-                darkAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow.toLowerCase()},`}`}</span>
+              >{`${`${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
+                }${valueDistance}px ${darkAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.darkShadow.toLowerCase()},`}`}</span>
               <span
                 style={{
                   marginLeft: "100px",
@@ -653,9 +633,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                   display: "flex",
                 }}
               >{`${shadowType === "pressed" ? "inset" : ""} 
-              ${lightAngleValue[0]}${valueDistance}px ${
-                lightAngleValue[1]
-              }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow.toLowerCase()};`}</span>
+              ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
+                }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow.toLowerCase()};`}</span>
             </div>
           </Stack>
         </div>
@@ -710,9 +689,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 0 50px 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
           <div
@@ -727,9 +705,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 lightSourcePos === "topRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "0 0 0 50px",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
         </div>
@@ -760,9 +737,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
               left: 0,
               borderRadius: "0 50px 0 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
           <div
@@ -777,9 +753,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
               right: 0,
               borderRadius: "50px 0 0 0",
-              border: `2px solid ${
-                needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-              }`,
+              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
+                }`,
             }}
           ></div>
         </div>
@@ -796,7 +771,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
           fontFamily: "Gilroy",
           color: `${needToUseDark ? "#001f3f" : "white"}`,
           height: matches ? "unset" : "100vh",
-          minHeight:"699px"
+          minHeight: "699px"
         }}
       >
         <Stack

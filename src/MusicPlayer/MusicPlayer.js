@@ -1,4 +1,6 @@
-import Stack from "@mui/material/Stack";
+import { Stack, useMediaQuery, Typography, Slide, IconButton } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { NotificationsOutlined, FavoriteBorder, ArrowBackIosNew, PlayCircleFilled, Forward10, Replay10, SkipNext, SkipPrevious, Pause } from "@mui/icons-material";
 import { AppContext } from "../Context/AppContext";
 import React, {
   useState,
@@ -14,27 +16,10 @@ import {
   CustomCardMediaShadow,
 } from "./CustomCard";
 import { lyrics } from "./Lyrics";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { createTheme } from "@mui/material/styles";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@mui/material/Typography";
 import ParticleBackground from "../particle";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import Slide from "@mui/material/Slide";
-import IconButton from "@mui/material/IconButton";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import Forward10Icon from "@mui/icons-material/Forward10";
-import Replay10Icon from "@mui/icons-material/Replay10";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PauseIcon from "@mui/icons-material/Pause";
-import lifetime from "../Assets/Lifetime.mp3";
-import pg from "../Assets/pg.mp3";
-import lftc from "../Assets/lftc.png";
-import pgc from "../Assets/pgc.png";
-import CustomSlider from "../Component/Slider/CustomSlider";
+import {lifetime, pg, lftc, pgc} from "../Assets/assets"
+import { CustomSlider } from "../Component/Component";
 import "./MusicPlayer.css";
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
@@ -237,7 +222,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         >
           {/* <Slide in={true} direction="up" container={stackRef.current}> */}
           <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
-          <Slide in={!show} direction={firstSlideRef.current} container={stackRef.current}>
+            <Slide in={!show} direction={firstSlideRef.current} container={stackRef.current}>
               <div
                 className="relative100"
               >
@@ -306,7 +291,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     }}
                   // style={{ backgroundColor: "#4d5051" }}
                   >
-                    <ArrowBackIosNewOutlinedIcon
+                    <ArrowBackIosNew
                       style={{
                         color: "white",
                         fontWeight: "900",
@@ -323,11 +308,11 @@ const MusicPlayer = forwardRef((props, ref) => {
                     justifyContent: "center",
                     alignItems: "center",
                   }}
-                  onClick={()=> {
-                    if(firstSlideRef.current === "left"){
+                  onClick={() => {
+                    if (firstSlideRef.current === "left") {
                       firstSlideRef.current = "right";
                       secondSlideRef.current = "left";
-                    }else{
+                    } else {
                       firstSlideRef.current = "left";
                       secondSlideRef.current = "right";
                     }
@@ -355,7 +340,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     size="small"
                   // style={{ backgroundColor: "#4d5051" }}
                   >
-                    <NotificationsOutlinedIcon
+                    <NotificationsOutlined
                       style={{
                         color: "white",
                         fontWeight: "900",
@@ -364,7 +349,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     />
                   </IconButton>
                   <IconButton aria-label="favorite" size="small">
-                    <FavoriteBorderOutlinedIcon
+                    <FavoriteBorder
                       style={{
                         color: "white",
                         fontWeight: "900",
@@ -432,7 +417,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                       size="medium"
                       onClick={handlePreviousSong}
                     >
-                      <SkipPreviousIcon
+                      <SkipPrevious
                         style={{
                           color: "white",
                           fontWeight: "900",
@@ -445,7 +430,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                       size="medium"
                       onClick={handleRewind10}
                     >
-                      <Replay10Icon
+                      <Replay10
                         style={{
                           color: "white",
                           fontWeight: "900",
@@ -462,7 +447,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                           handlePause();
                         }}
                       >
-                        <PauseIcon
+                        <Pause
                           style={{
                             color: "white",
                             fontWeight: "900",
@@ -479,7 +464,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                           handlePlay();
                         }}
                       >
-                        <PlayCircleFilledIcon
+                        <PlayCircleFilled
                           style={{
                             color: "white",
                             fontWeight: "900",
@@ -493,7 +478,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                       size="medium"
                       onClick={handleForward10}
                     >
-                      <Forward10Icon
+                      <Forward10
                         style={{
                           color: "white",
                           fontWeight: "900",
@@ -506,7 +491,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                       size="medium"
                       onClick={handleNextSong}
                     >
-                      <SkipNextIcon
+                      <SkipNext
                         style={{
                           color: "white",
                           fontWeight: "900",

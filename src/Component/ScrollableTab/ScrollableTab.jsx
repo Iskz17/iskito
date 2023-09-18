@@ -21,7 +21,7 @@ const TabPanel = forwardRef((props, ref) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <div>{children}</div>}
+      {<div>{children}</div>}
     </div>
   );
 });

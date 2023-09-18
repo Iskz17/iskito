@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/iskito/static/css/main.2d07c300.css",
-    "main.js": "/iskito/static/js/main.20b4bc9e.js",
+    "main.css": "/iskito/static/css/main.d630665a.css",
+    "main.js": "/iskito/static/js/main.58ef372f.js",
     "static/media/pg.mp3": "/iskito/static/media/pg.ab1c0aec1c51c5674a5a.mp3",
     "static/media/Lifetime.mp3": "/iskito/static/media/Lifetime.c1c91a1b0eaa3859ede6.mp3",
     "static/media/kito-nobg.png": "/iskito/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
     "static/media/lftc.png": "/iskito/static/media/lftc.45e27cd9fd261ee63043.png",
     "static/media/pgc.png": "/iskito/static/media/pgc.5f7a21b8474b0ed0e224.png",
-    "static/media/Gilroy-Light.otf": "/iskito/static/media/Gilroy-Light.5ac188463a0bf78b3351.otf",
+    "static/media/gilroy-regular.otf": "/iskito/static/media/gilroy-regular.86bc2a5a8350170447c9.otf",
     "static/media/cropedcc.png": "/iskito/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
     "index.html": "/iskito/index.html",
-    "main.2d07c300.css.map": "/iskito/static/css/main.2d07c300.css.map",
-    "main.20b4bc9e.js.map": "/iskito/static/js/main.20b4bc9e.js.map"
+    "main.d630665a.css.map": "/iskito/static/css/main.d630665a.css.map",
+    "main.58ef372f.js.map": "/iskito/static/js/main.58ef372f.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d07c300.css",
-    "static/js/main.20b4bc9e.js"
+    "static/css/main.d630665a.css",
+    "static/js/main.58ef372f.js"
   ]
 }

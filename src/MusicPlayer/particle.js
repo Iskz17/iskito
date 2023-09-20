@@ -1,4 +1,5 @@
 import React from "react";
+import "./Particle.css";
 
 const ParticleBackground = () => {
   return (

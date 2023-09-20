@@ -17,10 +17,22 @@
   }
 }
 
-:root{
+/* :root{
   --musicplayer-1stcolor: #e784b3;
   --musicplayer-2ndcolor: #f5c26b;
   --musicplayer-blobContainerHeight: 100%;
+} */
+
+.musicPlayerDark {
+  --musicplayer-1stcolor: #211145;
+  --musicplayer-2ndcolor: #66ff00;
+  --musicplayer-sectioncolor: #0f151a;
+}
+
+.musicPlayerLight {
+  --musicplayer-1stcolor: #e784b3;
+  --musicplayer-2ndcolor: #f5c26b;
+  --musicplayer-sectioncolor: #f0ddf3;
 }
 
 .particle {

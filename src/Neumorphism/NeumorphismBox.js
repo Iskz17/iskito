@@ -1,4 +1,4 @@
-import { CustomSlider, PrimaryButton, ClipboardCopy } from "../Component/Component";
+import { CustomSlider, PrimaryButton, ClipboardCopy, Title } from "../Component/Component";
 import { Stack, useMediaQuery } from "@mui/material";
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import {
@@ -774,19 +774,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParamet
           minHeight: "699px"
         }}
       >
-        <Stack
-          style={{ width: "100%" }}
-          spacing={1}
-          direction="column"
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
-        >
-          <span style={{ fontSize: "2em", fontWeight: 900 }}>
-            Neumorphism UI
-          </span>
-          <span>soft shadow style</span>
-        </Stack>
+        <Title title={"Neumorphism UI"} description={"soft shadow style"} />
         <div
           id="content"
           style={{

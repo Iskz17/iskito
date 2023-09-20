@@ -33,9 +33,9 @@ import {
 } from "./CustomCard";
 import { lyrics } from "./Lyrics";
 import CardContent from "@material-ui/core/CardContent";
-import ParticleBackground from "../particle";
-import { lifetime, pg, lftc, pgc } from "../Assets/assets";
-import { CustomSlider } from "../Component/Component";
+import ParticleBackground from "./particle";
+import { lifetime, pg, lftc, pgc } from "../Assets/assets"
+import { CustomSlider, Title } from "../Component/Component";
 import "./MusicPlayer.css";
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
@@ -84,7 +84,7 @@ const MusicPlayer = forwardRef((props, ref) => {
   useEffect(() => {
     setTrack(tracks[0]);
     setCurrentLyric(lyrics[0]);
-    return () => {};
+    return () => { };
   }, [tracks]);
 
   //green #211145 #66ff00
@@ -169,28 +169,31 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   useEffect(() => {
     setNeedToUseDark(state.isDarkMode);
-    setTimeout(() => {
-      document.getElementsByClassName(
-        "blobContainerHeight"
-      )[0].style.cssText = `--musicplayer-blobContainerHeight: ${containerRef?.current.clientHeight}px;`;
-    }, 1000);
 
-    document.body.classList.add(
+    let globalAttrPivot = document.getElementsByClassName(
+      "blobContainerHeight"
+    )[0];
+
+    globalAttrPivot.style.cssText = `--musicplayer-blobContainerHeight: ${containerRef?.current.clientHeight}px;`;
+
+    document.getElementsByClassName("blobContainer")[0].classList.add(
       state.isDarkMode ? "musicPlayerDark" : "musicPlayerLight"
     );
-    document.body.classList.remove(
+    document.getElementsByClassName("blobContainer")[0].classList.remove(
       state.isDarkMode ? "musicPlayerLight" : "musicPlayerDark"
     );
-    return () => {};
+    return () => { };
   }, [state]);
 
   useEffect(() => {
     handleChangeSong();
-    return () => {};
+    return () => { };
   }, [index]);
 
   return (
     <>
+      <div className="blobContainerHeight" />
+      <div id="particleGlobalPivot" />
       <div
         // ref={ref}
         className="blobContainer"
@@ -203,7 +206,7 @@ const MusicPlayer = forwardRef((props, ref) => {
           zIndex: 0,
         }}
       >
-        <div className="blobContainerHeight"></div>
+
         <ParticleBackground />
       </div>
       <div
@@ -217,20 +220,10 @@ const MusicPlayer = forwardRef((props, ref) => {
             : "rgba(0, 0, 0, 0.7)",
           height: "100vh",
           overflowX: "hidden",
-          position:"absolute"
+          position: "absolute"
         }}
       >
-        <Stack
-          style={{ width: "100vw", zIndex: 2, position: "relative" }}
-          spacing={1}
-          direction="column"
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
-        >
-          <span style={{ fontSize: "2em", fontWeight: 900 }}>Music Player</span>
-          <span>Favorite song collections</span>
-        </Stack>
+        <Title style={{ width: "100vw", zIndex: 2, position: "relative" }} title="Music Player" description="Favorite song collections" />
         <Stack
           style={{
             width: "100vw",
@@ -321,7 +314,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                     onClick={() => {
                       setShow(!show);
                     }}
-                    // style={{ backgroundColor: "#4d5051" }}
+                  // style={{ backgroundColor: "#4d5051" }}
                   >
                     <ArrowBackIosNew
                       style={{
@@ -370,7 +363,7 @@ const MusicPlayer = forwardRef((props, ref) => {
                   <IconButton
                     aria-label="subscribe notification"
                     size="small"
-                    // style={{ backgroundColor: "#4d5051" }}
+                  // style={{ backgroundColor: "#4d5051" }}
                   >
                     <NotificationsOutlined
                       style={{

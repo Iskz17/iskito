@@ -1,4 +1,4 @@
-import { CustomSlider, PrimaryButton, Dropdown } from "../Component/Component"
+import { CustomSlider, PrimaryButton, Dropdown, Title } from "../Component/Component"
 import { Stack, Avatar, Box, Badge, MenuItem, FormControl, styled, createTheme, useMediaQuery } from "@mui/material";
 import { AppContext } from "../Context/AppContext";
 import React, {
@@ -955,17 +955,7 @@ const GlassmorphismBox = () => {
           minHeight: "699px"
         }}
       >
-        <Stack
-          style={{ width: "100%" }}
-          spacing={1}
-          direction="column"
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
-        >
-          <span style={{ fontSize: "2em", fontWeight: 900 }}>Glass UI</span>
-          <span>frosted glass style</span>
-        </Stack>
+        <Title title="Glass UI" description="frosted glass style" />
         <Stack
           style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}

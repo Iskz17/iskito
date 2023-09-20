@@ -1,20 +1,13 @@
 import Compress from "browser-image-compression";
-import Stack from "@mui/material/Stack";
+import { createTheme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
+import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia } from "@material-ui/core";
+import { PrimaryButton, Dropdown, Title } from "../Component/Component";
 import { AppContext } from "../Context/AppContext";
 import React, { useState, useContext, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { createTheme } from "@mui/material/styles";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@mui/material/Typography";
 import mekito from "../Assets/kito.jpg";
-import { PrimaryButton } from "../Component/Button/CustomButton";
 import "./LazyLoading.css";
-import { Dropdown } from "../Component/Dropdown/Dropdown";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 
 const LazyLoading = () => {
   const [state] = useContext(AppContext);
@@ -78,7 +71,7 @@ const LazyLoading = () => {
 
   useEffect(() => {
     setNeedToUseDark(state.isDarkMode);
-    return () => {};
+    return () => { };
   }, [state]);
 
   const getSvgToImg = (el) => {
@@ -241,22 +234,10 @@ const LazyLoading = () => {
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: matches ? "unset" : "100vh",
-          minHeight:"699px"
+          minHeight: "699px"
         }}
       >
-        <Stack
-          style={{ width: "100%" }}
-          spacing={1}
-          direction="column"
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
-        >
-          <span style={{ fontSize: "2em", fontWeight: 900 }}>
-            Lazy Loading Card
-          </span>
-          <span>reduce mental loading</span>
-        </Stack>
+        <Title title="Lazy Loading Card" description="reduce mental loading" />
         <Stack
           style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}
@@ -309,7 +290,7 @@ const LazyLoading = () => {
                 gutterBottom
                 variant="h6"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 Lazy Loading
               </Typography>
@@ -317,7 +298,7 @@ const LazyLoading = () => {
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 A low resolution was fetched first, while full picture is
                 downloading.
@@ -325,7 +306,7 @@ const LazyLoading = () => {
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 Theoritically, we store this low res image but in this case, we
                 compressing it manually here.
@@ -372,7 +353,7 @@ const LazyLoading = () => {
                 gutterBottom
                 variant="h6"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 Lazy Loading
               </Typography>
@@ -380,14 +361,14 @@ const LazyLoading = () => {
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 Since the low res will likely be pixelated, we set it to blurry.
               </Typography>
               <Typography
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 The pulse animation gives info that the actual pic is yet to be
                 shown.
@@ -437,7 +418,7 @@ const LazyLoading = () => {
                 gutterBottom
                 variant="h6"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy", }}
               >
                 Lazy Loading
               </Typography>
@@ -445,7 +426,7 @@ const LazyLoading = () => {
                 variant={matches ? "body1" : "body2"}
                 color="text.secondary"
                 component="div"
-                style={{ fontFamily: "Gilroy", fontWeight: "900" }}
+                style={{ fontFamily: "Gilroy" }}
               >
                 Upload your image here. Then you'll able to download the
                 compressed version.

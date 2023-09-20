@@ -7,5 +7,6 @@ import CustomSlider from "./Slider/CustomSlider";
 import IOSSwitch from "./Switch/IOSSwitch";
 import ThemeProvider from "./ThemeProvider/AppTheme";
 import { ClipboardCopy } from "./CopyToClipboard/Clipboard";
+import Title from "./Title/Title"
 
-export { PrimaryButton, ClipboardCopy, SecondaryButton, CommonDialog, Dropdown, ScrollableTab, Section, CustomSlider, IOSSwitch, ThemeProvider };
+export { PrimaryButton, ClipboardCopy, Title, SecondaryButton, CommonDialog, Dropdown, ScrollableTab, Section, CustomSlider, IOSSwitch, ThemeProvider };

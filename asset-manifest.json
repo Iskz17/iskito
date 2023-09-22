@@ -1,9 +1,7 @@
 {
   "files": {
     "main.css": "/iskito/static/css/main.80e30ff8.css",
-    "main.js": "/iskito/static/js/main.6b6d9032.js",
-    "static/media/pg.mp3": "/iskito/static/media/pg.ab1c0aec1c51c5674a5a.mp3",
-    "static/media/Lifetime.mp3": "/iskito/static/media/Lifetime.c1c91a1b0eaa3859ede6.mp3",
+    "main.js": "/iskito/static/js/main.2fe3370f.js",
     "static/media/kito-nobg.png": "/iskito/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
     "static/media/lftc.png": "/iskito/static/media/lftc.45e27cd9fd261ee63043.png",
@@ -12,10 +10,10 @@
     "static/media/cropedcc.png": "/iskito/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
     "index.html": "/iskito/index.html",
     "main.80e30ff8.css.map": "/iskito/static/css/main.80e30ff8.css.map",
-    "main.6b6d9032.js.map": "/iskito/static/js/main.6b6d9032.js.map"
+    "main.2fe3370f.js.map": "/iskito/static/js/main.2fe3370f.js.map"
   },
   "entrypoints": [
     "static/css/main.80e30ff8.css",
-    "static/js/main.6b6d9032.js"
+    "static/js/main.2fe3370f.js"
   ]
 }

@@ -1,17 +1,24 @@
 import { CustomSlider, PrimaryButton, ClipboardCopy, Title } from "../Component/Component";
 import { Stack, useMediaQuery } from "@mui/material";
-import React, { useState, useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   ElementFlat,
   ElementConcave,
   ElementConvex,
   ElementPressed,
-} from "./Element";
+  TopLightBoxes,
+  BottomLightBoxes
+} from "./Neumorphism.Component/Neumorphism.Component";
 import "./NeumorphismBox.css";
 import { createTheme } from "@mui/material/styles";
-import { needDarkMode, calculateShadow } from "../Utils/Utils";
+import NeumorphismLogic from "./Neumorphism.Component/Neumorphism.Logic";
 
 const NeumorphismBox = (props) => {
+
+  let textBoxColorPicker = useRef(null);
+  let colorPicker = useRef(null);
+  let firstLoad = useRef(true);
+
   let flex = {
     display: "flex",
     justifyContent: "center",
@@ -35,17 +42,28 @@ const NeumorphismBox = (props) => {
     darkInnerShadow: "#ACC4C5",
   });
 
-  const [valueSize, setValueSize] = useState(250);
-  const [valueRad, setValueRad] = useState(30);
-  const [valueRadMax, setValueRadMax] = useState(120);
-  const [valueDistance, setValueDistance] = useState(23);
-  const [valueIntensity, setValueIntensity] = useState(71);
-  const [valueBlur, setValueBlur] = useState(60);
-  const [lightAngleValue, setLightAngleValue] = useState(["-", "-"]);
-  const [darkAngleValue, setDarkAngleValue] = useState(["", ""]);
-  const [lightSourcePos, setLightSourcePos] = useState("topLeft");
+  let {
+    updateDocumentCSS,
+    handleChangeSize,
+    handleChangeRad,
+    handleChangeDistance,
+    handleChangeIntensity,
+    handleChangeBlur,
+    handleColorChange,
+    handleLightSource,
+    valueRad,
+    valueDistance,
+    darkAngleValue,
+    valueBlur,
+    valueSize,
+    valueRadMax,
+    valueIntensity,
+    lightAngleValue,
+    lightSourcePos,
+    needToUseDark
+  } = NeumorphismLogic(cssParametersObj, colorPicker, textBoxColorPicker);
+
   const [shadowType, setShadowType] = useState("flat");
-  const [needToUseDark, setNeedToUseDark] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
 
   const theme = createTheme({
@@ -59,9 +77,6 @@ const NeumorphismBox = (props) => {
     },
   });
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
-  let textBoxColorPicker = useRef(null);
-  let colorPicker = useRef(null);
-  let firstLoad = useRef(true);
 
   const [clipboardText, setClipboardText] = useState(`
   border-radius: ${valueRad}px;
@@ -86,76 +101,6 @@ const NeumorphismBox = (props) => {
       cssParametersObj = null;
     };
   }, [shadowType]);
-
-  const updateDocumentCSS = ({
-    backgroundColor,
-    valueSize,
-    valueRad,
-    valueBlur,
-    valueDistance,
-    shapeColorAngle,
-    shadowType,
-    darkAngleValue,
-    lightAngleValue,
-    lightShadow,
-    darkShadow,
-    lightInnerShadow,
-    darkInnerShadow,
-  }) => {
-    const getInsetShadowColor = (type) => {
-      let lis = lightInnerShadow;
-      let dis = darkInnerShadow;
-
-      switch (type) {
-        case "flat": {
-          return;
-        }
-        case "concave": {
-          let sc = `${dis},${lis}`;
-          cssParametersObj.current = {
-            ...cssParametersObj.current,
-            shadowType: shadowType,
-            shapeColor: sc,
-          };
-          return sc;
-        }
-        case "convex": {
-          let sc = `${lis},${dis}`;
-          cssParametersObj.current = {
-            ...cssParametersObj.current,
-            shadowType: shadowType,
-            shapeColor: sc,
-          };
-          return sc;
-        }
-        case "pressed": {
-          return;
-        }
-        default:
-          break;
-      }
-    };
-
-    let previewShadow =
-      shadowType === "flat" || shadowType === "pressed"
-        ? backgroundColor
-        : `linear-gradient(${shapeColorAngle},${getInsetShadowColor(
-          shadowType
-        )})`;
-
-    document.body.style.cssText = `
-    --neumorph-height-width: ${valueSize}px;
-    --neumorph-borderradius: ${valueRad}px;
-    --neumorph-background: ${backgroundColor};
-    --neumorph-backgroundCSS: "${previewShadow}";
-    --neumorph-previewBackground: ${previewShadow};
-    --neumorph-boxShadow:  ${shadowType === "pressed" ? "inset" : ""} ${darkAngleValue[0]
-      }${valueDistance}px ${darkAngleValue[1]
-      }${valueDistance}px ${valueBlur}px ${darkShadow}, ${shadowType === "pressed" ? "inset" : ""
-      } ${lightAngleValue[0]}${valueDistance}px ${lightAngleValue[1]
-      }${valueDistance}px ${valueBlur}px ${lightShadow};
-   `;
-  };
 
   useEffect(() => {
     if (firstLoad.current) {
@@ -185,148 +130,6 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParamet
       };`);
   };
 
-  const handleChangeSize = (newValue) => {
-    let ValueSize = newValue.target.value;
-    let RadMax = newValue.target.value / 2;
-    let Distance = Math.floor(newValue.target.value / 10);
-    let Blur = Math.floor((newValue.target.value / 10) * 1.75);
-
-    setValueSize(ValueSize);
-    setValueRadMax(RadMax);
-    setValueDistance(Distance);
-    setValueBlur(Blur);
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      valueSize: ValueSize,
-      valueDistance: Distance,
-      valueBlur: Blur,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-  };
-  const handleChangeRad = (newValue) => {
-    setValueRad(newValue.target.value);
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      valueRad: newValue.target.value,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-  };
-  const handleChangeDistance = (newValue) => {
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      valueDistance: newValue.target.value,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-    setValueDistance(newValue.target.value);
-  };
-  const handleChangeIntensity = (newValue) => {
-    const [ls, ds, lis, dis] = calculateShadow(
-      cssParametersObj.current.backgroundColor,
-      newValue.target.value
-    );
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      valueIntensity: newValue.target.value,
-      lightShadow: ls,
-      darkShadow: ds,
-      lightInnerShadow: lis,
-      darkInnerShadow: dis,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-    setValueIntensity(newValue.target.value);
-  };
-  const handleChangeBlur = (newValue) => {
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      valueBlur: newValue.target.value,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-    setValueBlur(newValue.target.value);
-  };
-  const handleColorChange = (e) => {
-    setNeedToUseDark(needDarkMode(e.target.value));
-    const [ls, ds, lis, dis] = calculateShadow(e.target.value, valueIntensity);
-
-    colorPicker.current.value = e.target.value;
-    textBoxColorPicker.current.value = e.target.value;
-
-    cssParametersObj.current = {
-      ...cssParametersObj.current,
-      backgroundColor: e.target.value,
-      lightShadow: ls,
-      darkShadow: ds,
-      lightInnerShadow: lis,
-      darkInnerShadow: dis,
-    };
-    updateDocumentCSS(cssParametersObj.current);
-  };
-  const handleLightSource = (pos) => {
-    setLightSourcePos(pos);
-    switch (pos) {
-      case "topLeft": {
-        let lightAngleValue = ["-", "-"];
-        let darkAngleValue = ["", ""];
-        let shapeColorAngle = "145deg";
-        setLightAngleValue(lightAngleValue);
-        setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = {
-          ...cssParametersObj.current,
-          lightAngleValue,
-          darkAngleValue,
-          shapeColorAngle,
-        };
-        updateDocumentCSS(cssParametersObj.current);
-        break;
-      }
-      case "topRight": {
-        let lightAngleValue = ["", "-"];
-        let darkAngleValue = ["-", ""];
-        let shapeColorAngle = "225deg";
-        setLightAngleValue(lightAngleValue);
-        setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = {
-          ...cssParametersObj.current,
-          lightAngleValue,
-          darkAngleValue,
-          shapeColorAngle,
-        };
-        updateDocumentCSS(cssParametersObj.current);
-        break;
-      }
-      case "bottomLeft": {
-        let lightAngleValue = ["-", ""];
-        let darkAngleValue = ["", "-"];
-        let shapeColorAngle = "45deg";
-        setLightAngleValue(lightAngleValue);
-        setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = {
-          ...cssParametersObj.current,
-          lightAngleValue,
-          darkAngleValue,
-          shapeColorAngle,
-        };
-        updateDocumentCSS(cssParametersObj.current);
-        break;
-      }
-      case "bottomRight": {
-        let lightAngleValue = ["", ""];
-        let darkAngleValue = ["-", "-"];
-        let shapeColorAngle = "315deg";
-        setLightAngleValue(lightAngleValue);
-        setDarkAngleValue(darkAngleValue);
-        cssParametersObj.current = {
-          ...cssParametersObj.current,
-          lightAngleValue,
-          darkAngleValue,
-          shapeColorAngle,
-        };
-        updateDocumentCSS(cssParametersObj.current);
-        break;
-      }
-      default:
-        return null;
-    }
-  };
   const configElementBox = () => {
     return (
       <>
@@ -666,102 +469,6 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParamet
       </>
     );
   };
-  const topLightBoxes = useMemo(
-    () => (
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          height: "30px",
-        }}
-      >
-        <div className="relativeLayer">
-          <div
-            onClick={() => {
-              handleLightSource("topLeft");
-            }}
-            style={{
-              position: "absolute",
-              width: "30px",
-              height: "100%",
-              backgroundColor:
-                lightSourcePos === "topLeft" ? "yellow" : "lightGrey",
-              left: 0,
-              borderRadius: "0 0 50px 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
-            }}
-          ></div>
-          <div
-            onClick={() => {
-              handleLightSource("topRight");
-            }}
-            style={{
-              position: "absolute",
-              width: "30px",
-              height: "100%",
-              backgroundColor:
-                lightSourcePos === "topRight" ? "yellow" : "lightGrey",
-              right: 0,
-              borderRadius: "0 0 0 50px",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
-            }}
-          ></div>
-        </div>
-      </div>
-    ),
-    [lightSourcePos, needToUseDark]
-  );
-  const bottomLightBoxes = useMemo(
-    () => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          width: "100%",
-          height: "30px",
-        }}
-      >
-        <div className="relativeLayer">
-          <div
-            onClick={() => {
-              handleLightSource("bottomLeft");
-            }}
-            style={{
-              position: "absolute",
-              width: "30px",
-              height: "100%",
-              backgroundColor:
-                lightSourcePos === "bottomLeft" ? "yellow" : "lightGrey",
-              left: 0,
-              borderRadius: "0 50px 0 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
-            }}
-          ></div>
-          <div
-            onClick={() => {
-              handleLightSource("bottomRight");
-            }}
-            style={{
-              position: "absolute",
-              width: "30px",
-              height: "100%",
-              backgroundColor:
-                lightSourcePos === "bottomRight" ? "yellow" : "lightGrey",
-              right: 0,
-              borderRadius: "50px 0 0 0",
-              border: `2px solid ${needToUseDark ? "rgba(0,31,63,0.5)" : "rgba(255,255,255,0.6)"
-                }`,
-            }}
-          ></div>
-        </div>
-      </div>
-    ),
-    [lightSourcePos, needToUseDark]
-  );
 
   return (
     <>
@@ -794,9 +501,9 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${cssParamet
                 height: "100%",
               }}
             >
-              {topLightBoxes}
+              <TopLightBoxes handleLightSource={handleLightSource} lightSourcePos={lightSourcePos} needToUseDark={needToUseDark} />
               <div className="insideTargetBox"></div>
-              {bottomLightBoxes}
+              <BottomLightBoxes handleLightSource={handleLightSource} lightSourcePos={lightSourcePos} needToUseDark={needToUseDark} />
             </div>
           </div>
           <div

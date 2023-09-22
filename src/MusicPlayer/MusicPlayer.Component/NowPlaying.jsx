@@ -1,4 +1,4 @@
-import { CustomCardMedia } from "./CustomCard";
+import { CustomCardMedia } from "./MusicPlayer.Component";
 import { forwardRef } from "react";
 
 export const NowPlaying = forwardRef((props, ref) => {

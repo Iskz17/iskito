@@ -13,9 +13,7 @@ import {
 import { lifetime, pg, lftc, pgc } from "../../Assets/assets";
 import {
   Stack,
-  useMediaQuery,
   Typography,
-  Slide,
   IconButton,
 } from "@mui/material";
 import {
@@ -130,7 +128,6 @@ export const Player = forwardRef(
     };
 
     const handleEnded = () => {
-      // setIsPlaying(false);
       lyricRef.current = "";
       handleNextSong();
     };
@@ -145,7 +142,6 @@ export const Player = forwardRef(
 
     const handleTimeUpdate = () => {
       setProgressValue(audioRef.current.currentTime);
-      // progressRef.current.value = Math.round(audioRef.current.currentTime);
     };
 
     return (

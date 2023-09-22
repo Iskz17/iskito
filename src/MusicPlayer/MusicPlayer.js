@@ -40,11 +40,6 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
-  // useEffect(() => {
-  //   setTrack(tracks[0]);
-  //   return () => { };
-  // }, [tracks]);
-
   //green #211145 #66ff00
   //pink #e784b3 #f5c26b
 

@@ -17,6 +17,7 @@ export function PrimaryButton({ children, ...other }) {
     <Button
       {...other}
       sx={{
+        fontFamily:"Gilroy",
         backgroundColor: theme[themeld].button.primary.main,
         "&:hover": {
           backgroundColor: theme[themeld].button.primary.hover,
@@ -43,6 +44,7 @@ export function SecondaryButton({ children, ...other }) {
     <Button
       {...other}
       sx={{
+        fontFamily:"Gilroy",
         textTransform: "none",
         width: "50%",
         backgroundColor: theme[themeld].button.secondary.main,

@@ -8,5 +8,6 @@ import IOSSwitch from "./Switch/IOSSwitch";
 import ThemeProvider from "./ThemeProvider/AppTheme";
 import { ClipboardCopy } from "./CopyToClipboard/Clipboard";
 import Title from "./Title/Title"
+import { CustomAvatar } from "./Avatar/CustomAvatar";
 
-export { PrimaryButton, ClipboardCopy, Title, SecondaryButton, CommonDialog, Dropdown, ScrollableTab, Section, CustomSlider, IOSSwitch, ThemeProvider };
+export { CustomAvatar, PrimaryButton, ClipboardCopy, Title, SecondaryButton, CommonDialog, Dropdown, ScrollableTab, Section, CustomSlider, IOSSwitch, ThemeProvider };

@@ -4,14 +4,13 @@ import React, { useRef } from "react";
 import {
   TopLightBoxes,
   BottomLightBoxes,
-  ConfigBox
+  ConfigBox,
 } from "./Neumorphism.Component/Neumorphism.Component";
 import "./NeumorphismBox.css";
 import { createTheme } from "@mui/material/styles";
 import NeumorphismLogic from "./Neumorphism.Component/Neumorphism.Logic";
 
 const NeumorphismBox = (props) => {
-
   let textBoxColorPicker = useRef(null);
   let colorPicker = useRef(null);
 
@@ -56,7 +55,7 @@ const NeumorphismBox = (props) => {
     valueIntensity,
     lightAngleValue,
     lightSourcePos,
-    needToUseDark
+    needToUseDark,
   } = NeumorphismLogic(cssParametersObj, colorPicker, textBoxColorPicker);
 
   const theme = createTheme({
@@ -73,80 +72,84 @@ const NeumorphismBox = (props) => {
 
   return (
     <>
-      <div
-        id="arrangeParent"
-        style={{
-          fontFamily: "Gilroy",
-          color: `${needToUseDark ? "#001f3f" : "white"}`,
-          height: matches ? "unset" : "100vh",
-          minHeight: "699px"
-        }}
-      >
-        <Title title={"Neumorphism UI"} description={"soft shadow style"} />
+      <div id="globalPlacement">
         <div
-          id="content"
+          id="arrangeParent"
           style={{
-            ...flex,
-            width: "100%",
-            height: "100%",
-            marginTop: "-20px",
-            gap: "20px",
-            flexDirection: matches ? "column" : "row",
+            fontFamily: "Gilroy",
+            color: `${needToUseDark ? "#001f3f" : "white"}`,
+            height: matches ? "unset" : "100vh",
+            minHeight: "699px",
           }}
         >
-          <div id="mainBox">
-            <div
-              style={{
-                ...flex,
-                width: "100%",
-                height: "100%",
-              }}
-            >
-              <TopLightBoxes
-                handleLightSource={handleLightSource}
-                lightSourcePos={lightSourcePos}
-                needToUseDark={needToUseDark} />
-              <div className="insideTargetBox"></div>
-              <BottomLightBoxes
-                handleLightSource={handleLightSource}
-                lightSourcePos={lightSourcePos}
-                needToUseDark={needToUseDark} />
-            </div>
-          </div>
+          <Title title={"Neumorphism UI"} description={"soft shadow style"} />
           <div
-            id="configBox"
+            id="content"
             style={{
               ...flex,
-              color: needToUseDark ? "#001f3f" : "white",
+              width: "100%",
+              height: "100%",
+              marginTop: "-20px",
+              gap: "20px",
+              flexDirection: matches ? "column" : "row",
             }}
           >
+            <div id="mainBox">
+              <div
+                style={{
+                  ...flex,
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <TopLightBoxes
+                  handleLightSource={handleLightSource}
+                  lightSourcePos={lightSourcePos}
+                  needToUseDark={needToUseDark}
+                />
+                <div className="insideTargetBox"></div>
+                <BottomLightBoxes
+                  handleLightSource={handleLightSource}
+                  lightSourcePos={lightSourcePos}
+                  needToUseDark={needToUseDark}
+                />
+              </div>
+            </div>
             <div
-              className="insideConfigBox"
+              id="configBox"
               style={{
                 ...flex,
+                color: needToUseDark ? "#001f3f" : "white",
               }}
             >
-              <ConfigBox
-                updateDocumentCSS={updateDocumentCSS}
-                cssParametersObj={cssParametersObj}
-                handleColorChange={handleColorChange}
-                handleChangeBlur={handleChangeBlur}
-                handleChangeDistance={handleChangeDistance}
-                handleChangeIntensity={handleChangeIntensity}
-                handleChangeRad={handleChangeRad}
-                handleChangeSize={handleChangeSize}
-                colorPicker={colorPicker}
-                textBoxColorPicker={textBoxColorPicker}
-                needToUseDark={needToUseDark}
-                valueSize={valueSize}
-                valueRad={valueRad}
-                valueRadMax={valueRadMax}
-                valueDistance={valueDistance}
-                valueBlur={valueBlur}
-                valueIntensity={valueIntensity}
-                lightAngleValue={lightAngleValue}
-                darkAngleValue={darkAngleValue}
-              />
+              <div
+                className="insideConfigBox"
+                style={{
+                  ...flex,
+                }}
+              >
+                <ConfigBox
+                  updateDocumentCSS={updateDocumentCSS}
+                  cssParametersObj={cssParametersObj}
+                  handleColorChange={handleColorChange}
+                  handleChangeBlur={handleChangeBlur}
+                  handleChangeDistance={handleChangeDistance}
+                  handleChangeIntensity={handleChangeIntensity}
+                  handleChangeRad={handleChangeRad}
+                  handleChangeSize={handleChangeSize}
+                  colorPicker={colorPicker}
+                  textBoxColorPicker={textBoxColorPicker}
+                  needToUseDark={needToUseDark}
+                  valueSize={valueSize}
+                  valueRad={valueRad}
+                  valueRadMax={valueRadMax}
+                  valueDistance={valueDistance}
+                  valueBlur={valueBlur}
+                  valueIntensity={valueIntensity}
+                  lightAngleValue={lightAngleValue}
+                  darkAngleValue={darkAngleValue}
+                />
+              </div>
             </div>
           </div>
         </div>

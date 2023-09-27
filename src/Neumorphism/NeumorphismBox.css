@@ -1,11 +1,9 @@
-:root{
+#globalPlacement {
   --neumorph-height-width: 300px;
-  --neumorph-transition: width 0.3s cubic-bezier(.47, 1.64, .41, .8), 
-                          border-radius 0.3s cubic-bezier(.47, 1.64, .41, .8);
   --neumorph-borderradius: 30px;
   --neumorph-background: #CAE6E8;
   --neumorph-previewBackground: #CAE6E8;
-  --neumorph-boxShadow:23px 23px 60px #acc4c5, -23px -23px 60px #e8ffff;
+  --neumorph-boxShadow: 23px 23px 60px #acc4c5, -23px -23px 60px #e8ffff;
   --neumorph-backgroundCSS: "#CAE6E8";
 }
 
@@ -18,6 +16,7 @@
   height: 100vh;
   padding: 24px;
   background: var(--neumorph-background);
+  --neumorph-transition: width 0.3s cubic-bezier(.47, 1.64, .41, .8), border-radius 0.3s cubic-bezier(.47, 1.64, .41, .8), height 0.3s cubic-bezier(.47, 1.64, .41, .8);
 }
 
 #mainBox {
@@ -41,7 +40,7 @@
 }
 
 .configChildRow {
-  width:80%;
+  width: 80%;
   margin-bottom: 0px;
   margin-top: 0px;
   padding: 0;
@@ -73,6 +72,7 @@ svg {
 #ClipboardCSS {
   color: var(--neumorph-background)
 }
+
 #ClipboardCSSBackgroundValue:before {
   content: var(--neumorph-backgroundCSS);
 }
@@ -99,6 +99,7 @@ svg {
     height: 600px;
   }
 }
+
 @media (max-width: 863px) {
   #arrangeParent {
     /* padding: 12px; */
@@ -119,6 +120,7 @@ svg {
     padding: 2px;
   }
 }
+
 @media (max-width: 593px) {
   #arrangeParent {
     /* padding: 12px; */

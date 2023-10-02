@@ -16,23 +16,21 @@ export const GlassmorphismBoxContent = ({
   convertToRgbWithOpacity,
   children,
 }) => {
-  const cardType = ["Social Media", "Credit Card"];
-  const handleRenderMenuItem = useMemo(
-    () =>
-      cardType?.map((type) => (
-        <MenuItem
-          key={`${type}_menuItem`}
-          value={type}
-          style={{
-            height: "30px",
-            fontSize: "15px",
-            fontFamily: "Gilroy",
-          }}>
-          {type}
-        </MenuItem>
-      )),
-    []
-  );
+  const handleRenderMenuItem = () => {
+    const cardType = ["Social Media", "Credit Card"];
+    return cardType?.map((type) => (
+      <MenuItem
+        key={`${type}_menuItem`}
+        value={type}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {type}
+      </MenuItem>
+    ));
+  };
 
   const HandleBackgroundCSS = () => {
     switch (currentBackgroundType) {
@@ -231,7 +229,7 @@ export const GlassmorphismBoxContent = ({
                     fontSize: "15px",
                     fontFamily: "Gilroy",
                   }}>
-                  {handleRenderMenuItem}
+                  {handleRenderMenuItem()}
                 </Dropdown>
               </FormControl>
             </Box>

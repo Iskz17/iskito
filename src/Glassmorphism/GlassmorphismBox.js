@@ -1,9 +1,8 @@
-import { Dropdown, Title } from "../Component/Component"
-import { Stack, Box, MenuItem, FormControl, createTheme, useMediaQuery } from "@mui/material";
+import { Title } from "../Component/Component"
+import { Stack, createTheme, useMediaQuery } from "@mui/material";
 import { AppContext } from "../Context/AppContext";
 import React, {
   useState,
-  useMemo,
   useContext,
   useEffect,
 } from "react";

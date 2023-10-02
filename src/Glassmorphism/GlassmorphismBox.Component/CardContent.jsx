@@ -11,7 +11,7 @@ export const CardContent = memo(
     opacityVal,
     matches,
     saturationVal,
-    convertToRgbWithOpacity
+    convertToRgbWithOpacity,
   }) => {
     const SocialMediaCard = () => {
       return (
@@ -159,6 +159,19 @@ export const CardContent = memo(
   },
   (prevProps, nextProps) => {
     //if false, then render new. If true return the old render
+    console.log(
+      (prevProps.matches && !nextProps.matches) ||
+        (!prevProps.matches && nextProps.matches),
+      prevProps.matches,
+      nextProps.matches
+    );
+    if (
+      (prevProps.matches && !nextProps.matches) ||
+      (!prevProps.matches && nextProps.matches)
+    ) {
+      return false;
+    }
+
     return (
       prevProps.currentCardType === nextProps.currentCardType &&
       prevProps.blurVal === nextProps.blurVal &&

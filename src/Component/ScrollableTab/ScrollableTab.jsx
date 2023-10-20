@@ -102,13 +102,32 @@ const ScrollableTabs = forwardRef((props, ref) => {
             aria-label="simple tabs example"
             indicatorColor="primary"
             variant={"scrollable"}
+            sx={{'& .MuiTabs-indicator': {
+              height: 'calc(100% - 10px)',
+              backgroundColor:theme[themeld].button.primary.main,
+              zIndex:0,
+              bottom:'5px',
+              borderRadius:'5px'
+            },
+            '& .MuiTabs-flexContainer': {
+              position:'relative',
+              zIndex:50,
+              background:'transparent'
+            },
+            '& .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected':{
+              color: theme[themeld].button.primary.mainText,
+            },
+            '.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary': {
+              color: theme[themeld].tab.color,
+            }
+          }}
           >
             {tabs?.map((v, index) => (
               <Tab
                 label={v.label}
                 style={{
-                  color: theme[themeld].tab.color,
                   fontFamily: "Gilroy",
+                  transition:'.25s ease'
                 }}
                 key={index}
                 {...a11yProps(index)}

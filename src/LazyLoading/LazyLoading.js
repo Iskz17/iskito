@@ -1,10 +1,11 @@
 import Compress from "browser-image-compression";
 import { createTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
-import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
+import { Stack, MenuItem, FormControl, useMediaQuery, Typography, Box } from "@mui/material";
 import { Card, CardContent, CardMedia } from "@material-ui/core";
 import { PrimaryButton, Dropdown, Title } from "../Component/Component";
 import { AppContext } from "../Context/AppContext";
+import ProgressStepper from "../Component/ProgressStepper/ProgressStepper";
 import React, { useState, useContext, useEffect } from "react";
 import mekito from "../Assets/kito.jpg";
 import "./LazyLoading.css";
@@ -31,6 +32,47 @@ const LazyLoading = () => {
     },
   });
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
+
+  const stepDemo = [
+    {
+      titleText: 'Create Review',
+      helperText: 'Review setup',
+      completed: false,
+      skip: true,
+    },
+    {
+      titleText: 'Review Parameter Setup',
+      helperText: 'Settings for review',
+      completed: false,
+      skip: true
+    },
+    {
+      titleText: 'Add participant',
+      helperText: 'Add reviewers, authors',
+      completed: true,
+    },
+    {
+      titleText: 'Setting Email Reminder',
+      helperText: 'Hours or Days before',
+      completed: true,
+    },
+    {
+      titleText: 'Start Review',
+      helperText: 'Yeay!!',
+      completed: true,
+    },
+    {
+      titleText: 'Review',
+      helperText: 'Review in progress',
+      completed: true,
+    },
+    {
+      titleText: 'Review Ended Notification',
+      helperText: 'Email review ended',
+      completed: true,
+    },
+  ];
+
 
   const useStyles = makeStyles(() => ({
     root: {
@@ -537,6 +579,16 @@ const LazyLoading = () => {
             </CardContent>
           </Card>
         </Stack>
+        <Box className="page-container">
+          <ProgressStepper
+            active={3}
+            steps={stepDemo}
+            trailingConnector={true}
+            isHorizontalOrientation={true}
+            onClick={() => { }}
+            buttonText="Ello"
+          />
+        </Box>
       </div>
     </>
   );

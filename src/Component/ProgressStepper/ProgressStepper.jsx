@@ -212,6 +212,7 @@ function ProgressStepper(props) {
                       },
                     "& .MuiStepLabel-label.MuiStepLabel-alternativeLabel": {
                       textAlign: "start",
+                      marginTop:"7px"
                     },
                   }}
                   StepIconComponent={(props) => {
@@ -224,9 +225,10 @@ function ProgressStepper(props) {
                         variant="body1"
                         component="div"
                         style={{
+                          fontFamily:'Gilroy',
                           fontSize: "0.8125rem",
                           fontWeight: 400,
-                          color: "#5D6977", //HelixPalette.neutral70,
+                          color: "#8B939A", //HelixPalette.neutral70,
                         }}>
                         {step.helperText}
                       </Typography>
@@ -237,6 +239,7 @@ function ProgressStepper(props) {
                     variant="body1"
                     component="div"
                     style={{
+                      fontFamily:'Gilroy',
                       fontSize: "0.875rem",
                       fontWeight: 500,
                       color: "#5D6977", // HelixPalette.neutral70

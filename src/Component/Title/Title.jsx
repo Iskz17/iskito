@@ -3,11 +3,11 @@ import { Stack } from "@mui/material";
 import "../../index.css";
 
 const Title = forwardRef((props, ref) => {
-  const { title, description, ...other } = props;
+  const { title, description, style, ...other } = props;
 
   return (
     <Stack
-      style={{ width: "100%" }}
+      style={{ width: "100%", fontFamily:"NewKansasSemibold", ...style }}
       id={`${title}_${description}`}
       key={`${title}_${description}`}
       spacing={1}

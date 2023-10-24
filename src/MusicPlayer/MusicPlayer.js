@@ -95,7 +95,7 @@ const MusicPlayer = forwardRef((props, ref) => {
           position: "absolute"
         }}
       >
-        <Title style={{ width: "100vw", zIndex: 2, position: "relative" }} title="Music Player" description="Favorite song collections" />
+        <Title style={{ width: "100vw", zIndex: 2, position: "relative" }} title="Music Player" description="favorite song collections" />
         <Stack
           style={{
             width: "100vw",

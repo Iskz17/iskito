@@ -584,7 +584,7 @@ const LazyLoading = () => {
             active={6}
             steps={stepDemo}
             trailingConnector={true}
-            isHorizontalOrientation={true}
+            isHorizontalOrientation={false}
             onClick={() => { }}
             buttonText="Ello"
           />

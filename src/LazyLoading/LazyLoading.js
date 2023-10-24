@@ -69,7 +69,7 @@ const LazyLoading = () => {
     {
       titleText: 'Review Ended Notification',
       helperText: 'Email review ended',
-      completed: true,
+      completed: false,
     },
   ];
 
@@ -579,9 +579,9 @@ const LazyLoading = () => {
             </CardContent>
           </Card>
         </Stack>
-        <Box className="page-container">
+        <Box style={{width:"100%"}}>
           <ProgressStepper
-            active={3}
+            active={6}
             steps={stepDemo}
             trailingConnector={true}
             isHorizontalOrientation={true}

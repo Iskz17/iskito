@@ -48,7 +48,6 @@ const CustomStepperConnector = styled(StepConnector)(() => ({
 }));
 
 const CustomStepperIconRoot = styled("div")(({ ownerState }) => ({
-  background: "#DDE0E3", //HelixPalette.neutral10, //default color
   zIndex: 1,
   color: "#fff",
   width: 24,
@@ -57,26 +56,26 @@ const CustomStepperIconRoot = styled("div")(({ ownerState }) => ({
   borderRadius: "50%",
   justifyContent: "center",
   alignItems: "center",
-  ...(ownerState.skip && {
-    background: "#8B939A", //HelixPalette.neutral50,
-  }),
-
+  background:'#8B939A',
+  ...((ownerState.skip || ownerState.active) && {
+    background: "white"
+  }),   
   ...(ownerState.completed && {
-    background: "#08A768", //HelixPalette.green80,
-  }),
+    background: "white"
+  }), 
 }));
 
 const icons = (completed, active, skip) => {
   if (skip) {
-    return <OfflineBolt color={iconColor.skipped} size={20} />;
+    return <OfflineBolt color={iconColor.skipped} size={24} />;
   }
 
   if (completed) {
-    return <CheckCircleRounded color={iconColor.completed} size={20} />;
+    return <CheckCircleRounded color={iconColor.completed} size={24} />;
   }
 
   if (active) {
-    return <Pending color={iconColor.inProgress} size={20} />;
+    return <Pending color={iconColor.inProgress} size={24} />;
   }
   return null;
 };
@@ -93,17 +92,25 @@ function CustomStepperIcon(props, steps) {
     <CustomStepperIconRoot
       ownerState={{ completed: overrideCompleted, active, skip }}
       className={className}>
-      <Typography
-        gutterBottom
-        variant="body1"
-        component="div"
+      <div
         style={{
-          fontSize: "0.875rem",
+          fontSize: "1rem",
+          margin: 0,
           fontWeight: 500,
-          color: overrideCompleted ? "white" : "#212D38", //HelixPalette.neutral100,
+          padding:0,
+          marginTop:6,
+          borderRadius:'50%',
+          textAlign:'center',
+          color: "white", //HelixPalette.neutral100,
+          ...((skip || active) && {
+            color: "#8B939A", //HelixPalette.neutral50,
+          }),   
+          ...(overrideCompleted && {
+            color: "#08A768", //HelixPalette.green80,
+          }),
         }}>
         {icons(overrideCompleted, active, skip) ?? props.icon}
-      </Typography>
+      </div>
     </CustomStepperIconRoot>
   );
 }
@@ -132,7 +139,7 @@ function ProgressStepper(props) {
   return (
     <Box
       style={{
-        border: `2px solid ${"#DDE0E3"}`,
+        // border: `2px solid ${"#DDE0E3"}`,
         borderRadius: "8px",
         backgroundColor: "white",
         padding: `12px ${isHorizontalOrientation ? "16px" : "12px"}`,
@@ -158,7 +165,7 @@ function ProgressStepper(props) {
           orientation={isHorizontalOrientation ? "horizontal" : "vertical"}>
           {steps.map((step, index) => {
             let connectorColor = {};
-            if (index != 0) {
+            if (index !== 0) {
               if (steps[index - 1].skip) {
                 connectorColor = {
                   "& .MuiStepConnector-root.Mui-disabled .MuiStepConnector-line":
@@ -191,6 +198,7 @@ function ProgressStepper(props) {
                   ...connectorColor,
                   height: isHorizontalOrientation ? "unset" : "70px",
                   paddingLeft: 0,
+                  textAlign: "start",
                 }}>
                 <StepLabel
                   sx={{
@@ -202,6 +210,9 @@ function ProgressStepper(props) {
                         marginTop: "-10px",
                         paddingBottom: 0,
                       },
+                    "& .MuiStepLabel-label.MuiStepLabel-alternativeLabel": {
+                      textAlign: "start",
+                    },
                   }}
                   StepIconComponent={(props) => {
                     return CustomStepperIcon(props, steps);
@@ -236,7 +247,7 @@ function ProgressStepper(props) {
               </Step>
             );
           })}
-          {
+          {/* {
             //for trailing connector
             trailingConnector &&
               ["dummy"].map(() => {
@@ -269,7 +280,7 @@ function ProgressStepper(props) {
                     sx={{ ...connectorColor, paddingLeft: 0 }}></Step>
                 );
               })
-          }
+          } */}
         </Stepper>
         {/* {onClick && (
           <Box

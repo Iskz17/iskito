@@ -17,7 +17,27 @@ const LazyLoading = () => {
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [downloadDisabled, setDownloadDisabled] = useState(true);
-  // const [uploadedBlob, setUploadedBlob] = useState(null);
+  const [stepActive, setStepActive] = useState(0);
+  const [steps, setSteps] = useState([
+    {
+      titleText: 'Upload Image',
+      helperText: 'Choose image to be compressed',
+      completed: false,
+      skip: false,
+    },
+    {
+      titleText: 'Choose Format',
+      helperText: 'Format for downloaded image',
+      completed: false,
+      skip: false
+    },
+    {
+      titleText: 'Download',
+      helperText: 'Get compressed image with chosen format',
+      completed: false,
+      skip: false
+    }
+  ]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isUploadLoaded, setIsUploadLoaded] = useState(false);
   const [currentFileType, setCurrentFileType] = useState(null);
@@ -32,47 +52,6 @@ const LazyLoading = () => {
     },
   });
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
-
-  const stepDemo = [
-    {
-      titleText: 'Create Review',
-      helperText: 'Review setup',
-      completed: false,
-      skip: true,
-    },
-    {
-      titleText: 'Review Parameter Setup',
-      helperText: 'Settings for review',
-      completed: false,
-      skip: true
-    },
-    {
-      titleText: 'Add participant',
-      helperText: 'Add reviewers, authors',
-      completed: true,
-    },
-    {
-      titleText: 'Setting Email Reminder',
-      helperText: 'Hours or Days before',
-      completed: true,
-    },
-    {
-      titleText: 'Start Review',
-      helperText: 'Yeay!!',
-      completed: true,
-    },
-    {
-      titleText: 'Review',
-      helperText: 'Review in progress',
-      completed: true,
-    },
-    {
-      titleText: 'Review Ended Notification',
-      helperText: 'Email review ended',
-      completed: false,
-    },
-  ];
-
 
   const useStyles = makeStyles(() => ({
     root: {
@@ -213,19 +192,34 @@ const LazyLoading = () => {
     ));
 
   const handleFileTypeChange = (event) => {
-    Compress.canvasToFile(
-      Compress.drawImageInCanvas(document.getElementById("testconvert")),
-      event.target.value,
-      "compressedImage"
-    ).then(data => {
-      setUploadAndDownload(getSvgToImg(data));
+    return new Promise((resolve, reject) => {
+      Compress.canvasToFile(
+        Compress.drawImageInCanvas(document.getElementById("testconvert")),
+        event.target.value,
+        "compressedImage"
+      ).then(data => {
+        setUploadAndDownload(getSvgToImg(data));
+      });
+      setCurrentFileType(event.target.value);
+      handleStepper(2);
+      resolve();
     });
-    // const convertedBlobFile = new File([uploadedBlob], "compressedImage", {
-    //   type: event.target.value,
-    //   lastModified: Date.now(),
-    // });
-    // setUploadAndDownload(getSvgToImg(convertedBlobFile));
-    setCurrentFileType(event.target.value);
+  }
+
+  const handleStepper = (stepNumber) => {
+    setStepActive(stepNumber);
+    let stepsArr = [...steps];
+    // stepsArr[stepNumber - 1].completed = true;
+    stepsArr.forEach((st, index) => {
+      if (index < stepNumber) {
+        st.completed = true;
+        return;
+      }
+      st.completed = false;
+    })
+    //complete the previous
+    //incomplete the next
+    setSteps(stepsArr);
   }
 
   const handleUpload = async (event) => {
@@ -253,6 +247,7 @@ const LazyLoading = () => {
           setTimeout(() => {
             setDownloadDisabled(false);
             setIsUploadLoaded(true);
+            handleStepper(1);
           });
           resolve();
         })
@@ -275,7 +270,7 @@ const LazyLoading = () => {
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
-          height: matches ? "unset" : "100vh",
+          height: "unset",
           minHeight: "699px"
         }}
       >
@@ -563,6 +558,7 @@ const LazyLoading = () => {
                   disabled={downloadDisabled}
                   onClick={() => {
                     document.getElementById("download-compressed").click();
+                    handleStepper(3);
                   }}
                 >
                   {"Download"}
@@ -579,16 +575,24 @@ const LazyLoading = () => {
             </CardContent>
           </Card>
         </Stack>
-        <Box style={{width:"100%"}}>
-          <ProgressStepper
-            active={6}
-            steps={stepDemo}
-            trailingConnector={true}
-            isHorizontalOrientation={false}
-            onClick={() => { }}
-            buttonText="Ello"
-          />
-        </Box>
+        <Stack
+          spacing={1}
+          gap={2}
+          direction={"row"}
+          sx={{ py: 2 }}
+          alignItems="center"
+          justifyContent={"center"}
+          style={{ width: "100%", marginTop: matches ? "-26px" : 0}}
+        >
+            <ProgressStepper
+              active={stepActive}
+              steps={steps}
+              trailingConnector={true}
+              isHorizontalOrientation={true}
+              onClick={() => { }}
+              buttonText="Ello"
+            />
+        </Stack>
       </div>
     </>
   );

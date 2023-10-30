@@ -65,6 +65,46 @@ const CustomStepperIconRoot = styled("div")(({ ownerState }) => ({
   }), 
 }));
 
+const stepDemo = [
+  {
+    titleText: 'Create Review',
+    helperText: 'Review setup',
+    completed: false,
+    skip: true,
+  },
+  {
+    titleText: 'Review Parameter Setup',
+    helperText: 'Settings for review',
+    completed: false,
+    skip: true
+  },
+  {
+    titleText: 'Add participant',
+    helperText: 'Add reviewers, authors',
+    completed: true,
+  },
+  {
+    titleText: 'Setting Email Reminder',
+    helperText: 'Hours or Days before',
+    completed: true,
+  },
+  {
+    titleText: 'Start Review',
+    helperText: 'Yeay!!',
+    completed: true,
+  },
+  {
+    titleText: 'Review',
+    helperText: 'Review in progress',
+    completed: true,
+  },
+  {
+    titleText: 'Review Ended Notification',
+    helperText: 'Email review ended',
+    completed: false,
+  },
+];
+
 const icons = (completed, active, skip) => {
   if (skip) {
     return <OfflineBolt color={iconColor.skipped} size={24} />;
@@ -98,14 +138,20 @@ function CustomStepperIcon(props, steps) {
           margin: 0,
           fontWeight: 500,
           padding:0,
-          marginTop:6,
+          marginTop:0,
           borderRadius:'50%',
           textAlign:'center',
           color: "white", //HelixPalette.neutral100,
-          ...((skip || active) && {
+          ...((active) && {
+            marginTop:6,
+            color: "#8B939A", //HelixPalette.neutral50,
+          }),
+          ...((skip) && {
+            marginTop:6,
             color: "#8B939A", //HelixPalette.neutral50,
           }),   
           ...(overrideCompleted && {
+            marginTop:6,
             color: "#08A768", //HelixPalette.green80,
           }),
         }}>

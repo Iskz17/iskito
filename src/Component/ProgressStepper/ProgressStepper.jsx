@@ -107,15 +107,15 @@ const stepDemo = [
 
 const icons = (completed, active, skip) => {
   if (skip) {
-    return <OfflineBolt color={iconColor.skipped} size={24} />;
+    return <OfflineBolt color={iconColor.skipped} style={{height: "1.65rem", width:"1.65rem"}} />;
   }
 
   if (completed) {
-    return <CheckCircleRounded color={iconColor.completed} size={24} />;
+    return <CheckCircleRounded color={iconColor.completed} style={{height: "1.65rem", width:"1.65rem"}} />;
   }
 
   if (active) {
-    return <Pending color={iconColor.inProgress} size={24} />;
+    return <Pending color={iconColor.inProgress} style={{height: "1.65rem", width:"1.65rem"}} />;
   }
   return null;
 };
@@ -202,6 +202,7 @@ function ProgressStepper(props) {
           margin: 0,
           display: "flex",
           flexGrow: 1,
+          paddingRight:"-2px"
         }}>
         <Stepper
           sx={{ flexGrow: 1 }}

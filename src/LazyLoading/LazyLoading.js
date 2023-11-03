@@ -1,7 +1,7 @@
 import Compress from "browser-image-compression";
 import { createTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
-import { Stack, MenuItem, FormControl, useMediaQuery, Typography, Box } from "@mui/material";
+import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
 import { Card, CardContent, CardMedia } from "@material-ui/core";
 import { PrimaryButton, Dropdown, Title } from "../Component/Component";
 import { AppContext } from "../Context/AppContext";
@@ -209,7 +209,6 @@ const LazyLoading = () => {
   const handleStepper = (stepNumber) => {
     setStepActive(stepNumber);
     let stepsArr = [...steps];
-    // stepsArr[stepNumber - 1].completed = true;
     stepsArr.forEach((st, index) => {
       if (index < stepNumber) {
         st.completed = true;
@@ -241,7 +240,6 @@ const LazyLoading = () => {
             type: file.type,
             lastModified: Date.now(),
           });
-          // setUploadedBlob(compressedBlob);
           setUploadAndDownload(getSvgToImg(convertedBlobFile));
           // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
           setTimeout(() => {
@@ -259,8 +257,7 @@ const LazyLoading = () => {
   };
 
   return (
-    <>
-      <div
+    <div
         id="arrangeParent"
         style={{
           fontFamily: "Gilroy",
@@ -431,7 +428,7 @@ const LazyLoading = () => {
                   height={340}
                   image={uploadAndDownload}
                 />
-                <img id="testconvert" src={uploadAndDownload} hidden />
+                <img id="testconvert" src={uploadAndDownload} hidden alt={"upload desired pic"}/>
               </div>
             ) : (
               <div
@@ -594,7 +591,6 @@ const LazyLoading = () => {
             />
         </Stack>
       </div>
-    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import { memo, forwardRef } from "react";
 import { Stack } from "@mui/material";
+import PropTypes from 'prop-types';
 import "../../index.css";
 
 const Title = forwardRef((props, ref) => {
@@ -21,5 +22,11 @@ const Title = forwardRef((props, ref) => {
     </Stack>
   );
 });
+
+Title.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  style: PropTypes.object,
+};
 
 export default memo(Title);

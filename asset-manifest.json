@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/iskito/static/css/main.543a9dbf.css",
-    "main.js": "/iskito/static/js/main.fc8ef041.js",
+    "main.js": "/iskito/static/js/main.07a5fd5e.js",
     "static/media/SPACETYPEGENERATOR.gif": "/iskito/static/media/SPACETYPEGENERATOR.bb550d0bbf5cb472ec01.gif",
     "static/media/kito-nobg.png": "/iskito/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
@@ -12,10 +12,10 @@
     "static/media/cropedcc.png": "/iskito/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
     "index.html": "/iskito/index.html",
     "main.543a9dbf.css.map": "/iskito/static/css/main.543a9dbf.css.map",
-    "main.fc8ef041.js.map": "/iskito/static/js/main.fc8ef041.js.map"
+    "main.07a5fd5e.js.map": "/iskito/static/js/main.07a5fd5e.js.map"
   },
   "entrypoints": [
     "static/css/main.543a9dbf.css",
-    "static/js/main.fc8ef041.js"
+    "static/js/main.07a5fd5e.js"
   ]
 }

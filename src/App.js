@@ -9,6 +9,7 @@ import { useState, useRef } from "react";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import { Section } from "./Component/Section/Section";
+import stg from "./Assets/SPACETYPEGENERATOR.gif"
 import worker_script from './worker';
 
 var myWorker = new Worker(worker_script);
@@ -23,8 +24,8 @@ const App = () => {
     setTabValue(newValue);
     myWorker.onmessage = (m) => {
       console.log("msg from worker: ", m.data);
-  };
-  myWorker.postMessage('im from main');
+    };
+    myWorker.postMessage('im from main');
   };
   const prepareTabs = () => {
     return [
@@ -69,7 +70,16 @@ const App = () => {
         key: 4,
         content: (
           <Section ref={blobRef}>
-            <MusicPlayer blobRef={blobRef}/>
+            <MusicPlayer blobRef={blobRef} />
+          </Section>
+        ),
+      },
+      {
+        label: "Space Type Generator",
+        key: 5,
+        content: (
+          <Section>
+            <img src={stg} style={{ objectFit: "cover", width: "100%", height: "auto" }} alt="spacetype" loading="lazy" />
           </Section>
         ),
       },

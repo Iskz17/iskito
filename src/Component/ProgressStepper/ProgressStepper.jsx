@@ -56,66 +56,81 @@ const CustomStepperIconRoot = styled("div")(({ ownerState }) => ({
   borderRadius: "50%",
   justifyContent: "center",
   alignItems: "center",
-  background:'#8B939A',
+  background: "#8B939A",
   ...((ownerState.skip || ownerState.active) && {
-    background: "white"
-  }),   
+    background: "white",
+  }),
   ...(ownerState.completed && {
-    background: "white"
-  }), 
+    background: "white",
+  }),
 }));
 
 const stepDemo = [
   {
-    titleText: 'Create Review',
-    helperText: 'Review setup',
+    titleText: "Create Review",
+    helperText: "Review setup",
     completed: false,
     skip: true,
   },
   {
-    titleText: 'Review Parameter Setup',
-    helperText: 'Settings for review',
+    titleText: "Review Parameter Setup",
+    helperText: "Settings for review",
     completed: false,
-    skip: true
+    skip: true,
   },
   {
-    titleText: 'Add participant',
-    helperText: 'Add reviewers, authors',
+    titleText: "Add participant",
+    helperText: "Add reviewers, authors",
     completed: true,
   },
   {
-    titleText: 'Setting Email Reminder',
-    helperText: 'Hours or Days before',
+    titleText: "Setting Email Reminder",
+    helperText: "Hours or Days before",
     completed: true,
   },
   {
-    titleText: 'Start Review',
-    helperText: 'Yeay!!',
+    titleText: "Start Review",
+    helperText: "Yeay!!",
     completed: true,
   },
   {
-    titleText: 'Review',
-    helperText: 'Review in progress',
+    titleText: "Review",
+    helperText: "Review in progress",
     completed: true,
   },
   {
-    titleText: 'Review Ended Notification',
-    helperText: 'Email review ended',
+    titleText: "Review Ended Notification",
+    helperText: "Email review ended",
     completed: false,
   },
 ];
 
 const icons = (completed, active, skip) => {
   if (skip) {
-    return <OfflineBolt color={iconColor.skipped} style={{height: "1.65rem", width:"1.65rem"}} />;
+    return (
+      <OfflineBolt
+        color={iconColor.skipped}
+        style={{ height: "1.65rem", width: "1.65rem" }}
+      />
+    );
   }
 
   if (completed) {
-    return <CheckCircleRounded color={iconColor.completed} style={{height: "1.65rem", width:"1.65rem"}} />;
+    return (
+      <CheckCircleRounded
+        color={iconColor.completed}
+        style={{ height: "1.65rem", width: "1.65rem" }}
+      />
+    );
   }
 
   if (active) {
-    return <Pending color={iconColor.inProgress} style={{height: "1.65rem", width:"1.65rem"}} />;
+    return (
+      <Pending
+        color={iconColor.inProgress}
+        style={{ height: "1.65rem", width: "1.65rem" }}
+      />
+    );
   }
   return null;
 };
@@ -137,21 +152,21 @@ function CustomStepperIcon(props, steps) {
           fontSize: "1rem",
           margin: 0,
           fontWeight: 500,
-          padding:0,
-          marginTop:0,
-          borderRadius:'50%',
-          textAlign:'center',
+          padding: 0,
+          marginTop: 0,
+          borderRadius: "50%",
+          textAlign: "center",
           color: "white", //HelixPalette.neutral100,
-          ...((active) && {
-            marginTop:6,
+          ...(active && {
+            marginTop: 6,
             color: "#8B939A", //HelixPalette.neutral50,
           }),
-          ...((skip) && {
-            marginTop:6,
+          ...(skip && {
+            marginTop: 6,
             color: "#8B939A", //HelixPalette.neutral50,
-          }),   
+          }),
           ...(overrideCompleted && {
-            marginTop:6,
+            marginTop: 6,
             color: "#08A768", //HelixPalette.green80,
           }),
         }}>
@@ -162,14 +177,7 @@ function CustomStepperIcon(props, steps) {
 }
 
 function ProgressStepper(props) {
-  let {
-    onClick,
-    isHorizontalOrientation,
-    trailingConnector,
-    active,
-    steps,
-    buttonText,
-  } = props;
+  let { isHorizontalOrientation, trailingConnector, active, steps } = props;
 
   React.useEffect(() => {
     //inject complex css queries
@@ -202,7 +210,7 @@ function ProgressStepper(props) {
           margin: 0,
           display: "flex",
           flexGrow: 1,
-          paddingRight:"-2px"
+          paddingRight: "-2px",
         }}>
         <Stepper
           sx={{ flexGrow: 1 }}
@@ -259,7 +267,7 @@ function ProgressStepper(props) {
                       },
                     "& .MuiStepLabel-label.MuiStepLabel-alternativeLabel": {
                       textAlign: "start",
-                      marginTop:"7px"
+                      marginTop: "7px",
                     },
                   }}
                   StepIconComponent={(props) => {
@@ -272,7 +280,7 @@ function ProgressStepper(props) {
                         variant="body1"
                         component="div"
                         style={{
-                          fontFamily:'Gilroy',
+                          fontFamily: "Gilroy",
                           fontSize: "0.8125rem",
                           fontWeight: 400,
                           color: "#8B939A", //HelixPalette.neutral70,
@@ -286,7 +294,7 @@ function ProgressStepper(props) {
                     variant="body1"
                     component="div"
                     style={{
-                      fontFamily:'Gilroy',
+                      fontFamily: "Gilroy",
                       fontSize: "0.875rem",
                       fontWeight: 500,
                       color: "#5D6977", // HelixPalette.neutral70
@@ -297,7 +305,7 @@ function ProgressStepper(props) {
               </Step>
             );
           })}
-          {/* {
+          {
             //for trailing connector
             trailingConnector &&
               ["dummy"].map(() => {
@@ -330,30 +338,73 @@ function ProgressStepper(props) {
                     sx={{ ...connectorColor, paddingLeft: 0 }}></Step>
                 );
               })
-          } */}
+          }
         </Stepper>
-        {/* {onClick && (
+        {
           <Box
-            className="tw-flex tw-justify-end"
+            // className="tw-flex tw-justify-end"
             style={{
+              display:'flex',
+              flexDirection:"column",
+              alignItems:"center",
+              justifyContent:"center",
+              textAlign:'center',
               marginLeft:
                 isHorizontalOrientation && trailingConnector
-                  ? "calc(-10% - 15px)"
+                  ? "calc(-10% - 110px)"
                   : "unset",
+              marginTop: !(isHorizontalOrientation && trailingConnector)
+              ? "calc(25px)"
+              : "unset",
               width: isHorizontalOrientation ? "unset" : "100%",
             }}>
-            <PrimaryButton
-              dataId="stepper-button"
-              iconPosition="right"
-              label={buttonText ?? "button"}
-              // label={t('dashboard.create-new-template-button')}
-              onClick={onClick}
-              size="medium"
-              theme="primary"
-              variant="default"
-            />
+            {steps.length > 0 && steps[steps.length - 1].completed ? (
+              <>
+                <CheckCircleRounded
+                  style={{
+                    height: "1.65rem",
+                    width: "1.65rem",
+                    color: "#08A768",
+                  }}
+                />
+                <Typography
+                  gutterBottom
+                  variant="body1"
+                  component="div"
+                  style={{
+                    fontFamily: "Gilroy",
+                    fontSize: "0.95rem",
+                    fontWeight: 400,
+                    color: "#5D6977", //HelixPalette.neutral70,
+                  }}>
+                  {"Completed"}
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Pending
+                  style={{
+                    height: "1.65rem",
+                    width: "1.65rem",
+                    color: "#8B939A",
+                  }}
+                />
+                 <Typography
+                  gutterBottom
+                  variant="body1"
+                  component="div"
+                  style={{
+                    fontFamily: "Gilroy",
+                    fontSize: "0.95rem",
+                    fontWeight: 400,
+                    color: "#5D6977", //HelixPalette.neutral70,
+                  }}>
+                  {"In progress"}
+                </Typography>
+              </>
+            )}
           </Box>
-        )} */}
+        }
       </Box>
     </Box>
   );

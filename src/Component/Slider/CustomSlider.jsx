@@ -20,6 +20,7 @@ const CustomSlider = forwardRef((props, ref) => {
     <Slider
       ref={ref}
       sx={{
+        cursor:"none",
         color: needToUseDark ? "WHITE" : "#1f2929",
         height: 8,
         "& .MuiSlider-track": {
@@ -40,6 +41,7 @@ const CustomSlider = forwardRef((props, ref) => {
         },
         "& .MuiSlider-valueLabel": {
           lineHeight: 1.2,
+          fontFamily:"Gilroy",
           fontSize: 12,
           background: "unset",
           color: !needToUseDark ? "WHITE" : "#1f2929",

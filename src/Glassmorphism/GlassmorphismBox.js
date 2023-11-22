@@ -1,4 +1,4 @@
-import { Title } from "../Component/Component"
+import { Title } from "../Component/Component";
 import { Stack, createTheme, useMediaQuery } from "@mui/material";
 import { AppContext } from "../Context/AppContext";
 import React, {

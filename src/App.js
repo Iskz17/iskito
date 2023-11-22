@@ -1,6 +1,7 @@
 import "./App.css";
 import Typewriter from "typewriter-effect";
 import Kito from "./kito-nobg.png";
+import DotRing from "./Component/CustomCursor/CustomCursor";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
 import LazyLoading from "./LazyLoading/LazyLoading";
@@ -79,7 +80,9 @@ const App = () => {
         key: 5,
         content: (
           <Section>
-            <img src={stg} style={{ objectFit: "cover", width: "100%", height: "auto" }} alt="spacetype" loading="lazy" />
+            <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
+              <img src={stg} style={{ objectFit: "cover", width: "100%", height: "auto" }} alt="spacetype" loading="lazy" />
+            </div>
           </Section>
         ),
       },
@@ -268,6 +271,7 @@ const App = () => {
         </div> 
         //#endregion
         */}
+        <div id="curPos"><DotRing /></div>
         <Section>
           <ScrollableTabs
             value={tabValue}

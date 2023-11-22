@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: none;
 }
 
 .bodyBgColor {
@@ -9,18 +10,21 @@
 }
 
 .bodyBgColor.darkMode {
-  background-color: rgb(20,21,21);
+  background-color: rgb(20, 21, 21);
 }
 
 html {
   font-size: 17px;
 }
+
 .introFont {
   font-size: 2.4em;
 }
+
 .descriptionDiv {
   width: 45%;
 }
+
 .pictureDiv {
   width: 30%;
   height: 100%;
@@ -38,33 +42,38 @@ html {
   height: 60vh;
   position: absolute;
   color: rgba(152, 194, 211, 0.555);
-  border-radius:20px
+  border-radius: 20px
 }
 
 @media (max-width: 1124px) {
   html {
     font-size: 15px;
   }
+
   #blurContainer {
     width: 90%;
     height: 80vh;
     margin-top: 50px;
   }
+
   .introFont {
     font-size: 2em;
   }
+
   .descriptionDiv {
     width: 100%;
     height: 5%;
     margin-top: -110px;
     padding-top: 40px;
   }
+
   .pictureDiv {
     width: 100%;
     height: 1%;
     margin-top: -250px;
   }
 }
+
 @media (max-width: 610px) {
   html {
     font-size: 12px;
@@ -72,11 +81,9 @@ html {
 }
 
 #bubble {
-  background: linear-gradient(
-    -45deg,
-    rgba(224, 195, 252, 0.75) 0%,
-    rgba(142, 197, 252, 0.75) 100%
-  );
+  background: linear-gradient(-45deg,
+      rgba(224, 195, 252, 0.75) 0%,
+      rgba(142, 197, 252, 0.75) 100%);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100%;
@@ -95,10 +102,48 @@ html {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
+}
+
+.curPos {
+  --glassMorph-X: 0;
+  --glassMorph-Y: 0
+}
+
+.ring {
+  position: fixed;
+  top: var(--glassMorph-Y);
+  left: var(--glassMorph-X);
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(31, 30, 30, 0.808);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  will-change: width, height, transform, border;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.dot {
+  position: fixed;
+  top: var(--glassMorph-Y);
+  left: var(--glassMorph-X);
+  width: 8px;
+  height: 8px;
+  background-color: black;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  pointer-events: none;
 }

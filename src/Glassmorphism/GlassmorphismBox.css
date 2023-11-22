@@ -24,7 +24,7 @@
 
 .boxFullWidth {
   width: 100%;
-   height: 100%;
+  height: 100%;
 }
 
 .socialMediaCard {
@@ -40,7 +40,8 @@
   border: 1px solid rgba(255, 255, 255, 0.25);
   transition: .5s ease;
 }
-.creditCard:hover{
+
+.creditCard:hover {
   transform: rotateY(35deg) translateX(20px);
 }
 
@@ -53,16 +54,21 @@
   align-items: center;
   perspective: 600px;
 }
+
 .imageBackgroundSetting {
   background-image: url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2);
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
 }
 
 .attributeColor {
   color: #0ac7c4;
 }
-.valueColor{
+
+.valueColor {
   color: #fa55fb;
 }

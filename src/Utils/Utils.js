@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 export function IsNullOrUndefined(input) {
   return Object.is(input, undefined) || Object.is(input, null);
@@ -39,6 +39,24 @@ export const needDarkMode = (hex) => {
   var darkest = Math.min(whiteLum, lum2);
   return (brightest + 0.05) / (darkest + 0.05) < 2;
 };
+
+export const useMousePosition = () => {
+  const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+
+  useEffect(() => {
+    const mouseMoveHandler = (event) => {
+      const { clientX, clientY } = event;
+      setMousePosition({ x: clientX, y: clientY });
+    };
+    document.addEventListener("mousemove", mouseMoveHandler);
+
+    return () => {
+      document.removeEventListener("mousemove", mouseMoveHandler);
+    };
+  }, []);
+
+  return mousePosition;
+}
 
 export const calculateShadow = (
   backgroundColor,

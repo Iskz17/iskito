@@ -10,7 +10,10 @@ const DotRing = () => {
     requestAnimationFrame(() => {
       ring.style.cssText = `
             --glassMorph-X: ${x}px;
-            --glassMorph-Y: ${y}px`;
+            --glassMorph-Y: ${y}px;
+            position: absolute;
+            z-index: 2000;
+            `;
     });
   }, [x, y]);
   return (

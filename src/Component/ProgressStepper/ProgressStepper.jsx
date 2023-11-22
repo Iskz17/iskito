@@ -351,7 +351,7 @@ function ProgressStepper(props) {
               textAlign:'center',
               marginLeft:
                 isHorizontalOrientation && trailingConnector
-                  ? "calc(-10% - 110px)"
+                  ? "calc(-27%)"
                   : "unset",
               marginTop: !(isHorizontalOrientation && trailingConnector)
               ? "calc(25px)"

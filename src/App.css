@@ -114,7 +114,9 @@ html {
 
 .curPos {
   --glassMorph-X: 0;
-  --glassMorph-Y: 0
+  --glassMorph-Y: 0;
+  position: absolute;
+  z-index:2000;
 }
 
 .ring {

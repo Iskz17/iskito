@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/iskito/static/css/main.543a9dbf.css",
-    "main.js": "/iskito/static/js/main.07a5fd5e.js",
+    "main.css": "/iskito/static/css/main.3da11baa.css",
+    "main.js": "/iskito/static/js/main.bd5ed798.js",
     "static/media/SPACETYPEGENERATOR.gif": "/iskito/static/media/SPACETYPEGENERATOR.bb550d0bbf5cb472ec01.gif",
     "static/media/kito-nobg.png": "/iskito/static/media/kito-nobg.acd64dbc3a036b5f475d.png",
     "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
     "static/media/lftc.png": "/iskito/static/media/lftc.45e27cd9fd261ee63043.png",
     "static/media/pgc.png": "/iskito/static/media/pgc.5f7a21b8474b0ed0e224.png",
     "static/media/New-Kansas-SemiBold.otf": "/iskito/static/media/New-Kansas-SemiBold.3288e0bbddc2d13ae285.otf",
+    "static/media/sword.png": "/iskito/static/media/sword.732076f1a9c8703a09ce.png",
     "static/media/gilroy-regular.otf": "/iskito/static/media/gilroy-regular.86bc2a5a8350170447c9.otf",
     "static/media/cropedcc.png": "/iskito/static/media/cropedcc.b3365e2f6ce09a8b3e57.png",
     "index.html": "/iskito/index.html",
-    "main.543a9dbf.css.map": "/iskito/static/css/main.543a9dbf.css.map",
-    "main.07a5fd5e.js.map": "/iskito/static/js/main.07a5fd5e.js.map"
+    "main.3da11baa.css.map": "/iskito/static/css/main.3da11baa.css.map",
+    "main.bd5ed798.js.map": "/iskito/static/js/main.bd5ed798.js.map"
   },
   "entrypoints": [
-    "static/css/main.543a9dbf.css",
-    "static/js/main.07a5fd5e.js"
+    "static/css/main.3da11baa.css",
+    "static/js/main.bd5ed798.js"
   ]
 }

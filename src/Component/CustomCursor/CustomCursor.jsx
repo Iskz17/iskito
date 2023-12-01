@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import swordPng from "../../assets/sword.png";
-import { useMousePosition } from "../../Utils/Utils";
+import { useMousePosition } from "../../utils/utils";
 
 const DotRing = () => {
   // 1.

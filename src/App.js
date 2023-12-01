@@ -1,12 +1,12 @@
 import "./App.css";
 // import Typewriter from "typewriter-effect";
 // import Kito from "./kito-nobg.png";
-import DotRing from "./Component/CustomCursor/CustomCursor";
+import DotRing from "./components/CustomCursor/CustomCursor";
 import {GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox} from "./features/features";
 import { useState, useRef } from "react";
-import AppTheme from "./Component/ThemeProvider/AppTheme";
-import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
-import { Section } from "./Component/Section/Section";
+import AppTheme from "./components/ThemeProvider/AppTheme";
+import ScrollableTabs from "./components/ScrollableTab/ScrollableTab";
+import { Section } from "./components/Section/Section";
 import ReactQuill, { Quill } from 'react-quill';
 import katex from "katex";
 import "katex/dist/katex.min.css";

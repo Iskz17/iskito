@@ -2,7 +2,7 @@ import {
   CustomSlider,
   PrimaryButton,
   ClipboardCopy,
-} from "../../../Component/Component";
+} from "../../../components/Component";
 import { Stack } from "@mui/material";
 import React, { useState, useRef, useEffect } from "react";
 import {

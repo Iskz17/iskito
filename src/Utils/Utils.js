@@ -83,7 +83,6 @@ export const calculateShadow = (
     return num;
   };
 
-  // const returnRgb = (r, g, b) => `rgb(${r},${g},${b})`;
   const returnRgb = (r, g, b) => convertRgbToHex(r,g,b);
 
   const outerLightShadow = () => {

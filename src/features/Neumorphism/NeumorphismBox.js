@@ -1,4 +1,4 @@
-import { Title } from "../../Component/Component";
+import { Title } from "../../components/Component";
 import { useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
 import {

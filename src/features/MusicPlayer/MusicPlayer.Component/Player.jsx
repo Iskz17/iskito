@@ -22,7 +22,7 @@ import {
   lyrics,
 } from "./MusicPlayer.Component";
 import CardContent from "@material-ui/core/CardContent";
-import { CustomSlider } from "../../../Component/Component";
+import { CustomSlider } from "../../../components/Component";
 
 export const Player = forwardRef(
   (

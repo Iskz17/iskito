@@ -1,4 +1,4 @@
-import { CustomSlider, Dropdown } from "../../../Component/Component";
+import { CustomSlider, Dropdown } from "../../../components/Component";
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
 import { useMemo } from "react";
 

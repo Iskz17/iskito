@@ -1,5 +1,5 @@
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
-import { Dropdown } from "../../../Component/Component";
+import { Dropdown } from "../../../components/Component";
 import { useMemo } from "react";
 
 export const GlassmorphismBoxContent = ({

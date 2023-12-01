@@ -17,7 +17,7 @@ import {
   ParticleBackground, NowPlaying, Player
 } from "./MusicPlayer.Component/MusicPlayer.Component";
 import "./MusicPlayer.css";
-import { Title } from "../../Component/Component"
+import { Title } from "../../components/Component"
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
   const [state] = useContext(AppContext);

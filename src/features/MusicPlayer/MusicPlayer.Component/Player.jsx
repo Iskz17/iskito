@@ -10,7 +10,7 @@ import {
   SkipPrevious,
   Pause,
 } from "@mui/icons-material";
-import { lifetime, pg, lftc, pgc } from "../../Assets/assets";
+import { lifetime, pgc, pg, lftc} from "../../../assets/assets";
 import {
   Stack,
   Typography,
@@ -22,7 +22,7 @@ import {
   lyrics,
 } from "./MusicPlayer.Component";
 import CardContent from "@material-ui/core/CardContent";
-import { CustomSlider } from "../../Component/Component";
+import { CustomSlider } from "../../../Component/Component";
 
 export const Player = forwardRef(
   (

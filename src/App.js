@@ -2,10 +2,7 @@ import "./App.css";
 // import Typewriter from "typewriter-effect";
 // import Kito from "./kito-nobg.png";
 import DotRing from "./Component/CustomCursor/CustomCursor";
-import NewmorphismBox from "./Neumorphism/NeumorphismBox";
-import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
-import LazyLoading from "./LazyLoading/LazyLoading";
-import MusicPlayer from "./MusicPlayer/MusicPlayer"
+import {GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox} from "./features/features";
 import { useState, useRef } from "react";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
@@ -55,7 +52,7 @@ const App = () => {
         key: 0,
         content: (
           <Section ref={sectionRef}>
-            <NewmorphismBox sectionRef={sectionRef} />
+            <NeumorphismBox sectionRef={sectionRef} />
           </Section>
         ),
       },

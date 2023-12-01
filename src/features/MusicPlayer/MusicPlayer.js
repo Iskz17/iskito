@@ -4,7 +4,7 @@ import {
   Slide,
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { AppContext } from "../Context/AppContext";
+import { AppContext } from "../../Context/AppContext";
 import React, {
   useState,
   useContext,
@@ -17,7 +17,7 @@ import {
   ParticleBackground, NowPlaying, Player
 } from "./MusicPlayer.Component/MusicPlayer.Component";
 import "./MusicPlayer.css";
-import { Title } from "../Component/Component"
+import { Title } from "../../Component/Component"
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
   const [state] = useContext(AppContext);

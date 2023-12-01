@@ -3,11 +3,11 @@ import { createTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
 import { Card, CardContent, CardMedia } from "@material-ui/core";
-import { PrimaryButton, Dropdown, Title } from "../Component/Component";
-import { AppContext } from "../Context/AppContext";
-import ProgressStepper from "../Component/ProgressStepper/ProgressStepper";
+import { PrimaryButton, Dropdown, Title } from "../../Component/Component";
+import { AppContext } from "../../Context/AppContext";
+import ProgressStepper from "../../Component/ProgressStepper/ProgressStepper";
 import React, { useState, useContext, useEffect } from "react";
-import mekito from "../Assets/kito.jpg";
+import mekito from "../../assets/kito.jpg";
 import "./LazyLoading.css";
 
 const LazyLoading = () => {

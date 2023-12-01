@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function IsNullOrUndefined(input) {
   return Object.is(input, undefined) || Object.is(input, null);
@@ -13,7 +13,7 @@ export const getSvgToImg = (el) => {
 };
 
 const luminance = (r, g, b) => {
-  var a = [r, g, b].map(function (v) {
+  let a = [r, g, b].map(function (v) {
     v /= 255;
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });
@@ -34,9 +34,9 @@ export const convertRgbToHex = (r, g, b) => {
 
 export const needDarkMode = (hex) => {
   const [r, g, b] = convertHexToRGB(hex);
-  var lum2 = luminance(r, g, b);
-  var brightest = Math.max(whiteLum, lum2);
-  var darkest = Math.min(whiteLum, lum2);
+  let lum2 = luminance(r, g, b);
+  let brightest = Math.max(whiteLum, lum2);
+  let darkest = Math.min(whiteLum, lum2);
   return (brightest + 0.05) / (darkest + 0.05) < 2;
 };
 

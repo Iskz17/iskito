@@ -1,6 +1,6 @@
 import "./App.css";
-import Typewriter from "typewriter-effect";
-import Kito from "./kito-nobg.png";
+// import Typewriter from "typewriter-effect";
+// import Kito from "./kito-nobg.png";
 import DotRing from "./Component/CustomCursor/CustomCursor";
 import NewmorphismBox from "./Neumorphism/NeumorphismBox";
 import GlassmorphismBox from "./Glassmorphism/GlassmorphismBox";
@@ -10,15 +10,35 @@ import { useState, useRef } from "react";
 import AppTheme from "./Component/ThemeProvider/AppTheme";
 import ScrollableTabs from "./Component/ScrollableTab/ScrollableTab";
 import { Section } from "./Component/Section/Section";
-import stg from "./Assets/SPACETYPEGENERATOR.gif"
+import ReactQuill, { Quill } from 'react-quill';
+import katex from "katex";
+import "katex/dist/katex.min.css";
+// import 'react-quill/dist/quill.snow.css';
+// import stg from "./Assets/SPACETYPEGENERATOR.gif"
 import worker_script from './worker';
 
 var myWorker = new Worker(worker_script);
 
 const App = () => {
+  window.katex = katex;
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
+  const [QuillText, setQuillText] = useState('');
+  const formats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+  ]
+
   const blobRef = useRef(null);
   const sectionRef = useRef(null);
   const handleChangeTab = (event, newValue) => {
@@ -76,12 +96,53 @@ const App = () => {
         ),
       },
       {
-        label: "Space Type Generator",
+        label: "Quill",
         key: 5,
         content: (
           <Section>
-            <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
+            {/* <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
               <img src={stg} style={{ objectFit: "cover", width: "100%", height: "auto" }} alt="spacetype" loading="lazy" />
+            </div> */}
+            <div>
+              <ReactQuill
+                // theme="snow"
+                value={QuillText || ''}
+                onChange={e => {
+                  setQuillText(e)
+                }}
+                modules={{
+                  toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
+
+
+                    // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
+
+
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    ['link', 'image', 'video', 'pdf','formula'],
+                    [{ 'align': [] }],
+
+
+                    ['clean']                                         // remove formatting button
+                  ],
+
+                  clipboard: {
+                    // toggle to add extra line breaks when pasting HTML:
+                    matchVisual: false,
+                  },
+                }}
+              />
+
             </div>
           </Section>
         ),

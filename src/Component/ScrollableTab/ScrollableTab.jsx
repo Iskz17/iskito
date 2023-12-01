@@ -91,6 +91,7 @@ const ScrollableTabs = forwardRef((props, ref) => {
         position="fixed"
         color={"inherit"}
         className={fixed && "fixed-search-header"}
+        elevation={0}
         style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}>
         <Stack
           style={{ width: "100%" }}

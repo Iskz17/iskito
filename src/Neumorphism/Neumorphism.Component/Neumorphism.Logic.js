@@ -166,7 +166,11 @@ const NeumorphismLogic = (
       lightInnerShadow: lis,
       darkInnerShadow: dis,
     };
-    updateDocumentCSS(cssParametersObj.current);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(()=> {
+        updateDocumentCSS(cssParametersObj.current);
+      });
+    });
   };
   const handleLightSource = (pos) => {
     setLightSourcePos(pos);

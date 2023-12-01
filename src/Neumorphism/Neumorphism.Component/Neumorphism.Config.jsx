@@ -125,10 +125,11 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             style={{
               width: "90px",
               height: "30px",
-              border: "3px solid black",
+              border: "3px solid white",
               textAlign: "center",
               fontSize: "12px",
               borderRadius: "5px",
+              fontFamily:'Gilroy'
             }}
             onChange={(e) => handleColorChange(e)}
           />

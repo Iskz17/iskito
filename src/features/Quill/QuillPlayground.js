@@ -10,7 +10,7 @@ const QuillPlayground = (props) => {
     return (
         <div style={{
             fontFamily: "Gilroy",
-            backgroundColor: "#815683",
+            backgroundColor: "#568371",
             paddingTop: '18px'
             // height: matches ? "unset" : "100vh",
             // minHeight: "699px",

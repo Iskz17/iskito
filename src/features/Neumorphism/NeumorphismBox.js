@@ -71,7 +71,6 @@ const NeumorphismBox = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   return (
-    <>
       <div id="globalPlacement">
         <div
           id="arrangeParent"
@@ -154,7 +153,6 @@ const NeumorphismBox = (props) => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

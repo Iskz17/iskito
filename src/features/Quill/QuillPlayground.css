@@ -957,4 +957,15 @@
   .ql-container.ql-snow {
     border: 1px solid #ccc;
   }
+  .ql-customUpload {
+    position:relative;
+  }
+  .ql-customUpload::after {
+    content: '🧟‍♂️';
+    font-size: 20px;
+    position:absolute;
+    left:0;
+    right:0;
+    top:-3.5px;
+  }
   

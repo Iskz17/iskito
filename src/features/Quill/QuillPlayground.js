@@ -1,5 +1,6 @@
 import ReactQuill from 'react-quill';
 import Compress from "browser-image-compression";
+import { Title } from "../../components/Component";
 import { useState, useEffect, useRef, useMemo } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
@@ -184,6 +185,7 @@ const QuillPlayground = (props) => {
             // height: matches ? "unset" : "100vh",
             // minHeight: "699px",
         }}>
+                        <Title title={"Quill Editor"} description={"quill playground"} />
             <input
                 accept={"image/*"}
                 hidden

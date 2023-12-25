@@ -2,7 +2,7 @@ import "./App.css";
 // import Typewriter from "typewriter-effect";
 // import Kito from "./kito-nobg.png";
 import DotRing from "./components/CustomCursor/CustomCursor";
-import { QuillPlayground, GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox } from "./features/features";
+import { QuillPlayground, GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox, ExcelReader } from "./features/features";
 import { useState, useRef } from "react";
 import AppTheme from "./components/ThemeProvider/AppTheme";
 import ScrollableTabs from "./components/ScrollableTab/ScrollableTab";
@@ -17,20 +17,6 @@ const App = () => {
 
   //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
-  const [QuillText, setQuillText] = useState('');
-  const formats = [
-    'header',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-  ]
 
   const blobRef = useRef(null);
   const sectionRef = useRef(null);
@@ -94,6 +80,15 @@ const App = () => {
         content: (
           <Section>
             <QuillPlayground/>
+          </Section>
+        ),
+      },
+      {
+        label: "Excel",
+        key: 6,
+        content: (
+          <Section>
+            <ExcelReader/>
           </Section>
         ),
       },

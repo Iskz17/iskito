@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/iskito/static/css/main.76f7f8e1.css",
-    "main.js": "/iskito/static/js/main.2dc70be6.js",
+    "main.js": "/iskito/static/js/main.2e5908cb.js",
     "static/media/kito.jpg": "/iskito/static/media/kito.4dc77956c18c9968bc5b.jpg",
     "static/media/lftc.png": "/iskito/static/media/lftc.45e27cd9fd261ee63043.png",
     "static/media/pgc.png": "/iskito/static/media/pgc.5f7a21b8474b0ed0e224.png",
@@ -72,10 +72,10 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/iskito/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/iskito/index.html",
     "main.76f7f8e1.css.map": "/iskito/static/css/main.76f7f8e1.css.map",
-    "main.2dc70be6.js.map": "/iskito/static/js/main.2dc70be6.js.map"
+    "main.2e5908cb.js.map": "/iskito/static/js/main.2e5908cb.js.map"
   },
   "entrypoints": [
     "static/css/main.76f7f8e1.css",
-    "static/js/main.2dc70be6.js"
+    "static/js/main.2e5908cb.js"
   ]
 }

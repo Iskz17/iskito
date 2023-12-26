@@ -14,21 +14,19 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 const ExcelReader = (props) => {
 
     const [expired, setExpired] = useState([]);
     const [headers, setHeaders] = useState([]);
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('calories');
+    const [selected, setSelected] = useState([]);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const handleInput = () => {
         document.getElementById("icon-button-file-excel").click();
     };
@@ -51,33 +49,40 @@ const ExcelReader = (props) => {
     }
 
     const handleExcelUpload = async (e) => {
-        console.log('reading input file:');
         const file = e.target.files[0];
         const data = await file.arrayBuffer();
         const workbook = XLSX.read(data);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const jsonData = XLSX.utils.sheet_to_json(worksheet, {
             header: 1,
             defval: "",
         });
 
-        //console.log(e.target.files[0]);
-        //console.log(workbook);
-        console.log(jsonData);
         let arr = [];
-        jsonData.forEach((value, index) => {
-            if (index === 0) {
+        let head = [];
+        jsonData.forEach((value, ind) => {
+            if (ind === 0) {
                 setHeaders([...value]);
+                head = [...value];
             }
             const jsDate = excelSerialToDate(value[3]);
-            console.log(jsDate, 'this is valdate')
             // Function to check if a date is less than 3 months from now
             let today = new Date();
             let threeMonthsLater = new Date();
             threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
 
             if (jsDate < threeMonthsLater && jsDate > today) {
-                arr.push(value);
+                let valProcessed = [...value];
+                valProcessed[3] = jsDate.toLocaleDateString('en-GB', options);
+                let valObject = {};
+                head.forEach((val, index) => {
+                    valObject[val] = valProcessed[index];
+                })
+
+                //if(index !== 0 ){
+                arr.push(valObject);
+                //}
             }
         });
         console.log(arr, 'this is arr');
@@ -137,7 +142,7 @@ const ExcelReader = (props) => {
                     <TableRow>
                         {headers?.map((headCell, index) => (
                             <TableCell
-                                key={`${headCell}${index}`}
+                                key={`${headCell}_${index}`}
                                 sx={{ fontFamily: "Gilroy" }}
                                 align={'left'}
                                 padding={'normal'}
@@ -164,38 +169,22 @@ const ExcelReader = (props) => {
     }
 
     function EnhancedTableToolbar(props) {
-        const { numSelected } = props;
 
         return (
             <Toolbar
                 sx={{
                     pl: { sm: 2 },
                     pr: { xs: 1, sm: 1 },
-                    ...(numSelected > 0 && {
-                        bgcolor: (theme) =>
-                            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                    }),
                 }}
             >
-                {numSelected > 0 ? (
-                    <Typography
-                        sx={{ flex: '1 1 100%' }}
-                        color="inherit"
-                        variant="subtitle1"
-                        component="div"
-                    >
-                        {numSelected} selected
-                    </Typography>
-                ) : (
-                    <Typography
-                        sx={{ flex: '1 1 100%', fontFamily: "Gilroy" }}
-                        variant="h6"
-                        id="tableTitle"
-                        component="div"
-                    >
-                        Workers Data
-                    </Typography>
-                )}
+                <Typography
+                    sx={{ flex: '1 1 100%', fontFamily: "Gilroy" }}
+                    variant="h6"
+                    id="tableTitle"
+                    component="div"
+                >
+                    Workers Data
+                </Typography>
                 {<Tooltip title="Filter list">
                     <PrimaryButton
                         size="medium"
@@ -209,17 +198,13 @@ const ExcelReader = (props) => {
             </Toolbar>
         );
     }
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleRequestSort = (
         event,
         property,
     ) => {
         const isAsc = orderBy === property && order === 'asc';
+        console.log(isAsc, orderBy, order, 'this is asc');
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
@@ -233,25 +218,6 @@ const ExcelReader = (props) => {
         setSelected([]);
     };
 
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-        setSelected(newSelected);
-    };
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -260,6 +226,15 @@ const ExcelReader = (props) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const visibleRows = useMemo(
+        () =>
+            stableSort(expired, getComparator(order, orderBy)).slice(
+                page * rowsPerPage,
+                page * rowsPerPage + rowsPerPage,
+            ),
+        [order, orderBy, page, rowsPerPage, expired, getComparator],
+    );
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -270,7 +245,7 @@ const ExcelReader = (props) => {
             fontFamily: "Gilroy",
             backgroundColor: "#61acae",
             paddingTop: '18px',
-            height: "100vh",
+            minHeight: "100vh",
 
         }}>
             <Title title={"Excel Reader"} description={"excel date processing"} />
@@ -280,13 +255,14 @@ const ExcelReader = (props) => {
                 multiple
                 onChange={(e) => {
                     handleExcelUpload(e);
+                    e.target.value = null;
                 }}
                 id="icon-button-file-excel"
                 type="file"
             />
-            <div style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
+            <Box style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
                 <Box sx={{ width: 'calc(90% - 20px)' }}>
-                    <Paper sx={{ width: '100%', mb: 2 }}>
+                    <Paper sx={{ width: '100%', mb: 2, padding: 2, boxShadow: 'rgba(0,0,0, 0.2) 1px 50px 30px -20px' }} elevation={0}>
                         <EnhancedTableToolbar numSelected={selected.length} />
                         <TableContainer>
                             <Table
@@ -303,17 +279,16 @@ const ExcelReader = (props) => {
                                         onRequestSort={handleRequestSort}
                                         rowCount={expired?.length - 1}
                                     /><TableBody>
-                                        {expired?.map((row, index) => {
+                                        {visibleRows?.map((row, index) => {
                                             return (
                                                 <TableRow
                                                     hover
-                                                    onClick={(event) => handleClick(event, row[0])}
                                                     tabIndex={-1}
-                                                    key={row[0]}
+                                                    key={`row_${index}_data`}
                                                     sx={{ cursor: 'pointer' }}
                                                 >
-                                                    {row?.map((x, index) => {
-                                                        return <TableCell align="left" sx={{ fontFamily: "Gilroy" }}>{x}</TableCell>
+                                                    {headers?.map((x) => {
+                                                        return <TableCell key={`row_${index}_${row[x]}`} align="left" sx={{ fontFamily: "Gilroy" }}>{row[x]}</TableCell>
                                                     })}
                                                 </TableRow>
                                             );
@@ -327,17 +302,19 @@ const ExcelReader = (props) => {
                                                 <TableCell colSpan={6} />
                                             </TableRow>
                                         )}
-                                    </TableBody> </> : <div style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", paddingTop: '100px', paddingBottom: "100px" }}>
-                                    <img src={emptyData} style={{ maxWidth: "250px" }} />
-                                    <Typography
-                                        gutterBottom
-                                        variant="h6"
-                                        component="div"
-                                        style={{ fontFamily: "Gilroy" }}
-                                    >
-                                        No data uploaded...
-                                    </Typography>
-                                </div>}
+                                    </TableBody> </> :
+                                    <TableBody>                                    <Box style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", paddingTop: '100px', paddingBottom: "100px" }}>
+                                        <img alt="empty state indication" src={emptyData} style={{ maxWidth: "250px" }} />
+                                        <Typography
+                                            gutterBottom
+                                            variant="h6"
+                                            component="div"
+                                            style={{ fontFamily: "Gilroy" }}
+                                        >
+                                            No data uploaded...
+                                        </Typography>
+                                    </Box></TableBody>
+                                }
 
                             </Table>
                         </TableContainer>
@@ -351,7 +328,7 @@ const ExcelReader = (props) => {
                                 "& .MuiTablePagination-select.MuiSelect-select.MuiSelect-standard.MuiInputBase-input": {
                                     fontFamily: "Gilroy"
                                 },
-                                "& .MuiTablePagination-displayedRows" : {
+                                "& .MuiTablePagination-displayedRows": {
                                     fontFamily: "Gilroy"
                                 }
                             }}
@@ -363,7 +340,8 @@ const ExcelReader = (props) => {
                             onRowsPerPageChange={handleChangeRowsPerPage}
                         />
                     </Paper>
-                </Box></div>
+                </Box>
+            </Box>
 
         </div>
     )

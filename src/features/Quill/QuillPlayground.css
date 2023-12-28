@@ -11,6 +11,18 @@
     flex-direction: column;
     width: 100%;
   }
+
+  .quillBg {
+    background-color: #eb8d8d;
+  }
+
+  .darkMode .quillBg {
+    background-color: #568371;
+  }
+
+  .darkMode .quillTitle{
+    color: rgba(255, 255, 255, 0.7);
+  }
   
    .ql-container {
     box-sizing: border-box;
@@ -859,6 +871,10 @@
     box-sizing: border-box;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     padding: 8px;
+    background-color:#ffe2e2;
+  }
+
+  .darkMode .ql-toolbar.ql-snow {
     background-color:#e2ffeb;
   }
   .ql-toolbar.ql-snow .ql-formats {

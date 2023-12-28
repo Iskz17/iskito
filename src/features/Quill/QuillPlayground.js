@@ -178,14 +178,13 @@ const QuillPlayground = (props) => {
     );
 
     return (
-        <div style={{
+        <div className="quillBg" style={{
             fontFamily: "Gilroy",
-            backgroundColor: "#568371",
             paddingTop: '18px'
             // height: matches ? "unset" : "100vh",
             // minHeight: "699px",
         }}>
-                        <Title title={"Quill Editor"} description={"quill playground"} />
+            <Title title={"Quill Editor"} description={"quill playground"} className="quillTitle"/>
             <input
                 accept={"image/*"}
                 hidden

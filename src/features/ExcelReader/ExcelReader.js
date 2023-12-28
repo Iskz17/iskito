@@ -1,7 +1,7 @@
 import * as XLSX from 'xlsx';
 import { PrimaryButton, Title } from "../../components/Component";
 import { breakfast } from '../../assets/assets';
-import { alpha } from '@mui/material/styles';
+import './ExcelReader.css'
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -274,12 +274,10 @@ const ExcelReader = (props) => {
     return (
         <div style={{
             fontFamily: "Gilroy",
-            backgroundColor: "#61acae",
             paddingTop: '18px',
             minHeight: "100vh",
-
-        }}>
-            <Title title={"Excel Reader"} description={"excel date processing"} />
+        }} className="excelBg">
+            <Title title={"Excel Reader"} description={"excel date processing"} className="excelTitle"/>
             <input
                 accept={"*"}
                 hidden

@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx';
 import { PrimaryButton, Title } from "../../components/Component";
-import { emptyData } from '../../assets/assets';
+import { breakfast } from '../../assets/assets';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -185,16 +185,26 @@ const ExcelReader = (props) => {
                 >
                     Workers Data
                 </Typography>
-                {<Tooltip title="Filter list">
+                <Tooltip title="Upload woekers data">
+                    <PrimaryButton
+                        size="medium"
+                        disableElevation
+                        variant="contained"
+                        style={{ width: '150px', minWidth: '150px', marginRight: "15px" }}
+
+                        onClick={() => handleInput()}
+                    > {'Upload Excel'}</PrimaryButton>
+                </Tooltip>
+                <Tooltip title="Download filtered data">
                     <PrimaryButton
                         size="medium"
                         disableElevation
                         variant="contained"
                         style={{ width: '150px', minWidth: '150px' }}
-
-                        onClick={() => handleInput()}
-                    > {'Upload Excel'}</PrimaryButton>
-                </Tooltip>}
+                        disabled={expired?.length < 1}
+                        onClick={() => handleDownload()}
+                    > {'Download Excel'}</PrimaryButton>
+                </Tooltip>
             </Toolbar>
         );
     }
@@ -240,6 +250,27 @@ const ExcelReader = (props) => {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - expired.length) : 0;
 
+    const handleDownload = (data) => {
+        // Create a new workbook
+        const workbook = XLSX.utils.book_new();
+
+        const worksheetData = expired.map(item => {
+            return [...headers.map(head => {
+                return item[head]
+            })];
+        });
+        worksheetData.unshift(headers);
+
+        const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+        // Generate the Excel file
+        XLSX.writeFile(workbook, 'data.xlsx');
+    };
+
+
     return (
         <div style={{
             fontFamily: "Gilroy",
@@ -262,7 +293,13 @@ const ExcelReader = (props) => {
             />
             <Box style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
                 <Box sx={{ width: 'calc(90% - 20px)' }}>
-                    <Paper sx={{ width: '100%', mb: 2, padding: 2, boxShadow: 'rgba(0,0,0, 0.2) 1px 50px 30px -20px' }} elevation={0}>
+                    <Paper sx={{
+                        width: '100%', mb: 2, padding: 2,
+                        borderRadius: '10px',
+                        ":hover": {
+                            boxShadow: 'rgba(0,0,0, 0.2) 1px 50px 30px -25px'
+                        }
+                    }} elevation={0}>
                         <EnhancedTableToolbar numSelected={selected.length} />
                         <TableContainer>
                             <Table
@@ -303,17 +340,18 @@ const ExcelReader = (props) => {
                                             </TableRow>
                                         )}
                                     </TableBody> </> :
-                                    <TableBody>                                    <Box style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", paddingTop: '100px', paddingBottom: "100px" }}>
-                                        <img alt="empty state indication" src={emptyData} style={{ maxWidth: "250px" }} />
-                                        <Typography
-                                            gutterBottom
-                                            variant="h6"
-                                            component="div"
-                                            style={{ fontFamily: "Gilroy" }}
-                                        >
-                                            No data uploaded...
-                                        </Typography>
-                                    </Box></TableBody>
+                                    <TableBody>
+                                        <Box style={{ width: '100%', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", paddingTop: '100px', paddingBottom: "100px" }}>
+                                            <img alt="empty state indication" src={breakfast} style={{ maxWidth: "250px" }} />
+                                            <Typography
+                                                gutterBottom
+                                                variant="h6"
+                                                component="div"
+                                                style={{ fontFamily: "Gilroy" }}
+                                            >
+                                                No data uploaded...
+                                            </Typography>
+                                        </Box></TableBody>
                                 }
 
                             </Table>

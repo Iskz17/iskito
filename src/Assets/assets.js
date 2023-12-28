@@ -3,8 +3,9 @@
 import lftc from "../assets/lftc.png";
 import pgc from "../assets/pgc.png";
 import emptyData from "../assets/EmptyData.png"
+import breakfast from "./breakfast.png"
 
 const lifetime = process.env.PUBLIC_URL + "/Lifetime.mp3";
 const pg = process.env.PUBLIC_URL + "/pg.mp3";
 
-export {lifetime, pg, lftc, pgc, emptyData}
+export {lifetime, pg, lftc, pgc, emptyData, breakfast}

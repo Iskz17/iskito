@@ -1,7 +1,11 @@
 import { useMediaQuery } from "@material-ui/core";
+import { Dropdown } from "../Component";
 import AppBar from "@material-ui/core/AppBar";
+import { Stack, Box, FormControl, MenuItem } from "@mui/material";
 import { AppContext } from "../../Context/AppContext";
 import { useTheme } from "@mui/material/styles";
+import { US, CN, FR, ES, JP } from "country-flag-icons/react/3x2";
+import i18n from './../../locales/i18n';
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import {
@@ -13,7 +17,6 @@ import {
   forwardRef,
 } from "react";
 import IOSSwitch from "../Switch/IOSSwitch";
-import Stack from "@mui/material/Stack";
 import "../../index.css";
 
 const TabPanel = forwardRef((props, ref) => {
@@ -48,6 +51,12 @@ const ScrollableTabs = forwardRef((props, ref) => {
   const theme = useTheme();
 
   const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
+  const [currentLangSelected, setCurrentLangSelected] =
+    useState("en");
+  const handleChangeLang = (event) => {
+    setCurrentLangSelected(event.target.value);
+    i18n.changeLanguage(event.target.value);
+  };
 
   useEffect(() => {
     if (!updateFromContext) {
@@ -84,6 +93,87 @@ const ScrollableTabs = forwardRef((props, ref) => {
       />
     );
   }, []);
+
+  const handleRenderMenuItemBg = useMemo(
+    () => [
+      <MenuItem
+        key={`us_menuItem`}
+        value={"en"}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {
+          <US
+            title="United States"
+            style={{ width: "25px", marginTop: "5px" }}
+          />
+        }
+      </MenuItem>,
+      // <MenuItem
+      //   key={`cn_menuItem`}
+      //   value={"cn"}
+      //   style={{
+      //     height: "30px",
+      //     fontSize: "15px",
+      //     fontFamily: "Gilroy",
+      //   }}>
+      //   {
+      //     <CN
+      //       title="China"
+      //       style={{ width: "25px", marginTop: "5px" }}
+      //     />
+      //   }
+      // </MenuItem>,
+      <MenuItem
+        key={`fr_menuItem`}
+        value={"fr"}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {
+          <FR
+            title="France"
+            style={{ width: "25px", marginTop: "5px" }}
+          />
+        }
+      </MenuItem>,
+      // <MenuItem
+      //   key={`es_menuItem`}
+      //   value={"es"}
+      //   style={{
+      //     height: "30px",
+      //     fontSize: "15px",
+      //     fontFamily: "Gilroy",
+      //   }}>
+      //   {
+      //     <ES
+      //       title="Spain"
+      //       style={{ width: "25px", marginTop: "5px" }}
+      //     />
+      //   }
+      // </MenuItem>,
+      // <MenuItem
+      //   key={`jp_menuItem`}
+      //   value={"jp"}
+      //   style={{
+      //     height: "30px",
+      //     fontSize: "15px",
+      //     fontFamily: "Gilroy",
+      //   }}>
+      //   {
+      //     <JP
+      //       title="Japan"
+      //       style={{ width: "25px", marginTop: "5px" }}
+      //     />
+      //   }
+      // </MenuItem>,
+    ],
+    []
+  );
 
   return (
     <div ref={ref} style={{ fontFamily: "Gilroy" }}>
@@ -133,7 +223,7 @@ const ScrollableTabs = forwardRef((props, ref) => {
               <Tab
                 label={v.label}
                 style={{
-                  cursor:'none',
+                  cursor: "none",
                   fontFamily: "Gilroy",
                   transition: ".25s ease",
                 }}
@@ -142,6 +232,33 @@ const ScrollableTabs = forwardRef((props, ref) => {
               />
             ))}
           </Tabs>
+          <Stack
+            style={{
+              flex: 1,
+              justifyContent: "flex-end",
+              flexDirection: "row",
+              alignItems: "center",
+            }}>
+            <FormControl
+              sx={{
+                width: "80px",
+                padding: 0,
+                border: "none",
+              }}
+              size="small">
+              <Dropdown
+                value={currentLangSelected}
+                onChange={handleChangeLang}
+                displayEmpty
+                style={{
+                  height: "30px",
+                  fontSize: "15px",
+                  fontFamily: "Gilroy",
+                }}>
+                {handleRenderMenuItemBg}
+              </Dropdown>
+            </FormControl>
+          </Stack>
         </Stack>
       </AppBar>
       {tabs?.map((v, index) => (

@@ -7,9 +7,11 @@ import "katex/dist/katex.min.css";
 import './QuillPlayground.css'
 // import 'react-quill/dist/quill.snow.css';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const QuillPlayground = (props) => {
     window.katex = katex;
+    const { t } = useTranslation();
     const [QuillText, setQuillText] = useState('');
     const quillRef = useRef(null);
 
@@ -123,7 +125,7 @@ const QuillPlayground = (props) => {
 
     const handleInsertZombie = () => {
         // Implement your custom upload logic here...
-        console.log('Custom upload button clicked');
+        // console.log('Custom upload button clicked');
         // Call your upload function or open an upload dialog
         // Update the editor content with the uploaded image
 
@@ -184,7 +186,7 @@ const QuillPlayground = (props) => {
             // height: matches ? "unset" : "100vh",
             // minHeight: "699px",
         }}>
-            <Title title={"Quill Editor"} description={"quill playground"} className="quillTitle"/>
+            <Title title={t('quill.title')} description={t('quill.description')} className="quillTitle"/>
             <input
                 accept={"image/*"}
                 hidden
@@ -203,7 +205,7 @@ const QuillPlayground = (props) => {
                 ref={quillRef}
                 modules={modules}
                 formats={formats}
-                placeholder="Write something..."
+                placeholder={t('quill.editorPlaceholder')}
 
             />
         </div>

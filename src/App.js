@@ -7,6 +7,7 @@ import { useState, useRef } from "react";
 import AppTheme from "./components/ThemeProvider/AppTheme";
 import ScrollableTabs from "./components/ScrollableTab/ScrollableTab";
 import { Section } from "./components/Section/Section";
+import './locales/i18n';
 // import 'react-quill/dist/quill.snow.css';
 // import stg from "./Assets/SPACETYPEGENERATOR.gif"
 import worker_script from './worker';

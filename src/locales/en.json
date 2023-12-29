@@ -1,0 +1,18 @@
+{
+  "excelReader": {
+    "title": "Excel Reader",
+    "description":"Excel date processing",
+    "table": {
+        "title":"Workers Data",
+        "uploadExcel":"Upload Excel",
+        "downloadExcel":"Download Excel",
+        "emptyState":"No Excel uploaded...",
+        "rowsPerPage":"Rows per page"
+    }
+  },
+  "quill": {
+    "title": "Quill Editor",
+    "description":"quill playground",
+    "editorPlaceholder":"write something..."
+  }
+}

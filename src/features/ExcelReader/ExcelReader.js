@@ -17,9 +17,10 @@ import Paper from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import { visuallyHidden } from '@mui/utils';
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ExcelReader = (props) => {
-
+    const { t } = useTranslation();
     const [expired, setExpired] = useState([]);
     const [headers, setHeaders] = useState([]);
     const [order, setOrder] = useState('asc');
@@ -184,7 +185,7 @@ const ExcelReader = (props) => {
                         id="tableTitle"
                         component="div"
                     >
-                        Workers Data
+                        {t('excelReader.table.title')}
                     </Typography>
                 </Tooltip>
                 <div style={{display:'flex', flex:1, flexDirection: 'row', justifyContent: 'flex-end'}}>
@@ -196,7 +197,7 @@ const ExcelReader = (props) => {
                             style={{ width: '150px', minWidth: '150px', marginRight: "15px" }}
 
                             onClick={() => handleInput()}
-                        > {'Upload Excel'}</PrimaryButton>
+                        > {t('excelReader.table.uploadExcel')}</PrimaryButton>
                     </Tooltip>
                     <Tooltip title="Download filtered data">
                         <PrimaryButton
@@ -206,7 +207,7 @@ const ExcelReader = (props) => {
                             style={{ width: '150px', minWidth: '150px' }}
                             disabled={expired?.length < 1}
                             onClick={() => handleDownload()}
-                        > {'Download Excel'}</PrimaryButton>
+                        > {t('excelReader.table.downloadExcel')}</PrimaryButton>
                     </Tooltip>
                 </div>
 
@@ -282,7 +283,7 @@ const ExcelReader = (props) => {
             paddingTop: '18px',
             minHeight: "100vh",
         }} className="excelBg">
-            <Title title={"Excel Reader"} description={"excel date processing"} className="excelTitle" />
+            <Title title={t('excelReader.title')} description={t("excelReader.description")} className="excelTitle" />
             <input
                 accept={"*"}
                 hidden
@@ -352,7 +353,7 @@ const ExcelReader = (props) => {
                                                 component="div"
                                                 style={{ fontFamily: "Gilroy" }}
                                             >
-                                                No data uploaded...
+                                                {t('excelReader.table.emptyState')}
                                             </Typography>
                                         </Box></TableBody>
                                 }
@@ -364,7 +365,7 @@ const ExcelReader = (props) => {
                             sx={{
                                 fontFamily: "Gilroy",
                                 "& .MuiTablePagination-selectLabel": {
-                                    fontFamily: "Gilroy"
+                                    fontFamily: "Gilroy",
                                 },
                                 "& .MuiTablePagination-select.MuiSelect-select.MuiSelect-standard.MuiInputBase-input": {
                                     fontFamily: "Gilroy"
@@ -373,6 +374,7 @@ const ExcelReader = (props) => {
                                     fontFamily: "Gilroy"
                                 }
                             }}
+                            labelRowsPerPage={t('excelReader.table.rowsPerPage')}
                             component="div"
                             count={expired.length}
                             rowsPerPage={rowsPerPage}

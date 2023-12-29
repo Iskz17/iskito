@@ -53,6 +53,9 @@ export function Dropdown({ children, isDarkMode, overrideDarkmode, ...other }) {
           ? "white !important"
           : "rgba(0, 0, 0, 0.7) !important",
       },
+      "fieldset": {
+        border:'none'
+      }
     }}
     {...other}
   >

@@ -15,6 +15,14 @@
   padding-top: 20px;
 }
 
+.glassBg {
+  background-color: rgba(227,227,227);
+}
+
+.darkMode .glassBg {
+  background-color: #1F2929;
+}
+
 .settingMargin {
   margin-bottom: 0px;
   margin-top: 0px;

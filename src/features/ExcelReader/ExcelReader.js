@@ -177,34 +177,39 @@ const ExcelReader = (props) => {
                     pr: { xs: 1, sm: 1 },
                 }}
             >
-                <Typography
-                    sx={{ flex: '1 1 100%', fontFamily: "Gilroy" }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    Workers Data
-                </Typography>
-                <Tooltip title="Upload woekers data">
-                    <PrimaryButton
-                        size="medium"
-                        disableElevation
-                        variant="contained"
-                        style={{ width: '150px', minWidth: '150px', marginRight: "15px" }}
+                <Tooltip title="Displaying workers with permits expiring in three months">
+                    <Typography
+                        sx={{ fontFamily: "Gilroy" }}
+                        variant="h6"
+                        id="tableTitle"
+                        component="div"
+                    >
+                        Workers Data
+                    </Typography>
+                </Tooltip>
+                <div style={{display:'flex', flex:1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                    <Tooltip title="Upload workers data">
+                        <PrimaryButton
+                            size="medium"
+                            disableElevation
+                            variant="contained"
+                            style={{ width: '150px', minWidth: '150px', marginRight: "15px" }}
 
-                        onClick={() => handleInput()}
-                    > {'Upload Excel'}</PrimaryButton>
-                </Tooltip>
-                <Tooltip title="Download filtered data">
-                    <PrimaryButton
-                        size="medium"
-                        disableElevation
-                        variant="contained"
-                        style={{ width: '150px', minWidth: '150px' }}
-                        disabled={expired?.length < 1}
-                        onClick={() => handleDownload()}
-                    > {'Download Excel'}</PrimaryButton>
-                </Tooltip>
+                            onClick={() => handleInput()}
+                        > {'Upload Excel'}</PrimaryButton>
+                    </Tooltip>
+                    <Tooltip title="Download filtered data">
+                        <PrimaryButton
+                            size="medium"
+                            disableElevation
+                            variant="contained"
+                            style={{ width: '150px', minWidth: '150px' }}
+                            disabled={expired?.length < 1}
+                            onClick={() => handleDownload()}
+                        > {'Download Excel'}</PrimaryButton>
+                    </Tooltip>
+                </div>
+
             </Toolbar>
         );
     }
@@ -277,7 +282,7 @@ const ExcelReader = (props) => {
             paddingTop: '18px',
             minHeight: "100vh",
         }} className="excelBg">
-            <Title title={"Excel Reader"} description={"excel date processing"} className="excelTitle"/>
+            <Title title={"Excel Reader"} description={"excel date processing"} className="excelTitle" />
             <input
                 accept={"*"}
                 hidden

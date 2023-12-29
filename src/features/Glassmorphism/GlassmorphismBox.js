@@ -80,18 +80,20 @@ const GlassmorphismBox = () => {
   return (
     <>
       <div
-        id="arrangeParent"
+        // id="arrangeParent"
+        className="glassBg"
         style={{
           fontFamily: "Gilroy",
-          background: needToUseDark ? "#1F2929" : "rgba(227,227,227)",
+          // background: needToUseDark ? "#1F2929" : "rgba(227,227,227)",
           color: needToUseDark
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
+            paddingTop: "19px",
           height: "unset",
           minHeight: "699px"
         }}
       >
-        <Title title="Glass UI" description="frosted glass style" />
+        <Title title="Glass UI" description="frosted glass style" className="glassTitle"/>
         <Stack
           style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}

@@ -1,0 +1,18 @@
+{
+  "excelReader": {
+    "title": "Excel リーダー",
+    "description": "Excel 日付処理",
+    "table": {
+      "title": "従業員データ",
+      "uploadExcel": "Excel をアップロード",
+      "downloadExcel": "Excel をダウンロード",
+      "emptyState": "Excel がアップロードされていません...",
+      "rowsPerPage": "ページごとの行数"
+    }
+  },
+  "quill": {
+    "title": "Quill エディタ",
+    "description": "Quill プレイグラウンド",
+    "editorPlaceholder": "何かを書いてください..."
+  }
+}

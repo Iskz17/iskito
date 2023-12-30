@@ -2,6 +2,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import translationEN from './en.json'; // English translations
 import translationFR from './fr.json'; // French translations (example)
+import translationES from './es.json';
+import translationCN from './cn.json';
+import translationJP from './jp.json';
 
 const resources = {
   en: {
@@ -10,6 +13,15 @@ const resources = {
   fr: {
     translation: translationFR,
   },
+  es: {
+    translation: translationES
+  },
+  cn: {
+    translation: translationCN
+  },
+  jp: {
+    translation: translationJP
+  }
   // Add other languages as needed
 };
 

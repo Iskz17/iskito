@@ -1,0 +1,18 @@
+{
+    "excelReader": {
+      "title": "Lector de Excel",
+      "description":"Procesamiento de fechas en Excel",
+      "table": {
+          "title":"Datos de los trabajadores",
+          "uploadExcel":"Subir Excel",
+          "downloadExcel":"Descargar Excel",
+          "emptyState":"No se ha subido Excel...",
+          "rowsPerPage":"Filas por página"
+      }
+    },
+    "quill": {
+      "title": "Editor Quill",
+      "description":"Área de juegos Quill",
+      "editorPlaceholder":"Escribe algo..."
+    }
+  }

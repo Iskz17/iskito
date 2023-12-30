@@ -111,21 +111,21 @@ const ScrollableTabs = forwardRef((props, ref) => {
           />
         }
       </MenuItem>,
-      // <MenuItem
-      //   key={`cn_menuItem`}
-      //   value={"cn"}
-      //   style={{
-      //     height: "30px",
-      //     fontSize: "15px",
-      //     fontFamily: "Gilroy",
-      //   }}>
-      //   {
-      //     <CN
-      //       title="China"
-      //       style={{ width: "25px", marginTop: "5px" }}
-      //     />
-      //   }
-      // </MenuItem>,
+      <MenuItem
+        key={`cn_menuItem`}
+        value={"cn"}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {
+          <CN
+            title="China"
+            style={{ width: "25px", marginTop: "5px" }}
+          />
+        }
+      </MenuItem>,
       <MenuItem
         key={`fr_menuItem`}
         value={"fr"}
@@ -141,36 +141,36 @@ const ScrollableTabs = forwardRef((props, ref) => {
           />
         }
       </MenuItem>,
-      // <MenuItem
-      //   key={`es_menuItem`}
-      //   value={"es"}
-      //   style={{
-      //     height: "30px",
-      //     fontSize: "15px",
-      //     fontFamily: "Gilroy",
-      //   }}>
-      //   {
-      //     <ES
-      //       title="Spain"
-      //       style={{ width: "25px", marginTop: "5px" }}
-      //     />
-      //   }
-      // </MenuItem>,
-      // <MenuItem
-      //   key={`jp_menuItem`}
-      //   value={"jp"}
-      //   style={{
-      //     height: "30px",
-      //     fontSize: "15px",
-      //     fontFamily: "Gilroy",
-      //   }}>
-      //   {
-      //     <JP
-      //       title="Japan"
-      //       style={{ width: "25px", marginTop: "5px" }}
-      //     />
-      //   }
-      // </MenuItem>,
+      <MenuItem
+        key={`es_menuItem`}
+        value={"es"}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {
+          <ES
+            title="Spain"
+            style={{ width: "25px", marginTop: "5px" }}
+          />
+        }
+      </MenuItem>,
+      <MenuItem
+        key={`jp_menuItem`}
+        value={"jp"}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {
+          <JP
+            title="Japan"
+            style={{ width: "25px", marginTop: "5px" }}
+          />
+        }
+      </MenuItem>,
     ],
     []
   );

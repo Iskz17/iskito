@@ -1,0 +1,18 @@
+{
+  "excelReader": {
+    "title": "Excel 阅读器",
+    "description": "Excel 日期处理",
+    "table": {
+      "title": "工作人员数据",
+      "uploadExcel": "上传 Excel",
+      "downloadExcel": "下载 Excel",
+      "emptyState": "未上传 Excel...",
+      "rowsPerPage": "每页行数"
+    }
+  },
+  "quill": {
+    "title": "Quill 编辑器",
+    "description": "Quill 游乐场",
+    "editorPlaceholder": "写点什么..."
+  }
+}

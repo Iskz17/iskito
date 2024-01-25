@@ -1,18 +1,31 @@
 {
   "excelReader": {
-    "title" : "Lecteur de fichiers Excel",
-    "description":"traitement des dates Excel",
+    "title": "Lecteur Excel",
+    "description":"Traitement des dates Excel",
     "table": {
-        "title":"Les données des travailleurs",
-        "uploadExcel":"Chargement d'Excel",
-        "downloadExcel":"Téléchargement Excel",
-        "emptyState":"Aucun fichier Excel téléchargé...",
-        "rowsPerPage":"Nombre de lignes par page"
+        "title":"Données des travailleurs",
+        "uploadExcel":"Télécharger Excel",
+        "downloadExcel":"Télécharger Excel",
+        "emptyState":"Aucun Excel téléchargé...",
+        "rowsPerPage":"Lignes par page"
     }
   },
   "quill": {
     "title": "Éditeur Quill",
-    "description":"plateforme d'expérimentation Quill",
-    "editorPlaceholder":"Veuillez écrire quelque chose..."
+    "description":"Espace de jeu Quill",
+    "editorPlaceholder":"Écrivez quelque chose..."
+  },
+  "neumorphism" : {
+    "title": "Interface Neumorphism",
+    "description" : "Style d'ombre douce",
+    "pickColor": "Choisir une couleur",
+    "size": "Taille",
+    "radius": "Rayon",
+    "distance": "Distance",
+    "intensity": "Intensité",
+    "blur" : "Flou",
+    "shape" : "Forme",
+    "copy" : "Copier",
+    "copied": "Copié !"
   }
 }

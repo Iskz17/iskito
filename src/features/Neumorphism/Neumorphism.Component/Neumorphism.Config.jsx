@@ -11,6 +11,7 @@ import {
   ElementConvex,
   ElementPressed,
 } from "./Neumorphism.Component";
+import { useTranslation } from "react-i18next";
 
 export const ConfigBox = ({
   updateDocumentCSS,
@@ -37,6 +38,7 @@ export const ConfigBox = ({
 
   const [shadowType, setShadowType] = useState("flat");
   const [isCopied, setIsCopied] = useState(false);
+  const { t } = useTranslation();
   const [clipboardText, setClipboardText] = useState(`
   border-radius: ${valueRad}px;
   background: ${
@@ -109,7 +111,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
     <>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Pick a color: `}</span>
+          <span>{`${t("neumorphism.pickColor")}: `}</span>
           <input
             ref={colorPicker}
             defaultValue="#CAE6E8"
@@ -129,7 +131,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
               textAlign: "center",
               fontSize: "12px",
               borderRadius: "5px",
-              fontFamily:'Gilroy'
+              fontFamily: "Gilroy",
             }}
             onChange={(e) => handleColorChange(e)}
           />
@@ -137,7 +139,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </div>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Size:`}</span>
+          <span>{`${t("neumorphism.size")}:`}</span>
           <CustomSlider
             overridedarkmode={true}
             darkmodevalue={!needToUseDark}
@@ -156,7 +158,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </div>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Radius:`}</span>
+          <span>{`${t("neumorphism.radius")}:`}</span>
           <CustomSlider
             overridedarkmode={true}
             darkmodevalue={!needToUseDark}
@@ -173,7 +175,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </div>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Distance:`}</span>
+          <span>{`${t("neumorphism.distance")}:`}</span>
           <CustomSlider
             overridedarkmode={true}
             darkmodevalue={!needToUseDark}
@@ -190,7 +192,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </div>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Intensity:`}</span>
+          <span>{`${t("neumorphism.intensity")}:`}</span>
           <CustomSlider
             overridedarkmode={true}
             darkmodevalue={!needToUseDark}
@@ -207,7 +209,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
       </div>
       <div className="configChildRow">
         <Stack spacing={2} direction="row" sx={{ px: 1 }} alignItems="center">
-          <span>{`Blur:`}</span>
+          <span>{`${t("neumorphism.blur")}:`}</span>
           <CustomSlider
             overridedarkmode={true}
             darkmodevalue={!needToUseDark}
@@ -228,7 +230,9 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
           direction="row"
           sx={{ mb: 0, px: 1 }}
           alignItems="center">
-          <span style={{ paddingBottom: "5px" }}>{`Shape:`}</span>
+          <span style={{ paddingBottom: "5px" }}>{`${t(
+            "neumorphism.shape"
+          )}:`}</span>
         </Stack>
       </div>
       <div className="configChildRow">
@@ -426,7 +430,7 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             disableElevation
             variant="contained"
             size="small">
-            <span>{isCopied ? "Copied!" : "Copy"}</span>
+            <span>{isCopied ? t("neumorphism.copied") : t('neumorphism.copy')}</span>
           </PrimaryButton>
           <ClipboardCopy id="clipboardCopy" copyText={clipboardText} hidden />
         </Stack>

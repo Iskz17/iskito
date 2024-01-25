@@ -30,7 +30,7 @@ export function ClipboardCopy({ copyText, hidden, id }) {
   };
 
   return (
-    <div id={id} hidden={hidden} onClick={id ? handleCopyClick : undefined}>
+    <div id={id} hidden={hidden} tabIndex="0" onClick={handleCopyClick} onKeyUp={handleCopyClick} role="button">
       <PrimaryButton
         size="small"
         disableElevation

@@ -9,10 +9,12 @@ import {
 import "./NeumorphismBox.css";
 import { createTheme } from "@mui/material/styles";
 import NeumorphismLogic from "./Neumorphism.Component/Neumorphism.Logic";
+import { useTranslation } from 'react-i18next';
 
 const NeumorphismBox = (props) => {
   let textBoxColorPicker = useRef(null);
   let colorPicker = useRef(null);
+  const { t } = useTranslation();
 
   let flex = {
     display: "flex",
@@ -81,7 +83,7 @@ const NeumorphismBox = (props) => {
             minHeight: "699px",
           }}
         >
-          <Title title={"Neumorphism UI"} description={"soft shadow style"} />
+          <Title title={t("neumorphism.title")} description={t("neumorphism.description")} />
           <div
             id="content"
             style={{

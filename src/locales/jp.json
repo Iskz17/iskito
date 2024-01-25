@@ -1,18 +1,31 @@
 {
   "excelReader": {
-    "title": "Excel リーダー",
-    "description": "Excel 日付処理",
+    "title": "Excelリーダー",
+    "description":"Excel日付処理",
     "table": {
-      "title": "従業員データ",
-      "uploadExcel": "Excel をアップロード",
-      "downloadExcel": "Excel をダウンロード",
-      "emptyState": "Excel がアップロードされていません...",
-      "rowsPerPage": "ページごとの行数"
+        "title":"労働者データ",
+        "uploadExcel":"Excelをアップロード",
+        "downloadExcel":"Excelをダウンロード",
+        "emptyState":"Excelがアップロードされていません...",
+        "rowsPerPage":"ページごとの行数"
     }
   },
   "quill": {
-    "title": "Quill エディタ",
-    "description": "Quill プレイグラウンド",
-    "editorPlaceholder": "何かを書いてください..."
+    "title": "Quillエディター",
+    "description":"Quillプレイグラウンド",
+    "editorPlaceholder":"何か書いてください..."
+  },
+  "neumorphism" : {
+    "title": "Neumorphism UI",
+    "description" : "ソフトシャドウスタイル",
+    "pickColor": "色を選択",
+    "size": "サイズ",
+    "radius": "半径",
+    "distance": "距離",
+    "intensity": "強度",
+    "blur" : "ぼかし",
+    "shape" : "形状",
+    "copy" : "コピー",
+    "copied": "コピーしました！"
   }
 }

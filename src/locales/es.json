@@ -1,18 +1,31 @@
 {
-    "excelReader": {
-      "title": "Lector de Excel",
-      "description":"Procesamiento de fechas en Excel",
-      "table": {
-          "title":"Datos de los trabajadores",
-          "uploadExcel":"Subir Excel",
-          "downloadExcel":"Descargar Excel",
-          "emptyState":"No se ha subido Excel...",
-          "rowsPerPage":"Filas por página"
-      }
-    },
-    "quill": {
-      "title": "Editor Quill",
-      "description":"Área de juegos Quill",
-      "editorPlaceholder":"Escribe algo..."
+  "excelReader": {
+    "title": "Lector de Excel",
+    "description":"Procesamiento de fechas en Excel",
+    "table": {
+        "title":"Datos de los trabajadores",
+        "uploadExcel":"Subir Excel",
+        "downloadExcel":"Descargar Excel",
+        "emptyState":"Ningún Excel subido...",
+        "rowsPerPage":"Filas por página"
     }
+  },
+  "quill": {
+    "title": "Editor Quill",
+    "description":"Área de juego Quill",
+    "editorPlaceholder":"Escribe algo..."
+  },
+  "neumorphism" : {
+    "title": "Interfaz Neumorphism",
+    "description" : "Estilo de sombra suave",
+    "pickColor": "Seleccionar un color",
+    "size": "Tamaño",
+    "radius": "Radio",
+    "distance": "Distancia",
+    "intensity": "Intensidad",
+    "blur" : "Desenfoque",
+    "shape" : "Forma",
+    "copy" : "Copiar",
+    "copied": "¡Copiado!"
   }
+}

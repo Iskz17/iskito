@@ -1,31 +1,52 @@
 {
   "excelReader": {
     "title": "Lecteur Excel",
-    "description":"Traitement des dates Excel",
+    "description": "Traitement des dates Excel",
     "table": {
-        "title":"Données des travailleurs",
-        "uploadExcel":"Télécharger Excel",
-        "downloadExcel":"Télécharger Excel",
-        "emptyState":"Aucun Excel téléchargé...",
-        "rowsPerPage":"Lignes par page"
+      "title": "Données des travailleurs",
+      "uploadExcel": "Télécharger Excel",
+      "downloadExcel": "Télécharger Excel",
+      "emptyState": "Aucun Excel téléchargé...",
+      "rowsPerPage": "Lignes par page"
     }
   },
   "quill": {
     "title": "Éditeur Quill",
-    "description":"Espace de jeu Quill",
-    "editorPlaceholder":"Écrivez quelque chose..."
+    "description": "Espace de jeu Quill",
+    "editorPlaceholder": "Écrivez quelque chose..."
   },
-  "neumorphism" : {
+  "neumorphism": {
     "title": "Interface Neumorphism",
-    "description" : "Style d'ombre douce",
+    "description": "Style d'ombre douce",
     "pickColor": "Choisir une couleur",
     "size": "Taille",
     "radius": "Rayon",
-    "distance": "Distance",
+    "distance": "éloignement",
     "intensity": "Intensité",
-    "blur" : "Flou",
-    "shape" : "Forme",
-    "copy" : "Copier",
+    "blur": "Flou",
+    "shape": "Forme",
+    "copy": "Copier",
     "copied": "Copié !"
+  },
+  "glassmorphism": {
+    "title": "Interface utilisateur en verre",
+    "description": "style de verre dépoli",
+    "config": {
+      "backgroundColor": "Couleur de fond :",
+      "backgroundType": "Type de fond :",
+      "cardColor": "Couleur de la carte :",
+      "blurValue": "Valeur de flou :",
+      "opacity": "Opacité :",
+      "saturation": "Saturation :",
+      "backgroundTypeList": {
+        "solid": "Solide",
+        "mesh": "Dégradé de maillage",
+        "image": "Image"
+      },
+      "cardTypeList": {
+        "socialMedia": "Médias sociaux",
+        "creditCard": "Carte de crédit"
+      }
+    }
   }
 }

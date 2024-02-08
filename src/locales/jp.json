@@ -1,31 +1,52 @@
 {
   "excelReader": {
     "title": "Excelリーダー",
-    "description":"Excel日付処理",
+    "description": "Excel日付処理",
     "table": {
-        "title":"労働者データ",
-        "uploadExcel":"Excelをアップロード",
-        "downloadExcel":"Excelをダウンロード",
-        "emptyState":"Excelがアップロードされていません...",
-        "rowsPerPage":"ページごとの行数"
+      "title": "労働者データ",
+      "uploadExcel": "Excelをアップロード",
+      "downloadExcel": "Excelをダウンロード",
+      "emptyState": "Excelがアップロードされていません...",
+      "rowsPerPage": "ページごとの行数"
     }
   },
   "quill": {
     "title": "Quillエディター",
-    "description":"Quillプレイグラウンド",
-    "editorPlaceholder":"何か書いてください..."
+    "description": "Quillプレイグラウンド",
+    "editorPlaceholder": "何か書いてください..."
   },
-  "neumorphism" : {
+  "neumorphism": {
     "title": "Neumorphism UI",
-    "description" : "ソフトシャドウスタイル",
+    "description": "ソフトシャドウスタイル",
     "pickColor": "色を選択",
     "size": "サイズ",
     "radius": "半径",
     "distance": "距離",
     "intensity": "強度",
-    "blur" : "ぼかし",
-    "shape" : "形状",
-    "copy" : "コピー",
+    "blur": "ぼかし",
+    "shape": "形状",
+    "copy": "コピー",
     "copied": "コピーしました！"
+  },
+  "glassmorphism": {
+    "title": "ガラスUI",
+    "description": "フロストガラススタイル",
+    "config": {
+      "backgroundColor": "背景色：",
+      "backgroundType": "背景タイプ：",
+      "cardColor": "カードの色：",
+      "blurValue": "ぼかしの値：",
+      "opacity": "不透明度：",
+      "saturation": "彩度：",
+      "backgroundTypeList": {
+        "solid": "ソリッド",
+        "mesh": "メッシュグラデーション",
+        "image": "画像"
+      },
+      "cardTypeList": {
+        "socialMedia": "ソーシャルメディア",
+        "creditCard": "クレジットカード"
+      }
+    }
   }
 }

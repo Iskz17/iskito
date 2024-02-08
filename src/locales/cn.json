@@ -1,31 +1,52 @@
 {
   "excelReader": {
     "title": "Excel阅读器",
-    "description":"Excel日期处理",
+    "description": "Excel日期处理",
     "table": {
-        "title":"工人数据",
-        "uploadExcel":"上传Excel",
-        "downloadExcel":"下载Excel",
-        "emptyState":"未上传Excel...",
-        "rowsPerPage":"每页行数"
+      "title": "工人数据",
+      "uploadExcel": "上传Excel",
+      "downloadExcel": "下载Excel",
+      "emptyState": "未上传Excel...",
+      "rowsPerPage": "每页行数"
     }
   },
   "quill": {
     "title": "Quill编辑器",
-    "description":"Quill播放区",
-    "editorPlaceholder":"写点什么..."
+    "description": "Quill播放区",
+    "editorPlaceholder": "写点什么..."
   },
-  "neumorphism" : {
+  "neumorphism": {
     "title": "新拟态UI",
-    "description" : "柔和的阴影风格",
+    "description": "柔和的阴影风格",
     "pickColor": "选择颜色",
     "size": "大小",
     "radius": "半径",
     "distance": "距离",
     "intensity": "强度",
-    "blur" : "模糊",
-    "shape" : "形状",
-    "copy" : "复制",
+    "blur": "模糊",
+    "shape": "形状",
+    "copy": "复制",
     "copied": "复制成功"
+  },
+  "glassmorphism": {
+    "title": "玻璃界面",
+    "description": "磨砂玻璃风格",
+    "config": {
+      "backgroundColor": "背景颜色：",
+      "backgroundType": "背景类型：",
+      "cardColor": "卡片颜色：",
+      "blurValue": "模糊值：",
+      "opacity": "不透明度：",
+      "saturation": "饱和度：",
+      "backgroundTypeList": {
+        "solid": "纯色",
+        "mesh": "网格渐变",
+        "image": "图像"
+      },
+      "cardTypeList": {
+        "socialMedia": "社交媒体",
+        "creditCard": "信用卡"
+      }
+    }
   }
 }

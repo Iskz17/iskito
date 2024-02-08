@@ -9,6 +9,7 @@ import React, {
 import { BackgroundContent, CardContent, GlassmorphismBoxConfig, GlassmorphismBoxContent } from "./GlassmorphismBox.Component/GlassmorphismBox.Component";
 import "./GlassmorphismBox.css";
 import { GlassmorphismBoxLogic } from "./GlassmorphismBox.Component/GlassmorphismBox.Logic"
+import { useTranslation } from 'react-i18next';
 
 const GlassmorphismBox = () => {
   const theme = createTheme({
@@ -22,6 +23,7 @@ const GlassmorphismBox = () => {
     },
   });
 
+  const { t } = useTranslation();
   const [state] = useContext(AppContext);
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
@@ -55,8 +57,8 @@ const GlassmorphismBox = () => {
   }, [state]);
 
   const [cardColor, setCardColor] = useState("#ebebeb");
-  const [currentCardType, setCurrentCardType] = useState("Credit Card");
-  const [currentBackgroundType, setCurrentBackgroundType] = useState("Mesh Gradient");
+  const [currentCardType, setCurrentCardType] = useState("creditCard");
+  const [currentBackgroundType, setCurrentBackgroundType] = useState("mesh");
 
   let {
     handleChange,
@@ -78,7 +80,6 @@ const GlassmorphismBox = () => {
   })
 
   return (
-    <>
       <div
         // id="arrangeParent"
         className="glassBg"
@@ -93,7 +94,7 @@ const GlassmorphismBox = () => {
           minHeight: "699px"
         }}
       >
-        <Title title="Glass UI" description="frosted glass style" className="glassTitle"/>
+        <Title title={t('glassmorphism.title')} description={t('glassmorphism.description')} className="glassTitle"/>
         <Stack
           style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
           spacing={1}
@@ -147,7 +148,6 @@ const GlassmorphismBox = () => {
           </GlassmorphismBoxContent>
         </Stack>
       </div>
-    </>
   );
 };
 

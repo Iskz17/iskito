@@ -6,7 +6,7 @@ export const BackgroundContent = ({
   let style = {};
   let ImageBackground = "";
   switch (currentBackgroundType) {
-    case "Mesh Gradient": {
+    case "mesh": {
       style = {
         backgroundColor: `${backgroundColor[2]}`,
         backgroundImage: ` radial-gradient(at 47% 33%, ${backgroundColor[0]} 0, transparent 59%), 
@@ -14,13 +14,13 @@ export const BackgroundContent = ({
       };
       break;
     }
-    case "Solid": {
+    case "solid": {
       style = {
         backgroundColor: `${backgroundColor[0]}`,
       };
       break;
     }
-    case "Image": {
+    case "image": {
       ImageBackground = "imageBackgroundSetting";
       break;
     }

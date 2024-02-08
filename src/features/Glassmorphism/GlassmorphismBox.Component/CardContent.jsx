@@ -147,10 +147,10 @@ export const CardContent = memo(
     console.log("render card?");
 
     switch (currentCardType) {
-      case "Credit Card": {
+      case "creditCard": {
         return <>{CreditCard()}</>;
       }
-      case "Social Media": {
+      case "socialMedia": {
         return <>{SocialMediaCard()}</>;
       }
       default:

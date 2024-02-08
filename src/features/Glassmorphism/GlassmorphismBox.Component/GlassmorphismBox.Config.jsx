@@ -1,6 +1,7 @@
 import { CustomSlider, Dropdown } from "../../../components/Component";
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export const GlassmorphismBoxConfig = ({
   matches,
@@ -18,23 +19,21 @@ export const GlassmorphismBoxConfig = ({
   handleChangeSaturation,
   cardColor,
 }) => {
-  const backgroundType = ["Solid", "Mesh Gradient", "Image"];
-  const handleRenderMenuItemBg = useMemo(
-    () =>
-      backgroundType?.map((type) => (
-        <MenuItem
-          key={`${type}_menuItem`}
-          value={type}
-          style={{
-            height: "30px",
-            fontSize: "15px",
-            fontFamily: "Gilroy",
-          }}>
-          {type}
-        </MenuItem>
-      )),
-    []
-  );
+  const backgroundType = ["solid", "mesh", "image"];
+  const { t } = useTranslation();
+  const handleRenderMenuItemBg = () =>
+    backgroundType?.map((type) => (
+      <MenuItem
+        key={`${type}_menuItem`}
+        value={type}
+        style={{
+          height: "30px",
+          fontSize: "15px",
+          fontFamily: "Gilroy",
+        }}>
+        {t(`glassmorphism.config.backgroundTypeList.${type}`)}
+      </MenuItem>
+    ));
 
   return (
     <div
@@ -70,7 +69,7 @@ export const GlassmorphismBoxConfig = ({
             spacing={1}
             direction="column"
             alignItems="flex-start">
-            <Box>Background Color:</Box>
+            <Box>{t("glassmorphism.config.backgroundColor")}</Box>
             <Stack
               className="boxFullWidth"
               style={{ padding: "5px" }}
@@ -190,7 +189,7 @@ export const GlassmorphismBoxConfig = ({
             direction="column"
             sx={{ px: 1 }}
             alignItems="flex-start">
-            <Box>Background Type:</Box>
+            <Box>{t("glassmorphism.config.backgroundType")}</Box>
             <Box className="boxFullWidth">
               <FormControl
                 sx={{
@@ -207,7 +206,7 @@ export const GlassmorphismBoxConfig = ({
                     fontSize: "15px",
                     fontFamily: "Gilroy",
                   }}>
-                  {handleRenderMenuItemBg}
+                  {handleRenderMenuItemBg()}
                 </Dropdown>
               </FormControl>
             </Box>
@@ -225,7 +224,7 @@ export const GlassmorphismBoxConfig = ({
             spacing={1}
             direction="column"
             alignItems="flex-start">
-            <Box>Card Color: </Box>
+            <Box>{t("glassmorphism.config.cardColor")}</Box>
             <Stack
               className="boxFullWidth"
               style={{ padding: "5px" }}
@@ -280,7 +279,9 @@ export const GlassmorphismBoxConfig = ({
             sx={{ px: 1 }}
             alignItems="flex-start">
             <Box className="boxFullWidth">
-              <span>{`Blur Value: ${blurVal}px`}</span>
+              <span>{`${t(
+                "glassmorphism.config.blurValue"
+              )} ${blurVal}px`}</span>
               <CustomSlider
                 value={blurVal}
                 size="medium"
@@ -306,7 +307,9 @@ export const GlassmorphismBoxConfig = ({
             sx={{ px: 1 }}
             alignItems="flex-start">
             <Box className="boxFullWidth">
-              <span>{`Opacity: ${opacityVal}%`}</span>
+              <span>{`${t(
+                "glassmorphism.config.opacity"
+              )} ${opacityVal}%`}</span>
               <CustomSlider
                 value={opacityVal}
                 size="medium"
@@ -333,7 +336,9 @@ export const GlassmorphismBoxConfig = ({
             sx={{ px: 1 }}
             alignItems="flex-start">
             <Box className="boxFullWidth">
-              <span>{`Saturation: ${saturationVal}%`}</span>
+              <span>{`${t(
+                "glassmorphism.config.saturation"
+              )} ${saturationVal}%`}</span>
               <CustomSlider
                 value={saturationVal}
                 size="medium"

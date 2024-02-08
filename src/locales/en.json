@@ -27,5 +27,26 @@
     "shape" : "Shape",
     "copy" : "Copy",
     "copied" : "Copied!"
+  },
+  "glassmorphism": {
+    "title":"Glass UI",
+    "description": "frosted glass style",
+    "config": {
+      "backgroundColor": "Background Color:",
+      "backgroundType": "Background Type:",
+      "cardColor": "Card Color:",
+      "blurValue": "Blur Value:",
+      "opacity": "Opacity:",
+      "saturation": "Saturation:",
+      "backgroundTypeList": {
+        "solid": "Solid",
+        "mesh": "Mesh Gradient",
+        "image": "Image"
+      },
+      "cardTypeList": {
+        "socialMedia": "Social Media",
+        "creditCard": "Credit Card"
+      }
+    }
   }
 }

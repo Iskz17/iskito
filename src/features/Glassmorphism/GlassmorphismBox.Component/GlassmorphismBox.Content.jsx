@@ -1,6 +1,7 @@
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
 import { Dropdown } from "../../../components/Component";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export const GlassmorphismBoxContent = ({
   matches,
@@ -16,8 +17,9 @@ export const GlassmorphismBoxContent = ({
   convertToRgbWithOpacity,
   children,
 }) => {
+  const { t } = useTranslation();
   const handleRenderMenuItem = () => {
-    const cardType = ["Social Media", "Credit Card"];
+    const cardType = ["socialMedia", "creditCard"];
     return cardType?.map((type) => (
       <MenuItem
         key={`${type}_menuItem`}
@@ -27,14 +29,14 @@ export const GlassmorphismBoxContent = ({
           fontSize: "15px",
           fontFamily: "Gilroy",
         }}>
-        {type}
+        {t(`glassmorphism.config.cardTypeList.${type}`)}
       </MenuItem>
     ));
   };
 
   const HandleBackgroundCSS = () => {
     switch (currentBackgroundType) {
-      case "Mesh Gradient": {
+      case "mesh": {
         return (
           <>
             <span>
@@ -59,29 +61,25 @@ export const GlassmorphismBoxContent = ({
         );
       }
 
-      case "Solid": {
+      case "solid": {
         return (
-          <>
-            <span>
-              <span className="attributeColor">{`background-image `}</span>
-              <span>{`: `}</span>
-              <span className="attributeColor">{`${backgroundColor[0]}`}</span>
-              <span>{`;`}</span>
-            </span>
-          </>
+          <span>
+            <span className="attributeColor">{`background-image `}</span>
+            <span>{`: `}</span>
+            <span className="attributeColor">{`${backgroundColor[0]}`}</span>
+            <span>{`;`}</span>
+          </span>
         );
       }
 
-      case "Image": {
+      case "image": {
         return (
-          <>
-            <span>
-              <span className="attributeColor">{`background-image `}</span>
-              <span>{`: `}</span>
-              <span className="attributeColor">{`url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`}</span>
-              <span>{`;`}</span>
-            </span>
-          </>
+          <span>
+            <span className="attributeColor">{`background-image `}</span>
+            <span>{`: `}</span>
+            <span className="attributeColor">{`url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2)`}</span>
+            <span>{`;`}</span>
+          </span>
         );
       }
 

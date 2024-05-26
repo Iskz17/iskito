@@ -48,5 +48,41 @@
         "creditCard": "Tarjeta de crédito"
       }
     }
+  },
+  "lazyLoading": {
+    "title": "Tarjeta de carga perezosa",
+    "description": "reduce la carga mental",
+    "lazyLoading": "Carga perezosa",
+    "card1": {
+      "p1": "Primero se carga una imagen de baja resolución, mientras se descarga la imagen completa.",
+      "p2": "Teóricamente, almacenamos esta imagen de baja resolución, pero en este caso la estamos comprimiendo manualmente aquí."
+    },
+    "card2": {
+      "p1": "Dado que la imagen de baja resolución probablemente esté pixelada, la configuramos como borrosa.",
+      "p2": "La animación de pulso indica que la imagen real aún no se ha mostrado."
+    },
+    "card3": {
+      "p1": "Cargue su imagen aquí. Luego podrá descargar la versión comprimida."
+    },
+    "upload" : "Cargar",
+    "download": "Descargar",
+    "downloadType": "Tipo de descarga:",
+    "progressStepper": {
+      "uploadImage": {
+        "label": "Cargar imagen",
+        "description": "Elija la imagen a comprimir"
+      },
+      "chooseFormat": {
+        "label": "Elegir formato",
+        "description": "Formato para la imagen descargada"
+      },
+      "download": {
+        "label": "Descargar",
+        "description": "Obtener imagen comprimida con el formato elegido"
+      }
+    },
+    "status": {
+      "inProgress" : "En progreso"
+    }
   }
 }

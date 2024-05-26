@@ -48,5 +48,41 @@
         "creditCard": "Carte de crédit"
       }
     }
+  },
+  "lazyLoading": {
+    "title": "Carte de chargement paresseux",
+    "description": "réduit la charge mentale",
+    "lazyLoading": "Chargement paresseux",
+    "card1": {
+      "p1": "Une image de basse résolution est d'abord chargée, tandis que l'image complète est en cours de téléchargement.",
+      "p2": "Théoriquement, nous stockons cette image en basse résolution, mais dans ce cas, nous la compressons manuellement ici."
+    },
+    "card2": {
+      "p1": "Étant donné que l'image de basse résolution sera probablement pixelisée, nous la rendons floue.",
+      "p2": "L'animation de pulsation indique que l'image réelle n'a pas encore été affichée."
+    },
+    "card3": {
+      "p1": "Téléchargez votre image ici. Ensuite, vous pourrez télécharger la version compressée."
+    },
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "downloadType": "Type de téléchargement :",
+    "progressStepper": {
+      "uploadImage": {
+        "label": "Télécharger une image",
+        "description": "Choisissez l'image à compresser"
+      },
+      "chooseFormat": {
+        "label": "Choisir le format",
+        "description": "Format pour l'image téléchargée"
+      },
+      "download": {
+        "label": "Télécharger",
+        "description": "Obtenez l'image compressée avec le format choisi"
+      }
+    },
+    "status": {
+      "inProgress": "En cours"
+    }
   }
 }

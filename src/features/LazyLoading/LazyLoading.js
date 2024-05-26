@@ -8,9 +8,11 @@ import { AppContext } from "../../Context/AppContext";
 import ProgressStepper from "../../components/ProgressStepper/ProgressStepper";
 import React, { useState, useContext, useEffect } from "react";
 import mekito from "../../assets/kito.jpg";
+import { useTranslation } from 'react-i18next';
 import "./LazyLoading.css";
 
 const LazyLoading = () => {
+  const { t } = useTranslation();
   const [state] = useContext(AppContext);
   const [kitoCompressed, setKitoCompressed] = useState(null);
   const [anotherCompressed, setAnotherCompressed] = useState(null);
@@ -20,20 +22,20 @@ const LazyLoading = () => {
   const [stepActive, setStepActive] = useState(0);
   const [steps, setSteps] = useState([
     {
-      titleText: 'Upload Image',
-      helperText: 'Choose image to be compressed',
+      titleText: t('lazyLoading.progressStepper.uploadImage.label'),
+      helperText: t('lazyLoading.progressStepper.uploadImage.description'),
       completed: false,
       skip: false,
     },
     {
-      titleText: 'Choose Format',
-      helperText: 'Format for downloaded image',
+      titleText: t('lazyLoading.progressStepper.chooseFormat.label'),
+      helperText: t('lazyLoading.progressStepper.chooseFormat.description'),
       completed: false,
       skip: false
     },
     {
-      titleText: 'Download',
-      helperText: 'Get compressed image with chosen format',
+      titleText: t('lazyLoading.progressStepper.download.label'),
+      helperText: t('lazyLoading.progressStepper.download.description'),
       completed: false,
       skip: false
     }
@@ -258,339 +260,335 @@ const LazyLoading = () => {
 
   return (
     <div
-        id="arrangeParent"
-        style={{
-          fontFamily: "Gilroy",
-          background: needToUseDark
-            ? "rgba(41,20,62, 0.9)"
-            : "rgba(240,203,168)",
-          color: needToUseDark
-            ? "rgba(255, 255, 255, 0.7)"
-            : "rgba(0, 0, 0, 0.7)",
-          height: "unset",
-          minHeight: "699px"
-        }}
+      id="arrangeParent"
+      style={{
+        fontFamily: "Gilroy",
+        background: needToUseDark
+          ? "rgba(41,20,62, 0.9)"
+          : "rgba(240,203,168)",
+        color: needToUseDark
+          ? "rgba(255, 255, 255, 0.7)"
+          : "rgba(0, 0, 0, 0.7)",
+        height: "unset",
+        minHeight: "699px"
+      }}
+    >
+      <Title title={t('lazyLoading.title')} description={t('lazyLoading.description')} />
+      <Stack
+        style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
+        spacing={1}
+        gap={2}
+        direction={matches ? "column" : "row"}
+        sx={{ py: 2 }}
+        alignItems="center"
+        justifyContent={"center"}
       >
-        <Title title="Lazy Loading Card" description="reduce mental loading" />
-        <Stack
-          style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
-          spacing={1}
-          gap={2}
-          direction={matches ? "column" : "row"}
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
+        <Card className={styles.root}>
+          {isLoaded ? (
+            <div style={{ position: "relative" }}>
+              <CardMedia
+                className={styles.media}
+                component="img"
+                height={340}
+                image={
+                  "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                }
+                loading="lazy"
+              />
+              <CardMedia
+                className={styles.mediaShadow}
+                component="img"
+                height={340}
+                loading="lazy"
+                image={kitoCompressed}
+              />
+            </div>
+          ) : (
+            <div
+              style={{
+                overflow: "hidden",
+                borderRadius: 6,
+                position: "relative",
+              }}
+              className="pulseAnimation"
+            >
+              <CardMedia
+                className={styles.mediaCompressed}
+                component="img"
+                height={340}
+                loading="lazy"
+                image={kitoCompressed}
+              />
+            </div>
+          )}
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.lazyLoading')}
+            </Typography>
+            <Typography
+              variant={matches ? "body1" : "body2"}
+              color="text.secondary"
+              component="div"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.card1.p1')}
+            </Typography>
+            <Typography
+              variant={matches ? "body1" : "body2"}
+              color="text.secondary"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.card1.p2')}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className={styles.root}>
+          {isLoaded ? (
+            <div style={{ position: "relative" }}>
+              <CardMedia
+                className={styles.media}
+                component="img"
+                height={340}
+                image={
+                  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+                }
+              />
+              <CardMedia
+                className={styles.mediaShadow}
+                component="img"
+                height={340}
+                image={anotherCompressed}
+              />
+            </div>
+          ) : (
+            <div
+              style={{
+                overflow: "hidden",
+                borderRadius: 6,
+                position: "relative",
+              }}
+              className="pulseAnimation"
+            >
+              <CardMedia
+                className={styles.mediaCompressed}
+                component="img"
+                height={340}
+                image={anotherCompressed}
+              />
+            </div>
+          )}
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.lazyLoading')}
+            </Typography>
+            <Typography
+              variant={matches ? "body1" : "body2"}
+              color="text.secondary"
+              component="div"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.card2.p1')}
+            </Typography>
+            <Typography
+              variant={matches ? "body1" : "body2"}
+              color="text.secondary"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.card2.p2')}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card
+          className={
+            downloadDisabled ? styles.root : styles.rootUploadDownload
+          }
         >
-          <Card className={styles.root}>
-            {isLoaded ? (
-              <div style={{ position: "relative" }}>
-                <CardMedia
-                  className={styles.media}
-                  component="img"
-                  height={340}
-                  image={
-                    "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-                  }
-                  loading="lazy"
-                />
-                <CardMedia
-                  className={styles.mediaShadow}
-                  component="img"
-                  height={340}
-                  loading="lazy"
-                  image={kitoCompressed}
-                />
-              </div>
-            ) : (
-              <div
-                style={{
-                  overflow: "hidden",
-                  borderRadius: 6,
-                  position: "relative",
-                }}
-                className="pulseAnimation"
-              >
-                <CardMedia
-                  className={styles.mediaCompressed}
-                  component="img"
-                  height={340}
-                  loading="lazy"
-                  image={kitoCompressed}
-                />
-              </div>
-            )}
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                Lazy Loading
-              </Typography>
-              <Typography
-                variant={matches ? "body1" : "body2"}
-                color="text.secondary"
-                component="div"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                A low resolution was fetched first, while full picture is
-                downloading.
-              </Typography>
-              <Typography
-                variant={matches ? "body1" : "body2"}
-                color="text.secondary"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                Theoritically, we store this low res image but in this case, we
-                compressing it manually here.
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card className={styles.root}>
-            {isLoaded ? (
-              <div style={{ position: "relative" }}>
-                <CardMedia
-                  className={styles.media}
-                  component="img"
-                  height={340}
-                  image={
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                  }
-                />
-                <CardMedia
-                  className={styles.mediaShadow}
-                  component="img"
-                  height={340}
-                  image={anotherCompressed}
-                />
-              </div>
-            ) : (
-              <div
-                style={{
-                  overflow: "hidden",
-                  borderRadius: 6,
-                  position: "relative",
-                }}
-                className="pulseAnimation"
-              >
-                <CardMedia
-                  className={styles.mediaCompressed}
-                  component="img"
-                  height={340}
-                  image={anotherCompressed}
-                />
-              </div>
-            )}
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                Lazy Loading
-              </Typography>
-              <Typography
-                variant={matches ? "body1" : "body2"}
-                color="text.secondary"
-                component="div"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                Since the low res will likely be pixelated, we set it to blurry.
-              </Typography>
-              <Typography
-                variant={matches ? "body1" : "body2"}
-                color="text.secondary"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                The pulse animation gives info that the actual pic is yet to be
-                shown.
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card
-            className={
-              downloadDisabled ? styles.root : styles.rootUploadDownload
-            }
-          >
-            {isUploadLoaded ? (
-              <div style={{ position: "relative" }}>
-                <CardMedia
-                  className={styles.media}
-                  component="img"
-                  height={340}
-                  image={uploadAndDownload}
-                />
-                <CardMedia
-                  className={styles.mediaShadow}
-                  component="img"
-                  height={340}
-                  image={uploadAndDownload}
-                />
-                <img id="testconvert" src={uploadAndDownload} hidden alt={"upload desired pic"}/>
-              </div>
-            ) : (
-              <div
-                style={{
-                  overflow: "hidden",
-                  borderRadius: 6,
-                  position: "relative",
-                }}
-                className="pulseAnimation"
-              >
-                <CardMedia
-                  className={styles.mediaCompressed}
-                  component="img"
-                  height={340}
-                  image={uploadAndDownload}
-                />
-              </div>
-            )}
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                style={{ fontFamily: "Gilroy", }}
-              >
-                Lazy Loading
-              </Typography>
-              <Typography
-                variant={matches ? "body1" : "body2"}
-                color="text.secondary"
-                component="div"
-                style={{ fontFamily: "Gilroy" }}
-              >
-                Upload your image here. Then you'll able to download the
-                compressed version.
-              </Typography>
-              {!downloadDisabled ? (
-                <Stack
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  spacing={1}
-                  direction="column"
-                  sx={{ px: 1, py: 1 }}
-                  alignItems="center"
-                  justifyContent={"center"}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "5px",
-                    }}
-                  >
-                    <Typography
-                      variant={matches ? "body1" : "body2"}
-                      color="text.secondary"
-                      component="div"
-                      style={{ fontFamily: "Gilroy", fontWeight: "900" }}
-                    >
-                      Download type:
-                    </Typography>
-
-                    <FormControl
-                      sx={{
-                        minWidth: "100px",
-                      }}
-                      size="small"
-                    >
-                      <Dropdown
-                        value={currentFileType}
-                        onChange={handleFileTypeChange}
-                        displayEmpty
-                        overrideDarkmode={true}
-                        isDarkMode={false}
-                        style={{ fontFamily: "Gilroy", fontSize: "13px" }}
-                      >
-                        {handleRenderMenuItemBg()}
-                      </Dropdown>
-                    </FormControl>
-                  </div>
-                </Stack>
-              ) : null}
+          {isUploadLoaded ? (
+            <div style={{ position: "relative" }}>
+              <CardMedia
+                className={styles.media}
+                component="img"
+                height={340}
+                image={uploadAndDownload}
+              />
+              <CardMedia
+                className={styles.mediaShadow}
+                component="img"
+                height={340}
+                image={uploadAndDownload}
+              />
+              <img id="testconvert" src={uploadAndDownload} hidden alt={"upload desired pic"} />
+            </div>
+          ) : (
+            <div
+              style={{
+                overflow: "hidden",
+                borderRadius: 6,
+                position: "relative",
+              }}
+              className="pulseAnimation"
+            >
+              <CardMedia
+                className={styles.mediaCompressed}
+                component="img"
+                height={340}
+                image={uploadAndDownload}
+              />
+            </div>
+          )}
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              style={{ fontFamily: "Gilroy", }}
+            >
+              {t('lazyLoading.lazyLoading')}
+            </Typography>
+            <Typography
+              variant={matches ? "body1" : "body2"}
+              color="text.secondary"
+              component="div"
+              style={{ fontFamily: "Gilroy" }}
+            >
+              {t('lazyLoading.card3.p1')}
+            </Typography>
+            {!downloadDisabled ? (
               <Stack
                 style={{
                   width: "100%",
                   height: "100%",
                 }}
-                spacing={2}
-                direction="row"
-                sx={{ px: 2, py: downloadDisabled ? 2 : 1 }}
+                spacing={1}
+                direction="column"
+                sx={{ px: 1, py: 1 }}
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <PrimaryButton
-                  size="medium"
-                  disableElevation
-                  variant="contained"
-                  onClick={() => handleInput()}
-                >
-                  {"Upload"}
-                  <input
-                    accept={"image/*"}
-                    hidden
-                    multiple
-                    onChange={(e) => {
-                      setIsUploadLoaded(false);
-                      setUploadAndDownload(null);
-                      handleUpload(e);
-                      e.target.value = null;
-                    }}
-                    id="icon-button-file"
-                    type="file"
-                  />
-                </PrimaryButton>
-                <PrimaryButton
-                  size="medium"
-                  disableElevation
-                  variant="contained"
-                  disabled={downloadDisabled}
-                  onClick={() => {
-                    document.getElementById("download-compressed").click();
-                    handleStepper(3);
+                <div
+                  style={{
+                    display: "flex",
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "5px",
                   }}
                 >
-                  {"Download"}
-                  <a
-                    id="download-compressed"
-                    hidden
-                    href={uploadAndDownload}
-                    download="compressedimage"
+                  <Typography
+                    variant={matches ? "body1" : "body2"}
+                    color="text.secondary"
+                    component="div"
+                    style={{ fontFamily: "Gilroy", fontWeight: "900" }}
                   >
-                    Download
-                  </a>
-                </PrimaryButton>
+                    {t('lazyLoading.downloadType')}
+                  </Typography>
+
+                  <FormControl
+                    sx={{
+                      minWidth: "100px",
+                    }}
+                    size="small"
+                  >
+                    <Dropdown
+                      value={currentFileType}
+                      onChange={handleFileTypeChange}
+                      displayEmpty
+                      overrideDarkmode={true}
+                      isDarkMode={false}
+                      style={{ fontFamily: "Gilroy", fontSize: "13px" }}
+                    >
+                      {handleRenderMenuItemBg()}
+                    </Dropdown>
+                  </FormControl>
+                </div>
               </Stack>
-            </CardContent>
-          </Card>
-        </Stack>
-        <Stack
-          spacing={1}
-          gap={2}
-          direction={"row"}
-          sx={{ py: 2 }}
-          alignItems="center"
-          justifyContent={"center"}
-          style={{ width: "100%", marginTop: matches ? "-26px" : 0}}
-        >
-            <ProgressStepper
-              active={stepActive}
-              steps={steps}
-              trailingConnector={true}
-              isHorizontalOrientation={true}
-              onClick={() => { }}
-              buttonText="Ello"
-            />
-        </Stack>
-      </div>
+            ) : null}
+            <Stack
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+              spacing={2}
+              direction="row"
+              sx={{ px: 2, py: downloadDisabled ? 2 : 1 }}
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <PrimaryButton
+                size="medium"
+                disableElevation
+                variant="contained"
+                onClick={() => handleInput()}
+              >
+                {t('lazyLoading.upload')}
+                <input
+                  accept={"image/*"}
+                  hidden
+                  multiple
+                  onChange={(e) => {
+                    setIsUploadLoaded(false);
+                    setUploadAndDownload(null);
+                    handleUpload(e);
+                    e.target.value = null;
+                  }}
+                  id="icon-button-file"
+                  type="file"
+                />
+              </PrimaryButton>
+              <PrimaryButton
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={downloadDisabled}
+                onClick={() => {
+                  document.getElementById("download-compressed").click();
+                  handleStepper(3);
+                }}
+              >
+                {t('lazyLoading.download')}
+                <a
+                  id="download-compressed"
+                  hidden
+                  href={uploadAndDownload}
+                  download="compressedimage"
+                >
+                  {t('lazyLoading.download')}
+                </a>
+              </PrimaryButton>
+            </Stack>
+          </CardContent>
+        </Card>
+      </Stack>
+      <Stack
+        spacing={1}
+        gap={2}
+        direction={"row"}
+        sx={{ py: 2 }}
+        alignItems="center"
+        justifyContent={"center"}
+        style={{ width: "100%", marginTop: matches ? "-26px" : 0 }}
+      >
+        <ProgressStepper
+          active={stepActive}
+          steps={steps}
+          trailingConnector={true}
+          isHorizontalOrientation={true}
+          onClick={() => { }}
+          buttonText="Ello"
+        />
+      </Stack>
+    </div>
   );
 };
 

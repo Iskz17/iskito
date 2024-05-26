@@ -48,5 +48,41 @@
         "creditCard": "信用卡"
       }
     }
+  },
+  "lazyLoading": {
+    "title": "延迟加载卡片",
+    "description": "减少心理负担",
+    "lazyLoading": "延迟加载",
+    "card1": {
+      "p1": "首先加载低分辨率图像，完整图片正在下载。",
+      "p2": "理论上，我们会存储这个低分辨率图像，但在这种情况下，我们在这里手动压缩它。"
+    },
+    "card2": {
+      "p1": "由于低分辨率可能会出现像素化，因此我们将其设置为模糊。",
+      "p2": "脉冲动画会提示实际图片尚未显示。"
+    },
+    "card3": {
+      "p1": "在此上传您的图像。然后，您将能够下载压缩版本。"
+    },
+    "upload" : "上传",
+    "download": "下载",
+    "downloadType": "下载类型：",
+    "progressStepper": {
+      "uploadImage": {
+        "label": "上传图像",
+        "description": "选择要压缩的图像"
+      },
+      "chooseFormat": {
+        "label": "选择格式",
+        "description": "下载图像的格式"
+      },
+      "download": {
+        "label": "下载",
+        "description": "获取选择格式的压缩图像"
+      }
+    },
+    "status": {
+      "inProgress" : "进行中"
+    }
   }
 }

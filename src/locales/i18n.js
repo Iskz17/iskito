@@ -41,4 +41,5 @@ i18n
   .use(initReactI18next)
   .init(defaultConfig);
 
+//called in app.js
 export default i18n;

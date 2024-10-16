@@ -19,6 +19,7 @@ const LazyLoading = () => {
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
   const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
   const [downloadDisabled, setDownloadDisabled] = useState(true);
+  const [filesArray, setFilesArray] = useState([]);
   const [stepActive, setStepActive] = useState(0);
   const [steps, setSteps] = useState([
     {
@@ -101,6 +102,10 @@ const LazyLoading = () => {
     return URL.createObjectURL(el);
   };
 
+  const destroyUrl = (url) => {
+    URL.revokeObjectURL(url);
+  }
+
   const options = {
     // As the key specify the maximum size
     // Leave blank for infinity
@@ -157,6 +162,29 @@ const LazyLoading = () => {
     });
   };
 
+  function rotateImageFormat(fileName, finalFormat) {
+    if (!fileName) return '';
+
+    const lastDotIndex = fileName.lastIndexOf('.');
+    if (lastDotIndex === -1) return fileName; // No extension found
+
+    // const ext = fileName.slice(lastDotIndex + 1).toLowerCase(); // Get the extension
+    const baseName = fileName.slice(0, lastDotIndex); // Get the base name
+
+    // Define the conversion rules
+    switch (finalFormat) {
+      case "image/webp":
+        return `${baseName}.webp`; // Convert .webp to .png
+      case "image/png":
+        return `${baseName}.png`; // Convert .png to .webp
+      case "image/jpeg":
+      case 'image/jpg':
+        return `${baseName}.jpg`; // Convert .jpg/.jpeg to .webp
+      default:
+        return fileName; // Return the original file if it's an unsupported format
+    }
+  }
+
   useEffect(() => {
     let arr = [
       {
@@ -193,19 +221,51 @@ const LazyLoading = () => {
       </MenuItem>
     ));
 
-  const handleFileTypeChange = (event) => {
-    return new Promise((resolve, reject) => {
-      Compress.canvasToFile(
-        Compress.drawImageInCanvas(document.getElementById("testconvert")),
-        event.target.value,
-        "compressedImage"
-      ).then(data => {
-        setUploadAndDownload(getSvgToImg(data));
-      });
+  const handleFileTypeChange = async (event) => {
+    let currentFileArr = filesArray;
+    let promiseArr = [];
+
+    currentFileArr.forEach((file) => {
+      // Load the data into an image
+      promiseArr.push(new Promise(function (resolve, reject) {
+        let rawImage = new Image();
+
+        rawImage.addEventListener("load", function () {
+          let canvas = document.createElement('canvas');
+          let ctx = canvas.getContext("2d");
+
+          canvas.width = rawImage.width;
+          canvas.height = rawImage.height;
+          ctx.drawImage(rawImage, 0, 0);
+
+          canvas.toBlob(function (blob) {
+            let newfilename = rotateImageFormat(file.name, event.target.value)
+            resolve({ name: newfilename, file: new File([blob], newfilename, { type: event.target.value }) });
+          }, event.target.value);
+        });
+        rawImage.src = URL.createObjectURL(file.file);
+      }))
+    });
+
+    await Promise.allSettled(promiseArr).then((data) => {
+      setUploadAndDownload(getSvgToImg(data[0].value.file));
+      setFilesArray(data.map((x) => x.value));
       setCurrentFileType(event.target.value);
       handleStepper(2);
-      resolve();
     });
+
+    // return new Promise((resolve, reject) => {
+    //   Compress.canvasToFile(
+    //     Compress.drawImageInCanvas(document.getElementById("testconvert")),
+    //     event.target.value,
+    //     "compressedImage"
+    //   ).then(data => {
+    //     setUploadAndDownload(getSvgToImg(data));
+    //   });
+    //   setCurrentFileType(event.target.value);
+    //   handleStepper(2);
+    //   resolve();
+    // });
   }
 
   const handleStepper = (stepNumber) => {
@@ -223,8 +283,7 @@ const LazyLoading = () => {
     setSteps(stepsArr);
   }
 
-  const handleUpload = async (event) => {
-    let file = event.target.files[0];
+  const handleUpload = async (file) => {
     let blob = new Blob([new Uint8Array(await file.arrayBuffer())], {
       type: file.type,
     });
@@ -242,14 +301,9 @@ const LazyLoading = () => {
             type: file.type,
             lastModified: Date.now(),
           });
-          setUploadAndDownload(getSvgToImg(convertedBlobFile));
-          // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
-          setTimeout(() => {
-            setDownloadDisabled(false);
-            setIsUploadLoaded(true);
-            handleStepper(1);
-          });
-          resolve();
+          // setUploadAndDownload(getSvgToImg(convertedBlobFile));
+
+          resolve({ name: file.name, file: convertedBlobFile });
         })
         .catch((e) => {
           console.log(e);
@@ -257,6 +311,27 @@ const LazyLoading = () => {
         });
     });
   };
+
+  const handleCompress = async (event) => {
+    let files = event.target.files;
+    let allPromise = [];
+    for (const element of files) {
+      let currentFile = element;
+      allPromise.push(handleUpload(currentFile));
+    }
+
+    await Promise.allSettled(allPromise).then((data) => {
+      // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
+      setUploadAndDownload(getSvgToImg(data[0].value.file));
+      setFilesArray(data.map((x) => x.value));
+
+      setTimeout(() => {
+        setDownloadDisabled(false);
+        setIsUploadLoaded(true);
+        handleStepper(1);
+      });
+    });
+  }
 
   return (
     <div
@@ -539,7 +614,7 @@ const LazyLoading = () => {
                   onChange={(e) => {
                     setIsUploadLoaded(false);
                     setUploadAndDownload(null);
-                    handleUpload(e);
+                    handleCompress(e);
                     e.target.value = null;
                   }}
                   id="icon-button-file"
@@ -552,7 +627,18 @@ const LazyLoading = () => {
                 variant="contained"
                 disabled={downloadDisabled}
                 onClick={() => {
-                  document.getElementById("download-compressed").click();
+                  // document.getElementById("download-compressed").click();
+                  filesArray.forEach((file) => {
+                    const url = URL.createObjectURL(file.file);
+                    const fileName = file.name;
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    destroyUrl(url);
+                  });
                   handleStepper(3);
                 }}
               >

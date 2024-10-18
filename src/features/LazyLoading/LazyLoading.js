@@ -168,7 +168,6 @@ const LazyLoading = () => {
     const lastDotIndex = fileName.lastIndexOf('.');
     if (lastDotIndex === -1) return fileName; // No extension found
 
-    // const ext = fileName.slice(lastDotIndex + 1).toLowerCase(); // Get the extension
     const baseName = fileName.slice(0, lastDotIndex); // Get the base name
 
     // Define the conversion rules
@@ -643,14 +642,6 @@ const LazyLoading = () => {
                 }}
               >
                 {t('lazyLoading.download')}
-                <a
-                  id="download-compressed"
-                  hidden
-                  href={uploadAndDownload}
-                  download="compressedimage"
-                >
-                  {t('lazyLoading.download')}
-                </a>
               </PrimaryButton>
             </Stack>
           </CardContent>

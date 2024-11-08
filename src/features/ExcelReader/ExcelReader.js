@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx';
 import { PrimaryButton, Title } from "../../components/Component";
-import { breakfast } from '../../assets/assets';
+import { breakfast } from '../../Assets/assets';
 import './ExcelReader.css'
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';

@@ -7,7 +7,7 @@ import { PrimaryButton, Dropdown, Title } from "../../components/Component";
 import { AppContext } from "../../Context/AppContext";
 import ProgressStepper from "../../components/ProgressStepper/ProgressStepper";
 import React, { useState, useContext, useEffect } from "react";
-import mekito from "../../assets/kito.jpg";
+import mekito from "../../Assets/kito.jpg";
 import { useTranslation } from 'react-i18next';
 import "./LazyLoading.css";
 

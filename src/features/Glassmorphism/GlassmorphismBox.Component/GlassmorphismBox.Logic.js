@@ -1,4 +1,4 @@
-import { IsNullOrUndefined, convertHexToRGB } from "../../../utils/utils";
+import { IsNullOrUndefined, convertHexToRGB } from "../../../Utils/Utils";
 
 export const GlassmorphismBoxLogic = ({
     setCardColor,

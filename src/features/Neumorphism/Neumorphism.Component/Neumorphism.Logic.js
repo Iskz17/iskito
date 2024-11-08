@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { needDarkMode, calculateShadow } from "../../../utils/utils";
+import { needDarkMode, calculateShadow } from "../../../Utils/Utils";
 
 const NeumorphismLogic = (
   cssParametersObj,

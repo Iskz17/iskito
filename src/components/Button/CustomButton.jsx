@@ -1,17 +1,17 @@
 import * as React from "react";
-import { forwardRef, useState, useContext, useEffect } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 import { useTheme } from "@mui/material/styles";
 
 const PrimaryButton = forwardRef(({ children, ...other }, ref) => {
   const theme = useTheme();
-  const [state] = useContext(AppContext);
-  const [themeId, setThemeId] = useState(state.isDarkMode ? 'dark' : 'light');
+  const [isDarkMode] = useDarkLightTheme();
+  const [themeId, setThemeId] = useState(isDarkMode? 'dark' : 'light');
 
   useEffect(() => {
-    setThemeId(state.isDarkMode ? 'dark' : 'light');
-  }, [state]);
+    setThemeId(isDarkMode? 'dark' : 'light');
+  }, [isDarkMode]);
 
   return (
     <Button
@@ -36,12 +36,12 @@ export { PrimaryButton }; // Exporting PrimaryButton
 
 export function SecondaryButton({ children, ...other }) {
   const theme = useTheme();
-  const [state] = useContext(AppContext);
+  const [isDarkMode] = useDarkLightTheme();
   const [themeld, setThemeld] = useState("light");
 
   useEffect(() => {
-    setThemeld(state.isDarkMode ? "dark" : "light");
-  }, [state]);
+    setThemeld(isDarkMode? "dark" : "light");
+  }, [isDarkMode]);
 
   return (
     <Button

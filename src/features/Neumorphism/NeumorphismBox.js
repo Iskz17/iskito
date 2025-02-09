@@ -1,6 +1,6 @@
 import { Title } from "../../components/Component";
 import { useMediaQuery } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   TopLightBoxes,
   BottomLightBoxes,
@@ -9,7 +9,7 @@ import {
 import "./NeumorphismBox.css";
 import { createTheme } from "@mui/material/styles";
 import NeumorphismLogic from "./Neumorphism.Component/Neumorphism.Logic";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const NeumorphismBox = (props) => {
   let textBoxColorPicker = useRef(null);
@@ -73,88 +73,91 @@ const NeumorphismBox = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   return (
-      <div id="globalPlacement">
+    <div id="globalPlacement">
+      <div
+        id="arrangeParent"
+        style={{
+          fontFamily: "Gilroy",
+          color: `${needToUseDark ? "#001f3f" : "white"}`,
+          height: matches ? "unset" : "100vh",
+          minHeight: "699px",
+        }}
+      >
+        <Title
+          title={t("neumorphism.title")}
+          description={t("neumorphism.description")}
+        />
         <div
-          id="arrangeParent"
+          id="content"
           style={{
-            fontFamily: "Gilroy",
-            color: `${needToUseDark ? "#001f3f" : "white"}`,
-            height: matches ? "unset" : "100vh",
-            minHeight: "699px",
+            ...flex,
+            width: "100%",
+            height: "100%",
+            marginTop: "-20px",
+            gap: "20px",
+            flexDirection: matches ? "column" : "row",
           }}
         >
-          <Title title={t("neumorphism.title")} description={t("neumorphism.description")} />
-          <div
-            id="content"
-            style={{
-              ...flex,
-              width: "100%",
-              height: "100%",
-              marginTop: "-20px",
-              gap: "20px",
-              flexDirection: matches ? "column" : "row",
-            }}
-          >
-            <div id="mainBox">
-              <div
-                style={{
-                  ...flex,
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <TopLightBoxes
-                  handleLightSource={handleLightSource}
-                  lightSourcePos={lightSourcePos}
-                  needToUseDark={needToUseDark}
-                />
-                <div className="insideTargetBox"></div>
-                <BottomLightBoxes
-                  handleLightSource={handleLightSource}
-                  lightSourcePos={lightSourcePos}
-                  needToUseDark={needToUseDark}
-                />
-              </div>
-            </div>
+          <div id="mainBox">
             <div
-              id="configBox"
               style={{
                 ...flex,
-                color: needToUseDark ? "#001f3f" : "white",
+                width: "100%",
+                height: "100%",
               }}
             >
-              <div
-                className="insideConfigBox"
-                style={{
-                  ...flex,
-                }}
-              >
-                <ConfigBox
-                  updateDocumentCSS={updateDocumentCSS}
-                  cssParametersObj={cssParametersObj}
-                  handleColorChange={handleColorChange}
-                  handleChangeBlur={handleChangeBlur}
-                  handleChangeDistance={handleChangeDistance}
-                  handleChangeIntensity={handleChangeIntensity}
-                  handleChangeRad={handleChangeRad}
-                  handleChangeSize={handleChangeSize}
-                  colorPicker={colorPicker}
-                  textBoxColorPicker={textBoxColorPicker}
-                  needToUseDark={needToUseDark}
-                  valueSize={valueSize}
-                  valueRad={valueRad}
-                  valueRadMax={valueRadMax}
-                  valueDistance={valueDistance}
-                  valueBlur={valueBlur}
-                  valueIntensity={valueIntensity}
-                  lightAngleValue={lightAngleValue}
-                  darkAngleValue={darkAngleValue}
-                />
-              </div>
+              <TopLightBoxes
+                handleLightSource={handleLightSource}
+                lightSourcePos={lightSourcePos}
+                needToUseDark={needToUseDark}
+              />
+              <div className="insideTargetBox"></div>
+              <BottomLightBoxes
+                handleLightSource={handleLightSource}
+                lightSourcePos={lightSourcePos}
+                needToUseDark={needToUseDark}
+              />
+            </div>
+          </div>
+          <div
+            id="configBox"
+            style={{
+              ...flex,
+              color: needToUseDark ? "#001f3f" : "white",
+            }}
+          >
+            <div
+              className="insideConfigBox"
+              style={{
+                ...flex,
+              }}
+            >
+              <ConfigBox
+                updateDocumentCSS={updateDocumentCSS}
+                cssParametersObj={cssParametersObj}
+                handleColorChange={handleColorChange}
+                handleChangeBlur={handleChangeBlur}
+                handleChangeDistance={handleChangeDistance}
+                handleChangeIntensity={handleChangeIntensity}
+                handleChangeRad={handleChangeRad}
+                handleChangeSize={handleChangeSize}
+                colorPicker={colorPicker}
+                textBoxColorPicker={textBoxColorPicker}
+                needToUseDark={needToUseDark}
+                valueSize={valueSize}
+                valueRad={valueRad}
+                valueRadMax={valueRadMax}
+                valueDistance={valueDistance}
+                valueBlur={valueBlur}
+                valueIntensity={valueIntensity}
+                lightAngleValue={lightAngleValue}
+                darkAngleValue={darkAngleValue}
+              />
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

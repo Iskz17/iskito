@@ -12,6 +12,7 @@ import {
   ElementPressed,
 } from "./Neumorphism.Component";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const ConfigBox = ({
   updateDocumentCSS,
@@ -70,6 +71,35 @@ export const ConfigBox = ({
     return null;
   }, [clipboardText]);
 
+  const location = useLocation();
+  const navigate = useNavigate(); // Get navigate function
+  useEffect(() => {
+    // Parse the query parameters
+    const queryParams = new URLSearchParams(location.search);
+    const color = queryParams.get("color");
+
+    if (!color) {
+      return;
+    }
+    handleColorChange(`#${color}`);
+    return () => {
+      cssParametersObj = null;
+    };
+  }, []);
+
+  let timeoutId;
+  const debounceRouteUpdate = (value) => {
+    // Clear the previous timeout if it's still pending
+    clearTimeout(timeoutId);
+
+    // Set a new timeout
+    timeoutId = setTimeout(() => {
+      navigate(`iskito/neumorphism?color=${value.replace("#", "")}`, {
+        replace: true,
+      });
+    }, 500); // 500 ms debounce time
+  };
+
   useEffect(() => {
     cssParametersObj.current = {
       ...cssParametersObj.current,
@@ -117,7 +147,10 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             defaultValue="#CAE6E8"
             type="color"
             style={{ border: "none", borderRadius: "5px", padding: "none" }}
-            onChange={(e) => handleColorChange(e)}
+            onChange={(e) => {
+              debounceRouteUpdate(e.target.value);
+              handleColorChange(e.target.value);
+            }}
           />
           <span>{`or`}</span>
           <input
@@ -133,7 +166,10 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
               borderRadius: "5px",
               fontFamily: "Gilroy",
             }}
-            onChange={(e) => handleColorChange(e)}
+            onChange={(e) => {
+              debounceRouteUpdate(e.target.value);
+              handleColorChange(e.target.value);
+            }}
           />
         </Stack>
       </div>
@@ -229,7 +265,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
           spacing={2}
           direction="row"
           sx={{ mb: 0, px: 1 }}
-          alignItems="center">
+          alignItems="center"
+        >
           <span style={{ paddingBottom: "5px" }}>{`${t(
             "neumorphism.shape"
           )}:`}</span>
@@ -248,7 +285,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             flexWrap: "wrap",
             height: "40px",
             borderRadius: "5px",
-          }}>
+          }}
+        >
           <button
             style={{
               backgroundColor:
@@ -268,7 +306,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             }}
             onClick={() => {
               setShadowType("flat");
-            }}>
+            }}
+          >
             <div style={{ width: "55%" }}>
               <ElementFlat />
             </div>
@@ -292,7 +331,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             }}
             onClick={() => {
               setShadowType("concave");
-            }}>
+            }}
+          >
             <div style={{ width: "55%" }}>
               <ElementConcave />
             </div>
@@ -315,7 +355,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             }}
             onClick={() => {
               setShadowType("convex");
-            }}>
+            }}
+          >
             <div style={{ width: "55%" }}>
               <ElementConvex />
             </div>
@@ -339,7 +380,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             }}
             onClick={() => {
               setShadowType("pressed");
-            }}>
+            }}
+          >
             <div style={{ width: "55%" }}>
               <ElementPressed />
             </div>
@@ -363,7 +405,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             borderRadius: "5px",
             fontSize: "0.97rem",
             wordSpacing: "5px",
-          }}>
+          }}
+        >
           <div className="wrapCSS">
             {`border-radius: `}
             <span
@@ -372,7 +415,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 color: !needToUseDark
                   ? "rgba(0,31,63,1)"
                   : "rgba(255,255,255,1)",
-              }}>{`  ${valueRad}px;`}</span>
+              }}
+            >{`  ${valueRad}px;`}</span>
           </div>
           <div className="wrapCSS">
             {`background:`}
@@ -383,7 +427,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 color: !needToUseDark
                   ? "rgba(0,31,63,1)"
                   : "rgba(255,255,255,1)",
-              }}></span>
+              }}
+            ></span>
           </div>
           <div className="wrapCSS">
             {`box-shadow:`}
@@ -393,7 +438,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                 color: !needToUseDark
                   ? "rgba(0,31,63,1)"
                   : "rgba(255,255,255,1)",
-              }}>{`${`${shadowType === "pressed" ? "inset" : ""} ${
+              }}
+            >{`${`${shadowType === "pressed" ? "inset" : ""} ${
               darkAngleValue[0]
             }${valueDistance}px ${
               darkAngleValue[1]
@@ -405,7 +451,8 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
                   ? "rgba(0,31,63,1)"
                   : "rgba(255,255,255,1)",
                 display: "flex",
-              }}>{`${shadowType === "pressed" ? "inset" : ""} 
+              }}
+            >{`${shadowType === "pressed" ? "inset" : ""} 
               ${lightAngleValue[0]}${valueDistance}px ${
               lightAngleValue[1]
             }${valueDistance}px ${valueBlur}px ${cssParametersObj.current.lightShadow.toLowerCase()};`}</span>
@@ -424,13 +471,17 @@ ${cssParametersObj.current.shadowType === "pressed" ? "inset" : ""} ${
             borderRadius: "5px",
             fontSize: "0.97rem",
             wordSpacing: "5px",
-          }}>
+          }}
+        >
           <PrimaryButton
             onClick={handleClipboardText}
             disableElevation
             variant="contained"
-            size="small">
-            <span>{isCopied ? t("neumorphism.copied") : t('neumorphism.copy')}</span>
+            size="small"
+          >
+            <span>
+              {isCopied ? t("neumorphism.copied") : t("neumorphism.copy")}
+            </span>
           </PrimaryButton>
           <ClipboardCopy id="clipboardCopy" copyText={clipboardText} hidden />
         </Stack>

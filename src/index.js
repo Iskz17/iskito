@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 import App from './App';
-import { AppContext, AppContextProvider } from "./Context/AppContext";
+import { DarkLightThemeProvider } from "./Context/DarkLightThemeContext";
 
 ReactDOM.render(
-  <AppContextProvider>
+  <DarkLightThemeProvider>
     <App />
-  </AppContextProvider>,
+  </DarkLightThemeProvider>,
   document.getElementById("root")
 );
 

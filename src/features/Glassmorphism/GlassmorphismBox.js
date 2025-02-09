@@ -1,9 +1,8 @@
 import { Title } from "../../components/Component";
 import { Stack, createTheme, useMediaQuery } from "@mui/material";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 import React, {
   useState,
-  useContext,
   useEffect,
 } from "react";
 import { BackgroundContent, CardContent, GlassmorphismBoxConfig, GlassmorphismBoxContent } from "./GlassmorphismBox.Component/GlassmorphismBox.Component";
@@ -24,7 +23,7 @@ const GlassmorphismBox = () => {
   });
 
   const { t } = useTranslation();
-  const [state] = useContext(AppContext);
+  const [isDarkModeFromContext] = useDarkLightTheme();
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   //   $(function() { 
@@ -45,16 +44,12 @@ const GlassmorphismBox = () => {
   const [blurVal, setBlurVal] = useState(10);
   const [opacityVal, setOpacityVal] = useState(50);
   const [saturationVal, setSaturationVal] = useState(120);
-  const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
+  const [isDarkMode] = useDarkLightTheme();
   const [backgroundColor, setBackgroundColor] = useState([
     "#DF68B9",
     "#53D56D",
     "#92B9DD",
   ]);
-
-  useEffect(() => {
-    setNeedToUseDark(state.isDarkMode);
-  }, [state]);
 
   const [cardColor, setCardColor] = useState("#ebebeb");
   const [currentCardType, setCurrentCardType] = useState("creditCard");
@@ -86,7 +81,7 @@ const GlassmorphismBox = () => {
         style={{
           fontFamily: "Gilroy",
           // background: needToUseDark ? "#1F2929" : "rgba(227,227,227)",
-          color: needToUseDark
+          color: isDarkMode
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
             paddingTop: "19px",
@@ -105,7 +100,7 @@ const GlassmorphismBox = () => {
         >
           <GlassmorphismBoxConfig
             matches={matches}
-            needToUseDark={needToUseDark}
+            needToUseDark={isDarkMode}
             backgroundColor={backgroundColor}
             convertToRgbWithOpacity={convertToRgbWithOpacity}
             currentBackgroundType={currentBackgroundType}
@@ -121,7 +116,7 @@ const GlassmorphismBox = () => {
           />
           <GlassmorphismBoxContent
             matches={matches}
-            needToUseDark={needToUseDark}
+            needToUseDark={isDarkMode}
             currentCardType={currentCardType}
             handleChange={handleChange}
             backgroundColor={backgroundColor}

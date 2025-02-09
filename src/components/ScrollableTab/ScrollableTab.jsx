@@ -2,15 +2,15 @@ import { useMediaQuery } from "@material-ui/core";
 import { Dropdown } from "../Component";
 import AppBar from "@material-ui/core/AppBar";
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 import { useTheme } from "@mui/material/styles";
 import { US, CN, FR, ES, JP } from "country-flag-icons/react/3x2";
-import i18n from './../../locales/i18n';
+import { useNavigate } from "react-router-dom";
+import i18n from "./../../locales/i18n";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import {
   useState,
-  useContext,
   useEffect,
   useMemo,
   memo,
@@ -21,7 +21,6 @@ import "../../index.css";
 
 const TabPanel = forwardRef((props, ref) => {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       ref={ref}
@@ -29,7 +28,8 @@ const TabPanel = forwardRef((props, ref) => {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {<div>{children}</div>}
     </div>
   );
@@ -44,15 +44,14 @@ function a11yProps(index) {
 
 const ScrollableTabs = forwardRef((props, ref) => {
   const { value, onChange, tabs, fixed, includeDarkModeSwitch } = props;
-
-  const [state, setState] = useContext(AppContext);
-  const [checked, setChecked] = useState(state.isDarkMode);
+  const navigate = useNavigate(); // Get navigate function
+  const [isDarkMode, setIsDarkMode] = useDarkLightTheme();
+  const [checked, setChecked] = useState(isDarkMode);
   let updateFromContext = true;
   const theme = useTheme();
 
-  const [themeld, setThemeld] = useState(state.isDarkMode ? "dark" : "light");
-  const [currentLangSelected, setCurrentLangSelected] =
-    useState("en");
+  const [themeld, setThemeld] = useState(isDarkMode? "dark" : "light");
+  const [currentLangSelected, setCurrentLangSelected] = useState("en");
   const handleChangeLang = (event) => {
     setCurrentLangSelected(event.target.value);
     i18n.changeLanguage(event.target.value);
@@ -62,14 +61,14 @@ const ScrollableTabs = forwardRef((props, ref) => {
     if (!updateFromContext) {
       return;
     }
-    setThemeld(state.isDarkMode ? "dark" : "light");
-  }, [state]);
+    setThemeld(isDarkMode? "dark" : "light");
+  }, [isDarkMode]);
 
   useEffect(() => {
-    if (checked === state.isDarkMode) {
+    if (checked === isDarkMode) {
       return;
     }
-    setState({ ...state, isDarkMode: checked });
+    setIsDarkMode(checked);
     setThemeld(checked ? "dark" : "light");
     document.body.className = checked ? "bodyBgColor darkMode" : "bodyBgColor";
     updateFromContext = false;
@@ -103,7 +102,8 @@ const ScrollableTabs = forwardRef((props, ref) => {
           height: "30px",
           fontSize: "15px",
           fontFamily: "Gilroy",
-        }}>
+        }}
+      >
         {
           <US
             title="United States"
@@ -118,13 +118,9 @@ const ScrollableTabs = forwardRef((props, ref) => {
           height: "30px",
           fontSize: "15px",
           fontFamily: "Gilroy",
-        }}>
-        {
-          <CN
-            title="China"
-            style={{ width: "25px", marginTop: "5px" }}
-          />
-        }
+        }}
+      >
+        {<CN title="China" style={{ width: "25px", marginTop: "5px" }} />}
       </MenuItem>,
       <MenuItem
         key={`fr_menuItem`}
@@ -133,13 +129,9 @@ const ScrollableTabs = forwardRef((props, ref) => {
           height: "30px",
           fontSize: "15px",
           fontFamily: "Gilroy",
-        }}>
-        {
-          <FR
-            title="France"
-            style={{ width: "25px", marginTop: "5px" }}
-          />
-        }
+        }}
+      >
+        {<FR title="France" style={{ width: "25px", marginTop: "5px" }} />}
       </MenuItem>,
       <MenuItem
         key={`es_menuItem`}
@@ -148,13 +140,9 @@ const ScrollableTabs = forwardRef((props, ref) => {
           height: "30px",
           fontSize: "15px",
           fontFamily: "Gilroy",
-        }}>
-        {
-          <ES
-            title="Spain"
-            style={{ width: "25px", marginTop: "5px" }}
-          />
-        }
+        }}
+      >
+        {<ES title="Spain" style={{ width: "25px", marginTop: "5px" }} />}
       </MenuItem>,
       <MenuItem
         key={`jp_menuItem`}
@@ -163,13 +151,9 @@ const ScrollableTabs = forwardRef((props, ref) => {
           height: "30px",
           fontSize: "15px",
           fontFamily: "Gilroy",
-        }}>
-        {
-          <JP
-            title="Japan"
-            style={{ width: "25px", marginTop: "5px" }}
-          />
-        }
+        }}
+      >
+        {<JP title="Japan" style={{ width: "25px", marginTop: "5px" }} />}
       </MenuItem>,
     ],
     []
@@ -182,19 +166,26 @@ const ScrollableTabs = forwardRef((props, ref) => {
         color={"inherit"}
         className={fixed && "fixed-search-header"}
         elevation={0}
-        style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}>
+        style={{ backgroundColor: theme[themeld].appBar.backgroundColor }}
+      >
         <Stack
           style={{ width: "100%" }}
           spacing={2}
           direction="row"
           sx={{ px: 1 }}
           alignItems="center"
-          justifyContent={"flex-start"}>
+          justifyContent={"flex-start"}
+        >
           {includeDarkModeSwitch && ForIOS}
           <Tabs
             style={{ cursor: "none" }}
             value={value}
-            onChange={onChange}
+            onChange={(ev, val) => {
+              navigate(tabs.filter((loc) => loc.key === val)[0].route, {
+                replace: true,
+              });
+              onChange(ev, val);
+            }}
             aria-label="simple tabs example"
             indicatorColor="primary"
             variant={"scrollable"}
@@ -218,7 +209,8 @@ const ScrollableTabs = forwardRef((props, ref) => {
               ".MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary": {
                 color: theme[themeld].tab.color,
               },
-            }}>
+            }}
+          >
             {tabs?.map((v, index) => (
               <Tab
                 label={v.label}
@@ -238,14 +230,16 @@ const ScrollableTabs = forwardRef((props, ref) => {
               justifyContent: "flex-end",
               flexDirection: "row",
               alignItems: "center",
-            }}>
+            }}
+          >
             <FormControl
               sx={{
                 width: "80px",
                 padding: 0,
                 border: "none",
               }}
-              size="small">
+              size="small"
+            >
               <Dropdown
                 value={currentLangSelected}
                 onChange={handleChangeLang}
@@ -254,7 +248,8 @@ const ScrollableTabs = forwardRef((props, ref) => {
                   height: "30px",
                   fontSize: "15px",
                   fontFamily: "Gilroy",
-                }}>
+                }}
+              >
                 {handleRenderMenuItemBg}
               </Dropdown>
             </FormControl>
@@ -266,7 +261,8 @@ const ScrollableTabs = forwardRef((props, ref) => {
           value={value}
           index={index}
           key={`${index}_tabs`}
-          style={{ marginTop: "18px" }}>
+          style={{ marginTop: "18px" }}
+        >
           {v.content}
         </TabPanel>
       ))}

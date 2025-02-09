@@ -1,20 +1,20 @@
-import { AppContext } from "../../Context/AppContext";
-import { useState, useContext, useEffect, memo, forwardRef } from "react";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useState, useEffect, memo, forwardRef } from "react";
 import Slider from "@mui/material/Slider";
 import '../../index.css'
 
 const CustomSlider = forwardRef((props, ref) => {
-  const [state] = useContext(AppContext);
+  const [isDarkModeFromContext] = useDarkLightTheme();
   const {darkmodevalue, overridedarkmode, ...others} = props
-  const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
+  const [needToUseDark, setNeedToUseDark] = useState(isDarkModeFromContext);
 
   useEffect(() => {
     if(overridedarkmode){
       setNeedToUseDark(darkmodevalue);
       return;
     }
-    setNeedToUseDark(state.isDarkMode);
-  }, [state, darkmodevalue, overridedarkmode]);
+    setNeedToUseDark(isDarkModeFromContext);
+  }, [isDarkModeFromContext, darkmodevalue, overridedarkmode]);
 
   return (
     <Slider

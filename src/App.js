@@ -1,33 +1,50 @@
 import "./App.css";
-// import Typewriter from "typewriter-effect";
-// import Kito from "./kito-nobg.png";
 import DotRing from "./components/CustomCursor/CustomCursor";
-import { QuillPlayground, GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox, ExcelReader, Dashboard } from "./features";
-import { useState, useRef } from "react";
+import {
+  QuillPlayground,
+  GlassmorphismBox,
+  LazyLoading,
+  MusicPlayer,
+  NeumorphismBox,
+  ExcelReader,
+  Dashboard,
+} from "./features";
+import { useState, useEffect, useRef } from "react";
 import AppTheme from "./components/ThemeProvider/AppTheme";
 import ScrollableTabs from "./components/ScrollableTab/ScrollableTab";
 import { Section } from "./components/Section/Section";
-import './locales/i18n';
-// import 'react-quill/dist/quill.snow.css';
-// import stg from "./Assets/SPACETYPEGENERATOR.gif"
-import worker_script from './worker';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./locales/i18n";
+
+import worker_script from "./worker";
 
 var myWorker = new Worker(worker_script);
 
 const App = () => {
-
-  //#region for tab demo
   const [tabValue, setTabValue] = useState(0);
 
   const blobRef = useRef(null);
   const sectionRef = useRef(null);
+
+  const CallingRoute = (props) => {
+    const { keyValue } = props;
+    useEffect(() => {
+      handleChangeTab(null, keyValue);
+    }, []); // This will run once when the component mounts
+
+    return <Section></Section>;
+  };
+
+  // Worker logic
   const handleChangeTab = (event, newValue) => {
     setTabValue(newValue);
     myWorker.onmessage = (m) => {
       console.log("msg from worker: ", m.data);
     };
-    myWorker.postMessage('im from main');
+    myWorker.postMessage("im from main");
   };
+
+  // Function to prepare tabs
   const prepareTabs = () => {
     return [
       {
@@ -38,264 +55,118 @@ const App = () => {
             <NeumorphismBox sectionRef={sectionRef} />
           </Section>
         ),
+        route: "iskito/neumorphism",
       },
-      // {
-      //   label: "Dialog",
-      //   key: 1,
-      //   content: (
-      //     <Section>
-      //      <DialogCollection />
-      //     </Section>
-      //   ),
-      // },
       {
         label: "Glassmorphism",
-        key: 2,
+        key: 1,
         content: (
           <Section>
             <GlassmorphismBox />
           </Section>
         ),
+        route: "iskito/glassmorphism",
       },
       {
         label: "Lazy Loading",
-        key: 3,
+        key: 2,
         content: (
           <Section>
             <LazyLoading />
           </Section>
         ),
+        route: "iskito/lazyloading",
       },
       {
         label: "Music Player",
-        key: 4,
+        key: 3,
         content: (
           <Section ref={blobRef}>
             <MusicPlayer blobRef={blobRef} />
           </Section>
         ),
+        route: "iskito/musicplayer",
       },
       {
         label: "Quill",
-        key: 5,
+        key: 4,
         content: (
           <Section>
-            <QuillPlayground/>
+            <QuillPlayground />
           </Section>
         ),
+        route: "iskito/quill",
       },
       {
         label: "Excel",
-        key: 6,
+        key: 5,
         content: (
           <Section>
-            <ExcelReader/>
+            <ExcelReader />
           </Section>
         ),
+        route: "iskito/excel",
       },
       {
         label: "Dashboard",
         key: 6,
         content: (
           <Section>
-            <Dashboard/>
+            <Dashboard />
           </Section>
         ),
+        route: "iskito/dashboard",
       },
     ];
-
   };
-  //#endregion
 
   return (
     <AppTheme>
       <div className="App">
-        {/* 
-        //#region not used
-        <div
-          id="parents div"
-          style={{
-            width: "100%",
-            height: "100vh",
-            position: "relative",
-            boxShadow: "0 70px 40px -40px rgba(142, 197, 252, 0.4)",
-            zIndex: 50,
-            fontSize: "2rem",
-          }}
-        >
-          <div
-            id="bubble"
-            style={{
-              position: "absolute",
-              // backgroundColor: "red",
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-            }}
-          >
-            <ParticleBackground />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div id="blurContainer"></div>
-          </div>
+        <div id="curPos">
+          <DotRing />
+        </div>
 
-          <div
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              fontSize: "1em",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              color: "grey",
-              paddingLeft: "10%",
-              paddingRight: "10%",
-              fontWeight: 700,
-              //background: "red",
-            }}
-          >
-            <div className="descriptionDiv">
-              <span
-                id="intro"
-                className="introFont"
-              >{`Hi, I'm {Iskandar}`}</span>
-              <div style={{ marginTop: "10px" }}></div>
-              <span style={{ fontSize: "1em" }}>
-                <span style={{ fontSize: "0.8em" }}>
-                  <Typewriter
-                    options={{
-                      autoStart: true,
-                      loop: true,
-                    }}
-                    style={{ marginTop: "1000px" }}
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString("I'm a web developer from Malaysia 😁")
-                        .pauseFor(1000)
-                        .typeString("and currently based in Malaysia")
-                        .deleteAll()
-                        .typeString(
-                          "I have an experience in {C# .net} and {React ⚛️}!! 🛠️🚀 "
-                        )
-                        .pauseFor(1000)
-                        .deleteAll()
-                        .typeString("This page is for experiment ⚗️🧪")
-                        .pauseFor(1000)
-                        .typeString("and also keeping important notes ✍️🗒️")
-                        .pauseFor(1000)
-                        .deleteAll()
-                        .start();
-                    }}
-                  />
-                </span>
-              </span>
-            </div>
-            <div className="pictureDiv">
-              <img
-                src={Kito}
-                alt="profile pic"
-                style={{
-                  width: "23rem",
-                  objectFit: "cover",
-                  position: "absolute",
-                  filter: "drop-shadow(0 30px 0.75rem rgba(0,0,0,0.3))",
-                  transition: ".5s ease",
-                }}
-              />
-            </div>
-          </div>
-          <div
-            id="header"
-            style={{
-              position: "fixed",
-              width: "100%",
-              height: "55px",
-              boxShadow: "0px 30px 50px -20px rgba(0,0,0,0.5)",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              paddingRight: "10%",
-            }}
-          >
-            <div style={{ ...headerItem }}>Home</div>
-            <div style={{ ...headerItem }}>Profile</div>
-            <div style={{ ...headerItem }}>Notes</div>
-          </div>
-          <div
-            style={{
-              width: "80px",
-              marginLeft: "40px",
-              //background: "black",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              flexWrap: "wrap",
-              position: "absolute",
-              zIndex: 10000,
-            }}
-          >
-            <div
-              style={{
-                background: "red",
-                width: "100%",
-                height: "50px",
-                marginBottom: "5px",
-              }}
-              onClick={() => {
-                alert("first is being clicked");
-              }}
-            ></div>
-            <div
-              style={{
-                background: "red",
-                width: "100%",
-                height: "50px",
-                marginBottom: "5px",
-              }}
-            ></div>
-            <div
-              style={{
-                background: "red",
-                width: "100%",
-                height: "50px",
-                marginBottom: "5px",
-              }}
-            ></div>
-            <div
-              style={{
-                background: "red",
-                width: "100%",
-                height: "50px",
-                marginBottom: "5px",
-              }}
-            ></div>
-          </div>
-        </div> 
-        //#endregion
-        */}
-        <div id="curPos"><DotRing /></div>
-        <Section>
-          <ScrollableTabs
-            value={tabValue}
-            onChange={handleChangeTab}
-            tabs={prepareTabs()}
-            includeDarkModeSwitch={true}
-          />
-        </Section>
+        <Router>
+          <Section>
+            <ScrollableTabs
+              value={tabValue}
+              onChange={handleChangeTab}
+              tabs={prepareTabs()}
+              includeDarkModeSwitch={true}
+            />
+          </Section>
+          <Routes>
+            <Route
+              path="iskito/neumorphism"
+              element={<CallingRoute keyValue={0} />}
+            />
+            <Route
+              path="iskito/glassmorphism"
+              element={<CallingRoute keyValue={1} />}
+            />
+            <Route
+              path="iskito/lazyloading"
+              element={<CallingRoute keyValue={2} />}
+            />
+            <Route
+              path="iskito/musicplayer"
+              element={<CallingRoute keyValue={3} />}
+            />
+            <Route
+              path="iskito/quill"
+              element={<CallingRoute keyValue={4} />}
+            />
+            <Route
+              path="iskito/excel"
+              element={<CallingRoute keyValue={5} />}
+            />
+            <Route
+              path="iskito/dashboard"
+              element={<CallingRoute keyValue={6} />}
+            />
+          </Routes>
+        </Router>
       </div>
     </AppTheme>
   );

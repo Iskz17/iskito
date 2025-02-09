@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { useState, useContext, useEffect } from "react";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,12 +20,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CommonDialog(props) {
-  const [state] = useContext(AppContext);
+  const [isDarkMode] = useDarkLightTheme();
   const [themeld, setThemeld] = useState("light");
 
   useEffect(() => {
-    setThemeld(state.isDarkMode ? "dark" : "light");
-  }, [state]);
+    setThemeld(isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   const theme = useTheme();
   return (
@@ -51,12 +51,20 @@ export default function CommonDialog(props) {
         }}
       >
         <Stack direction="row-reverse" spacing={1}>
-          <IconButton sx={{ cursor: "pointer",  color: theme[themeld].dialogPaper.color }} onClick={props.onClose}>
+          <IconButton
+            sx={{ cursor: "pointer", color: theme[themeld].dialogPaper.color }}
+            onClick={props.onClose}
+          >
             <CloseOutlinedIcon />
           </IconButton>
         </Stack>
         {props.src ? (
-          <Stack direction="row" justifyContent={"center"} spacing={1} style={{padding: "10px"}}>
+          <Stack
+            direction="row"
+            justifyContent={"center"}
+            spacing={1}
+            style={{ padding: "10px" }}
+          >
             <Box
               component="img"
               sx={{
@@ -79,7 +87,7 @@ export default function CommonDialog(props) {
             fontWeight: "760",
             letterSpacing: "-1px",
             fontSize: { xs: "18px", md: "20px" },
-            color: theme[themeld].dialogPaper.color
+            color: theme[themeld].dialogPaper.color,
           }}
         >
           {props?.title ?? "Use Google's location service?"}
@@ -87,7 +95,10 @@ export default function CommonDialog(props) {
         <DialogContent>
           <DialogContentText
             id="alert-dialog-slide-description"
-            sx={{ fontSize: { xs: "13px", md: "14px" }, color: theme[themeld].dialogPaper.color }}
+            sx={{
+              fontSize: { xs: "13px", md: "14px" },
+              color: theme[themeld].dialogPaper.color,
+            }}
           >
             {props?.content ??
               `Let Google help apps determine location. This means sending

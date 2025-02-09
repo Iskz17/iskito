@@ -151,16 +151,16 @@ const NeumorphismLogic = (
     updateDocumentCSS(cssParametersObj.current);
     setValueBlur(newValue.target.value);
   };
-  const handleColorChange = (e) => {
-    setNeedToUseDark(needDarkMode(e.target.value));
-    const [ls, ds, lis, dis] = calculateShadow(e.target.value, valueIntensity);
+  const handleColorChange = (value) => {
+    setNeedToUseDark(needDarkMode(value));
+    const [ls, ds, lis, dis] = calculateShadow(value, valueIntensity);
 
-    colorPicker.current.value = e.target.value;
-    textBoxColorPicker.current.value = e.target.value;
+    colorPicker.current.value = value;
+    textBoxColorPicker.current.value = value;
 
     cssParametersObj.current = {
       ...cssParametersObj.current,
-      backgroundColor: e.target.value,
+      backgroundColor: value,
       lightShadow: ls,
       darkShadow: ds,
       lightInnerShadow: lis,

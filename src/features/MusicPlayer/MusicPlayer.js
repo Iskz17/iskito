@@ -4,7 +4,7 @@ import {
   Slide,
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 import React, {
   useState,
   useContext,
@@ -20,8 +20,7 @@ import "./MusicPlayer.css";
 import { Title } from "../../components/Component"
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
-  const [state] = useContext(AppContext);
-  const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
+  const [isDarkMode, setIsDarkMode] = useDarkLightTheme();
   const [track, setTrack] = useState();
   const [show, setShow] = useState(false);
   const containerRef = useRef();
@@ -46,8 +45,6 @@ const MusicPlayer = forwardRef((props, ref) => {
   const stackRef = useRef();
 
   useEffect(() => {
-    setNeedToUseDark(state.isDarkMode);
-
     let globalAttrPivot = document.getElementsByClassName(
       "blobContainerHeight"
     )[0];
@@ -55,13 +52,13 @@ const MusicPlayer = forwardRef((props, ref) => {
     globalAttrPivot.style.cssText = `--musicplayer-blobContainerHeight: ${containerRef?.current.clientHeight}px;`;
 
     document.getElementsByClassName("blobContainer")[0].classList.add(
-      state.isDarkMode ? "musicPlayerDark" : "musicPlayerLight"
+      isDarkMode ? "musicPlayerDark" : "musicPlayerLight"
     );
     document.getElementsByClassName("blobContainer")[0].classList.remove(
-      state.isDarkMode ? "musicPlayerLight" : "musicPlayerDark"
+      isDarkMode ? "musicPlayerLight" : "musicPlayerDark"
     );
     return () => { };
-  }, [state]);
+  }, [isDarkMode]);
 
   return (
     <>
@@ -71,7 +68,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         className="blobContainer"
         style={{
           position: "absolute",
-          background: needToUseDark ? "#0f151a" : "#f0ddf3",
+          background: isDarkMode ? "#0f151a" : "#f0ddf3",
           height: "100vh",
           width: "100%",
           overflow: "hidden",
@@ -87,7 +84,7 @@ const MusicPlayer = forwardRef((props, ref) => {
         className="gilroy"
         style={{
           background: "transparent",
-          color: needToUseDark
+          color: isDarkMode
             ? "rgba(255, 255, 255, 0.7)"
             : "rgba(0, 0, 0, 0.7)",
           height: "100vh",
@@ -110,7 +107,7 @@ const MusicPlayer = forwardRef((props, ref) => {
           alignItems="center"
           justifyContent={"center"}
         >
-          <CustomCard isDarkMode={needToUseDark} ref={stackRef} noPadding>
+          <CustomCard isDarkMode={isDarkMode} ref={stackRef} noPadding>
             <Slide
               in={!show}
               direction={firstSlideRef.current}

@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
 import { Card, CardContent, CardMedia } from "@material-ui/core";
 import { PrimaryButton, Dropdown, Title } from "../../components/Component";
-import { AppContext } from "../../Context/AppContext";
+import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
 import ProgressStepper from "../../components/ProgressStepper/ProgressStepper";
 import React, { useState, useContext, useEffect } from "react";
 import mekito from "../../Assets/kito.jpg";
@@ -13,11 +13,10 @@ import "./LazyLoading.css";
 
 const LazyLoading = () => {
   const { t } = useTranslation();
-  const [state] = useContext(AppContext);
   const [kitoCompressed, setKitoCompressed] = useState(null);
   const [anotherCompressed, setAnotherCompressed] = useState(null);
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
-  const [needToUseDark, setNeedToUseDark] = useState(state.isDarkMode);
+  const [isDarkMode, setIsDarkMode] = useDarkLightTheme();
   const [downloadDisabled, setDownloadDisabled] = useState(true);
   const [filesArray, setFilesArray] = useState([]);
   const [stepActive, setStepActive] = useState(0);
@@ -92,11 +91,6 @@ const LazyLoading = () => {
     },
   }));
   const styles = useStyles();
-
-  useEffect(() => {
-    setNeedToUseDark(state.isDarkMode);
-    return () => { };
-  }, [state]);
 
   const getSvgToImg = (el) => {
     return URL.createObjectURL(el);
@@ -337,10 +331,10 @@ const LazyLoading = () => {
       id="arrangeParent"
       style={{
         fontFamily: "Gilroy",
-        background: needToUseDark
+        background: isDarkMode
           ? "rgba(41,20,62, 0.9)"
           : "rgba(240,203,168)",
-        color: needToUseDark
+        color: isDarkMode
           ? "rgba(255, 255, 255, 0.7)"
           : "rgba(0, 0, 0, 0.7)",
         height: "unset",

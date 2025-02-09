@@ -2,7 +2,7 @@ import "./App.css";
 // import Typewriter from "typewriter-effect";
 // import Kito from "./kito-nobg.png";
 import DotRing from "./components/CustomCursor/CustomCursor";
-import { QuillPlayground, GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox, ExcelReader } from "./features/features";
+import { QuillPlayground, GlassmorphismBox, LazyLoading, MusicPlayer, NeumorphismBox, ExcelReader, Dashboard } from "./features";
 import { useState, useRef } from "react";
 import AppTheme from "./components/ThemeProvider/AppTheme";
 import ScrollableTabs from "./components/ScrollableTab/ScrollableTab";
@@ -90,6 +90,15 @@ const App = () => {
         content: (
           <Section>
             <ExcelReader/>
+          </Section>
+        ),
+      },
+      {
+        label: "Dashboard",
+        key: 6,
+        content: (
+          <Section>
+            <Dashboard/>
           </Section>
         ),
       },

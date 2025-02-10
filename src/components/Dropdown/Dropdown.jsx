@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import Select from "@mui/material/Select";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 
 export function Dropdown({ children, isDarkMode, overrideDarkmode, ...other }) {
   const [isDarkModeFromContext] = useDarkLightTheme();

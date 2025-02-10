@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { CustomAvatar, PrimaryButton } from "../../../components/Component";
-import CroppedCC from "../../../Assets/cropedcc.png";
+import CroppedCC from "../../../assets/cropedcc.png";
 import { memo } from "react";
 
 export const CardContent = memo(

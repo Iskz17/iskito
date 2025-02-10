@@ -1,4 +1,4 @@
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import { useState, useEffect, memo, forwardRef } from "react";
 import Slider from "@mui/material/Slider";
 import '../../index.css'

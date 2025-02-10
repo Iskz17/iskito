@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { useState, useContext, useEffect } from "react";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

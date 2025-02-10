@@ -2,7 +2,7 @@ import { useMediaQuery } from "@material-ui/core";
 import { Dropdown } from "../Component";
 import AppBar from "@material-ui/core/AppBar";
 import { Stack, Box, FormControl, MenuItem } from "@mui/material";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import { useTheme } from "@mui/material/styles";
 import { US, CN, FR, ES, JP } from "country-flag-icons/react/3x2";
 import { useNavigate } from "react-router-dom";

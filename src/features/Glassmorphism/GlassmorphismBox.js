@@ -1,9 +1,8 @@
 import { Title } from "../../components/Component";
 import { Stack, createTheme, useMediaQuery } from "@mui/material";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import React, {
   useState,
-  useEffect,
 } from "react";
 import { BackgroundContent, CardContent, GlassmorphismBoxConfig, GlassmorphismBoxContent } from "./GlassmorphismBox.Component/GlassmorphismBox.Component";
 import "./GlassmorphismBox.css";
@@ -23,7 +22,6 @@ const GlassmorphismBox = () => {
   });
 
   const { t } = useTranslation();
-  const [isDarkModeFromContext] = useDarkLightTheme();
   const matches = useMediaQuery(theme.breakpoints.down("tablet"));
 
   //   $(function() { 

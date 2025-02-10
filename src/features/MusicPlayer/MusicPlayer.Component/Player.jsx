@@ -10,7 +10,7 @@ import {
   SkipPrevious,
   Pause,
 } from "@mui/icons-material";
-import { lifetime, pgc, pg, lftc} from "../../../Assets/assets";
+import { lifetime, pgc, pg, lftc} from "../../../assets/assets";
 import {
   Stack,
   Typography,

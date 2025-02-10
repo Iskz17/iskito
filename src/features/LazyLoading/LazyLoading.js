@@ -4,10 +4,10 @@ import { makeStyles } from "@mui/styles";
 import { Stack, MenuItem, FormControl, useMediaQuery, Typography } from "@mui/material";
 import { Card, CardContent, CardMedia } from "@material-ui/core";
 import { PrimaryButton, Dropdown, Title } from "../../components/Component";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import ProgressStepper from "../../components/ProgressStepper/ProgressStepper";
-import React, { useState, useContext, useEffect } from "react";
-import mekito from "../../Assets/kito.jpg";
+import React, { useState, useEffect } from "react";
+import mekito from "../../assets/kito.jpg";
 import { useTranslation } from 'react-i18next';
 import "./LazyLoading.css";
 
@@ -16,7 +16,7 @@ const LazyLoading = () => {
   const [kitoCompressed, setKitoCompressed] = useState(null);
   const [anotherCompressed, setAnotherCompressed] = useState(null);
   const [uploadAndDownload, setUploadAndDownload] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useDarkLightTheme();
+  const [isDarkMode] = useDarkLightTheme();
   const [downloadDisabled, setDownloadDisabled] = useState(true);
   const [filesArray, setFilesArray] = useState([]);
   const [stepActive, setStepActive] = useState(0);

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { forwardRef, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import { useTheme } from "@mui/material/styles";
 
 const PrimaryButton = forwardRef(({ children, ...other }, ref) => {

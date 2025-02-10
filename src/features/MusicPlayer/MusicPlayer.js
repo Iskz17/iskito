@@ -4,10 +4,9 @@ import {
   Slide,
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { useDarkLightTheme } from "../../Context/DarkLightThemeContext";
+import { useDarkLightTheme } from "../../context/DarkLightThemeContext";
 import React, {
   useState,
-  useContext,
   useEffect,
   useRef,
   forwardRef
@@ -20,7 +19,7 @@ import "./MusicPlayer.css";
 import { Title } from "../../components/Component"
 // https://blog.logrocket.com/building-audio-player-react/
 const MusicPlayer = forwardRef((props, ref) => {
-  const [isDarkMode, setIsDarkMode] = useDarkLightTheme();
+  const [isDarkMode] = useDarkLightTheme();
   const [track, setTrack] = useState();
   const [show, setShow] = useState(false);
   const containerRef = useRef();

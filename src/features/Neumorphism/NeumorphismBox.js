@@ -1,6 +1,6 @@
 import { Title } from "../../components/Component";
 import { useMediaQuery } from "@mui/material";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import {
   TopLightBoxes,
   BottomLightBoxes,
